@@ -1,0 +1,25 @@
+
+# Angular
+**/node_modules/
+**/.angular/
+**/dist/
+**/coverage/
+
+# ASP.NET Core
+**/bin/
+**/obj/
+**/.vs/
+*.user
+
+# IDE
+**/.idea/
+**/.vscode/
+
+# Secrets locaux
+.env
+.env.*
+!.env.example
+
+# Fichiers système
+.DS_Store
+Thumbs.db
