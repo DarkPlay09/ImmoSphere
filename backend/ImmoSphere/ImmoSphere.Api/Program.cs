@@ -1,4 +1,5 @@
 using Serilog;
+using ImmoSphere.Api.Middlewares;
 
 var builder = WebApplication.CreateBuilder(args);
 
@@ -29,22 +30,20 @@ builder.Services.AddCors(options =>
 // Construction de l'application
 var app = builder.Build();
 
-// Configuration du pipeline HTTP
 if (app.Environment.IsDevelopment())
 {
     app.MapOpenApi();
 }
 
+app.Logger.LogInformation("Demarrage de {app}, en environnement {environnement}", app.Environment.ApplicationName, app.Environment.EnvironmentName);
+
+// Logging des requêtes entrantes
+app.UseMiddleware<LogOriginMiddleware>();
+
 app.UseHttpsRedirection();
 
 app.UseCors("AngularDev");
 
-// Configuration des routes des Controllers
 app.MapControllers();
-
-app.Logger.LogInformation(
-    "Demarrage en environnement : {Environment}",
-    app.Environment.EnvironmentName
-);
 
 app.Run();
