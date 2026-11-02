@@ -1,10 +1,21 @@
+using Serilog;
+
 var builder = WebApplication.CreateBuilder(args);
+
+// Ajout de Serilog
+builder.Services.AddSerilog((services, configuration) =>
+{
+    configuration
+        .ReadFrom.Configuration(builder.Configuration)
+        .ReadFrom.Services(services)
+        .Enrich.FromLogContext();
+});
 
 // Enregistrement des services
 builder.Services.AddControllers();
 builder.Services.AddOpenApi();
 
-// Autorise les requêtes provenant de "http://localhost:4200" => Front-end
+// Autorise les requêtes provenant du front-end Angular
 builder.Services.AddCors(options =>
 {
     options.AddPolicy("AngularDev", policy =>
@@ -15,6 +26,7 @@ builder.Services.AddCors(options =>
     });
 });
 
+// Construction de l'application
 var app = builder.Build();
 
 // Configuration du pipeline HTTP
@@ -29,5 +41,10 @@ app.UseCors("AngularDev");
 
 // Configuration des routes des Controllers
 app.MapControllers();
+
+app.Logger.LogInformation(
+    "Demarrage en environnement : {Environment}",
+    app.Environment.EnvironmentName
+);
 
 app.Run();
