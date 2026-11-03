@@ -1,0 +1,309 @@
+
+:host {
+  display: block;
+  height: 100%;
+  min-width: 0;
+}
+
+.property-card {
+  // Couleurs ImmoSphere
+  $primary: #521453;
+  $primary-container: #6c2d6b;
+  $surface: #ffffff;
+  $surface-low: #f5f2f9;
+  $text: #1b1b20;
+  $text-secondary: #4f434c;
+
+  display: flex;
+  flex-direction: column;
+  height: 100%;
+  width: 100%;
+  overflow: hidden;
+
+  background: $surface;
+  border-radius: 12px;
+  box-shadow: 0 2px 8px rgba(42, 19, 42, 0.06);
+
+  color: $text;
+  font-family: 'Manrope', sans-serif;
+
+  transition: box-shadow 0.3s ease;
+
+  &:hover {
+    box-shadow: 0 8px 24px rgba(42, 19, 42, 0.13);
+  }
+
+  // IMAGE
+  &__media {
+    position: relative;
+    height: 208px;
+    width: 100%;
+    overflow: hidden;
+    flex-shrink: 0;
+
+    background: $surface-low;
+  }
+
+  &__image {
+    display: block;
+    height: 100%;
+    width: 100%;
+    object-fit: cover;
+    transition: transform 0.5s ease;
+  }
+
+  &:hover &__image {
+    transform: scale(1.05);
+  }
+
+  // BADGE À VENDRE / À LOUER
+  &__transaction {
+    position: absolute;
+    top: 8px;
+    left: 8px;
+    z-index: 2;
+
+    padding: 3px 8px;
+    border-radius: 4px;
+
+    background: $primary;
+    color: #ffffff;
+
+    font-size: 11px;
+    font-weight: 700;
+    line-height: 16px;
+    letter-spacing: 0.03em;
+
+    &--rent {
+      background: #e9e3ca;
+      color: #1e1c0d;
+    }
+  }
+
+  // BADGE PEB + FAVORIS
+  &__top-right {
+    position: absolute;
+    top: 8px;
+    right: 8px;
+    z-index: 2;
+
+    display: flex;
+    align-items: center;
+    gap: 8px;
+  }
+
+  &__peb {
+    display: inline-flex;
+    align-items: center;
+    justify-content: center;
+
+    padding: 3px 8px;
+    border-radius: 4px;
+
+    font-size: 11px;
+    font-weight: 800;
+    line-height: 16px;
+    white-space: nowrap;
+
+    background: #84bd00;
+    color: $text;
+    box-shadow: 0 2px 5px rgba(0, 0, 0, 0.08);
+  }
+
+  // Couleurs indicatives de la maquette
+  .peb--a { background: #008938; color: #ffffff; }
+  .peb--b { background: #84bd00; color: #ffffff; }
+  .peb--c { background: #c7d300; color: #ffffff; }
+  .peb--d { background: #f1c40f; color: #ffffff; }
+  .peb--e { background: #ed8936; color: #ffffff; }
+  .peb--f { background: #dc2626; color: #ffffff; }
+
+  // BOUTON COEUR
+  &__favorite {
+    display: inline-flex;
+    align-items: center;
+    justify-content: center;
+
+    width: 32px;
+    height: 32px;
+    padding: 0;
+    border: none;
+    border-radius: 50%;
+
+    background: rgba(255, 255, 255, 0.93);
+    color: $text;
+
+    cursor: pointer;
+    backdrop-filter: blur(6px);
+    box-shadow: 0 2px 6px rgba(0, 0, 0, 0.08);
+
+    transition:
+      color 0.2s ease,
+      background-color 0.2s ease,
+      transform 0.2s ease;
+
+    .material-symbols-outlined {
+      font-size: 18px;
+    }
+
+    &:hover {
+      color: $primary;
+      transform: scale(1.08);
+    }
+
+    &:focus-visible {
+      outline: 2px solid $primary;
+      outline-offset: 3px;
+    }
+
+    &--active {
+      color: $primary;
+
+      .material-symbols-outlined {
+        font-variation-settings: 'FILL' 1;
+      }
+    }
+  }
+
+  // CONTENU
+  &__body {
+    display: flex;
+    flex-direction: column;
+    flex: 1;
+    gap: 8px;
+    padding: 16px;
+  }
+
+  &__details {
+    display: flex;
+    flex-direction: column;
+    gap: 4px;
+    min-width: 0;
+  }
+
+  // PRIX
+  &__price {
+    margin: 0;
+
+    font-size: 24px;
+    font-weight: 700;
+    line-height: 30px;
+    letter-spacing: -0.01em;
+    color: $text;
+  }
+
+  &__period {
+    font-size: 14px;
+    font-weight: 400;
+    letter-spacing: normal;
+    color: $text-secondary;
+  }
+
+  // TITRE
+  &__title {
+    margin: 0;
+    overflow: hidden;
+
+    font-size: 18px;
+    font-weight: 600;
+    line-height: 26px;
+
+    white-space: nowrap;
+    text-overflow: ellipsis;
+
+    transition: color 0.2s ease;
+  }
+
+  &:hover &__title {
+    color: $primary;
+  }
+
+  // LOCALISATION
+  &__location {
+    display: flex;
+    align-items: flex-start;
+    gap: 4px;
+
+    margin: 0;
+
+    color: $text-secondary;
+    font-size: 14px;
+    line-height: 20px;
+
+    .material-symbols-outlined {
+      color: $primary;
+      font-size: 16px;
+      flex-shrink: 0;
+      margin-top: 2px;
+    }
+
+    span:last-child {
+      min-width: 0;
+      overflow-wrap: anywhere;
+    }
+  }
+
+  // BANDEAU CARACTÉRISTIQUES
+  &__features {
+    display: flex;
+    align-items: center;
+    justify-content: space-between;
+    flex-wrap: wrap;
+    gap: 4px;
+
+    margin-top: auto;
+    padding: 8px 6px;
+
+    background: rgba(245, 242, 249, 0.65);
+    border-radius: 8px;
+
+    color: $text-secondary;
+    font-size: 13px;
+    font-weight: 500;
+    line-height: 18px;
+  }
+
+  &__feature {
+    display: inline-flex;
+    align-items: center;
+    gap: 4px;
+    white-space: nowrap;
+
+    .material-symbols-outlined {
+      font-size: 16px;
+    }
+  }
+
+  &__separator {
+    color: #81737d;
+  }
+
+  // RESPONSIVE
+  @media (max-width: 480px) {
+    &__body {
+      padding: 14px;
+    }
+
+    &__price {
+      font-size: 22px;
+    }
+
+    &__title {
+      font-size: 16px;
+    }
+
+    &__features {
+      font-size: 12px;
+      justify-content: flex-start;
+      gap: 7px;
+    }
+  }
+}
+
+@media (prefers-reduced-motion: reduce) {
+  .property-card,
+  .property-card__image,
+  .property-card__favorite {
+    transition: none;
+  }
+}
