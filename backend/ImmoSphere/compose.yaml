@@ -1,5 +1,5 @@
 
-services:
+dotnet user-secrets init --project .\ImmoSphere.Apiservices:
   postgres:
     image: postgres:17
     container_name: immosphere-postgres

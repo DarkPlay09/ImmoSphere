@@ -1,0 +1,27 @@
+
+<section class="properties">
+
+  <div class="properties__header">
+    <h1>Découvrez nos biens immobiliers</h1>
+    <p>
+      Retrouvez nos dernières annonces immobilières.
+    </p>
+  </div>
+
+  <div class="properties__grid">
+
+    @for (property of properties; track property.id) {
+
+      <app-property-card
+        [property]="property"
+      />
+
+    } @empty {
+
+      <p>Aucun bien immobilier disponible.</p>
+
+    }
+
+  </div>
+
+</section>
