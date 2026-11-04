@@ -15,9 +15,13 @@
   }
 
   &__logo {
-    color: #742b78;
-    font-size: 20px;
-    font-weight: 600;
-    text-decoration: none;
+    display: inline-flex;
+    align-items: center;
+
+    img {
+      display: block;
+      height: 50px;
+      width: auto;
+    }
   }
 }
