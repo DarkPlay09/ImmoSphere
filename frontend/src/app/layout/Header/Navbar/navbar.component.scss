@@ -1,0 +1,23 @@
+:host {
+  display: block;
+}
+
+.navbar {
+  background-color: #ffffff;
+  border-bottom: 1px solid #ece5f0;
+  padding: 16px 40px;
+
+  &__navigation {
+    display: flex;
+    align-items: center;
+    max-width: 1280px;
+    margin: 0 auto;
+  }
+
+  &__logo {
+    color: #742b78;
+    font-size: 20px;
+    font-weight: 600;
+    text-decoration: none;
+  }
+}
