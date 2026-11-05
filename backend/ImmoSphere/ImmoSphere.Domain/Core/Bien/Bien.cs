@@ -28,6 +28,7 @@ public class Bien
     public bool Jardin { get; set; }
     public bool Balcon { get; set; }
     public bool Cave { get; set; }
+    public bool Terrasse { get; set; }
     public bool Grenier { get; set; }
     public bool Ascenseur { get; set; }
     public bool Piscine { get; set; }
