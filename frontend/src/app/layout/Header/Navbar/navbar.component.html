@@ -47,6 +47,31 @@
       </span>
         }
       </button>
+
+      <div class="navbar__language">
+        <img src="icons/globe.svg" alt="" />
+
+        <span class="navbar__language-code" aria-hidden="true">
+          {{ language() }}
+        </span>
+
+        <img src="icons/chevron-down.svg" alt="" />
+
+        <select
+          #languageSelect
+          class="navbar__language-select"
+          aria-label="Langue du site"
+          [value]="language()"
+          (change)="changeLanguage(languageSelect.value)"
+        >
+          @for (option of languages; track option.code) {
+            <option [value]="option.code">
+              {{ option.label }}
+            </option>
+          }
+        </select>
+      </div>
+
     </div>
   </nav>
 </header>

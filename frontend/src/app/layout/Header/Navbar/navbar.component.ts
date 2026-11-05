@@ -1,6 +1,9 @@
-import { Component, input } from '@angular/core';
+import { Component, input, model } from '@angular/core';
 import { RouterLink } from '@angular/router';
 import type { NavbarLink } from './models/navbar-links.model';
+import type { LanguageCode, LanguageOption } from './models/language.model';
+import { NAVBAR_LINKS } from './data/navbar-links.data';
+import { LANGUAGES } from './data/languages.data';
 
 @Component({
   selector: 'app-navbar',
@@ -12,33 +15,17 @@ import type { NavbarLink } from './models/navbar-links.model';
 export class NavbarComponent {
   readonly isLoggedIn = input(false);
   readonly favoritesCount = input(0);
-  readonly navigationLinks: NavbarLink[] = [
-    {
-      id: 'buy',
-      label: 'Acheter',
-      route: '/properties',
-      queryParams: { transaction: 'sale' },
-    },
-    {
-      id: 'rent',
-      label: 'Louer',
-      route: '/properties',
-      queryParams: { transaction: 'rent' },
-    },
-    {
-      id: 'agencies',
-      label: 'Agences',
-      route: null,
-    },
-    {
-      id:'notaries',
-      label:"Notaires",
-      route: null,
-    },
-    {
-      id: 'services',
-      label: 'Services',
-      route: null,
-    },
-  ];
+  readonly navigationLinks: NavbarLink[] = NAVBAR_LINKS;
+  readonly language = model<LanguageCode>('fr');
+  readonly languages: LanguageOption[] = LANGUAGES;
+
+  changeLanguage(code: string): void {
+    const selectedLanguage = this.languages.find(
+      l => l.code === code
+    );
+
+    if(selectedLanguage) {
+      this.language.set(selectedLanguage.code);
+    }
+  }
 }
