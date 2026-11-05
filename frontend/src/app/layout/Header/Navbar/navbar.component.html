@@ -6,5 +6,47 @@
         alt="ImmoSphere — accueil des biens"
       />
     </a>
+
+    <ul class="navbar__links">
+      @for (link of navigationLinks; track link.id){
+        <li>
+          @if (link.route){
+            <a
+              class="navbar__link"
+              [routerLink]="link.route"
+              [queryParams]="link.queryParams"
+            >
+              {{ link.label }}
+            </a>
+          } @else {
+            <span
+              class="navbar__link navbar__link--disabled"
+              aria-disabled="true"
+            >
+              {{ link.label }}
+            </span>
+          }
+        </li>
+      }
+    </ul>
+    <div class="navbar__actions">
+      <button
+        class="navbar__favorites"
+        type="button"
+        [attr.aria-label]="
+      isLoggedIn()
+        ? 'Mes favoris : ' + favoritesCount()
+        : 'Mes favoris'
+    "
+      >
+        <img src="icons/heart.svg" alt="" />
+
+        @if (isLoggedIn()) {
+          <span class="navbar__favorites-count" aria-hidden="true">
+        {{ favoritesCount() }}
+      </span>
+        }
+      </button>
+    </div>
   </nav>
 </header>
