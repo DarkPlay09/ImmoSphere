@@ -48,29 +48,70 @@
         }
       </button>
 
-      <div class="navbar__language">
-        <img src="icons/globe.svg" alt="" />
-
-        <span class="navbar__language-code" aria-hidden="true">
-          {{ language() }}
-        </span>
-
-        <img src="icons/chevron-down.svg" alt="" />
-
-        <select
-          #languageSelect
-          class="navbar__language-select"
-          aria-label="Langue du site"
-          [value]="language()"
-          (change)="changeLanguage(languageSelect.value)"
+      <div
+        class="navbar__language"
+        (focusout)="onLanguageFocusOut($event)"
+        (keydown.escape)="closeLanguageMenu(); languageTrigger.focus(); $event.stopPropagation()"
+      >
+        <button
+          #languageTrigger
+          class="navbar__language-trigger"
+          type="button"
+          [attr.aria-label]="'Langue du site : ' + language().toUpperCase()"
+          [attr.aria-expanded]="isLanguageMenuOpen()"
+          [attr.aria-controls]="isLanguageMenuOpen() ? 'navbar-language-options' : null"
+          (click)="toggleLanguageMenu()"
         >
-          @for (option of languages; track option.code) {
-            <option [value]="option.code">
-              {{ option.label }}
-            </option>
-          }
-        </select>
+          <img src="icons/globe.svg" alt="" />
+          <span class="navbar__language-code" aria-hidden="true">
+            {{ language() }}
+          </span>
+          <img src="icons/chevron-down.svg" alt="" />
+        </button>
+
+        @if (isLanguageMenuOpen()) {
+          <ul
+            id="navbar-language-options"
+            class="navbar__language-options"
+            aria-label="Choisir une langue"
+          >
+            @for (option of languages; track option.code) {
+              <li>
+                <button
+                  class="navbar__language-option"
+                  [class.navbar__language-option--selected]="language() === option.code"
+                  type="button"
+                  [attr.lang]="option.code"
+                  [attr.aria-pressed]="language() === option.code"
+                  (click)="changeLanguage(option.code); languageTrigger.focus()"
+                >
+                  {{ option.label }}
+                </button>
+              </li>
+            }
+          </ul>
+        }
       </div>
+
+      <span class="navbar__divider" aria-hidden="true"></span>
+
+      @if (!isLoggedIn()) {
+        <button
+          class="navbar__login"
+          type="button"
+          (click)="loginRequested.emit()"
+        >
+          Se connecter
+        </button>
+      }
+
+      <button
+        class="navbar__publish"
+        type="button"
+        (click)="publishRequested.emit()"
+      >
+        Publier un bien
+      </button>
 
     </div>
   </nav>
