@@ -1,5 +1,6 @@
 import { Component, ElementRef, inject, input, model, output, signal } from '@angular/core';
 import { RouterLink } from '@angular/router';
+import { TranslatePipe } from '@ngx-translate/core';
 import type { NavbarLink } from './models/navbar-links.model';
 import type { LanguageCode, LanguageOption } from './models/language.model';
 import { NAVBAR_LINKS } from './data/navbar-links.data';
@@ -8,7 +9,7 @@ import { LANGUAGES } from './data/languages.data';
 @Component({
   selector: 'app-navbar',
   standalone: true,
-  imports: [RouterLink],
+  imports: [RouterLink, TranslatePipe],
   templateUrl: './navbar.component.html',
   styleUrl: './navbar.component.scss',
   host: {
