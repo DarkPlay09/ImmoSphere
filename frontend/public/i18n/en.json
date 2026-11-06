@@ -1,5 +1,24 @@
 {
   "navbar": {
-    "publish": "Publish a property"
+    "navigationLabel": "Main navigation",
+    "logoAlt": "ImmoSphere — property listings",
+    "buy": "Buy",
+    "rent": "Rent",
+    "agencies": "Agencies",
+    "notaries": "Notaries",
+    "services": "Services",
+    "favorites": "My favorites",
+    "favoritesWithCount": "My favorites: {{count}}",
+    "languageLabel": "Website language",
+    "languageWithCode": "Website language: {{code}}",
+    "chooseLanguage": "Choose a language",
+    "login": "Log in",
+    "publish": "Publish a property",
+    "languages": {
+      "fr": "Français",
+      "nl": "Nederlands",
+      "de": "Deutsch",
+      "en": "English"
+    }
   }
 }

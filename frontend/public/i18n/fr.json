@@ -1,5 +1,24 @@
 {
   "navbar": {
-    "publish": "Publier un bien"
+    "navigationLabel": "Navigation principale",
+    "logoAlt": "ImmoSphere — accueil des biens",
+    "buy": "Acheter",
+    "rent": "Louer",
+    "agencies": "Agences",
+    "notaries": "Notaires",
+    "services": "Services",
+    "favorites": "Mes favoris",
+    "favoritesWithCount": "Mes favoris : {{count}}",
+    "languageLabel": "Langue du site",
+    "languageWithCode": "Langue du site : {{code}}",
+    "chooseLanguage": "Choisir une langue",
+    "login": "Se connecter",
+    "publish": "Publier un bien",
+    "languages": {
+      "fr": "Français",
+      "nl": "Nederlands",
+      "de": "Deutsch",
+      "en": "English"
+    }
   }
 }
