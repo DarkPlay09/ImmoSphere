@@ -1,6 +1,6 @@
 import { Component, ElementRef, inject, input, model, output, signal } from '@angular/core';
 import { RouterLink } from '@angular/router';
-import { TranslatePipe } from '@ngx-translate/core';
+import { TranslatePipe, TranslateService } from '@ngx-translate/core';
 import type { NavbarLink } from './models/navbar-links.model';
 import type { LanguageCode, LanguageOption } from './models/language.model';
 import { NAVBAR_LINKS } from './data/navbar-links.data';
@@ -18,6 +18,7 @@ import { LANGUAGES } from './data/languages.data';
 })
 export class NavbarComponent {
   private readonly element = inject(ElementRef<HTMLElement>);
+  private readonly translate = inject(TranslateService);
   readonly isLanguageMenuOpen = signal(false);
 
   toggleLanguageMenu(): void {
@@ -54,12 +55,21 @@ export class NavbarComponent {
 
   changeLanguage(code: string): void {
     const selectedLanguage = this.languages.find(
-      l => l.code === code
+      (l) => l.code === code
     );
 
-    if(selectedLanguage) {
-      this.language.set(selectedLanguage.code);
-      this.closeLanguageMenu();
+    if(!selectedLanguage) {
+      return;
     }
+
+    this.translate.use(selectedLanguage.code).subscribe({
+      next: () => {
+        this.language.set(selectedLanguage.code);
+        this.closeLanguageMenu();
+      },
+      error: (error: unknown) => {
+        console.error('impossible de changer de langue', error);
+      },
+    });
   }
 }
