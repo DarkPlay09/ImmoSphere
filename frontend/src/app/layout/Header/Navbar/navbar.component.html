@@ -1,9 +1,9 @@
 <header class="navbar">
-  <nav class="navbar__navigation" aria-label="Navigation principale">
+  <nav class="navbar__navigation" [attr.aria-label]="'navbar.navigationLabel' | translate">
     <a class="navbar__logo" routerLink="/properties">
       <img
         src="logo/logo-immosphere.png"
-        alt="ImmoSphere — accueil des biens"
+        [alt]="'navbar.logoAlt' | translate"
       />
     </a>
 
@@ -16,14 +16,14 @@
               [routerLink]="link.route"
               [queryParams]="link.queryParams"
             >
-              {{ link.label }}
+              {{ ('navbar.' + link.id) | translate }}
             </a>
           } @else {
             <span
               class="navbar__link navbar__link--disabled"
               aria-disabled="true"
             >
-              {{ link.label }}
+              {{ ('navbar.' + link.id) | translate }}
             </span>
           }
         </li>
@@ -35,8 +35,8 @@
         type="button"
         [attr.aria-label]="
       isLoggedIn()
-        ? 'Mes favoris : ' + favoritesCount()
-        : 'Mes favoris'
+        ? ('navbar.favoritesWithCount' | translate: { count: favoritesCount() })
+        : ('navbar.favorites' | translate)
     "
       >
         <img src="icons/heart.svg" alt="" />
@@ -57,7 +57,7 @@
           #languageTrigger
           class="navbar__language-trigger"
           type="button"
-          [attr.aria-label]="'Langue du site : ' + language().toUpperCase()"
+          [attr.aria-label]="'navbar.languageWithCode' | translate: { code: language().toUpperCase() }"
           [attr.aria-expanded]="isLanguageMenuOpen()"
           [attr.aria-controls]="isLanguageMenuOpen() ? 'navbar-language-options' : null"
           (click)="toggleLanguageMenu()"
@@ -73,7 +73,7 @@
           <ul
             id="navbar-language-options"
             class="navbar__language-options"
-            aria-label="Choisir une langue"
+            [attr.aria-label]="'navbar.chooseLanguage' | translate"
           >
             @for (option of languages; track option.code) {
               <li>
@@ -85,7 +85,7 @@
                   [attr.aria-pressed]="language() === option.code"
                   (click)="changeLanguage(option.code); languageTrigger.focus()"
                 >
-                  {{ option.label }}
+                  {{ ('navbar.languages.' + option.code) | translate }}
                 </button>
               </li>
             }
@@ -101,7 +101,7 @@
           type="button"
           (click)="loginRequested.emit()"
         >
-          Se connecter
+          {{ 'navbar.login' | translate }}
         </button>
       }
 

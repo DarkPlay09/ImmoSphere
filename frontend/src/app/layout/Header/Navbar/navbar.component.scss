@@ -22,12 +22,13 @@
   &__navigation {
     display: flex;
     align-items: center;
-    gap: 32px;
+    flex-wrap: wrap;
+    gap: 12px 32px;
     width: 100%;
     max-width: 1440px;
-    height: 80px;
+    min-height: 80px;
     margin: 0 auto;
-    padding: 0 48px;
+    padding: 15px 48px;
   }
 
   &__logo {
@@ -46,10 +47,17 @@
     display: flex;
     align-items: center;
     flex-shrink: 0;
+    flex-wrap: wrap;
     gap: 4px;
+    max-width: 100%;
     margin: 0;
     padding: 0;
     list-style: none;
+
+    li {
+      min-width: 0;
+      max-width: 100%;
+    }
   }
 
   &__link {
@@ -59,7 +67,8 @@
     color: inherit;
     font: inherit;
     text-decoration: none;
-    white-space: nowrap;
+    white-space: normal;
+    overflow-wrap: anywhere;
 
     &--disabled {
       cursor: default;
@@ -70,7 +79,9 @@
     display: flex;
     align-items: center;
     flex-shrink: 0;
+    flex-wrap: wrap;
     gap: 12px;
+    max-width: 100%;
     margin-left: auto;
   }
 
@@ -144,7 +155,9 @@
     top: calc(100% + 8px);
     right: 0;
     z-index: 1;
+    width: max-content;
     min-width: 168px;
+    max-width: calc(100vw - 32px);
     margin: 0;
     padding: 6px;
     border: 1px solid rgba(211, 194, 205, 0.6);
@@ -164,7 +177,8 @@
     color: inherit;
     font: inherit;
     text-align: left;
-    white-space: nowrap;
+    white-space: normal;
+    overflow-wrap: anywhere;
     cursor: pointer;
 
     &:hover {
@@ -195,19 +209,24 @@
     flex-shrink: 0;
     border: 0;
     border-radius: 8px;
+    max-width: 100%;
     font: inherit;
-    white-space: nowrap;
+    white-space: normal;
+    overflow-wrap: anywhere;
     cursor: pointer;
   }
 
   &__login {
+    min-height: 36px;
     padding: 8px 14.95px 8px 12px;
     background-color: transparent;
     color: inherit;
   }
 
   &__publish {
-    width: 144.28px;
+    width: auto;
+    min-width: 144.28px;
+    min-height: 40px;
     padding: 10px 16px;
     background-color: #6c2d6b;
     color: #ffffff;
@@ -255,6 +274,11 @@
       flex-wrap: wrap;
       width: 100%;
       margin-left: 0;
+    }
+
+    &__language-options {
+      right: auto;
+      left: 0;
     }
   }
 }
