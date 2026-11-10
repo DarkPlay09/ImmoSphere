@@ -1,10 +1,14 @@
 
 using Serilog;
 using ImmoSphere.Api.Middlewares;
+using ImmoSphere.Domain.Repository;
+using ImmoSphere.Domain.Services;
+using ImmoSphere.Domain.Services.Interfaces;
 using ImmoSphere.Infrastructure;
 using ImmoSphere.Infrastructure.Identity;
 using ImmoSphere.Infrastructure.Persistence;
 using ImmoSphere.Infrastructure.Persistence.Seeders;
+using ImmoSphere.Infrastructure.Repositories;
 using Microsoft.AspNetCore.Identity;
 using Microsoft.EntityFrameworkCore;
 
@@ -77,6 +81,18 @@ builder.Services.AddCors(options =>
             .AllowAnyMethod();
     });
 });
+
+// ==========================================
+// Inscription des repositories
+// ==========================================
+//                          Interface, Classe qui l'implémente
+builder.Services.AddScoped<IBienRepository, BienRepository>();
+
+// ==========================================
+// Inscription des services
+// ==========================================
+//                          Interface, Classe qui l'implémente
+builder.Services.AddScoped<IBienService, BienService>();
 
 // ==========================================
 // CONSTRUCTION DE L'APPLICATION
