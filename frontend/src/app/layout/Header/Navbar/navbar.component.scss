@@ -1,0 +1,284 @@
+:host {
+  display: block;
+  color: #4f434c;
+  font-family: Inter, sans-serif;
+  font-size: 14px;
+  font-weight: 500;
+  line-height: 20px;
+}
+
+.navbar {
+  position: relative;
+  z-index: 10;
+  background-color: rgba(255, 255, 255, 0.95);
+  backdrop-filter: blur(6px);
+  box-shadow: 0 1px 8px rgba(0, 0, 0, 0.04);
+
+  &,
+  * {
+    box-sizing: border-box;
+  }
+
+  &__navigation {
+    display: flex;
+    align-items: center;
+    flex-wrap: wrap;
+    gap: 12px 32px;
+    width: 100%;
+    max-width: 1440px;
+    min-height: 80px;
+    margin: 0 auto;
+    padding: 15px 48px;
+  }
+
+  &__logo {
+    display: inline-flex;
+    align-items: center;
+    flex-shrink: 0;
+
+    img {
+      display: block;
+      width: auto;
+      height: 50px;
+    }
+  }
+
+  &__links {
+    display: flex;
+    align-items: center;
+    flex-shrink: 0;
+    flex-wrap: wrap;
+    gap: 4px;
+    max-width: 100%;
+    margin: 0;
+    padding: 0;
+    list-style: none;
+
+    li {
+      min-width: 0;
+      max-width: 100%;
+    }
+  }
+
+  &__link {
+    display: block;
+    padding: 8px 12px;
+    border-radius: 8px;
+    color: inherit;
+    font: inherit;
+    text-decoration: none;
+    white-space: normal;
+    overflow-wrap: anywhere;
+
+    &--disabled {
+      cursor: default;
+    }
+  }
+
+  &__actions {
+    display: flex;
+    align-items: center;
+    flex-shrink: 0;
+    flex-wrap: wrap;
+    gap: 12px;
+    max-width: 100%;
+    margin-left: auto;
+  }
+
+  &__favorites {
+    position: relative;
+    display: inline-flex;
+    align-items: center;
+    justify-content: center;
+    flex-shrink: 0;
+    padding: 8px;
+    border: 0;
+    border-radius: 8px;
+    background: transparent;
+    color: inherit;
+    font: inherit;
+    cursor: pointer;
+
+    img {
+      display: block;
+    }
+  }
+
+  &__favorites-count {
+    position: absolute;
+    top: 1.41px;
+    right: 2.14px;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    min-width: 13px;
+    height: 13px;
+    padding: 0 2px;
+    border-radius: 9999px;
+    background-color: #6c2d6b;
+    color: #ffffff;
+    font-size: 9px;
+    font-weight: 600;
+    line-height: 10px;
+  }
+
+  &__language {
+    position: relative;
+    display: inline-flex;
+    flex-shrink: 0;
+  }
+
+  &__language-trigger {
+    display: inline-flex;
+    align-items: center;
+    gap: 4px;
+    padding: 6px 10px;
+    border: 0;
+    border-radius: 8px;
+    background: transparent;
+    color: inherit;
+    font: inherit;
+    cursor: pointer;
+
+    img {
+      display: block;
+      flex-shrink: 0;
+    }
+  }
+
+  &__language-code {
+    text-transform: uppercase;
+  }
+
+  &__language-options {
+    position: absolute;
+    top: calc(100% + 8px);
+    right: 0;
+    z-index: 1;
+    width: max-content;
+    min-width: 168px;
+    max-width: calc(100vw - 32px);
+    margin: 0;
+    padding: 6px;
+    border: 1px solid rgba(211, 194, 205, 0.6);
+    border-radius: 8px;
+    background-color: #ffffff;
+    box-shadow: 0 8px 24px rgba(15, 37, 55, 0.12);
+    list-style: none;
+  }
+
+  &__language-option {
+    display: block;
+    width: 100%;
+    padding: 8px 12px;
+    border: 0;
+    border-radius: 6px;
+    background: transparent;
+    color: inherit;
+    font: inherit;
+    text-align: left;
+    white-space: normal;
+    overflow-wrap: anywhere;
+    cursor: pointer;
+
+    &:hover {
+      background-color: #f5f0f5;
+      color: #6c2d6b;
+    }
+
+    &--selected,
+    &--selected:hover {
+      background-color: #6c2d6b;
+      color: #ffffff;
+    }
+  }
+  &__divider {
+    box-sizing: content-box;
+    flex-shrink: 0;
+    width: 0.8px;
+    height: 24px;
+    margin: 0 4px;
+    background-color: rgba(211, 194, 205, 0.6);
+  }
+
+  &__login,
+  &__publish {
+    display: inline-flex;
+    align-items: center;
+    justify-content: center;
+    flex-shrink: 0;
+    border: 0;
+    border-radius: 8px;
+    max-width: 100%;
+    font: inherit;
+    white-space: normal;
+    overflow-wrap: anywhere;
+    cursor: pointer;
+  }
+
+  &__login {
+    min-height: 36px;
+    padding: 8px 14.95px 8px 12px;
+    background-color: transparent;
+    color: inherit;
+  }
+
+  &__publish {
+    width: auto;
+    min-width: 144.28px;
+    min-height: 40px;
+    padding: 10px 16px;
+    background-color: #6c2d6b;
+    color: #ffffff;
+    box-shadow: 0 1px 1.5px rgba(15, 37, 55, 0.04);
+  }
+
+  &__logo:focus-visible,
+  &__link:focus-visible,
+  &__favorites:focus-visible,
+  &__login:focus-visible,
+  &__publish:focus-visible,
+  &__language-trigger:focus-visible,
+  &__language-option:focus-visible {
+    outline: 2px solid #6c2d6b;
+    outline-offset: 2px;
+  }
+}
+
+// Keep the existing controls accessible below the desktop design width.
+@media (max-width: 1100px) {
+  .navbar {
+    &__navigation {
+      flex-wrap: wrap;
+      gap: 16px;
+      height: auto;
+      min-height: 80px;
+      padding: 16px 24px;
+    }
+
+    &__links {
+      order: 3;
+      flex-wrap: wrap;
+      width: 100%;
+    }
+  }
+}
+
+@media (max-width: 600px) {
+  .navbar {
+    &__navigation {
+      padding: 12px 16px;
+    }
+
+    &__actions {
+      flex-wrap: wrap;
+      width: 100%;
+      margin-left: 0;
+    }
+
+    &__language-options {
+      right: auto;
+      left: 0;
+    }
+  }
+}

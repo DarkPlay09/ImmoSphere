@@ -1,0 +1,24 @@
+{
+  "navbar": {
+    "navigationLabel": "Hoofdnavigatie",
+    "logoAlt": "ImmoSphere — overzicht van het vastgoedaanbod",
+    "buy": "Kopen",
+    "rent": "Huren",
+    "agencies": "Makelaars",
+    "notaries": "Notarissen",
+    "services": "Diensten",
+    "favorites": "Mijn favorieten",
+    "favoritesWithCount": "Mijn favorieten: {{count}}",
+    "languageLabel": "Taal van de website",
+    "languageWithCode": "Taal van de website: {{code}}",
+    "chooseLanguage": "Een taal kiezen",
+    "login": "Inloggen",
+    "publish": "Een pand publiceren",
+    "languages": {
+      "fr": "Français",
+      "nl": "Nederlands",
+      "de": "Deutsch",
+      "en": "English"
+    }
+  }
+}

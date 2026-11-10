@@ -1,0 +1,118 @@
+<header class="navbar">
+  <nav class="navbar__navigation" [attr.aria-label]="'navbar.navigationLabel' | translate">
+    <a class="navbar__logo" routerLink="/properties">
+      <img
+        src="logo/logo-immosphere.png"
+        [alt]="'navbar.logoAlt' | translate"
+      />
+    </a>
+
+    <ul class="navbar__links">
+      @for (link of navigationLinks; track link.id){
+        <li>
+          @if (link.route){
+            <a
+              class="navbar__link"
+              [routerLink]="link.route"
+              [queryParams]="link.queryParams"
+            >
+              {{ ('navbar.' + link.id) | translate }}
+            </a>
+          } @else {
+            <span
+              class="navbar__link navbar__link--disabled"
+              aria-disabled="true"
+            >
+              {{ ('navbar.' + link.id) | translate }}
+            </span>
+          }
+        </li>
+      }
+    </ul>
+    <div class="navbar__actions">
+      <button
+        class="navbar__favorites"
+        type="button"
+        [attr.aria-label]="
+      isLoggedIn()
+        ? ('navbar.favoritesWithCount' | translate: { count: favoritesCount() })
+        : ('navbar.favorites' | translate)
+    "
+      >
+        <img src="icons/heart.svg" alt="" />
+
+        @if (isLoggedIn()) {
+          <span class="navbar__favorites-count" aria-hidden="true">
+        {{ favoritesCount() }}
+      </span>
+        }
+      </button>
+
+      <div
+        class="navbar__language"
+        (focusout)="onLanguageFocusOut($event)"
+        (keydown.escape)="closeLanguageMenu(); languageTrigger.focus(); $event.stopPropagation()"
+      >
+        <button
+          #languageTrigger
+          class="navbar__language-trigger"
+          type="button"
+          [attr.aria-label]="'navbar.languageWithCode' | translate: { code: language().toUpperCase() }"
+          [attr.aria-expanded]="isLanguageMenuOpen()"
+          [attr.aria-controls]="isLanguageMenuOpen() ? 'navbar-language-options' : null"
+          (click)="toggleLanguageMenu()"
+        >
+          <img src="icons/globe.svg" alt="" />
+          <span class="navbar__language-code" aria-hidden="true">
+            {{ language() }}
+          </span>
+          <img src="icons/chevron-down.svg" alt="" />
+        </button>
+
+        @if (isLanguageMenuOpen()) {
+          <ul
+            id="navbar-language-options"
+            class="navbar__language-options"
+            [attr.aria-label]="'navbar.chooseLanguage' | translate"
+          >
+            @for (option of languages; track option.code) {
+              <li>
+                <button
+                  class="navbar__language-option"
+                  [class.navbar__language-option--selected]="language() === option.code"
+                  type="button"
+                  [attr.lang]="option.code"
+                  [attr.aria-pressed]="language() === option.code"
+                  (click)="changeLanguage(option.code); languageTrigger.focus()"
+                >
+                  {{ ('navbar.languages.' + option.code) | translate }}
+                </button>
+              </li>
+            }
+          </ul>
+        }
+      </div>
+
+      <span class="navbar__divider" aria-hidden="true"></span>
+
+      @if (!isLoggedIn()) {
+        <button
+          class="navbar__login"
+          type="button"
+          (click)="loginRequested.emit()"
+        >
+          {{ 'navbar.login' | translate }}
+        </button>
+      }
+
+      <button
+        class="navbar__publish"
+        type="button"
+        (click)="publishRequested.emit()"
+      >
+        {{ 'navbar.publish' | translate }}
+      </button>
+
+    </div>
+  </nav>
+</header>

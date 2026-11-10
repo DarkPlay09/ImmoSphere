@@ -1,93 +1,179 @@
 # ImmoSphere
 
+Ce dépôt contient le frontend et le backend du projet **ImmoSphere**.
 
+## Organisation Git
 
-## Getting started
+L'objectif de cette convention est de garder la branche `main` stable, de faciliter les revues de code et de permettre à chacun de comprendre le contenu d'une branche sans devoir l'ouvrir.
 
-To make it easy for you to get started with GitLab, here's a list of recommended next steps.
+### Branche principale
 
-Already a pro? Just edit this README.md and make it your own. Want to make it easy? [Use the template at the bottom](#editing-this-readme)!
+- `main` contient uniquement du code fonctionnel, relu et prêt à être partagé.
+- Aucun développement important ne doit être réalisé directement sur `main`.
+- Toute branche de travail est créée depuis une version à jour de `main`.
+- Le retour vers `main` se fait au moyen d'une **Merge Request** relue par au moins un autre membre de l'équipe.
 
-## Add your files
+### Quand créer une branche ?
 
-* [Create](https://docs.gitlab.com/user/project/repository/web_editor/#create-a-file) or [upload](https://docs.gitlab.com/user/project/repository/web_editor/#upload-a-file) files
-* [Add files using the command line](https://docs.gitlab.com/topics/git/add_files/#add-files-to-a-git-repository) or push an existing Git repository with the following command:
+Une nouvelle branche est nécessaire dès que le travail :
 
+- ajoute ou modifie une fonctionnalité ;
+- corrige un bug ;
+- touche plusieurs fichiers ou plusieurs parties de l'application ;
+- modifie la base de données, une API, une dépendance ou la configuration ;
+- demande plusieurs commits ou risque de durer plus d'une courte session ;
+- doit être relu, testé ou discuté avant d'être intégré ;
+- pourrait empêcher les autres membres de l'équipe d'utiliser `main` normalement.
+
+En pratique, **presque toute modification de code doit donc avoir sa propre branche**. Un commit direct sur `main` ne peut être envisagé que pour une correction réellement mineure et sans risque, par exemple une faute de frappe dans la documentation, et uniquement si toute l'équipe l'accepte. En cas de doute, créer une branche reste la règle.
+
+Une branche correspond à **un seul objectif**. Deux fonctionnalités différentes doivent être développées dans deux branches différentes, même si elles concernent le même écran.
+
+## Catégories de branches
+
+Le nom d'une branche respecte le format suivant :
+
+```text
+<categorie>/<description-courte-en-kebab-case>
 ```
-cd existing_repo
-git remote add origin https://git.helmo.be/students/info/q240075/immosphere.git
-git branch -M main
-git push -uf origin main
+
+Exemple :
+
+```text
+feature/recherche-biens
 ```
 
-## Integrate with your tools
+| Catégorie | Utilisation | Justification | Exemple |
+|---|---|---|---|
+| `feature/` | Ajout d'une nouvelle fonctionnalité visible par l'utilisateur ou d'une nouvelle capacité métier. | Isole une évolution du produit afin qu'elle puisse être développée, testée et relue indépendamment. | `feature/ajout-favoris` |
+| `fix/` | Correction d'un bug sur du code qui n'est pas encore en production ou qui ne demande pas une intervention urgente. | Distingue clairement une réparation d'une évolution fonctionnelle et facilite le suivi des régressions. | `fix/validation-email` |
+| `hotfix/` | Correction urgente d'un problème bloquant présent sur la version livrée ou sur `main`. | Signale une priorité élevée et un cycle de validation plus rapide. Cette catégorie ne doit pas servir pour un bug ordinaire. | `hotfix/connexion-impossible` |
+| `refactor/` | Réorganisation ou simplification du code sans modifier son comportement attendu. | Permet de revoir la qualité technique séparément d'un changement fonctionnel et rend la revue plus fiable. | `refactor/service-authentification` |
+| `docs/` | Création ou modification de documentation uniquement. | Évite de mélanger la documentation avec du code et permet une revue adaptée. | `docs/convention-git` |
+| `test/` | Ajout ou amélioration de tests sans changement fonctionnel volontaire. | Rend explicite que la branche améliore la couverture ou la fiabilité des tests. | `test/api-proprietes` |
+| `chore/` | Maintenance technique : dépendances, configuration, scripts, nettoyage ou outillage. | Regroupe les tâches nécessaires au projet qui ne sont ni des fonctionnalités ni des corrections métier. | `chore/mise-a-jour-angular` |
 
-* [Set up project integrations](https://git.helmo.be/students/info/q240075/immosphere/-/settings/integrations)
+Utiliser les catégories **au singulier** : `feature/` et non `features/`, `fix/` et non `fixes/`.
 
-## Collaborate with your team
+### Règles de nommage
 
-* [Invite team members and collaborators](https://docs.gitlab.com/user/project/members/)
-* [Create a new merge request](https://docs.gitlab.com/user/project/merge_requests/creating_merge_requests/)
-* [Automatically close issues from merge requests](https://docs.gitlab.com/user/project/issues/managing_issues/#closing-issues-automatically)
-* [Enable merge request approvals](https://docs.gitlab.com/user/project/merge_requests/approvals/)
-* [Set auto-merge](https://docs.gitlab.com/user/project/merge_requests/auto_merge/)
+- Écrire les noms en minuscules.
+- Utiliser des tirets `-` entre les mots, sans espace ni underscore.
+- Choisir une description courte mais précise.
+- Ne pas mettre de nom de personne dans la branche.
+- Ajouter le numéro d'une issue lorsqu'elle existe.
 
-## Test and Deploy
+Exemples recommandés :
 
-Use the built-in continuous integration in GitLab.
+```text
+feature/42-gestion-visites
+fix/57-prix-negatif
+docs/installation-backend
+chore/configuration-ci
+```
 
-* [Get started with GitLab CI/CD](https://docs.gitlab.com/ci/quick_start/)
-* [Analyze your code for known vulnerabilities with Static Application Security Testing (SAST)](https://docs.gitlab.com/user/application_security/sast/)
-* [Deploy to Kubernetes, Amazon EC2, or Amazon ECS using Auto Deploy](https://docs.gitlab.com/topics/autodevops/requirements/)
-* [Use pull-based deployments for improved Kubernetes management](https://docs.gitlab.com/user/clusters/agent/)
-* [Set up protected environments](https://docs.gitlab.com/ci/environments/protected_environments/)
+Exemples à éviter :
 
-***
+```text
+ma-branche
+feature/test
+features/Nouvelle_Page
+branche-tibo
+```
 
-# Editing this README
+## Workflow recommandé
 
-When you're ready to make this README your own, just edit this file and use the handy template below (or feel free to structure it however you want - this is just a starting point!). Thanks to [makeareadme.com](https://www.makeareadme.com/) for this template.
+### 1. Mettre `main` à jour
 
-## Suggestions for a good README
+```bash
+git switch main
+git pull origin main
+```
 
-Every project is different, so consider which of these sections apply to yours. The sections used in the template are suggestions for most open source projects. Also keep in mind that while a README can be too long and detailed, too long is better than too short. If you think your README is too long, consider utilizing another form of documentation rather than cutting out information.
+### 2. Créer la branche de travail
 
-## Name
-Choose a self-explaining name for your project.
+```bash
+git switch -c feature/nom-de-la-fonctionnalite
+```
 
-## Description
-Let people know what your project can do specifically. Provide context and add a link to any reference visitors might be unfamiliar with. A list of Features or a Background subsection can also be added here. If there are alternatives to your project, this is a good place to list differentiating factors.
+Remplacer `feature/` par la catégorie appropriée.
 
-## Badges
-On some READMEs, you may see small images that convey metadata, such as whether or not all the tests are passing for the project. You can use Shields to add some to your README. Many services also have instructions for adding a badge.
+### 3. Réaliser des commits ciblés
 
-## Visuals
-Depending on what you are making, it can be a good idea to include screenshots or even a video (you'll frequently see GIFs rather than actual videos). Tools like ttygif can help, but check out Asciinema for a more sophisticated method.
+Chaque commit doit représenter une étape cohérente. Son message doit être court, précis et rédigé à l'impératif.
 
-## Installation
-Within a particular ecosystem, there may be a common way of installing things, such as using Yarn, NuGet, or Homebrew. However, consider the possibility that whoever is reading your README is a novice and would like more guidance. Listing specific steps helps remove ambiguity and gets people to using your project as quickly as possible. If it only runs in a specific context like a particular programming language version or operating system or has dependencies that have to be installed manually, also add a Requirements subsection.
+Format conseillé :
 
-## Usage
-Use examples liberally, and show the expected output if you can. It's helpful to have inline the smallest example of usage that you can demonstrate, while providing links to more sophisticated examples if they are too long to reasonably include in the README.
+```text
+<type>: <description>
+```
 
-## Support
-Tell people where they can go to for help. It can be any combination of an issue tracker, a chat room, an email address, etc.
+Exemples :
 
-## Roadmap
-If you have ideas for releases in the future, it is a good idea to list them in the README.
+```text
+feat: ajoute le formulaire de création d'un bien
+fix: empêche l'envoi d'un prix négatif
+refactor: extrait la validation des adresses
+docs: documente le workflow Git
+test: couvre la création d'une visite
+chore: met à jour les dépendances du frontend
+```
 
-## Contributing
-State if you are open to contributions and what your requirements are for accepting them.
+Avant chaque commit, vérifier les fichiers concernés afin de ne pas ajouter de secrets, de fichiers générés ou de modifications sans rapport avec la branche :
 
-For people who want to make changes to your project, it's helpful to have some documentation on how to get started. Perhaps there is a script that they should run or some environment variables that they need to set. Make these steps explicit. These instructions could also be useful to your future self.
+```bash
+git status
+git diff
+git add <fichiers>
+git commit -m "feat: ajoute la recherche par ville"
+```
 
-You can also document commands to lint the code or run tests. These steps help to ensure high code quality and reduce the likelihood that the changes inadvertently break something. Having instructions for running tests is especially helpful if it requires external setup, such as starting a Selenium server for testing in a browser.
+### 4. Synchroniser la branche
 
-## Authors and acknowledgment
-Show your appreciation to those who have contributed to the project.
+Avant d'ouvrir la Merge Request, récupérer les derniers changements de `main` et résoudre les éventuels conflits sur sa propre branche :
 
-## License
-For open source projects, say how it is licensed.
+```bash
+git fetch origin
+git rebase origin/main
+```
 
-## Project status
-If you have run out of energy or time for your project, put a note at the top of the README saying that development has slowed down or stopped completely. Someone may choose to fork your project or volunteer to step in as a maintainer or owner, allowing your project to keep going. You can also make an explicit request for maintainers.
+Si un rebase n'est pas maîtrisé par l'auteur de la branche, demander l'aide d'un membre de l'équipe plutôt que de forcer un push sur une branche partagée.
+
+### 5. Pousser la branche
+
+```bash
+git push -u origin feature/nom-de-la-fonctionnalite
+```
+
+### 6. Ouvrir une Merge Request
+
+La Merge Request doit :
+
+- avoir un titre clair ;
+- expliquer ce qui a été modifié et pourquoi ;
+- indiquer comment tester la modification ;
+- mentionner l'issue concernée, si elle existe ;
+- rester suffisamment petite pour être relue facilement ;
+- avoir une pipeline et des tests réussis, lorsqu'ils sont disponibles ;
+- être relue par au moins une autre personne avant le merge.
+
+Après la fusion, supprimer la branche distante devenue inutile.
+
+## Bonnes pratiques d'équipe
+
+- Ne jamais pousser directement sur la branche d'un autre membre sans son accord.
+- Ne jamais utiliser `git push --force` sur `main`.
+- Préférer `git push --force-with-lease` à `git push --force` lorsqu'un rebase impose de mettre à jour sa propre branche distante.
+- Prévenir rapidement l'équipe lorsqu'une modification touche une zone partagée ou risque de créer des conflits.
+- Découper une tâche trop grande en plusieurs branches ou Merge Requests cohérentes.
+- Ne pas mélanger correction, refactorisation et nouvelle fonctionnalité dans une même branche sauf si ces changements sont indissociables.
+
+## Résumé de décision
+
+```text
+Est-ce une modification de code, de configuration, de dépendance ou de base de données ?
+├── Oui  -> créer une branche.
+└── Non  -> est-ce une documentation très mineure et sans risque ?
+           ├── Oui  -> commit direct possible seulement avec l'accord de l'équipe.
+           └── Non  -> créer une branche.
+```

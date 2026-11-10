@@ -1,0 +1,24 @@
+{
+  "navbar": {
+    "navigationLabel": "Hauptnavigation",
+    "logoAlt": "ImmoSphere — Immobilienübersicht",
+    "buy": "Kaufen",
+    "rent": "Mieten",
+    "agencies": "Immobilienagenturen",
+    "notaries": "Notare",
+    "services": "Dienstleistungen",
+    "favorites": "Meine Favoriten",
+    "favoritesWithCount": "Meine Favoriten: {{count}}",
+    "languageLabel": "Sprache der Website",
+    "languageWithCode": "Sprache der Website: {{code}}",
+    "chooseLanguage": "Sprache auswählen",
+    "login": "Anmelden",
+    "publish": "Immobilie veröffentlichen",
+    "languages": {
+      "fr": "Français",
+      "nl": "Nederlands",
+      "de": "Deutsch",
+      "en": "English"
+    }
+  }
+}
