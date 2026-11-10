@@ -20,5 +20,10 @@
       "de": "Deutsch",
       "en": "English"
     }
+  },
+  "footer": {
+    "properties": {
+      "title": "Immobilier"
+    }
   }
 }
