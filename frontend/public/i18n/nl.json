@@ -1,0 +1,53 @@
+{
+  "navbar": {
+    "navigationLabel": "Hoofdnavigatie",
+    "logoAlt": "ImmoSphere — overzicht van het vastgoedaanbod",
+    "buy": "Kopen",
+    "rent": "Huren",
+    "agencies": "Makelaars",
+    "notaries": "Notarissen",
+    "services": "Diensten",
+    "favorites": "Mijn favorieten",
+    "favoritesWithCount": "Mijn favorieten: {{count}}",
+    "languageLabel": "Taal van de website",
+    "languageWithCode": "Taal van de website: {{code}}",
+    "chooseLanguage": "Een taal kiezen",
+    "login": "Inloggen",
+    "publish": "Een pand publiceren",
+    "languages": {
+      "fr": "Français",
+      "nl": "Nederlands",
+      "de": "Deutsch",
+      "en": "English"
+    }
+  },
+  "footer": {
+    "description": "Het toonaangevende vastgoedplatform in België. Transparantie, notariële nauwkeurigheid en gecertificeerde transacties.",
+    "regions": { "brussels": "Brussel", "flanders": "Vlaanderen", "wallonia": "Wallonië" },
+    "about": {
+      "title": "ImmoSphere",
+      "aboutUs": "Over ons",
+      "howItWorks": "Hoe werkt het?",
+      "faq": "Veelgestelde vragen"
+    },
+    "properties": { "title": "Vastgoed", "mapSearch": "Zoeken op de kaart" },
+    "professionals": {
+      "title": "Professionals",
+      "agencies": "Vastgoedkantoren",
+      "agents": "Vastgoedmakelaars",
+      "portal": "Professionele omgeving"
+    },
+    "help": {
+      "title": "Hulp & juridisch",
+      "center": "Helpcentrum",
+      "contact": "Contact",
+      "terms": "Gebruiksvoorwaarden",
+      "privacy": "Privacy",
+      "cookies": "Cookies",
+      "accessibility": "Toegankelijkheid"
+    },
+    "languageSelection": "Taalkeuze:",
+    "copyright": "© ImmoSphere {{year}}. Alle rechten voorbehouden.",
+    "tagline": "Belgisch vastgoed, helder en duidelijk."
+  }
+}

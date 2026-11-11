@@ -1,0 +1,66 @@
+<footer class="footer">
+  <div class="footer__container">
+    <div class="footer__columns">
+      <div class="footer__brand">
+        <p class="footer__brand-name">ImmoSphere</p>
+        <p class="footer__description">{{ 'footer.description' | translate }}</p>
+
+        <ul class="footer__regions">
+          <li>{{ 'footer.regions.brussels' | translate }}</li>
+          <li>{{ 'footer.regions.flanders' | translate }}</li>
+          <li>{{ 'footer.regions.wallonia' | translate }}</li>
+        </ul>
+      </div>
+
+      @for (group of groups; track group.titleKey) {
+        <section>
+          <h2 class="footer__heading">{{ group.titleKey | translate }}</h2>
+
+          <ul class="footer__links">
+            @for (link of group.links; track link.labelKey) {
+              <li>
+                @if (link.route) {
+                  <a
+                    [routerLink]="link.route"
+                    [queryParams]="link.transaction ? { transaction: link.transaction } : null"
+                  >
+                    {{ link.labelKey | translate }}
+                  </a>
+                } @else {
+                  <span>{{ link.labelKey | translate }}</span>
+                }
+              </li>
+            }
+          </ul>
+        </section>
+      }
+    </div>
+
+    <section class="footer__language" aria-labelledby="footer-language-heading">
+      <h2 id="footer-language-heading">
+        {{ 'footer.languageSelection' | translate }}
+      </h2>
+
+      <ul class="footer__language-options">
+        @for (option of languages; track option.code) {
+          <li>
+            <button
+              type="button"
+              [attr.lang]="option.code"
+              [attr.aria-pressed]="language() === option.code"
+              (click)="changeLanguage(option.code)"
+            >
+              {{ option.label }}
+            </button>
+          </li>
+        }
+      </ul>
+      <app-language-picker class="footer__language-picker" variant="footer" />
+    </section>
+
+    <div class="footer__bottom">
+      <p>{{ 'footer.copyright' | translate: { year: year } }}</p>
+      <p>{{ 'footer.tagline' | translate }}</p>
+    </div>
+  </div>
+</footer>
