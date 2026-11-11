@@ -1,0 +1,36 @@
+<div (keydown.escape)="closeOnEscape($event, trigger)">
+  <button
+    #trigger
+    class="language-picker__trigger"
+    type="button"
+    [attr.aria-label]="'navbar.languageWithCode' | translate: { code: language().toUpperCase() }"
+    [attr.aria-expanded]="isOpen()"
+    (click)="toggle()"
+  >
+    @if (variant() === 'navbar') {
+      <img src="icons/globe.svg" alt="" />
+      <span class="language-picker__code">{{ language() }}</span>
+    } @else {
+      <span [attr.lang]="language()">{{ ('navbar.languages.' + language()) | translate }}</span>
+    }
+    <img src="icons/chevron-down.svg" alt="" />
+  </button>
+
+  @if (isOpen()) {
+    <ul class="language-picker__options" [attr.aria-label]="'navbar.chooseLanguage' | translate">
+      @for (option of languages; track option.code) {
+        <li>
+          <button
+            class="language-picker__option"
+            type="button"
+            [attr.lang]="option.code"
+            [attr.aria-pressed]="language() === option.code"
+            (click)="selectLanguage(option.code, trigger)"
+          >
+            {{ ('navbar.languages.' + option.code) | translate }}
+          </button>
+        </li>
+      }
+    </ul>
+  }
+</div>

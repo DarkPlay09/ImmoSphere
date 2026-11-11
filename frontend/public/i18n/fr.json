@@ -20,5 +20,34 @@
       "de": "Deutsch",
       "en": "English"
     }
+  },
+  "footer": {
+    "description": "L’écosystème immobilier de référence en Belgique. Transparence, précision notariale et transactions certifiées.",
+    "regions": { "brussels": "Bruxelles", "flanders": "Vlaanderen", "wallonia": "Wallonie" },
+    "about": {
+      "title": "ImmoSphere",
+      "aboutUs": "À propos",
+      "howItWorks": "Comment ça fonctionne",
+      "faq": "FAQ"
+    },
+    "properties": { "title": "Immobilier", "mapSearch": "Recherche sur la carte" },
+    "professionals": {
+      "title": "Professionnels",
+      "agencies": "Agences immobilières",
+      "agents": "Agents immobiliers",
+      "portal": "Espace professionnel"
+    },
+    "help": {
+      "title": "Aide & légal",
+      "center": "Centre d’aide",
+      "contact": "Contact",
+      "terms": "Conditions d’utilisation",
+      "privacy": "Confidentialité",
+      "cookies": "Cookies",
+      "accessibility": "Accessibilité"
+    },
+    "languageSelection": "Sélection de langue :",
+    "copyright": "© ImmoSphere {{year}}. Tous droits réservés.",
+    "tagline": "L’immobilier belge en toute clarté."
   }
 }

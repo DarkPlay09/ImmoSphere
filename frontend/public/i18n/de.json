@@ -20,5 +20,34 @@
       "de": "Deutsch",
       "en": "English"
     }
+  },
+  "footer": {
+    "description": "Die Immobilienplattform für Belgien. Transparenz, notarielle Genauigkeit und zertifizierte Transaktionen.",
+    "regions": { "brussels": "Brüssel", "flanders": "Flandern", "wallonia": "Wallonien" },
+    "about": {
+      "title": "ImmoSphere",
+      "aboutUs": "Über uns",
+      "howItWorks": "So funktioniert es",
+      "faq": "Häufige Fragen"
+    },
+    "properties": { "title": "Immobilien", "mapSearch": "Auf der Karte suchen" },
+    "professionals": {
+      "title": "Für Fachleute",
+      "agencies": "Immobilienagenturen",
+      "agents": "Immobilienmakler",
+      "portal": "Portal für Fachleute"
+    },
+    "help": {
+      "title": "Hilfe & Rechtliches",
+      "center": "Hilfecenter",
+      "contact": "Kontakt",
+      "terms": "Nutzungsbedingungen",
+      "privacy": "Datenschutz",
+      "cookies": "Cookies",
+      "accessibility": "Barrierefreiheit"
+    },
+    "languageSelection": "Sprachauswahl:",
+    "copyright": "© ImmoSphere {{year}}. Alle Rechte vorbehalten.",
+    "tagline": "Belgische Immobilien auf einen Blick."
   }
 }
