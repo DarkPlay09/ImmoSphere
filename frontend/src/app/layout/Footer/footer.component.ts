@@ -1,8 +1,9 @@
 import { Component, computed, inject } from '@angular/core';
 import { RouterLink } from "@angular/router";
 import { TranslatePipe, TranslateService } from '@ngx-translate/core';
-import { LANGUAGES } from '../Header/Navbar/data/languages.data';
-import { LanguageCode } from '../Header/Navbar/models/language.model';
+import { LANGUAGES } from '../../core/i18n/languages.data';
+import type { LanguageCode } from '../../core/i18n/language.model';
+import { LanguagePickerComponent } from '../LanguagePicker/language-picker.component';
 
 interface FooterLink {
   labelKey: string;
@@ -20,7 +21,7 @@ interface FooterGroup {
   standalone: true,
   templateUrl: './footer.component.html',
   styleUrl: './footer.component.scss',
-  imports: [TranslatePipe, RouterLink],
+  imports: [TranslatePipe, RouterLink, LanguagePickerComponent],
 })
 
 export class FooterComponent {
@@ -77,4 +78,5 @@ export class FooterComponent {
       },
     });
   }
+
 }

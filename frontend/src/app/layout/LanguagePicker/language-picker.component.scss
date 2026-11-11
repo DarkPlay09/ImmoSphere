@@ -1,0 +1,106 @@
+:host {
+  position: relative;
+  display: inline-flex;
+  flex-shrink: 0;
+}
+
+.language-picker {
+  &__trigger {
+    display: inline-flex;
+    align-items: center;
+    gap: 4px;
+    padding: 6px 10px;
+    border: 0;
+    border-radius: 8px;
+    background: transparent;
+    color: inherit;
+    font: inherit;
+    cursor: pointer;
+
+    img {
+      display: block;
+      flex-shrink: 0;
+    }
+  }
+
+  &__code {
+    text-transform: uppercase;
+  }
+
+  &__options {
+    position: absolute;
+    inset-block-start: calc(100% + 8px);
+    inset-inline-end: 0;
+    z-index: 1;
+    box-sizing: border-box;
+    inline-size: max-content;
+    min-inline-size: 168px;
+    max-inline-size: calc(100vw - 32px);
+    margin: 0;
+    padding: 6px;
+    border: 1px solid rgba(211, 194, 205, 0.6);
+    border-radius: 8px;
+    background: #ffffff;
+    box-shadow: 0 8px 24px rgba(15, 37, 55, 0.12);
+    color: #4f434c;
+    font: 500 14px / 20px Inter, sans-serif;
+    list-style: none;
+  }
+
+  &__option {
+    display: block;
+    box-sizing: border-box;
+    inline-size: 100%;
+    padding: 8px 12px;
+    border: 0;
+    border-radius: 6px;
+    background: transparent;
+    color: inherit;
+    font: inherit;
+    text-align: start;
+    white-space: normal;
+    overflow-wrap: anywhere;
+    cursor: pointer;
+
+    &:hover {
+      background: #f5f0f5;
+      color: #6c2d6b;
+    }
+
+    &[aria-pressed='true'] {
+      background: #6c2d6b;
+      color: #ffffff;
+    }
+  }
+
+  &__trigger:focus-visible,
+  &__option:focus-visible {
+    outline: 2px solid #6c2d6b;
+    outline-offset: 2px;
+  }
+}
+
+:host(.language-picker--footer) {
+  .language-picker__trigger {
+    gap: 8px;
+    padding: 0;
+    color: #521453;
+    font: 600 13px / 20px Inter, sans-serif;
+
+    span {
+      text-decoration: underline;
+    }
+  }
+
+  .language-picker__options {
+    inset-block-start: auto;
+    inset-block-end: calc(100% + 8px);
+  }
+}
+
+@media (max-width: 600px) {
+  :host(:not(.language-picker--footer)) .language-picker__options {
+    inset-inline-start: 0;
+    inset-inline-end: auto;
+  }
+}

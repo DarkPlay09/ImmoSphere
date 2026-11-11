@@ -163,6 +163,10 @@
       font-weight: 500;
     }
   }
+
+  &__language-picker {
+    display: none;
+  }
 }
 
 @media (max-width: 1000px) {
@@ -194,6 +198,24 @@
 
     &__bottom {
       padding-top: 32px;
+    }
+
+    &__language {
+      gap: 8px 12px;
+      padding: 12px 16px;
+
+      h2 {
+        font-size: 13px;
+      }
+    }
+
+    &__language-options {
+      display: none;
+    }
+
+    &__language-picker {
+      display: inline-flex;
+      margin-inline-start: auto;
     }
   }
 }

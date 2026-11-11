@@ -1,4 +1,4 @@
-import type { LanguageOption } from '../models/language.model';
+import type { LanguageOption } from './language.model';
 
 export const LANGUAGES: LanguageOption[] = [
   { code: 'fr', label: 'Français' },

@@ -48,50 +48,7 @@
         }
       </button>
 
-      <div
-        class="navbar__language"
-        (focusout)="onLanguageFocusOut($event)"
-        (keydown.escape)="closeLanguageMenu(); languageTrigger.focus(); $event.stopPropagation()"
-      >
-        <button
-          #languageTrigger
-          class="navbar__language-trigger"
-          type="button"
-          [attr.aria-label]="'navbar.languageWithCode' | translate: { code: language().toUpperCase() }"
-          [attr.aria-expanded]="isLanguageMenuOpen()"
-          [attr.aria-controls]="isLanguageMenuOpen() ? 'navbar-language-options' : null"
-          (click)="toggleLanguageMenu()"
-        >
-          <img src="icons/globe.svg" alt="" />
-          <span class="navbar__language-code" aria-hidden="true">
-            {{ language() }}
-          </span>
-          <img src="icons/chevron-down.svg" alt="" />
-        </button>
-
-        @if (isLanguageMenuOpen()) {
-          <ul
-            id="navbar-language-options"
-            class="navbar__language-options"
-            [attr.aria-label]="'navbar.chooseLanguage' | translate"
-          >
-            @for (option of languages; track option.code) {
-              <li>
-                <button
-                  class="navbar__language-option"
-                  [class.navbar__language-option--selected]="language() === option.code"
-                  type="button"
-                  [attr.lang]="option.code"
-                  [attr.aria-pressed]="language() === option.code"
-                  (click)="changeLanguage(option.code); languageTrigger.focus()"
-                >
-                  {{ ('navbar.languages.' + option.code) | translate }}
-                </button>
-              </li>
-            }
-          </ul>
-        }
-      </div>
+      <app-language-picker />
 
       <span class="navbar__divider" aria-hidden="true"></span>
 
