@@ -22,8 +22,32 @@
     }
   },
   "footer": {
-    "properties": {
-      "title": "Real estate"
-    }
+    "description": "Belgium’s leading real estate platform. Transparency, notarial accuracy and certified transactions.",
+    "regions": { "brussels": "Brussels", "flanders": "Flanders", "wallonia": "Wallonia" },
+    "about": {
+      "title": "ImmoSphere",
+      "aboutUs": "About us",
+      "howItWorks": "How it works",
+      "faq": "FAQ"
+    },
+    "properties": { "title": "Real estate", "mapSearch": "Search on the map" },
+    "professionals": {
+      "title": "Professionals",
+      "agencies": "Real estate agencies",
+      "agents": "Real estate agents",
+      "portal": "Professional portal"
+    },
+    "help": {
+      "title": "Help & legal",
+      "center": "Help centre",
+      "contact": "Contact",
+      "terms": "Terms of use",
+      "privacy": "Privacy",
+      "cookies": "Cookies",
+      "accessibility": "Accessibility"
+    },
+    "languageSelection": "Select a language:",
+    "copyright": "© ImmoSphere {{year}}. All rights reserved.",
+    "tagline": "Belgian real estate, made clear."
   }
 }

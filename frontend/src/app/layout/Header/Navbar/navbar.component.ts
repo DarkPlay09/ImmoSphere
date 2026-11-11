@@ -1,8 +1,8 @@
-import { Component, ElementRef, inject, input, model, output, signal } from '@angular/core';
+import { Component, ElementRef, inject, input, computed, output, signal } from '@angular/core';
 import { RouterLink } from '@angular/router';
 import { TranslatePipe, TranslateService } from '@ngx-translate/core';
 import type { NavbarLink } from './models/navbar-links.model';
-import type { LanguageCode, LanguageOption } from './models/language.model';
+import type { LanguageOption } from './models/language.model';
 import { NAVBAR_LINKS } from './data/navbar-links.data';
 import { LANGUAGES } from './data/languages.data';
 
@@ -50,21 +50,18 @@ export class NavbarComponent {
   readonly publishRequested = output<void>();
   readonly favoritesCount = input(0);
   readonly navigationLinks: NavbarLink[] = NAVBAR_LINKS;
-  readonly language = model<LanguageCode>('fr');
+  readonly language = computed(() => this.translate.currentLang() ?? 'fr');
   readonly languages: LanguageOption[] = LANGUAGES;
 
   changeLanguage(code: string): void {
-    const selectedLanguage = this.languages.find(
-      (l) => l.code === code
-    );
+    const selectedLanguage = this.languages.find((l) => l.code === code);
 
-    if(!selectedLanguage) {
+    if (!selectedLanguage) {
       return;
     }
 
     this.translate.use(selectedLanguage.code).subscribe({
       next: () => {
-        this.language.set(selectedLanguage.code);
         this.closeLanguageMenu();
       },
       error: (error: unknown) => {
