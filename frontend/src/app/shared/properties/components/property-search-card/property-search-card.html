@@ -1,0 +1,164 @@
+
+<article
+  class="search-card"
+  [class.search-card--selected]="selected()"
+>
+  <!-- IMAGE -->
+  <div class="search-card__media">
+    <img
+      class="search-card__image"
+      [src]="property().imageUrl"
+      [alt]="property().title"
+      loading="lazy"
+    />
+
+    <div class="search-card__badges">
+      <span
+        class="search-card__transaction"
+        [class.search-card__transaction--rent]="property().transactionType === 'rent'"
+      >
+        {{ property().transactionType === 'sale' ? 'À VENDRE' : 'À LOUER' }}
+      </span>
+
+      @if (property().isVisit360) {
+        <span class="search-card__special">
+          <span class="material-symbols-outlined" aria-hidden="true">360</span>
+          360°
+        </span>
+      } @else if (property().specialBadge; as badge) {
+        <span class="search-card__special">{{ badge }}</span>
+      }
+    </div>
+
+    <button
+      type="button"
+      class="search-card__favorite"
+      [class.search-card__favorite--active]="favorite()"
+      [attr.aria-pressed]="favorite()"
+      [attr.aria-label]="favorite() ? 'Retirer des favoris' : 'Ajouter aux favoris'"
+      (click)="toggleFavorite()"
+    >
+      <span class="material-symbols-outlined" aria-hidden="true">
+        {{ favorite() ? 'favorite' : 'favorite_border' }}
+      </span>
+    </button>
+
+    @if (property().photoCount; as count) {
+      <span class="search-card__photo-count">
+        <span class="material-symbols-outlined" aria-hidden="true">
+          photo_camera
+        </span>
+        {{ property().photoIndex ?? 1 }} / {{ count }}
+      </span>
+    }
+
+    @if (property().peb; as peb) {
+      <span
+        class="search-card__peb"
+        [class.peb-a]="peb === 'A'"
+        [class.peb-b]="peb === 'B'"
+        [class.peb-c]="peb === 'C'"
+        [class.peb-d]="peb === 'D'"
+        [class.peb-e]="peb === 'E'"
+        [class.peb-f]="peb === 'F'"
+      >
+        PEB {{ peb }}
+      </span>
+    }
+  </div>
+
+  <!-- INFORMATIONS -->
+  <div class="search-card__content">
+
+    <div class="search-card__main">
+
+      <p class="search-card__location">
+        <span class="material-symbols-outlined" aria-hidden="true">
+          near_me
+        </span>
+        <span>
+          {{ property().city }} {{ property().postalCode }}
+          @if (
+            property().addressVisibility === 'full'
+            && property().address
+            ) {
+            · {{ property().address }}
+          }
+        </span>
+      </p>
+
+      <h3 class="search-card__title">{{ property().title }}</h3>
+
+      @if (property().description) {
+        <p class="search-card__description">
+          {{ property().description }}
+        </p>
+      }
+
+      <div class="search-card__features">
+        <span class="search-card__feature">
+          <span class="material-symbols-outlined" aria-hidden="true">bed</span>
+          {{ property().bedrooms }} ch.
+        </span>
+
+        <span class="search-card__dot">•</span>
+
+        <span class="search-card__feature">
+          <span class="material-symbols-outlined" aria-hidden="true">bathtub</span>
+          {{ property().bathrooms }} sdb.
+        </span>
+
+        <span class="search-card__dot">•</span>
+
+        <span class="search-card__feature">
+          <span class="material-symbols-outlined" aria-hidden="true">
+            square_foot
+          </span>
+          {{ property().areaM2 }} m²
+        </span>
+
+        @for (feature of property().extraFeatures ?? []; track $index) {
+          <span class="search-card__dot">•</span>
+          <span class="search-card__feature search-card__feature--extra">
+            {{ feature }}
+          </span>
+        }
+      </div>
+    </div>
+
+    <!-- BAS DE LA CARTE -->
+    <div class="search-card__footer">
+
+      <div class="search-card__pricing">
+        <p class="search-card__price">
+          {{ property().price.toLocaleString('fr-BE') }} €
+          @if (property().transactionType === 'rent') {
+            <span class="search-card__period">/mois</span>
+          }
+        </p>
+
+        @if (property().financialNote) {
+          <p class="search-card__financial-note">
+            {{ property().financialNote }}
+          </p>
+        }
+      </div>
+
+      <div class="search-card__bottom">
+        <div class="search-card__advertiser">
+          <span class="search-card__avatar" aria-hidden="true"></span>
+          <span>{{ property().advertiserName ?? 'Annonceur' }}</span>
+        </div>
+
+        <button
+          class="search-card__details"
+          type="button"
+          (click)="openDetails()"
+        >
+          Détails
+        </button>
+      </div>
+
+    </div>
+  </div>
+</article>

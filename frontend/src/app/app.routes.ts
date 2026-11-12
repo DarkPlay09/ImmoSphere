@@ -18,6 +18,13 @@ export const routes: Routes = [
             (m) => m.PropertiesListComponent,
           ),
       },
-    ]
+      {
+        path: 'search',
+        loadComponent: () =>
+          import('./features/pages/properties-search/properties-search').then(
+            (m) => m.PropertiesSearchComponent,
+          ),
+      },
+    ],
   },
 ];

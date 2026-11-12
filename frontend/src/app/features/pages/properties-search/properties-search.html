@@ -1,0 +1,27 @@
+
+<section class="search-results">
+
+  <div class="search-results__header">
+    <h1>Résultats de recherche</h1>
+    <p>{{ results.length }} bien(s) disponible(s)</p>
+  </div>
+
+  <div class="search-results__list">
+
+    @for (property of results; track property.id) {
+
+      <app-property-search-card
+        [property]="property"
+        [selected]="property.id === selectedPropertyId"
+        (detailsRequested)="onDetailsRequested($event)"
+      />
+
+    } @empty {
+
+      <p>Aucun bien immobilier disponible.</p>
+
+    }
+
+  </div>
+
+</section>
