@@ -3,6 +3,7 @@ using Serilog;
 using ImmoSphere.Api.Middlewares;
 using ImmoSphere.Domain.Repository;
 using ImmoSphere.Domain.Services;
+using ImmoSphere.Domain.Services.Auth;
 using ImmoSphere.Domain.Services.Interfaces;
 using ImmoSphere.Infrastructure;
 using ImmoSphere.Infrastructure.Identity;
@@ -87,12 +88,14 @@ builder.Services.AddCors(options =>
 // ==========================================
 //                          Interface, Classe qui l'implémente
 builder.Services.AddScoped<IBienRepository, BienRepository>();
+builder.Services.AddScoped<IUserRepository, UserRepository>();
 
 // ==========================================
 // Inscription des services
 // ==========================================
 //                          Interface, Classe qui l'implémente
 builder.Services.AddScoped<IBienService, BienService>();
+builder.Services.AddScoped<IRegisterService, RegisterService>();
 
 // ==========================================
 // CONSTRUCTION DE L'APPLICATION
@@ -150,7 +153,7 @@ if (app.Environment.IsDevelopment())
     await IdentitySeeder.SeedDemoUsersAsync(
         userManager,
         db,
-        builder.Configuration["DemoSeed:Password"]
+        "Password1234$"
     );
 }
 

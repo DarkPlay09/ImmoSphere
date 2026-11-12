@@ -41,6 +41,9 @@ public static class IdentitySeeder
         await EnsureUserAsync(userManager, db,
             "client.demo@example.test", demoPassword,
             "Dubois", "Emma", RoleNames.Client);
+        await EnsureUserAsync(userManager, db,
+            "john.doe@gmail.com", demoPassword,
+            "Doe", "John", RoleNames.Client);
 
         // Relier l'agent à une agence fictive déjà créée par DatabaseSeeder.
         var agence = await db.Agences.SingleOrDefaultAsync(a => a.Nom == "Immo Meuse (démo)");
