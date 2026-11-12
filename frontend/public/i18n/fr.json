@@ -49,5 +49,56 @@
     "languageSelection": "Sélection de langue :",
     "copyright": "© ImmoSphere {{year}}. Tous droits réservés.",
     "tagline": "L’immobilier belge en toute clarté."
+  },
+  "auth": {
+    "shell": {
+      "title": "Votre projet immobilier commence ici.",
+      "description": "Recherchez, publiez et gérez votre projet immobilier en toute sérénité depuis un seul espace intuitif et sécurisé.",
+      "copyright": "© ImmoSphere {{year}}",
+      "backHome": "Retour à l’accueil",
+      "terms": "Conditions d’utilisation",
+      "privacy": "Confidentialité",
+      "locale": "Belgique (FR)"
+    },
+    "register": {
+      "title": "Créez votre compte",
+      "subtitle": "Rejoignez ImmoSphere et centralisez votre parcours immobilier en quelques clics.",
+      "accountType": "Vous êtes…",
+      "personal": "Particulier",
+      "professional": "Professionnel",
+      "givenName": "Prénom",
+      "givenNamePlaceholder": "Marc",
+      "name": "Nom",
+      "namePlaceholder": "Lambert",
+      "email": "Adresse e-mail",
+      "emailPlaceholder": "vous@exemple.be",
+      "password": "Mot de passe",
+      "passwordPlaceholder": "Votre mot de passe",
+      "showPassword": "Afficher le mot de passe",
+      "hidePassword": "Masquer le mot de passe",
+      "confirmPassword": "Confirmer le mot de passe",
+      "confirmPasswordPlaceholder": "Confirmez votre mot de passe",
+      "privacy": "Politique de confidentialité",
+      "termsPrefix": "J’accepte les",
+      "termsJoin": "et la",
+      "termsSuffix": "d’ImmoSphere.",
+      "submit": "Créer mon compte",
+      "localSuccess": "Formulaire valide. Aucun compte n’a encore été créé : connexion à l’API à venir.",
+      "alreadyRegistered": "Vous avez déjà un compte ?",
+      "login": "Se connecter",
+      "rules": {
+        "length": "8 car. min.",
+        "upper": "Une majuscule",
+        "digit": "Un chiffre",
+        "lower": "Une minuscule"
+      },
+      "errors": {
+        "required": "Ce champ est obligatoire.",
+        "email": "Saisissez une adresse e-mail valide.",
+        "password": "Le mot de passe ne respecte pas tous les critères.",
+        "mismatch": "Les mots de passe ne correspondent pas.",
+        "conditions": "Vous devez accepter les conditions pour continuer."
+      }
+    }
   }
 }

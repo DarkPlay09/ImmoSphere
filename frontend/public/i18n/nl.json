@@ -49,5 +49,56 @@
     "languageSelection": "Taalkeuze:",
     "copyright": "© ImmoSphere {{year}}. Alle rechten voorbehouden.",
     "tagline": "Belgisch vastgoed, helder en duidelijk."
+  },
+  "auth": {
+    "shell": {
+      "title": "Uw vastgoedproject begint hier.",
+      "description": "Zoek, publiceer en beheer uw vastgoedproject met een gerust hart vanuit één intuïtieve en veilige omgeving.",
+      "copyright": "© ImmoSphere {{year}}",
+      "backHome": "Terug naar de startpagina",
+      "terms": "Gebruiksvoorwaarden",
+      "privacy": "Privacy",
+      "locale": "België (NL)"
+    },
+    "register": {
+      "title": "Maak uw account aan",
+      "subtitle": "Word lid van ImmoSphere en beheer uw vastgoedtraject in enkele klikken.",
+      "accountType": "U bent…",
+      "personal": "Particulier",
+      "professional": "Professional",
+      "givenName": "Voornaam",
+      "givenNamePlaceholder": "Marc",
+      "name": "Achternaam",
+      "namePlaceholder": "Lambert",
+      "email": "E-mailadres",
+      "emailPlaceholder": "u@voorbeeld.be",
+      "password": "Wachtwoord",
+      "passwordPlaceholder": "Uw wachtwoord",
+      "showPassword": "Wachtwoord tonen",
+      "hidePassword": "Wachtwoord verbergen",
+      "confirmPassword": "Wachtwoord bevestigen",
+      "confirmPasswordPlaceholder": "Bevestig uw wachtwoord",
+      "privacy": "Privacybeleid",
+      "termsPrefix": "Ik ga akkoord met de",
+      "termsJoin": "en het",
+      "termsSuffix": "van ImmoSphere.",
+      "submit": "Mijn account aanmaken",
+      "localSuccess": "Formulier geldig. Er is nog geen account aangemaakt: API-koppeling volgt.",
+      "alreadyRegistered": "Heeft u al een account?",
+      "login": "Aanmelden",
+      "rules": {
+        "length": "Min. 8 tekens",
+        "upper": "Een hoofdletter",
+        "digit": "Een cijfer",
+        "lower": "Een kleine letter"
+      },
+      "errors": {
+        "required": "Dit veld is verplicht.",
+        "email": "Voer een geldig e-mailadres in.",
+        "password": "Het wachtwoord voldoet niet aan alle vereisten.",
+        "mismatch": "Wachtwoorden komen niet overeen.",
+        "conditions": "U moet de voorwaarden accepteren om door te gaan."
+      }
+    }
   }
 }

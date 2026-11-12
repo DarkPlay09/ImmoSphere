@@ -1,0 +1,200 @@
+<app-auth-shell>
+  <section class="register" aria-labelledby="register-title">
+    <header class="register__heading">
+      <h1 id="register-title">{{ 'auth.register.title' | translate }}</h1>
+      <p>{{ 'auth.register.subtitle' | translate }}</p>
+    </header>
+
+    <div class="register__account-type">
+      <span class="register__label" id="account-type-label">
+        {{ 'auth.register.accountType ' | translate }}
+      </span>
+      <div class="register__choice" role="group" aria-labelledby="account-type-label">
+        <button
+          type="button"
+          [class.register__choice-button--active]="accountType() === 'particulier'"
+          [attr.aria-pressed]="accountType() === 'particulier'"
+          (click)="setAccountType('particulier')"
+          class="register__choice-button"
+        >
+          <span aria-hidden="true">
+            <!-- insérer le logo -->
+          </span>
+        </button>
+        <button
+          type="button"
+          [class.register__choice-button--active]="accountType() === 'professionnel'"
+          [attr.aria-pressed]="accountType() === 'professionnel'"
+          (click)="setAccountType('professionnel')"
+          class="register__choice-button"
+        >
+          <span aria-hidden="true">
+            <!-- insérer le logo -->
+          </span>
+          {{ 'auth.register.professional' | translate }}
+        </button>
+      </div>
+    </div>
+
+    <form class="registre__form" [formGroup]="form" (ngSubmit)="submit()" novalidate>
+      <div class="register__row">
+        <div class="register__field">
+          <label for="register-first-name" class="register__label">
+            {{ 'auth.register.givenName' | translate }}
+          </label>
+          <input
+            id="register-first-name"
+            type="text"
+            formControlName="givenName"
+            autocomplete="given-name"
+            [placeholder]="'auth.register.givenNamePlaceholder' | translate"
+            [attr.aria-invalid]="showError('givenName')"
+            [attr.aria-describedby]="showError('givenName') ? 'register-first-name-error' : null"
+          />
+          @if (showError('givenName')) {
+            <span id="register-first-name-error" class="register__error">
+              {{ 'auth.register.errors.required' | translate }}
+            </span>
+          }
+        </div>
+        <div class="register__field">
+          <label for="register-last-name" class="register__label">{{ 'auth.register.name' | translate }}</label>
+          <input
+            id="register-last-name"
+            type="text"
+            formControlName="name"
+            autocomplete="family-name"
+            [placeholder]="'auth.register.namePlaceholder' | translate"
+            [attr.aria-invalid]="showError('name')"
+            [attr.aria-describedby]="showError('name') ? 'register-last-name-error' : null"
+          />
+          @if (showError('name')) {
+            <span id="register-last-name-error" class="register__error">
+              {{ 'auth.register.errors.required' | translate }}
+            </span>
+          }
+        </div>
+      </div>
+
+      <div class="register__field">
+        <label for="register-email" class="register__label">{{ 'auth.register.email' | translate }}</label>
+        <input
+          id="register-email"
+          type="email"
+          formControlName="email"
+          autocomplete="email"
+          inputmode="email"
+          [placeholder]="'auth.register.emailPlaceholder' | translate"
+          [attr.aria-invalid]="showError('email')"
+          [attr.aria-describedby]="showError('email') ? 'register-email-error' : null"
+        />
+        @if (showError('email')) {
+          <span id="register-email-error" class="register__error">
+            {{ (form.controls.email.hasError('email') ? 'auth.register.errors.email' : 'auth.register.errors.required') | translate }}
+          </span>
+        }
+      </div>
+
+      <div class="register__field">
+        <label for="register-password" class="register__label">{{ 'auth.register.password' | translate }}</label>
+        <div class="register__password-wrapper">
+          <input
+            id="register-password"
+            [type]="isPasswordVisible() ? 'text' : 'password'"
+            formControlName="password"
+            autocomplete="new-password"
+            [placeholder]="'auth.register.passwordPlaceholder' | translate"
+            [attr.aria-invalid]="showError('password')"
+            [attr.aria-describedby]="showError('password') ? 'register-password-error register-password-rules' : 'register-password-rules'"
+          />
+          <button
+            type="button"
+            class="register__toggle-password"
+            [attr.aria-label]="(isPasswordVisible() ? 'auth.register.hidePassword' : 'auth.register.showPassword') | translate"
+            [attr.aria-pressed]="isPasswordVisible()"
+            (click)="togglePasswordVisibility()"
+          >
+            <svg viewBox="0 0 24 24" width="18" height="18" fill="none" stroke="currentColor" stroke-width="1.6" aria-hidden="true">
+              <path d="M2 12s3.6-6 10-6 10 6 10 6-3.6 6-10 6S2 12 2 12Z" />
+              <circle cx="12" cy="12" r="3" />
+              @if (!isPasswordVisible()) { <path d="M3 3 21 21" /> }
+            </svg>
+          </button>
+        </div>
+        <ul class="register__password-rules" id="register-password-rules" aria-live="polite">
+          <li [class.register__password-rule--valid]="passwordRules.minLength">
+            <span aria-hidden="true">{{ passwordRules.minLength ? '✓' : '○' }}</span>
+            {{ 'auth.register.rules.length' | translate }}
+          </li>
+          <li [class.register__password-rule--valid]="passwordRules.upper">
+            <span aria-hidden="true">{{ passwordRules.upper ? '✓' : '○' }}</span>
+            {{ 'auth.register.rules.upper' | translate }}
+          </li>
+          <li [class.register__password-rule--valid]="passwordRules.digit">
+            <span aria-hidden="true">{{ passwordRules.digit ? '✓' : '○' }}</span>
+            {{ 'auth.register.rules.digit' | translate }}
+          </li>
+          <li [class.register__password-rule--valid]="passwordRules.lower">
+            <span aria-hidden="true">{{ passwordRules.lower ? '✓' : '○' }}</span>
+            {{ 'auth.register.rules.lower' | translate }}
+          </li>
+        </ul>
+        @if (showError('password')) {
+          <span id="register-password-error" class="register__error">
+            {{ 'auth.register.errors.password' | translate }}
+          </span>
+        }
+      </div>
+
+      <div class="register__field">
+        <label for="register-confirm-password" class="register__label">
+          {{ 'auth.register.confirmPassword' | translate }}
+        </label>
+        <input
+          id="register-confirm-password"
+          type="password"
+          formControlName="confirmPassword"
+          autocomplete="new-password"
+          [placeholder]="'auth.register.confirmPasswordPlaceholder' | translate"
+          [attr.aria-invalid]="showError('confirmPassword') || showPasswordMismatch()"
+          [attr.aria-describedby]="(showError('confirmPassword') || showPasswordMismatch()) ? 'register-confirm-password-error' : null"
+        />
+        @if (showError('confirmPassword') || showPasswordMismatch()) {
+          <span id="register-confirm-password-error" class="register__error">
+            {{ (showPasswordMismatch() ? 'auth.register.errors.mismatch' : 'auth.register.errors.required') | translate }}
+          </span>
+        }
+      </div>
+
+      <div class="register__terms">
+        <label class="register__checkbox">
+          <input type="checkbox" formControlName="conditions" [attr.aria-invalid]="showError('conditions')" />
+          <span>
+            {{ 'auth.register.termsPrefix' | translate }}
+            <span class="register__legal-text">{{ 'auth.shell.terms' | translate }}</span>
+            {{ 'auth.register.termsJoin' | translate }}
+            <span class="register__legal-text">{{ 'auth.register.privacy' | translate }}</span>
+            {{ 'auth.register.termsSuffix' | translate }}
+          </span>
+        </label>
+        @if (showError('conditions')) {
+          <span class="register__error">{{ 'auth.register.errors.conditions' | translate }}</span>
+        }
+      </div>
+
+      <button type="submit" class="register__submit">
+        {{ 'auth.register.submit' | translate }}
+        <span aria-hidden="true">→</span>
+      </button>
+
+      @if (isLocallyValid()) {
+        <p role="status" class="register__success">{{ 'auth.register.localSuccess' | translate }}</p>
+      }
+    </form>
+
+    <div class="register__login">
+      {{ 'auth.register.alreadyRegistered' | translate }}
+      <span class="register__login-label">{{ 'auth.register.login' | translate }}</span>
+    </div>
+  </section>
+</app-auth-shell>

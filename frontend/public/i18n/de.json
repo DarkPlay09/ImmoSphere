@@ -49,5 +49,56 @@
     "languageSelection": "Sprachauswahl:",
     "copyright": "© ImmoSphere {{year}}. Alle Rechte vorbehalten.",
     "tagline": "Belgische Immobilien auf einen Blick."
+  },
+  "auth": {
+    "shell": {
+      "title": "Ihr Immobilienprojekt beginnt hier.",
+      "description": "Suchen, veröffentlichen und verwalten Sie Ihr Immobilienprojekt entspannt in einer einzigen intuitiven und sicheren Umgebung.",
+      "copyright": "© ImmoSphere {{year}}",
+      "backHome": "Zurück zur Startseite",
+      "terms": "Nutzungsbedingungen",
+      "privacy": "Datenschutz",
+      "locale": "Belgien (DE)"
+    },
+    "register": {
+      "title": "Konto erstellen",
+      "subtitle": "Werden Sie Teil von ImmoSphere und verwalten Sie Ihr Immobilienvorhaben mit wenigen Klicks.",
+      "accountType": "Sie sind…",
+      "personal": "Privatperson",
+      "professional": "Gewerblich",
+      "givenName": "Vorname",
+      "givenNamePlaceholder": "Marc",
+      "name": "Nachname",
+      "namePlaceholder": "Lambert",
+      "email": "E-Mail-Adresse",
+      "emailPlaceholder": "sie@beispiel.be",
+      "password": "Passwort",
+      "passwordPlaceholder": "Ihr Passwort",
+      "showPassword": "Passwort anzeigen",
+      "hidePassword": "Passwort verbergen",
+      "confirmPassword": "Passwort bestätigen",
+      "confirmPasswordPlaceholder": "Bestätigen Sie Ihr Passwort",
+      "privacy": "Datenschutzerklärung",
+      "termsPrefix": "Ich akzeptiere die",
+      "termsJoin": "und die",
+      "termsSuffix": "von ImmoSphere.",
+      "submit": "Mein Konto erstellen",
+      "localSuccess": "Formular gültig. Es wurde noch kein Konto erstellt: API-Anbindung folgt.",
+      "alreadyRegistered": "Sie haben bereits ein Konto?",
+      "login": "Anmelden",
+      "rules": {
+        "length": "Mind. 8 Zeichen",
+        "upper": "Ein Großbuchstabe",
+        "digit": "Eine Zahl",
+        "lower": "Ein Kleinbuchstabe"
+      },
+      "errors": {
+        "required": "Dieses Feld ist erforderlich.",
+        "email": "Geben Sie eine gültige E-Mail-Adresse ein.",
+        "password": "Das Passwort erfüllt nicht alle Anforderungen.",
+        "mismatch": "Die Passwörter stimmen nicht überein.",
+        "conditions": "Sie müssen die Bedingungen akzeptieren, um fortzufahren."
+      }
+    }
   }
 }

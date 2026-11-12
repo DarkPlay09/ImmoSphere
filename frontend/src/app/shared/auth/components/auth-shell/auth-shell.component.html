@@ -1,0 +1,42 @@
+<div class="auth-shell">
+  <aside class="auth-shell__visual" aria-label="ImmoSphere">
+    <div class="auth-shell__brand">
+      <img ngSrc="/logo/logo-immosphere.png" alt="ImmoSphere" class="auth-shell__logo" height="724" width="2172" />
+    </div>
+
+    <div class="auth-shell__pitch">
+      <h2>{{ 'auth.shell.title' | translate }}</h2>
+      <p>{{ 'auth.shell.description' | translate }}</p>
+    </div>
+
+    <p class="auth-shel__copyright">
+      {{ 'auth.shell.copyright' | translate: { year: year } }}
+    </p>
+  </aside>
+
+  <section class="auth-shell__panel">
+    <header class="auth-shell__topbar">
+      <a routerLink="/properties" class="auth-shell__back-link">
+        <span aria-hidden="true">
+          <!-- insérer le logo -->
+        </span>
+        {{ 'auth.shell.backHome' | translate }}
+      </a>
+    </header>
+
+    <main class="auth-shell__body">
+      <div class="auth-shell__inner">
+        <ng-content></ng-content>
+      </div>
+    </main>
+
+    <footer class="auth-shell__footer">
+      <span>{{ 'auth.shell.copyright' | translate: { year: year } }}</span>
+      <span>{{ 'auth.shell.terms' | translate }}</span>
+      <span aria-hidden="true">·</span>
+      <span>{{ 'auth.shell.privacy' | translate }}</span>
+      <span aria-hidden="true">·</span>
+      <span>{{ 'auth.shell.locale' | translate }}</span>
+    </footer>
+  </section>
+</div>
