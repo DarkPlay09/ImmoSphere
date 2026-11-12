@@ -4,7 +4,41 @@ using ImmoSphere.Domain.Services.Interfaces;
 using Microsoft.AspNetCore.Mvc;
 
 namespace ImmoSphere.Api.Controllers.Auth;
-
+/**
+ * Cette classe s'occupe des routes concernant l'inscription, connection et déconnection.
+ *
+ * Les routes pour atteindre les méthodes sont les suivantes :
+ *
+ *   1. Inscription
+ *   Route : /api/auth/register
+ *   Ayant comme paramètres :
+ *      name (str),
+ *      givenName (str),
+ *      email (str),
+ *      pass (str),
+ *      accountType (str),
+ *      conditions (bool)
+ *
+ *   TODO
+ *   2. Validation du code
+ *   Route : /api/auth/verify-email
+ *   Ayant comme paramètres :
+ *      email (str),
+ *      code (str)
+ *
+ *   TODO
+ *   3. Connection
+ *   Route : /api/auth/login
+ *   Ayant comme paramètres :
+ *      TODO
+ *
+*    TODO
+ *   4. Déconnection
+ *   Route : /api/auth/logout
+ *   Ayant comme paramètres :
+ *      email (str),
+ *      code (str)
+ */
 [ApiController]
 [Route("api/auth")]
 public class AuthController : ControllerBase
@@ -44,6 +78,12 @@ public class AuthController : ControllerBase
         }
     }
 
+    [HttpPost("verify-email")]
+    public IActionResult VerifyEmail()
+    {
+        return Ok(new { message = "Vérification reçue" });
+    }
+
     [HttpPost("login")]
     public IActionResult Login()
     {
@@ -54,11 +94,5 @@ public class AuthController : ControllerBase
     public IActionResult Logout()
     {
         return Ok(new { message = "Déconnexion reçue" });
-    }
-
-    [HttpPost("verify-email")]
-    public IActionResult VerifyEmail()
-    {
-        return Ok(new { message = "Vérification reçue" });
     }
 }
