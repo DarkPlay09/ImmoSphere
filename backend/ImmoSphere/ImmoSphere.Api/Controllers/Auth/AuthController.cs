@@ -50,6 +50,19 @@ public class AuthController : ControllerBase
         _service = service;
     }
 
+    /**
+     * Exemple de requete http
+     *
+     const informations = {
+      name: 'Maes',
+      givenName: 'Tibo',
+      email: 'tibo.maes2611@gmail.com',
+      pass: 'Password1234$',
+      accountType: 'utilisateur',
+      conditions: true,
+    };
+     *
+     */
     [HttpPost("register")]
     public async Task<IActionResult> Register([FromBody] RegisterRequestDto request)
     {
