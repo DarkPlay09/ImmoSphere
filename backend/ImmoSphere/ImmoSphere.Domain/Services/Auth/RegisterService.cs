@@ -25,14 +25,23 @@ public class RegisterService : IRegisterService
         CheckEntries(conditions, email, password);
 
         // 4. Créer l'utilisateur
-        await _userRepository.CreateUserAsync(
-            name,
-            givenName,
-            email,
-            password,
-            accountType
-        );
-        // 5. Evnoyer le code de confirmation
+        try
+        {
+            await _userRepository.CreateUserAsync(
+                name,
+                givenName,
+                email,
+                password,
+                accountType
+            );
+            // 5. Envoyer le code de confirmation
+
+        }
+        catch (Exception e)
+        {
+            throw new RegisterException("Une erreur est survenue lors de la création de l'utilisateur");
+        }
+
     }
 
     private void CheckEntries(bool conditions, string email, string password)
@@ -46,13 +55,16 @@ public class RegisterService : IRegisterService
         // 2. Vérifier si un compte avec ce mail existe déjà
         if (_userRepository.UserExists(email))
         {
-            throw new RegisterException.EmailAlreadyExistsException($"L'utilisateur ayant comme email {email} existe déjà.");
+            throw new RegisterException.EmailAlreadyExistsException(
+                $"L'utilisateur ayant comme email {email} existe déjà.");
         }
+
         // 3. Vérifier MDP
         if (string.IsNullOrEmpty(password) ||
             !Regex.IsMatch(password, @"^(?=.*[A-Z])(?=.*[0-9]).{8,}$"))
         {
             throw new RegisterException.InvalidPasswordException(
                 "Le mot de passe doit contenir au moins 8 caractères, une majuscule et un chiffre.");
-        }    }
+        }
+    }
 }
