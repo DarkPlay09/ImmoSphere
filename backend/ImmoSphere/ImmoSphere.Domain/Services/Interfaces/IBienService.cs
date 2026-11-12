@@ -4,5 +4,5 @@ namespace ImmoSphere.Domain.Services.Interfaces;
 
 public interface IBienService
 {
-    public Bien getBienById(int id);
+    public Task<Bien> GetBienByIdAsync(int id, CancellationToken cancellationToken);
 }

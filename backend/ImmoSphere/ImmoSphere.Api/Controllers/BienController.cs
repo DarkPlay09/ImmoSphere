@@ -1,4 +1,3 @@
-using System.Text.Json.Nodes;
 using ImmoSphere.Domain.Core.Bien;
 using ImmoSphere.Domain.Services.Interfaces;
 using Microsoft.AspNetCore.Mvc;
@@ -17,11 +16,11 @@ public class BienController : ControllerBase
     }
 
     [HttpGet("{id:int}")]
-    public ActionResult<Bien> GetBienById(int id)
+    public async Task<ActionResult<Bien>> GetBienByIdAsync(int id, CancellationToken cancellationToken)
     {
         try
         {
-            Bien bien = _bienService.getBienById(id);
+            Bien bien = await _bienService.GetBienByIdAsync(id, cancellationToken);
             return Ok(bien);
         }
         catch (KeyNotFoundException ex)

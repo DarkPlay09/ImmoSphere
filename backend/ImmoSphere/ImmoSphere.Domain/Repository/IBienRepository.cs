@@ -4,5 +4,7 @@ namespace ImmoSphere.Domain.Repository;
 
 public interface IBienRepository
 {
-    public Bien getBienById(int id);
+    // Task → opération asynchrone
+    // CancellationToken → transmet l'annulation depuis la requête HTTP jusqu'à la BD
+    public Task<Bien> GetBienByIdAsync(int id, CancellationToken cancellationToken);
 }

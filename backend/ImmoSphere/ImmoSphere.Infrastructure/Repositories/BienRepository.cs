@@ -20,9 +20,9 @@ public class BienRepository : IBienRepository
         _context = context;
     }
 
-    public Bien getBienById(int id)
+    public async Task<Bien> GetBienByIdAsync(int id, CancellationToken cancellationToken)
     {
-        var entity = _context.Biens
+        var entity = await _context.Biens
             .AsNoTracking()
 
             // Tables de référence
@@ -50,7 +50,7 @@ public class BienRepository : IBienRepository
             // Favoris
             .Include(b => b.Favoris)
             .AsSplitQuery()
-            .FirstOrDefault(b => b.Id == id);
+            .FirstOrDefaultAsync(b => b.Id == id, cancellationToken: cancellationToken);
 
         if (entity == null)
         {
