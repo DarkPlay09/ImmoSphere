@@ -94,7 +94,7 @@ public static class BienMapper
         {
             RendezVous rdv = new RendezVous();
             rdv.Date = rendezVous.DateHeure;
-            rdv.Statut = rendezVous.StatutRendezVous.Libelle;
+            rdv.Statut = rendezVous.StatutRendezVous?.Libelle ?? string.Empty;
             allrdv.Add(rdv);
         }
 
@@ -107,7 +107,7 @@ public static class BienMapper
             Disponibilite disp = new Disponibilite();
             disp.Date = disponibilite.Date;
             disp.Time = disponibilite.Heure;
-            disp.State = disponibilite.StatutDisponibilite.Libelle;
+            disp.State = disponibilite.StatutDisponibilite?.Libelle ?? string.Empty;
             allDisponibilite.Add(disp);
         }
 
