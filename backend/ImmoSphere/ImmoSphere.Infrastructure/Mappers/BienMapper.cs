@@ -76,17 +76,14 @@ public static class BienMapper
         // TABLES DE RÉFÉRENCE
         // ==========================================
 
-        // TODO : vérifier les propriétés des entités liées
-        // pour récupérer le nom ou libellé correspondant.
-
-        result.TypeBien = string.Empty;
-        result.Peb = string.Empty;
-        result.TypeTransaction = string.Empty;
-        result.Etat = string.Empty;
-        result.EtatVente = string.Empty;
-        result.TypeConfiguration = string.Empty;
-        result.Province = string.Empty;
-        result.TypeChauffage = string.Empty;
+        result.TypeBien = entity.TypeBien?.Libelle ?? string.Empty;
+        result.Peb = entity.PebBien?.Libelle ?? string.Empty;
+        result.TypeTransaction = entity.TypeTransaction?.Libelle ?? string.Empty;
+        result.Etat = entity.Etat?.Libelle ?? string.Empty;
+        result.EtatVente = entity.EtatVente?.Libelle ?? string.Empty;
+        result.TypeConfiguration = entity.TypeConfiguration?.Libelle ?? string.Empty;
+        result.Province = entity.Province?.Libelle ?? string.Empty;
+        result.TypeChauffage = entity.TypeChauffage?.Libelle ?? string.Empty;
 
         // result.Publicator = ...
         // result.Images = ...
