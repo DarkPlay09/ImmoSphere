@@ -17,4 +17,9 @@ public class BienService : IBienService
     {
         return _repository.GetBienByIdAsync(id,  cancellationToken);
     }
+
+    public Task<Bien> GetPublishedBienByIdAsync(int id, CancellationToken cancellationToken)
+    {
+        return _repository.GetPublishedBienByIdAsync(id,  cancellationToken);
+    }
 }

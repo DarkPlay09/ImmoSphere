@@ -20,7 +20,7 @@ public class BienController : ControllerBase
     {
         try
         {
-            Bien bien = await _bienService.GetBienByIdAsync(id, cancellationToken);
+            Bien bien = await _bienService.GetPublishedBienByIdAsync(id, cancellationToken);
             return Ok(bien);
         }
         catch (KeyNotFoundException ex)

@@ -7,4 +7,7 @@ public interface IBienRepository
     // Task → opération asynchrone
     // CancellationToken → transmet l'annulation depuis la requête HTTP jusqu'à la BD
     public Task<Bien> GetBienByIdAsync(int id, CancellationToken cancellationToken);
+
+    // Récupère les biens uniquement visibles et publiés
+    public Task<Bien> GetPublishedBienByIdAsync(int id, CancellationToken cancellationToken);
 }
