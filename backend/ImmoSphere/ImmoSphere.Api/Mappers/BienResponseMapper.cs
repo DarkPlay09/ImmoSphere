@@ -15,6 +15,9 @@ public static class BienResponseMapper
             Titre = bien.Titre,
             Description = bien.Description,
             Prix = bien.Prix,
+            CodePostal = bien.CodePostal,
+            Localite = bien.Localite,
+            Province = bien.Province,
             TypeBien = bien.TypeBien,
             TypeTransaction = bien.TypeTransaction,
             Peb = bien.Peb
