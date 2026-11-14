@@ -30,4 +30,6 @@ public sealed class BienDetailResponseDto
     public string TypeTransaction { get; init; } = string.Empty;
 
     public string Peb { get; init; } = string.Empty;
+
+    public CaracteristiquesBienResponseDto Caracteristiques { get; init; } = new();
 }

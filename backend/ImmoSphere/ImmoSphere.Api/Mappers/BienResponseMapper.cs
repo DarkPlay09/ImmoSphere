@@ -26,7 +26,16 @@ public static class BienResponseMapper
             Boite = adresse.Boite,
             TypeBien = bien.TypeBien,
             TypeTransaction = bien.TypeTransaction,
-            Peb = bien.Peb
+            Peb = bien.Peb,
+            Caracteristiques = new CaracteristiquesBienResponseDto
+            {
+                AnneeConstruction = bien.AnneeConstruction,
+                SurfaceHabitable = bien.SurfaceHab,
+                SurfaceTerrain = bien.SurfaceTerrain,
+                NombreChambres = bien.NbChambres,
+                NombreSallesDeBain = bien.NbSdb,
+                NombreToilettes = bien.NbToilettes
+            }
         };
     }
 }
