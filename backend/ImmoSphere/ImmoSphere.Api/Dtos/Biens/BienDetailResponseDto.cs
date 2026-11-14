@@ -3,7 +3,6 @@
 // Décrit le format d'une réponse HTTP pour les détails d'un bien
 public sealed class BienDetailResponseDto
 {
-    // TODO : ajouter autre part la rue, le numero, etc. car ils dépendent de la confidentialité
     public int Id { get; init; }
 
     public string Titre { get; init; } = string.Empty;
@@ -17,6 +16,14 @@ public sealed class BienDetailResponseDto
     public string Localite { get; init; } = string.Empty;
 
     public string Province { get; init; } = string.Empty;
+
+    public bool AdresseConfidentielle { get; init; }
+
+    public string? Rue { get; init; }
+
+    public int? Numero { get; init; }
+
+    public string? Boite { get; init; }
 
     public string TypeBien { get; init; } = string.Empty;
 

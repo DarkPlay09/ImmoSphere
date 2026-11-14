@@ -8,6 +8,8 @@ public static class BienResponseMapper
     public static BienDetailResponseDto ToDetailResponseDto(Bien bien)
     {
         ArgumentNullException.ThrowIfNull(bien);
+        AdressePublique adresse =
+            bien.ObtenirAdressePublique();
 
         return new BienDetailResponseDto
         {
@@ -15,9 +17,13 @@ public static class BienResponseMapper
             Titre = bien.Titre,
             Description = bien.Description,
             Prix = bien.Prix,
-            CodePostal = bien.CodePostal,
-            Localite = bien.Localite,
-            Province = bien.Province,
+            CodePostal = adresse.CodePostal,
+            Localite = adresse.Localite,
+            Province = adresse.Province,
+            AdresseConfidentielle = adresse.EstConfidentielle,
+            Rue = adresse.Rue,
+            Numero = adresse.Numero,
+            Boite = adresse.Boite,
             TypeBien = bien.TypeBien,
             TypeTransaction = bien.TypeTransaction,
             Peb = bien.Peb
