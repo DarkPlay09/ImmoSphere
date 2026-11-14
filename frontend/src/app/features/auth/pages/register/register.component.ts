@@ -1,4 +1,5 @@
 import { ChangeDetectionStrategy, Component, output, signal } from '@angular/core';
+import { takeUntilDestroyed } from '@angular/core/rxjs-interop';
 import {
   AbstractControl,
   FormControl,
@@ -78,6 +79,12 @@ export class RegisterComponent {
     },
     { validators: samePasswordValidator },
   );
+
+  constructor() {
+    this.form.valueChanges
+      .pipe(takeUntilDestroyed())
+      .subscribe(() => this.isLocallyValid.set(false));
+  }
 
   get passwordRules(): { minLength: boolean; upper: boolean; lower: boolean; digit: boolean } {
     const value = this.form.controls.password.value;

@@ -1,3 +1,4 @@
+import { NgOptimizedImage } from '@angular/common';
 import { ChangeDetectionStrategy, Component } from '@angular/core';
 import { RouterLink } from '@angular/router';
 import { TranslatePipe } from '@ngx-translate/core';
@@ -8,7 +9,7 @@ import { TranslatePipe } from '@ngx-translate/core';
 @Component({
   selector: 'app-auth-shell',
   standalone: true,
-  imports: [RouterLink, TranslatePipe],
+  imports: [NgOptimizedImage, RouterLink, TranslatePipe],
   templateUrl: './auth-shell.component.html',
   styleUrl: './auth-shell.component.scss',
   changeDetection: ChangeDetectionStrategy.OnPush,
