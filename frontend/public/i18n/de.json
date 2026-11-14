@@ -66,6 +66,9 @@
       "accountType": "Sie sind…",
       "personal": "Privatperson",
       "professional": "Gewerblich",
+      "professionalRole": "Welche Berufsgruppe?",
+      "agent": "Immobilienmakler",
+      "notary": "Notar",
       "givenName": "Vorname",
       "givenNamePlaceholder": "Marc",
       "name": "Nachname",
@@ -94,6 +97,7 @@
       },
       "errors": {
         "required": "Dieses Feld ist erforderlich.",
+        "professionalRole": "Bitte waehlen Sie Ihren Beruf.",
         "email": "Geben Sie eine gültige E-Mail-Adresse ein.",
         "password": "Das Passwort erfüllt nicht alle Anforderungen.",
         "mismatch": "Die Passwörter stimmen nicht überein.",

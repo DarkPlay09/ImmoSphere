@@ -38,6 +38,37 @@
     </div>
 
     <form class="register__form" [formGroup]="form" (ngSubmit)="submit()" novalidate>
+      @if (accountType() === 'professionnel') {
+        <fieldset
+          class="register__professional-field"
+          [attr.aria-describedby]="showError('professionalRole') ? 'register-professional-role-error' : null"
+        >
+          <legend class="register__label">{{ 'auth.register.professionalRole' | translate }}</legend>
+
+          <div class="register__professional-options">
+            <label
+              class="register__professional-option"
+              [class.register__professional-option--selected]="form.controls.professionalRole.value === 'agent'"
+            >
+              <input type="radio" formControlName="professionalRole" value="agent" />
+              <span>{{ 'auth.register.agent' | translate }}</span>
+            </label>
+            <label
+              class="register__professional-option"
+              [class.register__professional-option--selected]="form.controls.professionalRole.value === 'notaire'"
+            >
+              <input type="radio" formControlName="professionalRole" value="notaire" />
+              <span>{{ 'auth.register.notary' | translate }}</span>
+            </label>
+          </div>
+
+          @if (showError('professionalRole')) {
+            <p id="register-professional-role-error" role="alert" class="register__error">
+              {{ 'auth.register.errors.professionalRole' | translate }}
+            </p>
+          }
+        </fieldset>
+      }
       <div class="register__row">
         <div class="register__field">
           <label for="register-first-name" class="register__label">

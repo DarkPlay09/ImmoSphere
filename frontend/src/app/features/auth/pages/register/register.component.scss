@@ -64,6 +64,38 @@
       box-shadow: 0 1px 1px rgba(0,0,0,0.05);
     }
   }
+  &__professional-field {
+    min-width: 0;
+    margin: 0;
+    padding: 12px 14px 14px;
+    border: 1px solid #e7d9e8;
+    border-radius: 12px;
+    background: #f9f4fa;
+  }
+  &__professional-field legend { padding: 0 5px; color: var(--ink); }
+  &__professional-options {
+    display: grid;
+    grid-template-columns: repeat(2, minmax(0, 1fr));
+    gap: 10px;
+  }
+  &__professional-option {
+    display: flex;
+    align-items: center;
+    gap: 9px;
+    min-height: 46px;
+    padding: 10px 12px;
+    border: 1px solid var(--border);
+    border-radius: 9px;
+    background: white;
+    color: var(--muted);
+    font: 600 12px/17px Manrope, Inter, sans-serif;
+    cursor: pointer;
+    transition: border-color 120ms ease, background-color 120ms ease;
+
+    input { flex-shrink: 0; width: 16px; height: 16px; margin: 0; accent-color: var(--primary); }
+    &--selected { border-color: var(--primary); background: #f3eaf5; color: var(--primary); }
+    &:focus-within { outline: 2px solid var(--primary); outline-offset: 2px; }
+  }
   &__form { display: flex; flex-direction: column; gap: 14px; }
   &__row { display: grid; grid-template-columns: repeat(2, minmax(0, 1fr)); gap: 12px; }
   &__field { min-width: 0; }

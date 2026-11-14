@@ -66,6 +66,9 @@
       "accountType": "You are…",
       "personal": "Individual",
       "professional": "Professional",
+      "professionalRole": "What type of professional?",
+      "agent": "Real estate agent",
+      "notary": "Notary",
       "givenName": "First name",
       "givenNamePlaceholder": "Marc",
       "name": "Last name",
@@ -94,6 +97,7 @@
       },
       "errors": {
         "required": "This field is required.",
+        "professionalRole": "Please select your profession.",
         "email": "Enter a valid email address.",
         "password": "The password does not meet all requirements.",
         "mismatch": "Passwords do not match.",

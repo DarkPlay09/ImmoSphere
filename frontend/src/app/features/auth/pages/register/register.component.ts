@@ -13,6 +13,8 @@ import { TranslatePipe } from '@ngx-translate/core';
 import { AuthShellComponent } from '../../../../shared/auth/components/auth-shell/auth-shell.component';
 
 export type RegistrationAccountType = 'particulier' | 'professionnel';
+export type RegistrationProfessionalRole = 'agent' | 'notaire';
+export type RegistrationRole = 'utilisateur' | RegistrationProfessionalRole;
 
 /** Modèle de saisie côté interface. */
 export interface RegistrationFormValue {
@@ -20,7 +22,7 @@ export interface RegistrationFormValue {
   name: string;
   email: string;
   password: string;
-  accountType: RegistrationAccountType;
+  accountType: RegistrationRole;
   conditions: boolean;
 }
 
@@ -72,6 +74,10 @@ export class RegisterComponent {
         nonNullable: true,
         validators: [Validators.required],
       }),
+      professionalRole: new FormControl<RegistrationProfessionalRole | null>(
+        { value: null, disabled: true },
+        { validators: [Validators.required] },
+      ),
       conditions: new FormControl(false, {
         nonNullable: true,
         validators: [Validators.requiredTrue],
@@ -97,7 +103,7 @@ export class RegisterComponent {
   }
 
   showError(
-    controlName: 'givenName' | 'name' | 'email' | 'password' | 'confirmPassword' | 'conditions',
+    controlName: 'givenName' | 'name' | 'email' | 'password' | 'confirmPassword' | 'conditions' | 'professionalRole',
   ): boolean {
     const control = this.form.controls[controlName];
     return control.invalid && (control.touched || this.attemptedSubmit());
@@ -112,6 +118,13 @@ export class RegisterComponent {
 
   setAccountType(accountType: RegistrationAccountType): void {
     this.accountType.set(accountType);
+    const roleControl = this.form.controls.professionalRole;
+    if (accountType === 'professionnel') {
+      roleControl.enable({ emitEvent: false });
+    } else {
+      roleControl.reset(null, { emitEvent: false });
+      roleControl.disable({ emitEvent: false });
+    }
     this.isLocallyValid.set(false);
   }
 
@@ -134,7 +147,10 @@ export class RegisterComponent {
       name: value.name.trim(),
       email: value.email.trim(),
       password: value.password,
-      accountType: this.accountType(),
+      accountType:
+        this.accountType() === 'particulier'
+          ? 'utilisateur'
+          : (value.professionalRole as RegistrationProfessionalRole),
       conditions: value.conditions,
     });
 

@@ -66,6 +66,9 @@
       "accountType": "U bent…",
       "personal": "Particulier",
       "professional": "Professional",
+      "professionalRole": "Welk type professional?",
+      "agent": "Vastgoedmakelaar",
+      "notary": "Notaris",
       "givenName": "Voornaam",
       "givenNamePlaceholder": "Marc",
       "name": "Achternaam",
@@ -94,6 +97,7 @@
       },
       "errors": {
         "required": "Dit veld is verplicht.",
+        "professionalRole": "Kies uw beroep.",
         "email": "Voer een geldig e-mailadres in.",
         "password": "Het wachtwoord voldoet niet aan alle vereisten.",
         "mismatch": "Wachtwoorden komen niet overeen.",
