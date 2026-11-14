@@ -34,4 +34,9 @@ public sealed class BienDetailResponseDto
     public CaracteristiquesBienResponseDto Caracteristiques { get; init; } = new();
 
     public EquipementsBienResponseDto Equipements { get; init; } = new();
+
+    public int NombreFavoris { get; init; }
+
+    public IReadOnlyList<string> InformationsAnnexes { get; init; }
+        = Array.Empty<string>();
 }

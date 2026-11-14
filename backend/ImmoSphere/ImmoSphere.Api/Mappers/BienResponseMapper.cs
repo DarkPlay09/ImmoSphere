@@ -27,11 +27,25 @@ public static class BienResponseMapper
             TypeBien = bien.TypeBien,
             TypeTransaction = bien.TypeTransaction,
             Peb = bien.Peb,
+            NombreFavoris = bien.nbFavori,
+            InformationsAnnexes = bien.InformationAnnexes
+                .Select(information => information.Information)
+                .ToList(),
             Caracteristiques = new CaracteristiquesBienResponseDto
             {
                 AnneeConstruction = bien.AnneeConstruction,
+                ConsommationEnergie = bien.ConsEnergie,
+                NumeroPeb = bien.NumPeb,
+                Etat = bien.Etat,
+                EtatVente = bien.EtatVente,
+                TypeConfiguration = bien.TypeConfiguration,
+                TypeChauffage = bien.TypeChauffage,
                 SurfaceHabitable = bien.SurfaceHab,
                 SurfaceTerrain = bien.SurfaceTerrain,
+                SurfaceJardin = bien.SurfaceJard,
+                SurfaceTerrasse = bien.SurfaceTerrasse,
+                Etage = bien.Etage,
+                NombreEtages = bien.NbEtage,
                 NombreChambres = bien.NbChambres,
                 NombreSallesDeBain = bien.NbSdb,
                 NombreToilettes = bien.NbToilettes
