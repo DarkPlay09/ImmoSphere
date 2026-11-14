@@ -32,4 +32,6 @@ public sealed class BienDetailResponseDto
     public string Peb { get; init; } = string.Empty;
 
     public CaracteristiquesBienResponseDto Caracteristiques { get; init; } = new();
+
+    public EquipementsBienResponseDto Equipements { get; init; } = new();
 }

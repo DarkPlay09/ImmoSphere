@@ -35,6 +35,19 @@ public static class BienResponseMapper
                 NombreChambres = bien.NbChambres,
                 NombreSallesDeBain = bien.NbSdb,
                 NombreToilettes = bien.NbToilettes
+            },
+            Equipements = new EquipementsBienResponseDto
+            {
+                Garage = bien.Garage,
+                Parking = bien.Parking,
+                Jardin = bien.Jardin,
+                Balcon = bien.Balcon,
+                Cave = bien.Cave,
+                Terrasse = bien.Terrasse,
+                Grenier = bien.Grenier,
+                Ascenseur = bien.Ascenseur,
+                Piscine = bien.Piscine,
+                Cheminee = bien.Cheminee
             }
         };
     }
