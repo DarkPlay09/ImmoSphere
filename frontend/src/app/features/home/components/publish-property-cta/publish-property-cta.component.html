@@ -1,0 +1,55 @@
+<section class="publish-cta" aria-labelledby="publish-cta-title">
+  <div class="publish-cta__container">
+    <div class="publish-cta__card">
+      <div class="publish-cta__content">
+        <div class="publish-cta__badge">
+          <!-- Mettre le logo -->
+
+          <span>
+            {{ 'home.publish.badge' | translate }}
+          </span>
+        </div>
+
+        <h2 id="publish-cta-title" class="publish-cta__title">
+          {{ 'home.publish.title' | translate }}
+        </h2>
+
+        <p class="publish-cta__description">
+          {{ 'home.publish.description' | translate }}
+        </p>
+
+        <ul class="publish-cta__benefits">
+          @for (benefit of benefits; track benefit) {
+            <li>
+              <!-- Mettre le logo -->
+
+              <span>
+                {{ benefit | translate }}
+              </span>
+            </li>
+          }
+        </ul>
+      </div>
+
+      @if (publishRoute(); as route) {
+        <a class="publish-cta__button" [routerLink]="route">
+          {{ 'home.publish.button' | translate }}
+
+          <!-- Mettre le logo -->
+        </a>
+      } @else {
+        <button
+          type="button"
+          class="publish-cta__button"
+          disabled
+          [title]="'home.publish.unavaible' | translate"
+        >
+          {{ 'home.publish.button' | translate }}
+
+          <!-- Mettre le logo -->
+        </button>
+      }
+
+    </div>
+  </div>
+</section>

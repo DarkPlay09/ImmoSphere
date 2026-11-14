@@ -49,5 +49,103 @@
     "languageSelection": "Sprachauswahl:",
     "copyright": "© ImmoSphere {{year}}. Alle Rechte vorbehalten.",
     "tagline": "Belgische Immobilien auf einen Blick."
+  },
+  "home": {
+    "hero": {
+      "badge": "DAS IMMOSPHERE-ERLEBNIS · BRÜSSEL · FLANDERN · WALLONIEN",
+      "title": "Finden Sie die Immobilie, die zu Ihnen passt.",
+      "description": "Häuser, Wohnungen, Grundstücke und vieles mehr in ganz Belgien, mit virtuellen Besichtigungen und zertifizierten Energieausweisen."
+    },
+
+    "search": {
+      "buy": "Kaufen",
+      "rent": "Mieten",
+      "location": "Standort",
+      "locationPlaceholder": "Brüssel, Lüttich, Namur...",
+      "propertyType": "Immobilientyp",
+      "anyProperty": "Alle Immobilien",
+      "house": "Haus",
+      "apartment": "Wohnung",
+      "land": "Grundstück",
+      "budgetMax": "Max. Budget",
+      "anyBudget": "Beliebig",
+      "bedrooms": "Schlafzimmer",
+      "anyBedrooms": "Alle",
+      "minArea": "Mindestfläche (m²)",
+      "minAreaPlaceholder": "Z. B. 80",
+      "peb": "Energieklasse",
+      "anyPeb": "Beliebig",
+      "moreFilters": "Weitere Filter",
+      "lessFilters": "Weniger Filter",
+      "viewMap": "Auf Karte ansehen",
+      "mapUnavailable": "Die Kartenansicht ist noch nicht verfügbar.",
+      "submit": "Suchen"
+    },
+
+    "latest": {
+      "eyebrow": "Immobilienauswahl",
+      "title": "Entdecken Sie die neuesten Angebote",
+      "filtersLabel": "Immobilienangebote filtern",
+      "all": "Alle",
+      "sale": "Zum Kauf",
+      "rent": "Zur Miete",
+      "new": "Neuheiten",
+      "virtualTour": "360°-Rundgang",
+      "viewAll": "Alle Angebote ansehen",
+      "empty": "Keine Immobilien für diesen Filter gefunden."
+    },
+
+    "notaries": {
+      "eyebrow": "Immobilienbegleitung",
+      "title": "Finden Sie den Notar, der Sie begleitet.",
+      "description": "Entdecken Sie Notare in Belgien, sehen Sie sich ihre Kanzleiprofile an und wählen Sie frei einen Fachmann für Beratung, Kaufvorverträge und notarielle Urkunden.",
+      "languages": "Sprachen",
+      "viewProfile": "Kanzleiprofil ansehen",
+      "discoverAll": "Alle Notare entdecken",
+      "freedomTitle": "Freie Wahl:",
+      "freedomText": "Sie können Ihren Notar in Belgien frei wählen, unabhängig davon, ob er auf ImmoSphere gelistet ist. Notarielle Begleitung bei der Immobiliensuche ist freiwillig und unabhängig von unserer Plattform.",
+      "unavailable": "Die Notarseiten sind noch nicht verfügbar.",
+      "expertise": {
+        "claireMain": "Immobilienrecht & Kaufvorverträge",
+        "claireSecondary": "Mietrecht, Dienstbarkeiten & öffentliche Verkäufe",
+        "julienMain": "Verkauf & Kauf von Wohnimmobilien",
+        "julienSecondary": "Hypothekendarlehen & Schenkungen",
+        "sophieMain": "Notarielle Urkunden & Miteigentum",
+        "sophieSecondary": "Zweisprachige Beratung & Investitionen"
+      }
+    },
+
+    "map": {
+      "eyebrow": "Intelligente Kartendarstellung",
+      "title": "Entdecken Sie Immobilien in Ihrer Nähe",
+      "description": "Filtern Sie Immobilien nach der Nähe zu belgischen Bahnhöfen, Schulen und Gewerbegebieten.",
+      "searchOnMap": "Auf der Karte suchen",
+      "regionsLabel": "Immobilien nach Region filtern",
+      "ariaLabel": "Interaktive Immobilienkarte",
+      "allBelgium": "Ganz Belgien",
+      "brussels": "Brüssel",
+      "flanders": "Flandern",
+      "wallonia": "Wallonien",
+      "viewProperty": "Immobilie ansehen",
+      "detailsUnavailable": "Die Detailseite der Immobilie ist noch nicht verfügbar.",
+      "imageAlt": "Immobilie in {{city}}",
+      "types": {
+        "penthouse": "Penthouse",
+        "apartment": "Wohnung",
+        "villa": "Villa",
+        "house": "Haus"
+      }
+    },
+
+    "publish": {
+      "badge": "Privatpersonen & Vermieter",
+      "title": "Möchten Sie eine Immobilie verkaufen oder vermieten?",
+      "description": "Veröffentlichen Sie Ihr Inserat in wenigen Schritten, verwalten Sie Besichtigungsanfragen und kommunizieren Sie mit Interessenten per E-Mail.",
+      "benefit1": "Veröffentlichen Sie Ihr erstes Inserat kostenlos in 5 Minuten",
+      "benefit2": "Unverbindliche Wertermittlung anhand des lokalen Immobilienmarktes",
+      "benefit3": "Verwalten Sie Besichtigungstermine direkt und vermeiden Sie unerwünschte Anrufe",
+      "button": "Meine Immobilie inserieren",
+      "unavailable": "Das Veröffentlichen von Immobilien ist noch nicht verfügbar."
+    }
   }
 }
