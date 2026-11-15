@@ -25,6 +25,13 @@ export const routes: Routes = [
             (m) => m.PropertiesSearchComponent,
           ),
       },
+      {
+        path: 'home',
+        loadComponent: () =>
+          import('./features/pages/home/home.component').then(
+            (m) => m.HomeComponent,
+          )
+      }
     ],
   },
 ];

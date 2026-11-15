@@ -49,5 +49,103 @@
     "languageSelection": "Sélection de langue :",
     "copyright": "© ImmoSphere {{year}}. Tous droits réservés.",
     "tagline": "L’immobilier belge en toute clarté."
+  },
+  "home": {
+    "hero": {
+      "badge": "L'EXPÉRIENCE IMMOSPHERE · BRUXELLES · FLANDRE · WALLONIE",
+      "title": "Trouvez le bien qui vous ressemble.",
+      "description": "Maisons, appartements, terrains et bien plus encore, partout en Belgique avec visites virtuelles et diagnostics PEB certifiés."
+    },
+
+    "search": {
+      "buy": "Acheter",
+      "rent": "Louer",
+      "location": "Localisation",
+      "locationPlaceholder": "Bruxelles, Liège, Namur...",
+      "propertyType": "Type de bien",
+      "anyProperty": "Tous les biens",
+      "house": "Maison",
+      "apartment": "Appartement",
+      "land": "Terrain",
+      "budgetMax": "Budget max",
+      "anyBudget": "Indifférent",
+      "bedrooms": "Chambres",
+      "anyBedrooms": "Toutes",
+      "minArea": "Surface min. (m²)",
+      "minAreaPlaceholder": "Ex. 80",
+      "peb": "Classe PEB",
+      "anyPeb": "Indifférent",
+      "moreFilters": "Plus de filtres",
+      "lessFilters": "Moins de filtres",
+      "viewMap": "Voir sur la carte",
+      "mapUnavailable": "La vue carte n'est pas encore disponible.",
+      "submit": "Rechercher"
+    },
+
+    "latest": {
+      "eyebrow": "Sélection immobilière",
+      "title": "Découvrez les dernières annonces",
+      "filtersLabel": "Filtrer les annonces",
+      "all": "Tous",
+      "sale": "À vendre",
+      "rent": "À louer",
+      "new": "Nouveautés",
+      "virtualTour": "Visite 360°",
+      "viewAll": "Voir toutes les annonces",
+      "empty": "Aucun bien ne correspond à ce filtre."
+    },
+
+    "notaries": {
+      "eyebrow": "Accompagnement immobilier",
+      "title": "Trouvez le notaire qui vous accompagne.",
+      "description": "Découvrez des notaires en Belgique, consultez leurs profils d'étude et choisissez librement un professionnel pour vos conseils préalables, compromis de vente et actes authentiques.",
+      "languages": "Langues",
+      "viewProfile": "Voir le profil d'étude",
+      "discoverAll": "Découvrir tous les notaires",
+      "freedomTitle": "Liberté de choix :",
+      "freedomText": "vous restez entièrement libre de choisir votre notaire en Belgique, qu'il soit référencé ou non sur ImmoSphere. L'accompagnement notarial est facultatif lors de la recherche et indépendant de notre plateforme.",
+      "unavailable": "Les pages des notaires ne sont pas encore disponibles.",
+      "expertise": {
+        "claireMain": "Droit immobilier & compromis",
+        "claireSecondary": "Expertise baux, servitudes & ventes publiques",
+        "julienMain": "Ventes & acquisitions résidentielles",
+        "julienSecondary": "Crédits hypothécaires & donations",
+        "sophieMain": "Actes authentiques & copropriétés",
+        "sophieSecondary": "Accompagnement bilingue et investissements"
+      }
+    },
+
+    "map": {
+      "eyebrow": "Cartographie intelligente",
+      "title": "Explorez les biens autour de vous",
+      "description": "Filtrez géographiquement par proximité des gares, écoles et zones d'activité belges.",
+      "searchOnMap": "Rechercher sur la carte",
+      "regionsLabel": "Filtrer les biens par région",
+      "ariaLabel": "Carte interactive des biens immobiliers",
+      "allBelgium": "Toute la Belgique",
+      "brussels": "Bruxelles",
+      "flanders": "Flandre",
+      "wallonia": "Wallonie",
+      "viewProperty": "Voir le bien",
+      "detailsUnavailable": "La fiche détaillée du bien n'est pas encore disponible.",
+      "imageAlt": "Bien immobilier à {{city}}",
+      "types": {
+        "penthouse": "Penthouse",
+        "apartment": "Appartement",
+        "villa": "Villa",
+        "house": "Maison"
+      }
+    },
+
+    "publish": {
+      "badge": "Particuliers & Bailleurs",
+      "title": "Vous souhaitez vendre ou louer un bien ?",
+      "description": "Publiez votre annonce en quelques étapes, gérez les demandes de visites et échangez avec les personnes intéressées par e-mail.",
+      "benefit1": "Publication gratuite de votre première annonce en 5 minutes",
+      "benefit2": "Estimation indicative de valeur basée sur le marché de votre commune",
+      "benefit3": "Gestion directe des créneaux de visite pour éviter les appels intempestifs",
+      "button": "Publier mon bien",
+      "unavailable": "La publication de biens n'est pas encore disponible."
+    }
   }
 }

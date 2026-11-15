@@ -1,0 +1,60 @@
+
+<article class="notary-card">
+  <div class="notary-card__content">
+
+    <div class="notary-card__top">
+      <div
+        class="notary-card__avatar"
+        [class.notary-card__avatar--purple]="
+          notary().avatarTone === 'purple'
+        "
+        [class.notary-card__avatar--dark]="
+          notary().avatarTone === 'dark'
+        "
+        aria-hidden="true"
+      >
+        {{ notary().initials }}
+      </div>
+
+      <span class="notary-card__location">
+        {{ notary().city }} {{ notary().postalCode }}
+      </span>
+    </div>
+
+    <h3 class="notary-card__name">
+      {{ notary().fullName }}
+    </h3>
+
+    <p class="notary-card__office">
+      {{ notary().officeName }}
+    </p>
+
+    <p class="notary-card__languages">
+      {{ 'home.notaries.languages' | translate }} :
+      {{ notary().languages.join(' · ') }}
+    </p>
+
+    <div class="notary-card__expertise">
+      <p class="notary-card__speciality">
+        <!-- Mettre le logo -->
+        <span>
+          {{ notary().mainExpertiseKey | translate }}
+        </span>
+      </p>
+
+      <p class="notary-card__secondary-expertise">
+        {{ notary().secondaryExpertiseKey | translate }}
+      </p>
+    </div>
+
+  </div>
+
+  <button
+    type="button"
+    class="notary-card__profile"
+    disabled
+    [title]="'home.notaries.unavailable' | translate"
+  >
+    {{ 'home.notaries.viewProfile' | translate }}
+  </button>
+</article>

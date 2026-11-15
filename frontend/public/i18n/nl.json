@@ -49,5 +49,103 @@
     "languageSelection": "Taalkeuze:",
     "copyright": "© ImmoSphere {{year}}. Alle rechten voorbehouden.",
     "tagline": "Belgisch vastgoed, helder en duidelijk."
+  },
+  "home": {
+    "hero": {
+      "badge": "DE IMMOSPHERE-ERVARING · BRUSSEL · VLAANDEREN · WALLONIË",
+      "title": "Vind de woning die bij u past.",
+      "description": "Huizen, appartementen, bouwgronden en nog veel meer in heel België, met virtuele rondleidingen en gecertificeerde EPC-attesten."
+    },
+
+    "search": {
+      "buy": "Kopen",
+      "rent": "Huren",
+      "location": "Locatie",
+      "locationPlaceholder": "Brussel, Luik, Namen...",
+      "propertyType": "Type pand",
+      "anyProperty": "Alle panden",
+      "house": "Huis",
+      "apartment": "Appartement",
+      "land": "Grond",
+      "budgetMax": "Max. budget",
+      "anyBudget": "Onverschillig",
+      "bedrooms": "Slaapkamers",
+      "anyBedrooms": "Alle",
+      "minArea": "Min. oppervlakte (m²)",
+      "minAreaPlaceholder": "Bijv. 80",
+      "peb": "EPC-label",
+      "anyPeb": "Onverschillig",
+      "moreFilters": "Meer filters",
+      "lessFilters": "Minder filters",
+      "viewMap": "Bekijk op kaart",
+      "mapUnavailable": "De kaartweergave is nog niet beschikbaar.",
+      "submit": "Zoeken"
+    },
+
+    "latest": {
+      "eyebrow": "Vastgoedselectie",
+      "title": "Ontdek de nieuwste panden",
+      "filtersLabel": "Vastgoedaanbod filteren",
+      "all": "Alle",
+      "sale": "Te koop",
+      "rent": "Te huur",
+      "new": "Nieuw",
+      "virtualTour": "360°-rondleiding",
+      "viewAll": "Bekijk alle panden",
+      "empty": "Geen panden gevonden voor deze filter."
+    },
+
+    "notaries": {
+      "eyebrow": "Vastgoedbegeleiding",
+      "title": "Vind de notaris die u begeleidt.",
+      "description": "Ontdek notarissen in België, bekijk hun notariskantoren en kies vrij een professional voor voorafgaand advies, verkoopovereenkomsten en authentieke akten.",
+      "languages": "Talen",
+      "viewProfile": "Bekijk het notariskantoor",
+      "discoverAll": "Ontdek alle notarissen",
+      "freedomTitle": "Vrije keuze:",
+      "freedomText": "u bent volledig vrij om uw notaris in België te kiezen, ongeacht of deze op ImmoSphere vermeld staat. Notariële begeleiding tijdens het zoeken is facultatief en onafhankelijk van ons platform.",
+      "unavailable": "De pagina's van notarissen zijn nog niet beschikbaar.",
+      "expertise": {
+        "claireMain": "Vastgoedrecht & verkoopovereenkomsten",
+        "claireSecondary": "Huur, erfdienstbaarheden & openbare verkopen",
+        "julienMain": "Residentiële verkoop & aankoop",
+        "julienSecondary": "Hypothecaire kredieten & schenkingen",
+        "sophieMain": "Authentieke akten & mede-eigendom",
+        "sophieSecondary": "Tweetalige begeleiding & investeringen"
+      }
+    },
+
+    "map": {
+      "eyebrow": "Slimme kaartweergave",
+      "title": "Ontdek vastgoed bij u in de buurt",
+      "description": "Filter panden op basis van de nabijheid van Belgische treinstations, scholen en bedrijventerreinen.",
+      "searchOnMap": "Zoeken op de kaart",
+      "regionsLabel": "Panden filteren per regio",
+      "ariaLabel": "Interactieve vastgoedkaart",
+      "allBelgium": "Heel België",
+      "brussels": "Brussel",
+      "flanders": "Vlaanderen",
+      "wallonia": "Wallonië",
+      "viewProperty": "Bekijk het pand",
+      "detailsUnavailable": "De detailpagina van het pand is nog niet beschikbaar.",
+      "imageAlt": "Pand in {{city}}",
+      "types": {
+        "penthouse": "Penthouse",
+        "apartment": "Appartement",
+        "villa": "Villa",
+        "house": "Huis"
+      }
+    },
+
+    "publish": {
+      "badge": "Particulieren & Verhuurders",
+      "title": "Wilt u een pand verkopen of verhuren?",
+      "description": "Publiceer uw advertentie in enkele stappen, beheer bezichtigingsaanvragen en communiceer met geïnteresseerden via e-mail.",
+      "benefit1": "Publiceer uw eerste advertentie gratis in 5 minuten",
+      "benefit2": "Indicatieve waardebepaling op basis van de lokale vastgoedmarkt",
+      "benefit3": "Beheer bezichtigingsmomenten rechtstreeks om ongewenste oproepen te vermijden",
+      "button": "Mijn pand publiceren",
+      "unavailable": "Panden publiceren is nog niet beschikbaar."
+    }
   }
 }
