@@ -59,8 +59,7 @@ builder.Services
         options.Password.RequireLowercase = true;
         options.Password.RequireNonAlphanumeric = false;
 
-        // À activer lorsque la confirmation par email sera prête
-        // options.SignIn.RequireConfirmedEmail = true;
+        options.SignIn.RequireConfirmedEmail = true;
     })
     .AddEntityFrameworkStores<ApplicationDbContext>()
     .AddDefaultTokenProviders();
@@ -98,6 +97,7 @@ builder.Services.AddScoped<IUserRepository, UserRepository>();
 //                          Interface, Classe qui l'implémente
 builder.Services.AddScoped<IBienService, BienService>();
 builder.Services.AddScoped<IRegisterService, RegisterService>();
+builder.Services.AddScoped<IEmailConfirmationService, IdentityEmailConfirmationService>();
 
 // ==========================================
 // CONSTRUCTION DE L'APPLICATION
@@ -198,5 +198,33 @@ app.MapControllers();
 // ==========================================
 // DÉMARRAGE
 // ==========================================
+
+
+
+app.MapGet("/api/auth/confirm-email",
+    async (
+        string userId,
+        string token,
+        IEmailConfirmationService confirmationService) =>
+    {
+        var confirmed =
+            await confirmationService.ConfirmEmailAsync(
+                userId,
+                token
+            );
+
+        if (!confirmed)
+        {
+            return Results.BadRequest(
+                "Le lien de confirmation est invalide ou expiré.");
+        }
+
+        return Results.Content(
+            "<h1>Adresse e-mail confirmée !</h1>"
+            + "<p>Votre compte ImmoSphere est maintenant activé.</p>",
+            "text/html; charset=utf-8"
+        );
+    });
+
 
 app.Run();

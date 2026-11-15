@@ -1,3 +1,4 @@
+
 using System.Text.RegularExpressions;
 using ImmoSphere.Domain.Exceptions.Auth;
 using ImmoSphere.Domain.Repository;
@@ -7,11 +8,18 @@ namespace ImmoSphere.Domain.Services.Auth;
 
 public class RegisterService : IRegisterService
 {
-    private IUserRepository _userRepository;
+    private readonly IUserRepository _userRepository;
+    private readonly IEmailService _emailService;
+    private readonly IEmailConfirmationService _emailConfirmationService;
 
-    public RegisterService(IUserRepository repo)
+    public RegisterService(
+        IUserRepository repo,
+        IEmailService emailService,
+        IEmailConfirmationService emailConfirmationService)
     {
         _userRepository = repo;
+        _emailService = emailService;
+        _emailConfirmationService = emailConfirmationService;
     }
 
     public async Task CreateUserAsync(
@@ -22,46 +30,72 @@ public class RegisterService : IRegisterService
         string accountType,
         bool conditions)
     {
+        // 1. Vérification des données
         CheckEntries(conditions, email, password);
 
-        // 4. Créer l'utilisateur
-        try
-        {
-            await _userRepository.CreateUserAsync(
-                name,
-                givenName,
-                email,
-                password,
-                accountType
-            );
-            // 5. Envoyer le code de confirmation
+        // 2. Création de l'utilisateur
+        await _userRepository.CreateUserAsync(
+            name,
+            givenName,
+            email,
+            password,
+            accountType
+        );
 
-        }
-        catch (Exception e)
-        {
-            throw new RegisterException("Une erreur est survenue lors de la création de l'utilisateur");
-        }
+        // 3. Génération du lien de confirmation
+        var confirmationLink =
+            await _emailConfirmationService
+                .GenerateConfirmationLinkAsync(email);
 
+        // 4. Construction de l'e-mail
+        var subject = "Confirmez votre compte ImmoSphere";
+
+        var body = $"""
+            <h2>Bienvenue sur ImmoSphere !</h2>
+            <p>Merci de vous être inscrit sur notre plateforme.</p>
+            <p>
+                Pour activer votre compte, cliquez sur le lien suivant :
+            </p>
+            <p>
+                <a href="{confirmationLink}">
+                    Confirmer mon adresse e-mail
+                </a>
+            </p>
+            <p>
+                Si vous n'êtes pas à l'origine de cette inscription,
+                ignorez cet e-mail.
+            </p>
+            """;
+
+        // 5. Envoi de l'e-mail
+        await _emailService.SendEmailAsync(
+            email,
+            subject,
+            body
+        );
     }
 
-    private void CheckEntries(bool conditions, string email, string password)
+    private void CheckEntries(
+        bool conditions,
+        string email,
+        string password)
     {
-        // 1. Vérifier les conditions d'utilisations
         if (!conditions)
         {
-            throw new RegisterException.ConditionsNotAcceptedException("Les conditions n'ont pas été acceptés");
+            throw new RegisterException.ConditionsNotAcceptedException(
+                "Les conditions n'ont pas été acceptées");
         }
 
-        // 2. Vérifier si un compte avec ce mail existe déjà
         if (_userRepository.UserExists(email))
         {
             throw new RegisterException.EmailAlreadyExistsException(
                 $"L'utilisateur ayant comme email {email} existe déjà.");
         }
 
-        // 3. Vérifier MDP
         if (string.IsNullOrEmpty(password) ||
-            !Regex.IsMatch(password, @"^(?=.*[A-Z])(?=.*[0-9]).{8,}$"))
+            !Regex.IsMatch(
+                password,
+                @"^(?=.*[A-Z])(?=.*[0-9]).{8,}$"))
         {
             throw new RegisterException.InvalidPasswordException(
                 "Le mot de passe doit contenir au moins 8 caractères, une majuscule et un chiffre.");
