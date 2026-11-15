@@ -1,0 +1,24 @@
+<section class="home-hero" aria-labelledby="home-hero-title">
+  <div class="home-hero__container">
+
+    <div class="home-hero__badge">
+      <span class="home-hero__badge-dot" aria-hidden="true"></span>
+
+      <span>
+        {{ 'home.hero.badge' | translate }}
+      </span>
+    </div>
+
+    <h1 id="home-hero-title" class="home-hero__title">
+      {{ 'home.hero.title' | translate }}
+    </h1>
+
+    <p class="home-hero__description">
+      {{ 'home.hero.description' | translate }}
+    </p>
+
+    <div class="home-hero__search">
+      <ng-content />
+    </div>
+  </div>
+</section>

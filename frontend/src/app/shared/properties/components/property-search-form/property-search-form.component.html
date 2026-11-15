@@ -1,0 +1,197 @@
+<form
+  class="property-search"
+  [formGroup]="form"
+  (ngSubmit)="submit()"
+>
+
+  <div class="property-search__top">
+    <div class="property-search__tabs" role="group">
+      <button
+        type="button"
+        [class.active]="transactionType() === 'sale'"
+        [attr.aria-pressed]="transactionType() === 'sale'"
+        (click)="setTransactionType('sale')"
+      >
+        {{ 'home.search.buy' | translate }}
+      </button>
+
+      <button
+        type="button"
+        [class.active]="transactionType() === 'rent'"
+        [attr.aria-pressed]="transactionType() === 'rent'"
+        (click)="setTransactionType('rent')"
+      >
+        {{ 'home.search.rent' | translate }}
+      </button>
+    </div>
+  </div>
+
+  <div class="property-search__grid">
+    <label class="property-search__field">
+      <span class="property-search__label">
+        {{ 'home.search.location' | translate }}
+      </span>
+
+      <span class="property-search__control">
+        <!-- Mettre le logo -->
+
+        <input
+          type="text"
+          formControlName="location"
+          autocomplete="off"
+          [placeholder]="'home.search.locationPlaceholder' | translate"
+        />
+      </span>
+    </label>
+
+    <label class="property-search__field">
+      <span class="property-search__label">
+        {{ 'home.search.propertyType' | translate }}
+      </span>
+
+      <span class="property-search__control">
+        <!-- Mettre le logo -->
+
+        <select formControlName="propertyType">
+          <option value="all">
+            {{ 'home.search.anyProperty' | translate }}
+          </option>
+          <option value="house">
+            {{ 'home.search.house' | translate }}
+          </option>
+          <option value="apartment">
+            {{ 'home.search.apartment' | translate }}
+          </option>
+          <option value="land">
+            {{ 'home.search.land' | translate }}
+          </option>
+        </select>
+
+        <!-- Mettre le logo -->
+      </span>
+    </label>
+
+    <label class="property-search__field">
+      <span class="property-search__label">
+        {{ 'home.search.budgetMax' | translate }}
+      </span>
+
+      <span class="property-search__control">
+        <!-- Mettre le logo -->
+
+        <select formControlName="budgetMax">
+          <option value="">
+            {{ 'home.search.anyBudget' | translate }}
+          </option>
+
+          @for (amount of budgetOptions(); track amount) {
+            <option [value]="amount">
+              {{ formatBudget(amount) }}
+            </option>
+          }
+        </select>
+
+        <!-- Mettre le logo -->
+      </span>
+    </label>
+
+    <label class="property-search__field">
+      <span class="property-search__label">
+        {{ 'home.search.bedrooms' | translate }}
+      </span>
+
+      <span class="property-search__control">
+        <!-- Mettre le logo -->
+
+        <select formControlName="bedrooms">
+          <option value="">
+            {{ 'home.search.anyBedrooms' | translate }}
+          </option>
+
+          @for (count of [1, 2, 3, 4, 5]; track count) {
+            <option [value]="count">
+              {{ count }}{{ count === 5 ? '+' : '' }}
+            </option>
+          }
+        </select>
+
+        <!-- Mettre le logo -->
+      </span>
+    </label>
+  </div>
+
+  @if (advancedOpen()) {
+    <div class="property-search__advanced">
+
+      <label class="property-search__field">
+        <span class="property-search__label">
+          {{ 'home.search.minArea' | translate }}
+        </span>
+
+        <span class="property-search__control">
+          <input
+            type="number"
+            min="0"
+            formControlName="minArea"
+            [placeholder]="'home.search.minAreaPlaceholder' | translate"
+          />
+        </span>
+      </label>
+
+      <label class="property-search__field">
+        <span class="property-search__label">
+          {{ 'home.search.peb' | translate }}
+        </span>
+
+        <span class="property-search__control">
+          <select formControlName="peb">
+            <option value="any">
+              {{ 'home.search.anyPeb' | translate }}
+            </option>
+
+            @for (rating of ['A', 'B', 'C', 'D', 'E', 'F']; track rating) {
+              <option [value]="rating">PEB {{ rating }}</option>
+            }
+          </select>
+
+          <!-- Mettre le logo -->
+        </span>
+      </label>
+    </div>
+  }
+
+  <div class="property-search__actions">
+    <div class="property-search__secondary">
+
+      <button
+        type="button"
+        class="property-search__filters"
+        [attr.aria-expanded]="advancedOpen()"
+        (click)="toggleAdvanced()"
+      >
+        <!-- Mettre le logo -->
+        {{
+          (advancedOpen()
+            ? 'home.search.lessFilters'
+              : 'home.search.moreFilters'
+          ) | translate
+        }}
+      </button>
+
+      <button
+        type="button"
+        class="property-search__map"
+        disabled
+        [title]="'home.search.mapUnavailable' | translate"
+      >
+        <!-- Mettre le logo -->
+        {{ 'home.search.viewMap' | translate }}
+      </button>
+    </div>
+
+    <button type="submit" class="property-search__submit">
+      <!-- Mettre le logo -->
+      {{ 'home.search.submit' | translate }}
+    </button>
+  </div>
+</form>
