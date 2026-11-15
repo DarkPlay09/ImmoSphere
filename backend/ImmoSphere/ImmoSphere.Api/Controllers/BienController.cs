@@ -18,7 +18,7 @@ public class BienController : ControllerBase
     }
 
     [HttpGet("{id:int}")]
-    public async Task<ActionResult<BienDetailResponseDto>> GetBienByIdAsync(int id, CancellationToken cancellationToken)
+    public async Task<ActionResult<BienDetailResponseDto>> GetPublishedBienByIdAsync(int id, CancellationToken cancellationToken)
     {
         try
         {
