@@ -10,6 +10,7 @@ using ImmoSphere.Infrastructure.Identity;
 using ImmoSphere.Infrastructure.Persistence;
 using ImmoSphere.Infrastructure.Persistence.Seeders;
 using ImmoSphere.Infrastructure.Repositories;
+using ImmoSphere.Infrastructure.Services.Email;
 using Microsoft.AspNetCore.Identity;
 using Microsoft.EntityFrameworkCore;
 
@@ -39,6 +40,7 @@ builder.Services.AddOpenApi();
 // ==========================================
 
 builder.Services.AddInfrastructure(builder.Configuration);
+builder.Services.AddScoped<IEmailService, SmtpEmailService>();
 
 // ==========================================
 // ASP.NET CORE IDENTITY
