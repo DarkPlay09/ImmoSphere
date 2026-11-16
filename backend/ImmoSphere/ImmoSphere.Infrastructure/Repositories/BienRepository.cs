@@ -2,6 +2,7 @@ using ImmoSphere.Domain.Core.Bien;
 using ImmoSphere.Domain.Repository;
 using ImmoSphere.Infrastructure.Mappers;
 using ImmoSphere.Infrastructure.Persistence;
+using ImmoSphere.Infrastructure.Persistence.Entities;
 using Microsoft.EntityFrameworkCore;
 using Microsoft.Extensions.Logging;
 
@@ -20,9 +21,43 @@ public class BienRepository : IBienRepository
         _context = context;
     }
 
-    public Bien getBienById(int id)
+    public async Task<Bien> GetBienByIdAsync(int id, CancellationToken cancellationToken)
     {
-        var entity = _context.Biens
+        var entity = await BuildBienDetailQuery()
+            .FirstOrDefaultAsync(
+                b => b.Id == id,
+                cancellationToken);
+
+        if (entity == null)
+        {
+            throw new KeyNotFoundException(
+                $"Le bien avec l'ID {id} n'existe pas.");
+        }
+
+        return BienMapper.BienToDomain(entity);
+    }
+
+    public async Task<Bien> GetPublishedBienByIdAsync(int id, CancellationToken cancellationToken)
+    {
+        var entity = await BuildBienDetailQuery()
+            .FirstOrDefaultAsync(
+                b => b.Id == id
+                    && b.EstVisible == true
+                    && b.EstBrouillon == false,
+                cancellationToken);
+
+        if (entity == null)
+        {
+            throw new KeyNotFoundException(
+                $"Le bien avec l'ID {id} n'existe pas.");
+        }
+
+        return BienMapper.BienToDomain(entity);
+    }
+
+    private IQueryable<BienEntity> BuildBienDetailQuery()
+    {
+        return _context.Biens
             .AsNoTracking()
 
             // Tables de référence
@@ -49,15 +84,6 @@ public class BienRepository : IBienRepository
 
             // Favoris
             .Include(b => b.Favoris)
-            .AsSplitQuery()
-            .FirstOrDefault(b => b.Id == id);
-
-        if (entity == null)
-        {
-            throw new KeyNotFoundException(
-                $"Le bien avec l'ID {id} n'existe pas.");
-        }
-
-        return BienMapper.BienToDomain(entity);
+            .AsSplitQuery();
     }
 }

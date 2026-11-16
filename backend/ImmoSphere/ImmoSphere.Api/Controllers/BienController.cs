@@ -1,7 +1,8 @@
-using System.Text.Json.Nodes;
 using ImmoSphere.Domain.Core.Bien;
 using ImmoSphere.Domain.Services.Interfaces;
 using Microsoft.AspNetCore.Mvc;
+using ImmoSphere.Api.Dtos.Biens;
+using ImmoSphere.Api.Mappers;
 
 namespace ImmoSphere.Api.Controllers;
 
@@ -17,12 +18,19 @@ public class BienController : ControllerBase
     }
 
     [HttpGet("{id:int}")]
-    public ActionResult<Bien> GetBienById(int id)
+    public async Task<ActionResult<BienDetailResponseDto>> GetPublishedBienByIdAsync(int id, CancellationToken cancellationToken)
     {
         try
         {
-            Bien bien = _bienService.getBienById(id);
-            return Ok(bien);
+            Bien bien = await _bienService.GetPublishedBienByIdAsync(
+                id,
+                cancellationToken
+            );
+
+            BienDetailResponseDto response =
+                BienResponseMapper.ToDetailResponseDto(bien);
+
+            return Ok(response);
         }
         catch (KeyNotFoundException ex)
         {
