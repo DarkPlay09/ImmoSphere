@@ -49,5 +49,99 @@
     "languageSelection": "Select a language:",
     "copyright": "© ImmoSphere {{year}}. All rights reserved.",
     "tagline": "Belgian real estate, made clear."
+  },
+  "agences": {
+    "list": {
+      "eyebrow": "Real estate professionals",
+      "title": "Find a real estate agency",
+      "subtitle": "Discover the licensed agencies on ImmoSphere and browse their properties, their services and verified reviews from their buyers and sellers in Belgium.",
+      "resultsTitle": "Real estate agencies",
+      "resultsCount": "{{count}} agencies found",
+      "resultsCountOne": "1 agency found",
+      "sortLabel": "Sort by:",
+      "loading": "Loading agencies…",
+      "empty": "No agency matches your search.",
+      "emptyReset": "Reset search"
+    },
+    "search": {
+      "label": "Search for an agency",
+      "name": "Agency name",
+      "namePlaceholder": "Search e.g. Horizon Immo…",
+      "location": "Location",
+      "locationPlaceholder": "City or postcode e.g. Liège, 4000",
+      "region": "Region",
+      "regionAll": "All regions",
+      "submit": "Search",
+      "reset": "Reset search"
+    },
+    "sort": {
+      "relevance": "Relevance",
+      "name": "Name (A–Z)",
+      "rating": "Top rated"
+    },
+    "pagination": {
+      "label": "Agency pagination",
+      "previous": "Previous",
+      "next": "Next",
+      "page": "Page {{page}}"
+    },
+    "card": {
+      "logoAlt": "{{name}} logo",
+      "ipiApproved": "IPI licensed",
+      "rating": "{{rating}} / 5",
+      "reviews": "{{count}} verified client reviews",
+      "available": "{{count}} properties available",
+      "forSale": "{{count}} properties for sale",
+      "view": "View agency",
+      "viewAria": "View agency {{name}}",
+      "contact": "Contact",
+      "contactAria": "Email {{name}}"
+    },
+    "cta": {
+      "badge": "IPI professional area",
+      "title": "Are you a real estate agency in Belgium?",
+      "text": "Join the certified ImmoSphere network. Publish your listings, receive enquiries from qualified buyers and use our built-in valuation and EPC analysis tools.",
+      "button": "Create a professional account",
+      "unavailable": "Coming soon"
+    },
+    "detail": {
+      "breadcrumbLabel": "Breadcrumb",
+      "home": "Home",
+      "agencies": "Agencies",
+      "loading": "Loading agency…",
+      "ipiNumber": "IPI licence No. {{number}}",
+      "federia": "Federia member",
+      "bce": "CBE: {{bce}}",
+      "country": "Belgium",
+      "contactAgency": "Contact the agency",
+      "contactAria": "Email {{name}}",
+      "address": "Head office & reception",
+      "phone": "Direct line",
+      "hours": "Opening hours",
+      "hoursLine": "{{days}}: {{opens}} – {{closes}}",
+      "byAppointment": "(by appointment)",
+      "days": {
+        "mondayToFriday": "Mon – Fri",
+        "saturday": "Saturday",
+        "sunday": "Sunday"
+      },
+      "website": "Official website & network",
+      "websiteAria": "{{site}} (opens in a new tab)",
+      "aboutEyebrow": "About the agency",
+      "aboutTitle": "About {{name}}",
+      "specsTitle": "Agency specifications",
+      "specs": {
+        "zone": "Main area of activity",
+        "propertyTypes": "Property types handled",
+        "transactionPoles": "Transaction areas",
+        "languages": "Languages spoken"
+      },
+      "nativeLanguage": "{{language}} (native)",
+      "notFound": {
+        "title": "Agency not found",
+        "text": "This agency does not exist or is no longer listed on ImmoSphere.",
+        "back": "Back to the agency list"
+      }
+    }
   }
 }
