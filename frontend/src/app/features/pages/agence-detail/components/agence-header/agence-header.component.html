@@ -1,0 +1,81 @@
+<section class="agence-header" aria-labelledby="agence-name">
+
+  <div class="agence-header__main">
+
+    <div class="agence-header__identity">
+      @if (agence().logoUrl; as logoUrl) {
+        <img
+          class="agence-header__logo"
+          [src]="logoUrl"
+          [alt]="'agences.card.logoAlt' | translate: { name: agence().name }"
+          width="96"
+          height="96"
+        />
+      } @else {
+        <span class="agence-header__logo agence-header__logo--placeholder" aria-hidden="true">{{ initial() }}</span>
+      }
+
+      <div class="agence-header__summary">
+
+        @if (hasBadges()) {
+          <ul class="agence-header__badges">
+            @if (agence().ipiNumber; as ipiNumber) {
+              <li class="agence-header__badge agence-header__badge--ipi">
+                <span class="material-symbols-outlined" aria-hidden="true">verified</span>
+                {{ 'agences.detail.ipiNumber' | translate: { number: ipiNumber } }}
+              </li>
+            }
+            @if (agence().federiaMember) {
+              <li class="agence-header__badge agence-header__badge--federia">
+                {{ 'agences.detail.federia' | translate }}
+              </li>
+            }
+            @if (agence().bce; as bce) {
+              <li class="agence-header__badge agence-header__badge--bce">
+                {{ 'agences.detail.bce' | translate: { bce } }}
+              </li>
+            }
+          </ul>
+        }
+
+        <h1 id="agence-name" class="agence-header__name">{{ agence().name }}</h1>
+
+        <p class="agence-header__location">
+          <span class="material-symbols-outlined" aria-hidden="true">location_on</span>
+          <span>
+            {{ agence().city }}, {{ 'agences.detail.country' | translate }}
+            @if (agence().district) {
+              · {{ agence().district }}
+            }
+          </span>
+        </p>
+
+        <p class="agence-header__description">{{ agence().description }}</p>
+
+        @if (agence().tags.length) {
+          <ul class="agence-header__tags">
+            @for (tag of agence().tags; track tag) {
+              <li class="agence-header__tag">{{ tag }}</li>
+            }
+          </ul>
+        }
+      </div>
+    </div>
+
+    @if (agence().email; as email) {
+      <div class="agence-header__side">
+        <a
+          class="agence-header__button"
+          [href]="'mailto:' + email"
+          [attr.aria-label]="'agences.detail.contactAria' | translate: { name: agence().name }"
+        >
+          <span class="material-symbols-outlined" aria-hidden="true">mail</span>
+          {{ 'agences.detail.contactAgency' | translate }}
+        </a>
+      </div>
+    }
+  </div>
+
+  <app-agence-contact [agence]="agence()" />
+
+</section>

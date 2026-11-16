@@ -25,6 +25,20 @@ export const routes: Routes = [
             (m) => m.PropertiesSearchComponent,
           ),
       },
+      {
+        path: 'agences',
+        loadComponent: () =>
+          import('./features/pages/agences-list/agences-list.component').then(
+            (m) => m.AgencesListComponent,
+          ),
+      },
+      {
+        path: 'agences/:id',
+        loadComponent: () =>
+          import('./features/pages/agence-detail/agence-detail.component').then(
+            (m) => m.AgenceDetailComponent,
+          ),
+      },
     ],
   },
 ];

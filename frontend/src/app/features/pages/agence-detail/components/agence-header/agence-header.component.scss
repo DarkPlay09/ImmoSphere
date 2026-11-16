@@ -1,0 +1,209 @@
+// Valeurs reprises de la maquette Figma (en-tête 183:1803).
+
+.agence-header {
+  $primary: #521453;
+  $surface-container: #f0edf4;
+  $text-secondary: #4f434c;
+
+  display: flex;
+  flex-direction: column;
+  gap: 24px;
+  padding: 40px;
+
+  background: #ffffff;
+  border-radius: 12px;
+  box-shadow: 0 1px 2px rgba(0, 0, 0, 0.05);
+
+  ul,
+  p {
+    margin: 0;
+    padding: 0;
+    list-style: none;
+  }
+
+  &__main,
+  &__identity {
+    display: flex;
+    align-items: flex-start;
+  }
+
+  &__main {
+    gap: 40px;
+  }
+
+  &__identity {
+    flex: 1;
+    gap: 24px;
+    min-width: 0;
+  }
+
+  &__logo {
+    flex-shrink: 0;
+    width: 96px;
+    height: 96px;
+    border-radius: 12px;
+    object-fit: contain;
+    box-shadow: 0 4px 6px -1px rgba(0, 0, 0, 0.1);
+
+    &--placeholder {
+      display: inline-flex;
+      align-items: center;
+      justify-content: center;
+      background: #eae7ee;
+      color: $primary;
+      font-size: 40px;
+      font-weight: 700;
+    }
+  }
+
+  &__summary {
+    display: flex;
+    flex-direction: column;
+    gap: 4px;
+    min-width: 0;
+  }
+
+  &__badges,
+  &__tags {
+    display: flex;
+    flex-wrap: wrap;
+    gap: 4px;
+  }
+
+  &__badge {
+    display: inline-flex;
+    align-items: center;
+    gap: 4px;
+    padding: 2px 8px;
+    border-radius: 4px;
+
+    font-size: 11px;
+    font-weight: 600;
+    line-height: 16px;
+
+    .material-symbols-outlined {
+      font-size: 14px;
+    }
+
+    &--ipi {
+      background: #e9e3ca;
+      color: #1e1c0d;
+    }
+
+    &--federia {
+      background: $surface-container;
+      color: #635f4b;
+    }
+
+    &--bce {
+      background: #eae7ee;
+      color: $text-secondary;
+    }
+  }
+
+  &__name {
+    margin: 0;
+    padding-top: 4px;
+
+    color: $primary;
+    font-size: 36px;
+    font-weight: 700;
+    line-height: 44px;
+    letter-spacing: -0.025em;
+  }
+
+  &__location {
+    display: flex;
+    align-items: center;
+    gap: 4px;
+
+    color: $text-secondary;
+    font-size: 14px;
+    line-height: 20px;
+
+    .material-symbols-outlined {
+      color: $primary;
+      font-size: 16px;
+    }
+  }
+
+  &__description {
+    max-width: 672px;
+    padding-top: 4px;
+    font-size: 16px;
+    line-height: 26px;
+  }
+
+  &__tags {
+    padding-top: 4px;
+  }
+
+  &__tag {
+    padding: 4px 8px;
+
+    background: $surface-container;
+    border-radius: 9999px;
+    color: $text-secondary;
+
+    font-size: 13px;
+    font-weight: 500;
+    line-height: 18px;
+  }
+
+  &__side {
+    min-width: 280px;
+    padding: 16px;
+    background: #f5f2f9;
+    border-radius: 12px;
+  }
+
+  &__button {
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    gap: 6px;
+    padding: 8px 16px;
+
+    background: $primary;
+    border-radius: 8px;
+    color: #ffffff;
+
+    font-size: 13px;
+    font-weight: 500;
+    line-height: 18px;
+    text-decoration: none;
+
+    &:hover {
+      background: #6c2d6b;
+    }
+
+    &:focus-visible {
+      outline: 2px solid $primary;
+      outline-offset: 2px;
+    }
+
+    .material-symbols-outlined {
+      font-size: 18px;
+    }
+  }
+
+  @media (max-width: 720px) {
+    padding: 24px 16px;
+
+    &__main,
+    &__identity {
+      flex-direction: column;
+      gap: 16px;
+    }
+
+    &__side {
+      width: 100%;
+      min-width: 0;
+    }
+
+    &__name {
+      font-size: 28px;
+      line-height: 36px;
+    }
+  }
+}

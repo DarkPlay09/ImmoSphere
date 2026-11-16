@@ -1,0 +1,45 @@
+<div class="agence-detail">
+
+  @switch (state().status) {
+
+    @case ('loading') {
+      <p class="agence-detail__status" aria-live="polite">{{ 'agences.detail.loading' | translate }}</p>
+    }
+
+    @case ('not-found') {
+      <section class="agence-detail__not-found" aria-labelledby="agence-not-found-title">
+        <span class="material-symbols-outlined agence-detail__not-found-icon" aria-hidden="true">domain_disabled</span>
+        <h1 id="agence-not-found-title" class="agence-detail__not-found-title">
+          {{ 'agences.detail.notFound.title' | translate }}
+        </h1>
+        <p class="agence-detail__not-found-text">{{ 'agences.detail.notFound.text' | translate }}</p>
+        <a class="agence-detail__back" routerLink="/agences">
+          <span class="material-symbols-outlined" aria-hidden="true">arrow_back</span>
+          {{ 'agences.detail.notFound.back' | translate }}
+        </a>
+      </section>
+    }
+
+    @case ('found') {
+      @if (agence(); as agence) {
+
+        <!-- FIL D'ARIANE -->
+        <nav class="agence-detail__breadcrumb" [attr.aria-label]="'agences.detail.breadcrumbLabel' | translate">
+          <ol class="agence-detail__breadcrumb-list">
+            <li><a class="agence-detail__breadcrumb-link" routerLink="/">{{ 'agences.detail.home' | translate }}</a></li>
+            <li><a class="agence-detail__breadcrumb-link" routerLink="/agences">{{ 'agences.detail.agencies' | translate }}</a></li>
+            <li class="agence-detail__breadcrumb-current" aria-current="page">{{ agence.name }}</li>
+          </ol>
+        </nav>
+
+        <app-agence-header class="agence-detail__header" [agence]="agence" />
+
+        <div class="agence-detail__columns">
+          <app-agence-about [agence]="agence" />
+          <app-agence-specs [specifications]="agence.specifications" />
+        </div>
+      }
+    }
+  }
+
+</div>

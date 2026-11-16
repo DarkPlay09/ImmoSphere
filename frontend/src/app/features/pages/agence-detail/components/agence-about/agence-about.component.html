@@ -1,0 +1,28 @@
+<section class="agence-about" aria-labelledby="agence-about-title">
+  <span class="agence-about__eyebrow">
+    <span class="material-symbols-outlined" aria-hidden="true">corporate_fare</span>
+    {{ 'agences.detail.aboutEyebrow' | translate }}
+  </span>
+
+  <h2 id="agence-about-title" class="agence-about__title">
+    {{ 'agences.detail.aboutTitle' | translate: { name: agence().name } }}
+  </h2>
+
+  <div class="agence-about__text">
+    @for (paragraph of paragraphs(); track $index) {
+      <p>{{ paragraph }}</p>
+    }
+  </div>
+
+  @if (agence().highlights?.length) {
+    <ul class="agence-about__highlights">
+      @for (highlight of agence().highlights; track highlight.title) {
+        <li class="agence-about__highlight">
+          <span class="material-symbols-outlined agence-about__highlight-icon" aria-hidden="true">{{ highlight.icon }}</span>
+          <h3 class="agence-about__highlight-title">{{ highlight.title }}</h3>
+          <p class="agence-about__highlight-text">{{ highlight.text }}</p>
+        </li>
+      }
+    </ul>
+  }
+</section>

@@ -1,0 +1,92 @@
+// Valeurs reprises de la maquette Figma (« À propos » 183:1913).
+
+.agence-about {
+  $primary: #521453;
+  $text-secondary: #4f434c;
+
+  display: flex;
+  flex-direction: column;
+  gap: 16px;
+
+  p {
+    margin: 0;
+  }
+
+  &__eyebrow {
+    display: inline-flex;
+    align-items: center;
+    gap: 4px;
+
+    color: $primary;
+    font-size: 13px;
+    font-weight: 600;
+    line-height: 18px;
+    letter-spacing: 0.05em;
+    text-transform: uppercase;
+
+    .material-symbols-outlined {
+      font-size: 16px;
+    }
+  }
+
+  &__title {
+    margin: 0;
+    font-size: 24px;
+    font-weight: 700;
+    line-height: 32px;
+    letter-spacing: -0.01em;
+  }
+
+  &__text {
+    display: flex;
+    flex-direction: column;
+    gap: 8px;
+
+    color: $text-secondary;
+    font-size: 16px;
+    line-height: 26px;
+  }
+
+  &__highlights {
+    display: grid;
+    grid-template-columns: repeat(3, minmax(0, 1fr));
+    gap: 16px;
+    margin: 0;
+    padding: 8px 0 0;
+    list-style: none;
+  }
+
+  &__highlight {
+    display: flex;
+    flex-direction: column;
+    gap: 4px;
+    padding: 16px;
+
+    background: #f5f2f9;
+    border-radius: 8px;
+  }
+
+  &__highlight-icon {
+    color: $primary;
+    font-size: 20px;
+  }
+
+  &__highlight-title {
+    margin: 0;
+    font-size: 18px;
+    font-weight: 600;
+    line-height: 26px;
+  }
+
+  &__highlight-text {
+    color: $text-secondary;
+    font-size: 14px;
+    line-height: 20px;
+  }
+
+  @media (max-width: 720px) {
+    &__highlights {
+      grid-template-columns: minmax(0, 1fr);
+    }
+  }
+}
