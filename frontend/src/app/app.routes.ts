@@ -3,6 +3,13 @@ import { MainLayoutComponent } from './layout/MainLayout/main-layout.component';
 
 export const routes: Routes = [
   {
+    path: 'inscription/verification-email',
+    loadComponent: () =>
+      import('./features/auth/pages/verify-email/verify-email.component').then(
+        (m) => m.VerifyEmailComponent,
+      ),
+  },
+  {
     path: '',
     component: MainLayoutComponent,
     children: [
@@ -10,20 +17,6 @@ export const routes: Routes = [
         path: '',
         pathMatch: 'full',
         redirectTo: 'properties',
-      },
-      {
-        path: 'properties',
-        loadComponent: () =>
-          import('./features/pages/properties-list/properties-list.component').then(
-            (m) => m.PropertiesListComponent,
-          ),
-      },
-      {
-        path: 'search',
-        loadComponent: () =>
-          import('./features/pages/properties-search/properties-search').then(
-            (m) => m.PropertiesSearchComponent,
-          ),
       },
     ],
   },
