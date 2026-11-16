@@ -1,0 +1,94 @@
+<div class="agences-list">
+
+  <!-- EN-TÊTE -->
+  <header class="agences-list__hero">
+    <span class="agences-list__eyebrow">
+      <span class="material-symbols-outlined" aria-hidden="true">apartment</span>
+      {{ 'agences.list.eyebrow' | translate }}
+    </span>
+
+    <h1 class="agences-list__title">{{ 'agences.list.title' | translate }}</h1>
+
+    <p class="agences-list__subtitle">{{ 'agences.list.subtitle' | translate }}</p>
+  </header>
+
+  <!-- RECHERCHE -->
+  <app-agences-search-form
+    class="agences-list__search"
+    [(name)]="nameInput"
+    [(location)]="locationInput"
+    [(region)]="regionInput"
+    (searched)="search()"
+    (resetRequested)="reset()"
+  />
+
+  <!-- RÉSULTATS -->
+  <section class="agences-list__results" aria-labelledby="agences-results-title" #resultsTop>
+
+    <div class="agences-list__toolbar">
+      <div class="agences-list__count-group">
+        <h2 id="agences-results-title" class="agences-list__results-title">
+          {{ 'agences.list.resultsTitle' | translate }}
+        </h2>
+
+        @if (result()) {
+          <span class="agences-list__count" aria-live="polite">
+            @if (total() === 1) {
+              {{ 'agences.list.resultsCountOne' | translate }}
+            } @else {
+              {{ 'agences.list.resultsCount' | translate: { count: total() } }}
+            }
+          </span>
+        }
+      </div>
+
+      <div class="agences-list__sort">
+        <label class="agences-list__sort-label" for="agences-sort">
+          {{ 'agences.list.sortLabel' | translate }}
+        </label>
+        <div class="agences-list__sort-select">
+          <select id="agences-sort" class="agences-list__sort-input" (change)="changeSort($event)">
+            @for (sort of sorts; track sort) {
+              <option [value]="sort" [selected]="criteria().sort === sort">
+                {{ 'agences.sort.' + sort | translate }}
+              </option>
+            }
+          </select>
+          <span class="material-symbols-outlined agences-list__sort-icon" aria-hidden="true">expand_more</span>
+        </div>
+      </div>
+    </div>
+
+    <div class="agences-list__grid" [class.agences-list__grid--loading]="loading()" [attr.aria-busy]="loading()">
+      @for (agence of agences(); track agence.id) {
+        <app-agence-card [agence]="agence" />
+      } @empty {
+        @if (loading()) {
+          <p class="agences-list__message">{{ 'agences.list.loading' | translate }}</p>
+        } @else {
+          <div class="agences-list__message">
+            <p>{{ 'agences.list.empty' | translate }}</p>
+            @if (hasActiveFilters()) {
+              <button type="button" class="agences-list__empty-reset" (click)="reset()">
+                {{ 'agences.list.emptyReset' | translate }}
+              </button>
+            }
+          </div>
+        }
+      }
+    </div>
+
+    @if (pageCount() > 1) {
+      <app-agences-pagination
+        class="agences-list__pagination"
+        [page]="page()"
+        [pageCount]="pageCount()"
+        (pageChange)="goToPage($event)"
+      />
+    }
+  </section>
+
+  <!-- BANDEAU PROFESSIONNELS -->
+  <app-agences-pro-banner class="agences-list__banner" />
+
+</div>

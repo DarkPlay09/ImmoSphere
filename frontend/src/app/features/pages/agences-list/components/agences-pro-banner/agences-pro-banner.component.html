@@ -1,0 +1,19 @@
+<aside class="pro-banner" aria-labelledby="pro-banner-title">
+  <span class="material-symbols-outlined pro-banner__illustration" aria-hidden="true">real_estate_agent</span>
+
+  <div class="pro-banner__content">
+    <span class="pro-banner__badge">
+      <span class="material-symbols-outlined" aria-hidden="true">shield</span>
+      {{ 'agences.cta.badge' | translate }}
+    </span>
+
+    <h2 id="pro-banner-title" class="pro-banner__title">{{ 'agences.cta.title' | translate }}</h2>
+
+    <p class="pro-banner__text">{{ 'agences.cta.text' | translate }}</p>
+  </div>
+
+  <!-- Pas encore de page d'inscription professionnelle : lien inactif. -->
+  <a class="pro-banner__button" role="link" aria-disabled="true" [title]="'agences.cta.unavailable' | translate">
+    {{ 'agences.cta.button' | translate }}
+  </a>
+</aside>

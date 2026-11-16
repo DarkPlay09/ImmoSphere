@@ -1,0 +1,79 @@
+<form
+  class="agences-search"
+  role="search"
+  [attr.aria-label]="'agences.search.label' | translate"
+  (submit)="submit($event)"
+>
+  <div class="agences-search__field agences-search__field--name">
+    <label class="agences-search__label" for="agences-search-name">
+      <span class="material-symbols-outlined" aria-hidden="true">apartment</span>
+      {{ 'agences.search.name' | translate }}
+    </label>
+    <input
+      id="agences-search-name"
+      class="agences-search__input"
+      type="search"
+      autocomplete="off"
+      [placeholder]="'agences.search.namePlaceholder' | translate"
+      [value]="name()"
+      (input)="name.set(readValue($event))"
+    />
+  </div>
+
+  <div class="agences-search__field agences-search__field--location">
+    <label class="agences-search__label" for="agences-search-location">
+      <span class="material-symbols-outlined" aria-hidden="true">location_on</span>
+      {{ 'agences.search.location' | translate }}
+    </label>
+    <input
+      id="agences-search-location"
+      class="agences-search__input"
+      type="search"
+      autocomplete="off"
+      [placeholder]="'agences.search.locationPlaceholder' | translate"
+      [value]="location()"
+      (input)="location.set(readValue($event))"
+    />
+  </div>
+
+  <div class="agences-search__field agences-search__field--region">
+    <label class="agences-search__label" for="agences-search-region">
+      <span class="material-symbols-outlined" aria-hidden="true">map</span>
+      {{ 'agences.search.region' | translate }}
+    </label>
+    <div class="agences-search__select">
+      <select
+        id="agences-search-region"
+        class="agences-search__input"
+        (change)="region.set($any(readValue($event)))"
+      >
+        <option value="all" [selected]="region() === 'all'">
+          {{ 'agences.search.regionAll' | translate }}
+        </option>
+        @for (item of regions; track item) {
+          <option [value]="item" [selected]="region() === item">
+            {{ 'footer.regions.' + item | translate }}
+          </option>
+        }
+      </select>
+      <span class="material-symbols-outlined agences-search__select-icon" aria-hidden="true">expand_more</span>
+    </div>
+  </div>
+
+  <div class="agences-search__actions">
+    <button type="submit" class="agences-search__button agences-search__button--submit">
+      <span class="material-symbols-outlined" aria-hidden="true">search</span>
+      {{ 'agences.search.submit' | translate }}
+    </button>
+
+    <button
+      type="button"
+      class="agences-search__button agences-search__button--reset"
+      [attr.aria-label]="'agences.search.reset' | translate"
+      [title]="'agences.search.reset' | translate"
+      (click)="resetRequested.emit()"
+    >
+      <span class="material-symbols-outlined" aria-hidden="true">restart_alt</span>
+    </button>
+  </div>
+</form>
