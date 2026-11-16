@@ -102,6 +102,24 @@
         "password": "Das Passwort erfüllt nicht alle Anforderungen.",
         "mismatch": "Die Passwörter stimmen nicht überein.",
         "conditions": "Sie müssen die Bedingungen akzeptieren, um fortzufahren."
+      },
+      "verifyEmail": {
+        "eyebrow": "Letzter Schritt",
+        "title": "Bestätigen Sie Ihre E-Mail-Adresse",
+        "description": "Wir haben einen sechsstelligen Bestätigungscode an die bei der Registrierung verwendete E-Mail-Adresse gesendet.",
+        "codeLabel": "Bestätigungscode",
+        "digits": "Ziffern",
+        "digitLabel": "Ziffer {{index}} von {{total}}",
+        "submit": "E-Mail-Adresse bestätigen",
+        "submitting": "Wird überprüft…",
+        "notReceived": "Keinen Code erhalten?",
+        "resend": "Code erneut senden",
+        "spamHint": "Bitte prüfen Sie auch Ihren Spamordner.",
+        "backToRegister": "Meine E-Mail-Adresse ändern",
+        "previewNotice": "Es wurde kein Code geprüft: Die Anbindung an den Authentifizierungsserver steht noch aus.",
+        "errors": {
+          "incomplete": "Bitte geben Sie alle 6 Ziffern des Codes ein."
+        }
       }
     }
   }

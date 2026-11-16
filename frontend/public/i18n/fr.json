@@ -103,6 +103,24 @@
         "mismatch": "Les mots de passe ne correspondent pas.",
         "conditions": "Vous devez accepter les conditions pour continuer."
       }
+    },
+    "verifyEmail": {
+      "eyebrow": "Dernière étape",
+      "title": "Vérifiez votre adresse e-mail",
+      "description": "Nous avons envoyé un code de confirmation à 6 chiffres à l’adresse utilisée pour votre inscription.",
+      "codeLabel": "Code de vérification",
+      "digits": "chiffres",
+      "digitLabel": "Chiffre {{index}} sur {{total}}",
+      "submit": "Vérifier mon adresse e-mail",
+      "submitting": "Vérification en cours…",
+      "notReceived": "Vous n’avez pas reçu le code ?",
+      "resend": "Renvoyer un code",
+      "spamHint": "Pensez à vérifier vos courriers indésirables.",
+      "backToRegister": "Modifier mon adresse e-mail",
+      "previewNotice": "Aucun code n’a été vérifié : la connexion au serveur d’authentification reste à faire.",
+      "errors": {
+        "incomplete": "Veuillez saisir les 6 chiffres du code."
+      }
     }
   }
 }

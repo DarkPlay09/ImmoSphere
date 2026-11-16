@@ -102,6 +102,24 @@
         "password": "Het wachtwoord voldoet niet aan alle vereisten.",
         "mismatch": "Wachtwoorden komen niet overeen.",
         "conditions": "U moet de voorwaarden accepteren om door te gaan."
+      },
+      "verifyEmail": {
+        "eyebrow": "Laatste stap",
+        "title": "Verifieer uw e-mailadres",
+        "description": "We hebben een bevestigingscode van 6 cijfers gestuurd naar het e-mailadres dat u bij de registratie gebruikte.",
+        "codeLabel": "Verificatiecode",
+        "digits": "cijfers",
+        "digitLabel": "Cijfer {{index}} van {{total}}",
+        "submit": "Mijn e-mailadres verifiëren",
+        "submitting": "Bezig met verifiëren…",
+        "notReceived": "Geen code ontvangen?",
+        "resend": "Code opnieuw verzenden",
+        "spamHint": "Controleer ook uw spammap.",
+        "backToRegister": "Mijn e-mailadres wijzigen",
+        "previewNotice": "Er is geen code geverifieerd: de koppeling met de authenticatieserver moet nog gebeuren.",
+        "errors": {
+          "incomplete": "Voer alle 6 cijfers van de code in."
+        }
       }
     }
   }

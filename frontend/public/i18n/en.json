@@ -102,6 +102,24 @@
         "password": "The password does not meet all requirements.",
         "mismatch": "Passwords do not match.",
         "conditions": "You must accept the terms to continue."
+      },
+      "verifyEmail": {
+        "eyebrow": "Final step",
+        "title": "Verify your email address",
+        "description": "We sent a 6-digit confirmation code to the email address you used to sign up.",
+        "codeLabel": "Verification code",
+        "digits": "digits",
+        "digitLabel": "Digit {{index}} of {{total}}",
+        "submit": "Verify my email address",
+        "submitting": "Verifying…",
+        "notReceived": "Didn't receive the code?",
+        "resend": "Resend code",
+        "spamHint": "Please check your spam folder, too.",
+        "backToRegister": "Change my email address",
+        "previewNotice": "No code was verified: connection to the authentication server is still pending.",
+        "errors": {
+          "incomplete": "Please enter all 6 digits of the code."
+        }
       }
     }
   }
