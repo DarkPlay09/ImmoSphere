@@ -3,6 +3,7 @@ using System.Text;
 using ImmoSphere.Domain.Services.Interfaces;
 using ImmoSphere.Infrastructure.Persistence;
 using ImmoSphere.Infrastructure.Persistence.Entities;
+using Microsoft.AspNetCore.Identity;
 using Microsoft.EntityFrameworkCore;
 using Microsoft.Extensions.Configuration;
 
@@ -12,12 +13,15 @@ public class EmailConfirmationService : IEmailConfirmationService
 {
     private readonly ApplicationDbContext _dbContext;
     private readonly byte[] _hmacKey;
+    private readonly UserManager<ApplicationUser> _userManager;
 
     public EmailConfirmationService(
         ApplicationDbContext dbContext,
-        IConfiguration configuration)
+        IConfiguration configuration,
+        UserManager<ApplicationUser> userManager)
     {
         _dbContext = dbContext;
+        _userManager = userManager;
 
         var secret = configuration["EmailConfirmation:HmacKey"]
                      ?? throw new InvalidOperationException(
@@ -81,9 +85,54 @@ public class EmailConfirmationService : IEmailConfirmationService
         return code;
     }
 
-    public Task<bool> VerifyCodeAsync(string userId, string code)
+    public async Task<bool> VerifyCodeAsync(string email, string code)
     {
-        throw new NotImplementedException();
+        if (string.IsNullOrWhiteSpace(email) ||
+            string.IsNullOrWhiteSpace(code))
+            return false;
+
+        // 1. Recherche de l'utilisateur
+        var user = await _userManager.FindByEmailAsync(email.Trim());
+
+        if (user == null || user.EmailConfirmed)
+            return false;
+
+        // 2. Recherche du code en base
+        var confirmation = await _dbContext.EmailConfirmationCodes
+            .SingleOrDefaultAsync(c => c.UserId == user.Id);
+
+        if (confirmation == null ||
+            confirmation.IsUsed ||
+            confirmation.ExpiresAtUtc <= DateTime.UtcNow ||
+            confirmation.Attempts >= 5)
+            return false;
+
+        // 3. Comparaison sécurisée des empreintes
+        var expectedHash = Convert.FromHexString(confirmation.CodeHash);
+        var receivedHash = Convert.FromHexString(
+            ComputeCodeHash(user.Id, code)
+        );
+
+        bool isValid = CryptographicOperations.FixedTimeEquals(
+            expectedHash,
+            receivedHash
+        );
+
+        if (!isValid)
+        {
+            confirmation.Attempts++;
+            await _dbContext.SaveChangesAsync();
+            return false;
+        }
+
+        // 4. Activation du compte
+        user.EmailConfirmed = true;
+        confirmation.IsUsed = true;
+
+        // Les deux entités sont suivies par le même DbContext
+        await _dbContext.SaveChangesAsync();
+
+        return true;
     }
 
     private string ComputeCodeHash(string userId, string code)

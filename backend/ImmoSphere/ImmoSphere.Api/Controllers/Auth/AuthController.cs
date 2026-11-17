@@ -99,9 +99,47 @@ public class AuthController : ControllerBase
     }
 
     [HttpPost("verify-email")]
-    public IActionResult VerifyEmail()
+    public async Task<IActionResult> VerifyEmail(
+        [FromBody] VerifyEmailRequestDto request)
     {
-        return Ok(new { message = "Vérification reçue" });
+        try
+        {
+            _logger.LogInformation(
+                "Nouvelle requête : Vérification de mail"
+            );
+
+            string? token = await _service.VerifyCodeAsync(
+                request.Email,
+                request.Code
+            );
+
+            if (token == null)
+            {
+                return BadRequest(new
+                {
+                    message = "Code invalide ou expiré."
+                });
+            }
+
+            _logger.LogInformation(
+                "Compte confirmé et authentification réussie"
+            );
+
+            return Ok(new
+            {
+                token = token,
+                tokenType = "Bearer"
+            });
+        }
+        catch (Exception e)
+        {
+            _logger.LogError(
+                e,
+                "Erreur lors de la confirmation de l'e-mail"
+            );
+
+            return Problem("Une erreur interne est survenue.");
+        }
     }
 
     [HttpPost("login")]

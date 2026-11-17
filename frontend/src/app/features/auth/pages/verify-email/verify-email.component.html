@@ -55,19 +55,15 @@
       }
 
       @if (serverError()) {
-        <p class="verify-email__error" role="alert">{{ serverError() }}</p>
+        <p class="verify-email__error" role="alert">
+          {{ serverError() | translate }}
+        </p>
       }
 
       <button class="verify-email__submit" type="submit" [disabled]="submitting()">
         {{ (submitting() ? 'auth.verifyEmail.submitting' : 'auth.verifyEmail.submit') | translate }}
         <span aria-hidden="true">→</span>
       </button>
-
-      @if (previewNoticeVisible()) {
-        <p class="verify-email__preview" role="status">
-          {{ 'auth.verifyEmail.previewNotice' | translate }}
-        </p>
-      }
     </form>
 
     <div class="verify-email__support">

@@ -8,9 +8,13 @@ import {
   QueryList,
   signal,
   ViewChildren,
+  inject
 } from '@angular/core';
-import { RouterLink } from '@angular/router';
+import { RouterLink, Router } from '@angular/router';
 import { TranslatePipe } from '@ngx-translate/core';
+import {Location }  from '@angular/common';
+import { AuthApiService} from '../../data-access/auth-api.service';
+import { finalize } from 'rxjs';
 
 import { AuthShellComponent } from '../../../../shared/auth/components/auth-shell/auth-shell.component';
 
@@ -28,10 +32,11 @@ import { AuthShellComponent } from '../../../../shared/auth/components/auth-shel
   changeDetection: ChangeDetectionStrategy.OnPush,
 })
 export class VerifyEmailComponent {
-  readonly email = input<string | null>(null);
-  readonly submitting = input(false);
+  private readonly location = inject(Location);
+  readonly email = signal<string | null>(null);
+  readonly submitting = signal(false);
   readonly canResend = input(false);
-  readonly serverError = input<string | null>(null);
+  readonly serverError = signal<string | null>(null);
   readonly demoMode = input(true);
 
   readonly verifyRequested = output<string>();
@@ -47,7 +52,18 @@ export class VerifyEmailComponent {
     () => this.attempted() && this.code().length !== this.codeLength,
   );
 
+  private readonly apiService = inject(AuthApiService);
+  private readonly router = inject(Router);
+
   @ViewChildren('digitInput') private digitInputs?: QueryList<ElementRef<HTMLInputElement>>;
+
+  constructor() {
+    const state = this.location.getState() as { email?: unknown } | null;
+
+    if (typeof state?.email === 'string') {
+      this.email.set(state.email);
+    }
+  }
 
   onDigitInput(event: Event, index: number): void {
     const field = event.target as HTMLInputElement;
@@ -100,21 +116,44 @@ export class VerifyEmailComponent {
   }
 
   submit(): void {
+    if (this.submitting()) return;
+
     this.attempted.set(true);
     this.previewNoticeVisible.set(false);
 
     if (this.code().length !== this.codeLength) {
       const firstEmpty = this.digits().findIndex((digit) => !digit);
+
       this.focusDigit(firstEmpty === -1 ? 0 : firstEmpty);
       return;
     }
 
-    this.verifyRequested.emit(this.code());
+    const email = this.email();
 
-    // Feedback transparent tant que le handler backend n'est pas branché.
-    if (this.demoMode()) {
-      this.previewNoticeVisible.set(true);
+    if (!email) {
+      this.serverError.set('auth.verifyEmail.errors.missingEmail');
+      return;
     }
+
+    this.submitting.set(true);
+    this.serverError.set(null);
+
+    this.apiService
+      .verifyEmail({
+        email: email,
+        code: this.code(),
+      })
+      .pipe(finalize(() => this.submitting.set(false)))
+      .subscribe({
+        next: () => {
+          void this.router.navigate(['/properties']);
+        },
+        error: (error) => {
+          console.error('Erreur de vérification', error);
+
+          this.serverError.set('auth.verifyEmail.errors.invalidCode');
+        },
+      });
   }
 
   resend(): void {

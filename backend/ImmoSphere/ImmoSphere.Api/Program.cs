@@ -11,8 +11,10 @@ using ImmoSphere.Infrastructure.Persistence;
 using ImmoSphere.Infrastructure.Persistence.Seeders;
 using ImmoSphere.Infrastructure.Repositories;
 using ImmoSphere.Infrastructure.Services.Email;
+using Microsoft.AspNetCore.Authentication.JwtBearer;
 using Microsoft.AspNetCore.Identity;
 using Microsoft.EntityFrameworkCore;
+using Microsoft.IdentityModel.Tokens;
 
 var builder = WebApplication.CreateBuilder(args);
 
@@ -41,6 +43,7 @@ builder.Services.AddOpenApi();
 
 builder.Services.AddInfrastructure(builder.Configuration);
 builder.Services.AddScoped<IEmailService, SmtpEmailService>();
+builder.Services.AddScoped<ITokenService, JwtTokenService>();
 
 // ==========================================
 // ASP.NET CORE IDENTITY
@@ -63,6 +66,47 @@ builder.Services
     })
     .AddEntityFrameworkStores<ApplicationDbContext>()
     .AddDefaultTokenProviders();
+
+var jwtKey = Convert.FromBase64String(
+    builder.Configuration["Jwt:Key"]
+    ?? throw new InvalidOperationException("Clé JWT manquante.")
+);
+
+if (jwtKey.Length < 32)
+    throw new InvalidOperationException("Clé JWT trop courte.");
+
+builder.Services
+    .AddAuthentication(options =>
+    {
+        options.DefaultAuthenticateScheme =
+            JwtBearerDefaults.AuthenticationScheme;
+
+        options.DefaultChallengeScheme =
+            JwtBearerDefaults.AuthenticationScheme;
+    })
+    .AddJwtBearer(options =>
+    {
+        options.MapInboundClaims = false;
+
+        options.TokenValidationParameters = new TokenValidationParameters
+        {
+            ValidateIssuer = true,
+            ValidIssuer = builder.Configuration["Jwt:Issuer"],
+
+            ValidateAudience = true,
+            ValidAudience = builder.Configuration["Jwt:Audience"],
+
+            ValidateLifetime = true,
+            ValidateIssuerSigningKey = true,
+
+            IssuerSigningKey = new SymmetricSecurityKey(jwtKey),
+
+            NameClaimType = System.Security.Claims.ClaimTypes.NameIdentifier,
+            RoleClaimType = System.Security.Claims.ClaimTypes.Role,
+
+            ClockSkew = TimeSpan.FromSeconds(30)
+        };
+    });
 
 // Service pour inscrire les utilisateurs
 builder.Services.AddScoped<UtilisateurRegistrationService>();

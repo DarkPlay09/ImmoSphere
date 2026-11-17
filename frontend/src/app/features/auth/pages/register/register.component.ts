@@ -173,7 +173,11 @@ export class RegisterComponent {
 
     this.apiService.postRegisterForm(data).subscribe({
       next: () => {
-        this.router.navigate(['/verify-email']);
+        this.router.navigate(['/verify-email'], {
+          state: {
+            email: data.email
+          }
+        });
         this.registrationStatus.set('success');
       },
       error: (error) => {

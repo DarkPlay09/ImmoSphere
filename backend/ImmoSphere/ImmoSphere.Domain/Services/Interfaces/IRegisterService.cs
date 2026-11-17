@@ -10,4 +10,6 @@ public interface IRegisterService
         string accountType,
         bool conditions
         );
+
+    public Task<string?> VerifyCodeAsync(string email, string code);
 }

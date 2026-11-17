@@ -11,17 +11,20 @@ public class RegisterService : IRegisterService
     private readonly IUserRepository _userRepository;
     private readonly IEmailService _emailService;
     private readonly IEmailConfirmationService _emailConfirmationService;
+    private readonly ITokenService _tokenService;
     private readonly ILogger<RegisterService> _logger;
 
     public RegisterService(
         IUserRepository repo,
         IEmailService emailService,
         IEmailConfirmationService emailConfirmationService,
+        ITokenService tokenService,
         ILogger<RegisterService> logger)
     {
         _userRepository = repo;
         _emailService = emailService;
         _emailConfirmationService = emailConfirmationService;
+        _tokenService = tokenService;
         _logger =  logger;
     }
 
@@ -61,6 +64,35 @@ public class RegisterService : IRegisterService
             subject,
             body
         );
+    }
+
+    public async Task<string?> VerifyCodeAsync(string email, string code)
+    {
+        // 1. Vérifier et confirmer l'adresse e-mail
+        bool isValid = await _emailConfirmationService.VerifyCodeAsync(
+            email,
+            code
+        );
+
+        if (!isValid)
+        {
+            _logger.LogWarning(
+                "Code de confirmation invalide pour {Email}",
+                email
+            );
+
+            return null;
+        }
+
+        // 2. Générer un token d'authentification
+        string token = await _tokenService.GenerateTokenAsync(email);
+
+        _logger.LogInformation(
+            "Adresse confirmée et token généré pour {Email}",
+            email
+        );
+
+        return token;
     }
 
     private void CheckEntries(
@@ -114,4 +146,7 @@ public class RegisterService : IRegisterService
 
         return body;
     }
+
+
+
 }
