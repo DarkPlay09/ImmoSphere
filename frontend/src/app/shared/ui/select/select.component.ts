@@ -6,6 +6,11 @@ export interface SelectOption<T extends string | number = string> {
   lang?: string;
 }
 
+/**
+ * Liste déroulante à choix unique avec bouton personnalisable.
+ * Le parent fournit les options et la valeur active, puis reçoit le choix via valueChange.
+ * Pour les formulaires, utiliser un <select> natif avec la classe .ui-select.
+ */
 @Component({
   selector: 'app-select',
   standalone: true,
