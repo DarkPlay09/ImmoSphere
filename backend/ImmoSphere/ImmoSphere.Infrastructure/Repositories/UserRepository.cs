@@ -9,14 +9,14 @@ namespace ImmoSphere.Infrastructure.Repositories;
 
 public class UserRepository : IUserRepository
 {
-    private readonly ILogger<BienRepository> _logger;
+    private readonly ILogger<UserRepository> _logger;
     private readonly ApplicationDbContext _context;
     private readonly UserManager<ApplicationUser> _userManager;
 
     public UserRepository(
         ApplicationDbContext context,
         UserManager<ApplicationUser> userManager,
-        ILogger<BienRepository> logger)
+        ILogger<UserRepository> logger)
     {
         _logger = logger;
         _context = context;
@@ -31,7 +31,7 @@ public class UserRepository : IUserRepository
             .Any(u => u.NormalizedEmail == normalizedEmail);
     }
 
-    public async Task CreateUserAsync(
+    public async Task<string> CreateUserAsync(
         string name,
         string givenName,
         string email,
@@ -93,7 +93,6 @@ public class UserRepository : IUserRepository
         // 6. Valider la transaction
         await transaction.CommitAsync();
 
-        _logger.LogInformation(
-            "Utilisateur créé avec succès : {Email}", email);
+        return user.Id;
     }
 }

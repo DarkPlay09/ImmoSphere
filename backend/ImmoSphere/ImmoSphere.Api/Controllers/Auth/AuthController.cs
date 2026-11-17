@@ -15,7 +15,7 @@ namespace ImmoSphere.Api.Controllers.Auth;
  *      name (str),
  *      givenName (str),
  *      email (str),
- *      pass (str),
+ *      password (str),
  *      accountType (str),
  *      conditions (bool)
  *
@@ -44,10 +44,12 @@ namespace ImmoSphere.Api.Controllers.Auth;
 public class AuthController : ControllerBase
 {
     IRegisterService _service;
+    ILogger<AuthController> _logger;
 
-    public AuthController(IRegisterService service)
+    public AuthController(IRegisterService service, ILogger<AuthController> logger)
     {
         _service = service;
+        _logger = logger;
     }
 
     /**
@@ -57,7 +59,7 @@ public class AuthController : ControllerBase
       name: 'Maes',
       givenName: 'Tibo',
       email: 'tibo.maes2611@gmail.com',
-      pass: 'Password1234$',
+      password: 'Password1234$',
       accountType: 'utilisateur',
       conditions: true,
     };
@@ -68,25 +70,30 @@ public class AuthController : ControllerBase
     {
         try
         {
-            await _service.CreateUserAsync(request.Name, request.GivenName, request.Email, request.Pass,
+            _logger.LogInformation("Nouvelle requête : Inscription");
+            await _service.CreateUserAsync(request.Name, request.GivenName, request.Email, request.Password,
                 request.AccountType, request.Conditions);
+            _logger.LogInformation("Utilisateur crée, mail envoyé. Fin de processus (code 200)");
             return Ok(new { message = "Register success" });
         }
         catch (RegisterException.EmailAlreadyExistsException e)
         {
+            _logger.LogError("Erreur lors de l'inscirption, envoi d'un erreur");
             return Conflict(new { message = e.Message });
         }
         catch (RegisterException.ConditionsNotAcceptedException e)
         {
+            _logger.LogError("Erreur lors de l'inscirption, envoi d'un erreur");
             return BadRequest(new { message = e.Message });
         }
         catch (RegisterException.InvalidPasswordException e)
         {
+            _logger.LogError("Erreur lors de l'inscirption, envoi d'un erreur");
             return BadRequest(new { message = e.Message });
         }
         catch (Exception e)
         {
-            Console.WriteLine(e);
+            _logger.LogError("Erreur lors de l'inscirption, envoi d'un erreur");
             return Problem("Une erreur interne est survenue.");
         }
     }

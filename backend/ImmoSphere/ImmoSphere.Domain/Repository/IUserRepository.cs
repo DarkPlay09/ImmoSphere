@@ -4,7 +4,7 @@ public interface IUserRepository
 {
     bool UserExists(string email);
 
-    Task CreateUserAsync(
+    Task<string> CreateUserAsync(
         string name,
         string givenName,
         string email,

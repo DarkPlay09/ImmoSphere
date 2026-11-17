@@ -2,7 +2,9 @@ namespace ImmoSphere.Domain.Services.Interfaces;
 
 public interface IEmailConfirmationService
 {
-    Task<string> GenerateConfirmationLinkAsync(string email);
+    Task<string> GenerateCodeAsync(string userId);
 
-    Task<bool> ConfirmEmailAsync(string userId, string token);
+    Task<bool> VerifyCodeAsync(
+        string userId,
+        string code);
 }

@@ -86,6 +86,8 @@
       "termsJoin": "und die",
       "termsSuffix": "von ImmoSphere.",
       "submit": "Mein Konto erstellen",
+      "submitting": "Das Konto wird gerade erstellt...",
+      "success": "Sie haben eine Bestätigungs-E-Mail erhalten. Bitte überprüfen Sie Ihren E-Mail-Posteingang, um Ihr Konto zu aktivieren.",
       "localSuccess": "Formular gültig. Es wurde noch kein Konto erstellt: API-Anbindung folgt.",
       "alreadyRegistered": "Sie haben bereits ein Konto?",
       "login": "Anmelden",
@@ -101,7 +103,8 @@
         "email": "Geben Sie eine gültige E-Mail-Adresse ein.",
         "password": "Das Passwort erfüllt nicht alle Anforderungen.",
         "mismatch": "Die Passwörter stimmen nicht überein.",
-        "conditions": "Sie müssen die Bedingungen akzeptieren, um fortzufahren."
+        "conditions": "Sie müssen die Bedingungen akzeptieren, um fortzufahren.",
+        "server": "Bei der Registrierung ist ein Fehler aufgetreten. Bitte versuchen Sie es erneut."
       },
       "verifyEmail": {
         "eyebrow": "Letzter Schritt",

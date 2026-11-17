@@ -86,6 +86,8 @@
       "termsJoin": "en het",
       "termsSuffix": "van ImmoSphere.",
       "submit": "Mijn account aanmaken",
+      "submitting": "Het account wordt aangemaakt...",
+      "success": "Er is een bevestigingsmail naar u verzonden. Kijk in uw mailbox om uw account te activeren.",
       "localSuccess": "Formulier geldig. Er is nog geen account aangemaakt: API-koppeling volgt.",
       "alreadyRegistered": "Heeft u al een account?",
       "login": "Aanmelden",
@@ -101,7 +103,8 @@
         "email": "Voer een geldig e-mailadres in.",
         "password": "Het wachtwoord voldoet niet aan alle vereisten.",
         "mismatch": "Wachtwoorden komen niet overeen.",
-        "conditions": "U moet de voorwaarden accepteren om door te gaan."
+        "conditions": "U moet de voorwaarden accepteren om door te gaan.",
+        "server": "Er is een fout opgetreden tijdens het registreren. Probeer het nog eens."
       },
       "verifyEmail": {
         "eyebrow": "Laatste stap",

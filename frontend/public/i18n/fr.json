@@ -86,6 +86,8 @@
       "termsJoin": "et la",
       "termsSuffix": "d’ImmoSphere.",
       "submit": "Créer mon compte",
+      "submitting": "Création du compte en cours...",
+      "success": "Un e-mail de confirmation vous a été envoyé. Consultez votre boîte mail pour activer votre compte.",
       "localSuccess": "Formulaire valide. Aucun compte n’a encore été créé : connexion à l’API à venir.",
       "alreadyRegistered": "Vous avez déjà un compte ?",
       "login": "Se connecter",
@@ -101,7 +103,8 @@
         "email": "Saisissez une adresse e-mail valide.",
         "password": "Le mot de passe ne respecte pas tous les critères.",
         "mismatch": "Les mots de passe ne correspondent pas.",
-        "conditions": "Vous devez accepter les conditions pour continuer."
+        "conditions": "Vous devez accepter les conditions pour continuer.",
+        "server": "Une erreur est survenue lors de l'inscription. Veuillez réessayer."
       }
     },
     "verifyEmail": {

@@ -86,6 +86,8 @@
       "termsJoin": "and the",
       "termsSuffix": "of ImmoSphere.",
       "submit": "Create my account",
+      "submitting": "Creating account...",
+      "success": "A confirmation email has been sent to you. Please check your email inbox to activate your account.",
       "localSuccess": "Form is valid. No account has been created yet: API integration to follow.",
       "alreadyRegistered": "Already have an account?",
       "login": "Sign in",
@@ -101,7 +103,8 @@
         "email": "Enter a valid email address.",
         "password": "The password does not meet all requirements.",
         "mismatch": "Passwords do not match.",
-        "conditions": "You must accept the terms to continue."
+        "conditions": "You must accept the terms to continue.",
+        "server": "An error occurred during registration. Please try again."
       },
       "verifyEmail": {
         "eyebrow": "Final step",

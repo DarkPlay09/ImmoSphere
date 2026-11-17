@@ -38,6 +38,8 @@ public class ApplicationDbContext : IdentityDbContext<ApplicationUser>
     public DbSet<AgenceAdministrateurEntity> AgencesAdministrateurs => Set<AgenceAdministrateurEntity>();
     public DbSet<AgenceSpecificationEntity> AgencesSpecifications => Set<AgenceSpecificationEntity>();
     public DbSet<BienInformationAnnexeEntity> BiensInformationsAnnexes => Set<BienInformationAnnexeEntity>();
+    public DbSet<EmailConfirmationCodeEntity> EmailConfirmationCodes
+        => Set<EmailConfirmationCodeEntity>();
 
     protected override void OnModelCreating(ModelBuilder modelBuilder)
     {

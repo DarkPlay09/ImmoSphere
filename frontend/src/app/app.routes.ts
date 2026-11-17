@@ -9,6 +9,21 @@ export const routes: Routes = [
         (m) => m.VerifyEmailComponent,
       ),
   },
+  // {
+  //   path: 'login',
+  //   loadComponent: () =>
+  //     import('./features/auth/pages/register/register.component').then((m) => m.RegisterComponent),
+  // },
+  {
+    path: 'register',
+    loadComponent: () =>
+      import('./features/auth/pages/register/register.component').then((m) => m.RegisterComponent),
+  },
+  {
+    path: 'verify-email',
+    loadComponent: () =>
+      import('./features/auth/pages/verify-email/verify-email.component').then(m => m.VerifyEmailComponent),
+  },
   {
     path: '',
     component: MainLayoutComponent,

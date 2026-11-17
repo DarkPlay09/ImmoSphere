@@ -219,8 +219,16 @@
         <span aria-hidden="true">→</span>
       </button>
 
-      @if (isLocallyValid()) {
-        <p role="status" class="register__success">{{ 'auth.register.localSuccess' | translate }}</p>
+      @if (registrationStatus() === 'success') {
+        <p role="status" class="register__success">
+          {{ 'auth.register.success' | translate }}
+        </p>
+      }
+
+      @if (registrationStatus() === 'error') {
+        <p role="alert" class="register__error">
+          {{ 'auth.register.errors.authServer' | translate }}
+        </p>
       }
     </form>
 

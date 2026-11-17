@@ -1,4 +1,4 @@
-import { ChangeDetectionStrategy, Component, output, signal } from '@angular/core';
+import { ChangeDetectionStrategy, Component, output, signal, inject } from '@angular/core';
 import { takeUntilDestroyed } from '@angular/core/rxjs-interop';
 import {
   AbstractControl,
@@ -9,6 +9,10 @@ import {
   Validators,
 } from '@angular/forms';
 import { TranslatePipe } from '@ngx-translate/core';
+
+import { Router } from '@angular/router';
+
+import { AuthApiService } from '../../data-access/auth-api.service';
 
 import { AuthShellComponent } from '../../../../shared/auth/components/auth-shell/auth-shell.component';
 
@@ -41,12 +45,15 @@ function samePasswordValidator(control: AbstractControl): ValidationErrors | nul
   changeDetection: ChangeDetectionStrategy.OnPush,
 })
 export class RegisterComponent {
+  private readonly router = inject(Router);
   readonly registerRequested = output<RegistrationFormValue>();
 
   readonly accountType = signal<RegistrationAccountType>('particulier');
   readonly isPasswordVisible = signal(false);
   readonly attemptedSubmit = signal(false);
-  readonly isLocallyValid = signal(false);
+  readonly registrationStatus = signal<'idle' | 'loading' | 'success' | 'error'>('idle');
+
+  readonly apiService = inject(AuthApiService);
 
   readonly form = new FormGroup(
     {
@@ -89,7 +96,7 @@ export class RegisterComponent {
   constructor() {
     this.form.valueChanges
       .pipe(takeUntilDestroyed())
-      .subscribe(() => this.isLocallyValid.set(false));
+      .subscribe(() => this.registrationStatus.set('idle'));
   }
 
   get passwordRules(): { minLength: boolean; upper: boolean; lower: boolean; digit: boolean } {
@@ -103,7 +110,14 @@ export class RegisterComponent {
   }
 
   showError(
-    controlName: 'givenName' | 'name' | 'email' | 'password' | 'confirmPassword' | 'conditions' | 'professionalRole',
+    controlName:
+      | 'givenName'
+      | 'name'
+      | 'email'
+      | 'password'
+      | 'confirmPassword'
+      | 'conditions'
+      | 'professionalRole',
   ): boolean {
     const control = this.form.controls[controlName];
     return control.invalid && (control.touched || this.attemptedSubmit());
@@ -125,7 +139,7 @@ export class RegisterComponent {
       roleControl.reset(null, { emitEvent: false });
       roleControl.disable({ emitEvent: false });
     }
-    this.isLocallyValid.set(false);
+    this.registrationStatus.set('idle');
   }
 
   togglePasswordVisibility(): void {
@@ -133,8 +147,11 @@ export class RegisterComponent {
   }
 
   submit(): void {
+    // Evite de faire plusieurs requêtes si l'utilisateur clique plusieurs fois
+    if (this.registrationStatus() === 'loading') return;
+
     this.attemptedSubmit.set(true);
-    this.isLocallyValid.set(false);
+    this.registrationStatus.set('loading');
 
     if (this.form.invalid) {
       this.form.markAllAsTouched();
@@ -142,7 +159,7 @@ export class RegisterComponent {
     }
 
     const value = this.form.getRawValue();
-    this.registerRequested.emit({
+    const data: RegistrationFormValue = {
       givenName: value.givenName.trim(),
       name: value.name.trim(),
       email: value.email.trim(),
@@ -152,8 +169,16 @@ export class RegisterComponent {
           ? 'utilisateur'
           : (value.professionalRole as RegistrationProfessionalRole),
       conditions: value.conditions,
-    });
+    };
 
-    this.isLocallyValid.set(true);
+    this.apiService.postRegisterForm(data).subscribe({
+      next: () => {
+        this.router.navigate(['/verify-email']);
+        this.registrationStatus.set('success');
+      },
+      error: (error) => {
+        this.registrationStatus.set('error');
+      },
+    });
   }
 }

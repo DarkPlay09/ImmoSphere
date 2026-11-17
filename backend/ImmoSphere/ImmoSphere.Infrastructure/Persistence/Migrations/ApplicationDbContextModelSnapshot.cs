@@ -540,6 +540,48 @@ namespace ImmoSphere.Infrastructure.Persistence.Migrations
                     b.ToTable("disponibilite", (string)null);
                 });
 
+            modelBuilder.Entity("ImmoSphere.Infrastructure.Persistence.Entities.EmailConfirmationCodeEntity", b =>
+                {
+                    b.Property<int>("Id")
+                        .ValueGeneratedOnAdd()
+                        .HasColumnType("integer");
+
+                    NpgsqlPropertyBuilderExtensions.UseIdentityByDefaultColumn(b.Property<int>("Id"));
+
+                    b.Property<int>("Attempts")
+                        .ValueGeneratedOnAdd()
+                        .HasColumnType("integer")
+                        .HasDefaultValue(0);
+
+                    b.Property<string>("CodeHash")
+                        .IsRequired()
+                        .HasMaxLength(128)
+                        .HasColumnType("character varying(128)");
+
+                    b.Property<DateTime>("CreatedAtUtc")
+                        .HasColumnType("timestamp with time zone");
+
+                    b.Property<DateTime>("ExpiresAtUtc")
+                        .HasColumnType("timestamp with time zone");
+
+                    b.Property<bool>("IsUsed")
+                        .ValueGeneratedOnAdd()
+                        .HasColumnType("boolean")
+                        .HasDefaultValue(false);
+
+                    b.Property<string>("UserId")
+                        .IsRequired()
+                        .HasMaxLength(450)
+                        .HasColumnType("character varying(450)");
+
+                    b.HasKey("Id");
+
+                    b.HasIndex("UserId")
+                        .IsUnique();
+
+                    b.ToTable("EmailConfirmationCodes", (string)null);
+                });
+
             modelBuilder.Entity("ImmoSphere.Infrastructure.Persistence.Entities.EmoticonEntity", b =>
                 {
                     b.Property<int>("Id")
@@ -1335,6 +1377,15 @@ namespace ImmoSphere.Infrastructure.Persistence.Migrations
                     b.Navigation("Bien");
 
                     b.Navigation("StatutDisponibilite");
+                });
+
+            modelBuilder.Entity("ImmoSphere.Infrastructure.Persistence.Entities.EmailConfirmationCodeEntity", b =>
+                {
+                    b.HasOne("ImmoSphere.Infrastructure.Persistence.ApplicationUser", null)
+                        .WithMany()
+                        .HasForeignKey("UserId")
+                        .OnDelete(DeleteBehavior.Cascade)
+                        .IsRequired();
                 });
 
             modelBuilder.Entity("ImmoSphere.Infrastructure.Persistence.Entities.FaqEntity", b =>
