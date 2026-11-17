@@ -49,9 +49,7 @@
         {{ 'home.search.propertyType' | translate }}
       </span>
 
-      <span class="property-search__control">
-        <!-- Mettre le logo -->
-
+      <span class="property-search__control ui-select">
         <select formControlName="propertyType">
           <option value="all">
             {{ 'home.search.anyProperty' | translate }}
@@ -67,7 +65,11 @@
           </option>
         </select>
 
-        <!-- Mettre le logo -->
+        <img
+          class="ui-select__chevron"
+          src="icons/chevron-down.svg"
+          alt=""
+        />
       </span>
     </label>
 
@@ -76,7 +78,7 @@
         {{ 'home.search.budgetMax' | translate }}
       </span>
 
-      <span class="property-search__control">
+      <span class="property-search__control ui-select">
         <!-- Mettre le logo -->
 
         <select formControlName="budgetMax">
@@ -91,7 +93,7 @@
           }
         </select>
 
-        <!-- Mettre le logo -->
+        <img class="ui-select__chevron" src="icons/chevron-down.svg" alt="" />
       </span>
     </label>
 
@@ -100,7 +102,7 @@
         {{ 'home.search.bedrooms' | translate }}
       </span>
 
-      <span class="property-search__control">
+      <span class="property-search__control ui-select">
         <!-- Mettre le logo -->
 
         <select formControlName="bedrooms">
@@ -115,7 +117,7 @@
           }
         </select>
 
-        <!-- Mettre le logo -->
+        <img class="ui-select__chevron" src="icons/chevron-down.svg" alt="" />
       </span>
     </label>
   </div>
@@ -143,7 +145,7 @@
           {{ 'home.search.peb' | translate }}
         </span>
 
-        <span class="property-search__control">
+        <span class="property-search__control ui-select">
           <select formControlName="peb">
             <option value="any">
               {{ 'home.search.anyPeb' | translate }}
@@ -154,7 +156,7 @@
             }
           </select>
 
-          <!-- Mettre le logo -->
+          <img class="ui-select__chevron" src="icons/chevron-down.svg" alt="" />
         </span>
       </label>
     </div>
