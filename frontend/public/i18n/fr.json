@@ -92,7 +92,9 @@
       "new": "Nouveautés",
       "virtualTour": "Visite 360°",
       "viewAll": "Voir toutes les annonces",
-      "empty": "Aucun bien ne correspond à ce filtre."
+      "empty": "Aucun bien ne correspond à ce filtre.",
+      "loading": "Chargement des annonces immobilières...",
+      "apiError": "Impossible de charger les annonces pour le moment."
     },
 
     "notaries": {

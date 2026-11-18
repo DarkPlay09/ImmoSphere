@@ -92,7 +92,9 @@
       "new": "New listings",
       "virtualTour": "360° tour",
       "viewAll": "View all listings",
-      "empty": "No properties match this filter."
+      "empty": "No properties match this filter.",
+      "loading": "Loading property listings...",
+      "apiError": "Unable to load property listings at the moment."
     },
 
     "notaries": {

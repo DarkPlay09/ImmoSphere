@@ -92,7 +92,9 @@
       "new": "Nieuw",
       "virtualTour": "360°-rondleiding",
       "viewAll": "Bekijk alle panden",
-      "empty": "Geen panden gevonden voor deze filter."
+      "empty": "Geen panden gevonden voor deze filter.",
+      "loading": "Vastgoedadvertenties laden...",
+      "apiError": "De vastgoedadvertenties kunnen momenteel niet worden geladen."
     },
 
     "notaries": {

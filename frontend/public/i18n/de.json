@@ -92,7 +92,9 @@
       "new": "Neuheiten",
       "virtualTour": "360°-Rundgang",
       "viewAll": "Alle Angebote ansehen",
-      "empty": "Keine Immobilien für diesen Filter gefunden."
+      "empty": "Keine Immobilien für diesen Filter gefunden.",
+      "loading": "Immobilienangebote werden geladen...",
+      "apiError": "Die Immobilienangebote können derzeit nicht geladen werden."
     },
 
     "notaries": {
