@@ -136,7 +136,11 @@
         "apartment": "Appartement",
         "villa": "Villa",
         "house": "Huis"
-      }
+      },
+      "approximateNotice": "De markeringen tonen een geschatte locatie binnen de gemeente, niet het exacte adres van het pand.",
+      "loading": "Panden op de kaart laden...",
+      "apiError": "De panden kunnen momenteel niet worden geladen.",
+      "noProperties": "Geen panden met een beschikbare locatie in deze regio."
     },
 
     "publish": {

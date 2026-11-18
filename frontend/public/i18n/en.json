@@ -136,7 +136,11 @@
         "apartment": "Apartment",
         "villa": "Villa",
         "house": "House"
-      }
+      },
+      "approximateNotice": "Markers show approximate locations within each municipality, not the exact property addresses.",
+      "loading": "Loading properties on the map...",
+      "apiError": "Unable to load properties at the moment.",
+      "noProperties": "No properties with an available location in this region."
     },
 
     "publish": {

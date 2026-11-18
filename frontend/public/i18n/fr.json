@@ -136,7 +136,11 @@
         "apartment": "Appartement",
         "villa": "Villa",
         "house": "Maison"
-      }
+      },
+      "approximateNotice": "Les marqueurs indiquent une position approximative dans la commune, et non l'adresse exacte des biens.",
+      "loading": "Chargement des biens sur la carte...",
+      "apiError": "Impossible de charger les biens pour le moment.",
+      "noProperties": "Aucun bien localisable dans cette région."
     },
 
     "publish": {

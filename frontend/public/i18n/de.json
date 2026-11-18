@@ -136,7 +136,11 @@
         "apartment": "Wohnung",
         "villa": "Villa",
         "house": "Haus"
-      }
+      },
+      "approximateNotice": "Die Markierungen zeigen ungefähre Positionen innerhalb der Gemeinde, nicht die genauen Immobilienadressen.",
+      "loading": "Immobilien auf der Karte werden geladen...",
+      "apiError": "Die Immobilien können derzeit nicht geladen werden.",
+      "noProperties": "Keine Immobilien mit verfügbarer Position in dieser Region."
     },
 
     "publish": {
