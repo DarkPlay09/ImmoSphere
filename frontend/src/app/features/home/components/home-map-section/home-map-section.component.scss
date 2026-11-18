@@ -324,3 +324,38 @@
     }
   }
 }
+
+
+.home-map {
+  &__location-note {
+    margin: 8px 0 0;
+    color: #786878;
+    font-size: 12px;
+    line-height: 18px;
+  }
+
+  &__feedback {
+    position: absolute;
+    top: 50%;
+    left: 50%;
+    z-index: 1050;
+
+    transform: translate(-50%, -50%);
+
+    max-width: calc(100% - 48px);
+    margin: 0;
+    padding: 14px 20px;
+
+    border: 1px solid #e7e2ea;
+    border-radius: 10px;
+
+    background: rgba(255, 255, 255, 0.96);
+    color: #521453;
+
+    box-shadow: 0 4px 12px rgba(0, 0, 0, 0.1);
+
+    font-size: 13px;
+    font-weight: 600;
+    text-align: center;
+  }
+}
