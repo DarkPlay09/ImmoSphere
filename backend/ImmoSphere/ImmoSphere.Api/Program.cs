@@ -13,7 +13,7 @@ using ImmoSphere.Infrastructure.Repositories;
 using ImmoSphere.Infrastructure.Services.Email;
 using Microsoft.AspNetCore.Authentication.JwtBearer;
 using Microsoft.AspNetCore.Identity;
-using Microsoft.EntityFrameworkCore;
+using Microsoft.AspNetCore.Antiforgery;
 using Microsoft.IdentityModel.Tokens;
 
 var builder = WebApplication.CreateBuilder(args);
@@ -36,6 +36,25 @@ builder.Services.AddSerilog((services, configuration) =>
 
 builder.Services.AddControllers();
 builder.Services.AddOpenApi();
+
+// ==========================================
+// SÉCURITÉ CSRF
+// ==========================================
+
+builder.Services.AddAntiforgery(options =>
+{
+    // En-tête que le frontend devra envoyer.
+    options.HeaderName = "X-XSRF-TOKEN";
+
+    // Cookie technique contenant le jeton antiforgery.
+    options.Cookie.Name = "ImmoSphere.Antiforgery";
+    
+    options.Cookie.HttpOnly = true;
+
+    options.Cookie.SameSite = SameSiteMode.Lax;
+    
+    options.Cookie.SecurePolicy = CookieSecurePolicy.SameAsRequest;
+});
 
 // ==========================================
 // INFRASTRUCTURE (PostgreSQL, DbContext...)
@@ -255,6 +274,25 @@ app.UseAuthorization();
 
 // Endpoints des controllers
 app.MapControllers();
+
+// ==========================================
+// ENDPOINT CSRF
+// ==========================================
+
+app.MapGet("/api/auth/csrf",
+    (HttpContext context, IAntiforgery antiforgery) =>
+    {
+        // Générer un jeton associé au navigateur.
+        var tokens = antiforgery.GetAndStoreTokens(context);
+
+        // Éviter la mise en cache de cette réponse.
+        context.Response.Headers["Cache-Control"] = "no-store";
+
+        return Results.Ok(new
+        {
+            csrfToken = tokens.RequestToken
+        });
+    });
 
 // ==========================================
 // DÉMARRAGE
