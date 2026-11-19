@@ -1,6 +1,6 @@
-
 using Serilog;
 using ImmoSphere.Api.Middlewares;
+using ImmoSphere.Api.Security;
 using ImmoSphere.Domain.Repository;
 using ImmoSphere.Domain.Services;
 using ImmoSphere.Domain.Services.Auth;
@@ -106,6 +106,22 @@ builder.Services
 
             ClockSkew = TimeSpan.FromSeconds(30)
         };
+
+        options.Events = new JwtBearerEvents
+        {
+            OnMessageReceived = context =>
+            {
+                if (!context.Request.Headers.ContainsKey("Authorization") &&
+                    context.Request.Cookies.TryGetValue(
+                        AuthSessionCookie.Name,
+                        out var jwt))
+                {
+                    context.Token = jwt;
+                }
+                
+                return Task.CompletedTask;
+            }
+        };
     });
 
 // Service pour inscrire les utilisateurs
@@ -124,7 +140,8 @@ builder.Services.AddCors(options =>
     {
         policy.WithOrigins("http://localhost:4200")
             .AllowAnyHeader()
-            .AllowAnyMethod();
+            .AllowAnyMethod()
+            .AllowCredentials();
     });
 });
 
