@@ -12,4 +12,6 @@ public interface IRegisterService
         );
 
     public Task<string?> VerifyCodeAsync(string email, string code);
+
+    Task ResendConfirmationCodeAsync(string email);
 }

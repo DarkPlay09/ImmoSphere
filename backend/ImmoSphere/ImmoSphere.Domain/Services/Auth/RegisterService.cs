@@ -147,6 +147,42 @@ public class RegisterService : IRegisterService
         return body;
     }
 
+    public async Task ResendConfirmationCodeAsync(string email)
+    {
+        if (string.IsNullOrWhiteSpace(email))
+        {
+            return;
+        }
 
+        email = email.Trim();
 
+        var userId = await _userRepository
+            .FindUnconfirmedUserIdAsync(email);
+
+        if (userId is null)
+        {
+            return;
+        }
+
+        var code = await _emailConfirmationService
+            .GenerateResendCodeAsync(userId);
+
+        if (code is null)
+        {
+            return;
+        }
+
+        const string subject = "Confirmez votre compte ImmoSphere";
+
+        var body = GenerateMail(code);
+
+        await _emailService.SendEmailAsync(
+            email,
+            subject,
+            body);
+        
+        _logger.LogInformation(
+            "Nouveau code de confirmation envoyé pour l'utilisateur {UserId}",
+            userId);
+    }
 }
