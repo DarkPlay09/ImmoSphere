@@ -31,8 +31,14 @@ export class AgenceCardComponent {
   /** Première lettre du nom, affichée dans le placeholder du logo. */
   readonly initial = computed(() => this.agence().name.charAt(0).toUpperCase());
 
-  readonly hasStats = computed(() => {
-    const { rating, reviewCount, propertyCount } = this.agence();
-    return rating !== undefined || reviewCount !== undefined || propertyCount !== undefined;
-  });
+  /** Nombre d'avis affiché seulement s'il est renseigné et non nul. */
+  readonly reviewCount = computed(() => this.agence().reviewCount || null);
+
+  /** Nombre de biens affiché seulement s'il est renseigné et non nul (l'API renvoie 0 sans bien). */
+  readonly propertyCount = computed(() => this.agence().propertyCount || null);
+
+  readonly hasReviews = computed(() => this.rating() !== null || this.reviewCount() !== null);
+
+  /** La ligne note / avis / biens n'est affichée que si au moins une donnée est présente. */
+  readonly hasStats = computed(() => this.hasReviews() || this.propertyCount() !== null);
 }

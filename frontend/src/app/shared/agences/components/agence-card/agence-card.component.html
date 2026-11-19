@@ -50,26 +50,28 @@
     @if (hasStats()) {
       <div class="agence-card__stats">
 
-        <div class="agence-card__reviews">
-          @if (rating(); as rating) {
-            <span class="agence-card__rating">
-              <span class="material-symbols-outlined" aria-hidden="true">star</span>
-              {{ 'agences.card.rating' | translate: { rating } }}
-            </span>
-          }
+        @if (hasReviews()) {
+          <div class="agence-card__reviews">
+            @if (rating(); as rating) {
+              <span class="agence-card__rating">
+                <span class="material-symbols-outlined" aria-hidden="true">star</span>
+                {{ 'agences.card.rating' | translate: { rating } }}
+              </span>
+            }
 
-          @if (rating() && agence().reviewCount !== undefined) {
-            <span class="agence-card__dot" aria-hidden="true">•</span>
-          }
+            @if (rating() && reviewCount()) {
+              <span class="agence-card__dot" aria-hidden="true">•</span>
+            }
 
-          @if (agence().reviewCount; as reviewCount) {
-            <span class="agence-card__review-count">
-              {{ 'agences.card.reviews' | translate: { count: reviewCount } }}
-            </span>
-          }
-        </div>
+            @if (reviewCount(); as reviewCount) {
+              <span class="agence-card__review-count">
+                {{ 'agences.card.reviews' | translate: { count: reviewCount } }}
+              </span>
+            }
+          </div>
+        }
 
-        @if (agence().propertyCount; as propertyCount) {
+        @if (propertyCount(); as propertyCount) {
           <span class="agence-card__available">
             <span class="agence-card__available-dot" aria-hidden="true"></span>
             {{ 'agences.card.available' | translate: { count: propertyCount } }}
@@ -103,7 +105,7 @@
         {{ 'agences.card.view' | translate }}
       </a>
 
-      @if (agence().propertyCount; as propertyCount) {
+      @if (propertyCount(); as propertyCount) {
         <span class="agence-card__button agence-card__button--muted">
           {{ 'agences.card.forSale' | translate: { count: propertyCount } }}
         </span>

@@ -58,6 +58,22 @@ describe('AgenceCardComponent', () => {
     expect(element.querySelector('.agence-card__button--muted')).toBeNull();
   });
 
+  it('masque la ligne et le bouton « biens en vente » quand l’API renvoie 0 bien sans avis', async () => {
+    const element = await render({ ...MOCK_AGENCES[0]!, rating: undefined, reviewCount: undefined, propertyCount: 0 });
+
+    expect(element.querySelector('.agence-card__stats')).toBeNull();
+    expect(element.querySelector('.agence-card__button--muted')).toBeNull();
+  });
+
+  it('n’affiche que les biens disponibles quand il n’y a pas d’avis', async () => {
+    const element = await render({ ...MOCK_AGENCES[0]!, rating: undefined, reviewCount: undefined, propertyCount: 3 });
+
+    expect(element.querySelector('.agence-card__stats')).not.toBeNull();
+    expect(element.querySelector('.agence-card__reviews')).toBeNull();
+    expect(element.querySelector('.agence-card__available')).not.toBeNull();
+    expect(element.querySelector('.agence-card__button--muted')).not.toBeNull();
+  });
+
   it('masque le bouton Contacter sans adresse e-mail', async () => {
     const element = await render({ ...MOCK_AGENCES[0]!, email: undefined });
 
