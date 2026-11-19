@@ -1,5 +1,5 @@
 import { NgOptimizedImage } from '@angular/common';
-import { ChangeDetectionStrategy, Component } from '@angular/core';
+import { ChangeDetectionStrategy, Component, input } from '@angular/core';
 import { RouterLink } from '@angular/router';
 import { TranslatePipe } from '@ngx-translate/core';
 
@@ -16,4 +16,6 @@ import { TranslatePipe } from '@ngx-translate/core';
 })
 export class AuthShellComponent {
   readonly year = new Date().getFullYear();
+
+  readonly showFooter = input(true);
 }
