@@ -12,8 +12,9 @@ import {
 } from '@angular/core';
 import { RouterLink, Router } from '@angular/router';
 import { TranslatePipe } from '@ngx-translate/core';
-import {Location }  from '@angular/common';
-import { AuthApiService} from '../../data-access/auth-api.service';
+import { Location }  from '@angular/common';
+import { AuthApiService } from '../../data-access/auth-api.service';
+import { AuthSessionService } from '../../data-access/auth-session.service';
 import { finalize } from 'rxjs';
 
 import { AuthShellComponent } from '../../../../shared/auth/components/auth-shell/auth-shell.component';
@@ -33,6 +34,9 @@ import { AuthShellComponent } from '../../../../shared/auth/components/auth-shel
 })
 export class VerifyEmailComponent {
   private readonly location = inject(Location);
+
+  private readonly authSession = inject(AuthSessionService);
+
   readonly email = signal<string | null>(null);
   readonly submitting = signal(false);
   readonly canResend = input(false);
@@ -146,6 +150,7 @@ export class VerifyEmailComponent {
       .pipe(finalize(() => this.submitting.set(false)))
       .subscribe({
         next: () => {
+          this.authSession.refresh();
           void this.router.navigate(['/properties']);
         },
         error: (error) => {
