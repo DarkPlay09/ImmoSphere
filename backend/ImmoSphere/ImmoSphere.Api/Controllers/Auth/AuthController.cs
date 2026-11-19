@@ -202,7 +202,17 @@ public class AuthController : ControllerBase
     [HttpPost("logout")]
     public IActionResult Logout()
     {
-        return Ok(new { message = "Déconnexion reçue" });
+        Response.Cookies.Delete(
+            AuthSessionCookie.Name,
+            new CookieOptions
+            {
+                HttpOnly = true,
+                Secure = Request.IsHttps,
+                SameSite = SameSiteMode.Lax,
+                Path = "/",
+            });
+        
+        return NoContent();
     }
     
     [HttpGet("me")]
