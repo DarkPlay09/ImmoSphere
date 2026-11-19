@@ -125,7 +125,12 @@
         "previewNotice": "Er is geen code geverifieerd: de koppeling met de authenticatieserver moet nog gebeuren.",
         "errors": {
           "incomplete": "Voer alle 6 cijfers van de code in."
-        }
+        },
+        "resending": "Bezig met verzenden…",
+        "resendCountdown": "U kunt over {{seconds}} s een nieuwe code aanvragen.",
+        "resendSuccess": "Als uw account nog bevestigd moet worden, ontvangt u een nieuwe code zodra opnieuw verzenden mogelijk is.",
+        "resendRateLimit": "Te veel aanvragen. Wacht enkele minuten.",
+        "resendError": "Kan geen nieuwe code aanvragen. Probeer het opnieuw."
       }
     }
   }

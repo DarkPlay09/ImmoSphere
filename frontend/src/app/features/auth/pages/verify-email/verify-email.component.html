@@ -67,16 +67,65 @@
     </form>
 
     <div class="verify-email__support">
-      <p>{{ 'auth.verifyEmail.notReceived' | translate }}</p>
+      <p>
+        {{ 'auth.verifyEmail.notReceived' | translate }}
+      </p>
+
       <button
         type="button"
         class="verify-email__resend"
-        [disabled]="!canResend() || submitting()"
+        [disabled]="
+      !canResend() ||
+      submitting() ||
+      resending() ||
+      resendCooldownSeconds() > 0
+    "
         (click)="resend()"
       >
-        {{ 'auth.verifyEmail.resend' | translate }}
+        {{
+          (resending()
+              ? 'auth.verifyEmail.resending'
+              : 'auth.verifyEmail.resend'
+          ) | translate
+        }}
       </button>
-      <p class="verify-email__hint">{{ 'auth.verifyEmail.spamHint' | translate }}</p>
+
+      @if (resendCooldownSeconds() > 0) {
+        <p class="verify-email__hint" role="status">
+          {{
+            'auth.verifyEmail.resendCountdown'
+              | translate: { seconds: resendCooldownSeconds() }
+          }}
+        </p>
+      }
+
+      @if (resendFeedback() === 'success') {
+        <p class="verify-email__hint" role="status">
+          {{ 'auth.verifyEmail.resendSuccess' | translate }}
+        </p>
+      }
+
+      @if (resendFeedback() === 'rateLimit') {
+        <p class="verify-email__error" role="alert">
+          {{ 'auth.verifyEmail.resendRateLimit' | translate }}
+        </p>
+      }
+
+      @if (resendFeedback() === 'error') {
+        <p class="verify-email__error" role="alert">
+          {{ 'auth.verifyEmail.resendError' | translate }}
+        </p>
+      }
+
+      @if (resendFeedback() === 'missingEmail') {
+        <p class="verify-email__error" role="alert">
+          {{ 'auth.verifyEmail.errors.missingEmail' | translate }}
+        </p>
+      }
+
+      <p class="verify-email__hint">
+        {{ 'auth.verifyEmail.spamHint' | translate }}
+      </p>
     </div>
 
     <div class="verify-email__back">

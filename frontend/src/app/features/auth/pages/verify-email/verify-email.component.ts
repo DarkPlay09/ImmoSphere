@@ -3,19 +3,22 @@ import {
   Component,
   computed,
   ElementRef,
+  DestroyRef,
   input,
   output,
   QueryList,
   signal,
   ViewChildren,
-  inject
+  inject,
 } from '@angular/core';
+import { HttpErrorResponse } from '@angular/common/http';
+import { takeUntilDestroyed } from '@angular/core/rxjs-interop';
+import { finalize, interval, take } from 'rxjs';
 import { RouterLink, Router } from '@angular/router';
 import { TranslatePipe } from '@ngx-translate/core';
-import { Location }  from '@angular/common';
+import { Location } from '@angular/common';
 import { AuthApiService } from '../../data-access/auth-api.service';
 import { AuthSessionService } from '../../data-access/auth-session.service';
-import { finalize } from 'rxjs';
 
 import { AuthShellComponent } from '../../../../shared/auth/components/auth-shell/auth-shell.component';
 
@@ -39,7 +42,14 @@ export class VerifyEmailComponent {
 
   readonly email = signal<string | null>(null);
   readonly submitting = signal(false);
-  readonly canResend = input(false);
+  readonly canResend = input(true);
+  readonly resending = signal(false);
+  readonly resendCooldownSeconds = signal(0);
+
+  readonly resendFeedback = signal<'success' | 'error' | 'rateLimit' | 'missingEmail' | null>(null);
+
+  private readonly destroyRef = inject(DestroyRef);
+
   readonly serverError = signal<string | null>(null);
   readonly demoMode = input(true);
 
@@ -162,9 +172,57 @@ export class VerifyEmailComponent {
   }
 
   resend(): void {
-    if (this.canResend() && !this.submitting()) {
-      this.resendRequested.emit();
+    if (
+      !this.canResend() ||
+      this.submitting() ||
+      this.resending() ||
+      this.resendCooldownSeconds() > 0
+    ) {
+      return;
     }
+
+    const email = this.email();
+
+    if (!email) {
+      this.resendFeedback.set('missingEmail');
+      return;
+    }
+
+    this.resending.set(true);
+    this.resendFeedback.set(null);
+
+    this.apiService
+      .resendConfirmation(email)
+      .pipe(
+        finalize(() => this.resending.set(false)),
+        takeUntilDestroyed(this.destroyRef),
+      )
+      .subscribe({
+        next: () => {
+          this.resendFeedback.set('success');
+          this.startResendCooldown();
+        },
+
+        error: (error: HttpErrorResponse) => {
+          console.error('Erreur lors du renvoi du code de confirmation', error);
+
+          if (error.status === 429) {
+            this.resendFeedback.set('rateLimit');
+          } else {
+            this.resendFeedback.set('error');
+          }
+        },
+      });
+  }
+
+  private startResendCooldown(): void {
+    this.resendCooldownSeconds.set(60);
+
+    interval(1000)
+      .pipe(take(60), takeUntilDestroyed(this.destroyRef))
+      .subscribe(() => {
+        this.resendCooldownSeconds.update((seconds) => Math.max(0, seconds - 1));
+      });
   }
 
   private insertDigits(start: number, value: string): void {

@@ -125,7 +125,12 @@
         "previewNotice": "No code was verified: connection to the authentication server is still pending.",
         "errors": {
           "incomplete": "Please enter all 6 digits of the code."
-        }
+        },
+        "resending": "Sending…",
+        "resendCountdown": "You can request another code in {{seconds}} s.",
+        "resendSuccess": "If your account is awaiting confirmation, a new code will be sent when resending is available.",
+        "resendRateLimit": "Too many requests. Please wait a few minutes.",
+        "resendError": "Unable to request a new code. Please try again."
       }
     }
   }

@@ -125,7 +125,12 @@
         "previewNotice": "Es wurde kein Code geprüft: Die Anbindung an den Authentifizierungsserver steht noch aus.",
         "errors": {
           "incomplete": "Bitte geben Sie alle 6 Ziffern des Codes ein."
-        }
+        },
+        "resending": "Wird gesendet…",
+        "resendCountdown": "Sie können in {{seconds}} s einen neuen Code anfordern.",
+        "resendSuccess": "Falls Ihr Konto noch bestätigt werden muss, erhalten Sie einen neuen Code, sobald der erneute Versand möglich ist.",
+        "resendRateLimit": "Zu viele Anfragen. Bitte warten Sie einige Minuten.",
+        "resendError": "Ein neuer Code konnte nicht angefordert werden. Bitte versuchen Sie es erneut."
       }
     }
   }

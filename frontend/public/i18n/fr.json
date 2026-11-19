@@ -126,7 +126,12 @@
       "previewNotice": "Aucun code n’a été vérifié : la connexion au serveur d’authentification reste à faire.",
       "errors": {
         "incomplete": "Veuillez saisir les 6 chiffres du code."
-      }
+      },
+      "resending": "Envoi en cours…",
+      "resendCountdown": "Nouvelle demande possible dans {{seconds}} s.",
+      "resendSuccess": "Si votre compte attend une confirmation, un nouveau code vous sera envoyé lorsque le renvoi sera possible.",
+      "resendRateLimit": "Trop de demandes. Veuillez patienter quelques minutes.",
+      "resendError": "Impossible de demander un nouveau code. Veuillez réessayer."
     }
   }
 }

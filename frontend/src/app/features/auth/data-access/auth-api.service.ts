@@ -38,11 +38,16 @@ export class AuthApiService {
   }
 
   logout() {
-    return this.http.post<void>(
-      `${environment.apiUrl}/api/auth/logout`,
-      null,
-      {
-        withCredentials: true,
-      });
+    return this.http.post<void>(`${environment.apiUrl}/api/auth/logout`, null, {
+      withCredentials: true,
+    });
+  }
+
+  resendConfirmation(email: string) {
+    return this.http.post<{ message: string }>(
+      `${environment.apiUrl}/api/auth/resend-confirmation`,
+      { email },
+      { withCredentials: true },
+    );
   }
 }
