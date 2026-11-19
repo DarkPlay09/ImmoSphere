@@ -19,7 +19,10 @@
       "nl": "Nederlands",
       "de": "Deutsch",
       "en": "English"
-    }
+    },
+    "logout": "Uitloggen",
+    "loggingOut": "Bezig met uitloggen...",
+    "logoutError": "Uitloggen mislukt. Probeer opnieuw."
   },
   "footer": {
     "description": "Het toonaangevende vastgoedplatform in België. Transparantie, notariële nauwkeurigheid en gecertificeerde transacties.",

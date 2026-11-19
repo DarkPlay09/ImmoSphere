@@ -71,6 +71,29 @@
           >
             {{ 'navbar.account' | translate }}
           </span>
+
+          <button
+            class="navbar__login navbar__logout"
+            type="button"
+            (click)="logout()"
+            [disabled]="isLoggingOut()"
+            [attr.aria-busy]="isLoggingOut()"
+          >
+            {{
+              (isLoggingOut()
+                ? 'navbar.loggingOut'
+                : 'navbar.logout') | translate
+            }}
+          </button>
+
+          @if (logoutFailed()) {
+            <span
+              class="navbar__logout-error"
+              role="alert"
+            >
+              {{ 'navbar.logoutError' | translate }}
+            </span>
+          }
         } @else {
           <button
             class="navbar__login"

@@ -19,7 +19,10 @@
       "nl": "Nederlands",
       "de": "Deutsch",
       "en": "English"
-    }
+    },
+    "logout": "Log out",
+    "loggingOut": "Logging out...",
+    "logoutError": "Unable to log out. Please try again."
   },
   "footer": {
     "description": "Belgium’s leading real estate platform. Transparency, notarial accuracy and certified transactions.",

@@ -19,7 +19,10 @@
       "nl": "Nederlands",
       "de": "Deutsch",
       "en": "English"
-    }
+    },
+    "logout": "Abmelden",
+    "loggingOut": "Abmeldung läuft...",
+    "logoutError": "Abmeldung fehlgeschlagen. Bitte erneut versuchen."
   },
   "footer": {
     "description": "Die Immobilienplattform für Belgien. Transparenz, notarielle Genauigkeit und zertifizierte Transaktionen.",

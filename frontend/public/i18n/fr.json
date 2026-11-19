@@ -19,7 +19,10 @@
       "nl": "Nederlands",
       "de": "Deutsch",
       "en": "English"
-    }
+    },
+    "logout": "Se déconnecter",
+    "loggingOut": "Déconnexion...",
+    "logoutError": "Impossible de se déconnecter. Réessayez."
   },
   "footer": {
     "description": "L’écosystème immobilier de référence en Belgique. Transparence, précision notariale et transactions certifiées.",

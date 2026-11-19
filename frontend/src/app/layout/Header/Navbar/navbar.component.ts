@@ -1,6 +1,7 @@
-import { Component, inject, input, output } from '@angular/core';
+import { Component, inject, input, output, signal } from '@angular/core';
 import { Router, RouterLink } from '@angular/router';
 import { TranslatePipe } from '@ngx-translate/core';
+import { finalize } from 'rxjs';
 
 import { LanguagePickerComponent } from '../../LanguagePicker/language-picker.component';
 import { AuthSessionService } from '../../../features/auth/data-access/auth-session.service';
@@ -20,6 +21,8 @@ export class NavbarComponent {
   readonly session = inject(AuthSessionService);
 
   readonly isLoggedIn = this.session.isAuthenticated;
+  readonly isLoggingOut = signal(false);
+  readonly logoutFailed = signal(false);
 
   readonly publishRequested = output<void>();
   readonly favoritesCount = input(0);
@@ -27,5 +30,26 @@ export class NavbarComponent {
 
   goToLogin(): void {
     void this.router.navigate(['/register']);
+  }
+
+  logout(): void {
+    if (this.isLoggingOut() || this.isLoggedIn()) {
+      return;
+    }
+
+    this.logoutFailed.set(false);
+    this.isLoggingOut.set(true);
+
+    this.session.logout()
+      .pipe(
+        finalize(() => {
+          this.isLoggingOut.set(false);
+        })
+      )
+      .subscribe({
+        error: () => {
+          this.logoutFailed.set(true);
+        }
+      })
   }
 }

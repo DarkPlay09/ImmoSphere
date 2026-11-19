@@ -153,6 +153,23 @@
     color: inherit;
   }
 
+  &__logout {
+    color: #6c2d6b;
+    font-weight: 600;
+
+    &:disabled {
+      opacity: 0.6;
+      cursor: wait;
+    }
+  }
+
+  &__logout-error {
+    max-width: 200px;
+    color: #b42318;
+    font-size: 12px;
+    line-height: 1.4;
+  }
+
   &__publish {
     width: auto;
     min-width: 144.28px;
