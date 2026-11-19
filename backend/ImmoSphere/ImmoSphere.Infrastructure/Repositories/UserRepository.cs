@@ -31,6 +31,23 @@ public class UserRepository : IUserRepository
             .Any(u => u.NormalizedEmail == normalizedEmail);
     }
 
+    public async Task<string?> FindUnconfirmedUserIdAsync(string email)
+    {
+        if (string.IsNullOrWhiteSpace(email))
+        {
+            return null;
+        }
+        
+        var user = await _userManager.FindByEmailAsync(email.Trim());
+
+        if (user == null || user.EmailConfirmed)
+        {
+            return null;
+        }
+        
+        return user.Id;
+    }
+
     public async Task<string> CreateUserAsync(
         string name,
         string givenName,
