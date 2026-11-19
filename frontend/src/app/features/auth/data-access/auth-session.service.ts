@@ -8,6 +8,7 @@ import {
 
 import { environment } from '../../../../../environments/environments';
 import { AuthApiService } from './auth-api.service';
+import { tap } from 'rxjs';
 
 export interface AuthenticatedUser {
   id: string;
@@ -77,5 +78,12 @@ export class AuthSessionService {
   clear(): void {
     this.userState.set(null);
     this.statusState.set('anonymous');
+  }
+
+  logout() {
+    return this.api.logout().pipe(
+      tap(() => {
+        this.clear();
+      }))
   }
 }
