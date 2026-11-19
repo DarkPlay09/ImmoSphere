@@ -33,7 +33,7 @@ export class NavbarComponent {
   }
 
   logout(): void {
-    if (this.isLoggingOut() || this.isLoggedIn()) {
+    if (this.isLoggingOut() || !this.isLoggedIn()) {
       return;
     }
 
@@ -50,6 +50,6 @@ export class NavbarComponent {
         error: () => {
           this.logoutFailed.set(true);
         }
-      })
+      });
   }
 }

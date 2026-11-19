@@ -92,22 +92,38 @@ public class AuthController : ControllerBase
         }
         catch (RegisterException.EmailAlreadyExistsException e)
         {
-            _logger.LogError("Erreur lors de l'inscirption, envoi d'un erreur");
+            _logger.LogWarning(
+                e,
+                "Inscription refusée : adresse e-mail déjà utilisée"
+            );
+
             return Conflict(new { message = e.Message });
         }
         catch (RegisterException.ConditionsNotAcceptedException e)
         {
-            _logger.LogError("Erreur lors de l'inscirption, envoi d'un erreur");
+            _logger.LogWarning(
+                e,
+                "Inscription refusée : conditions non acceptées"
+            );
+
             return BadRequest(new { message = e.Message });
         }
         catch (RegisterException.InvalidPasswordException e)
         {
-            _logger.LogError("Erreur lors de l'inscirption, envoi d'un erreur");
+            _logger.LogWarning(
+                e,
+                "Inscription refusée : mot de passe invalide"
+            );
+
             return BadRequest(new { message = e.Message });
         }
         catch (Exception e)
         {
-            _logger.LogError("Erreur lors de l'inscirption, envoi d'un erreur");
+            _logger.LogError(
+                e,
+                "Erreur inattendue lors de l'inscription"
+            );
+
             return Problem("Une erreur interne est survenue.");
         }
     }
@@ -135,8 +151,8 @@ public class AuthController : ControllerBase
                 });
             }
             
-            bool cookiesEnabled = _configuration.GetValue<bool>("Auth:CookiesEnabled");
-
+            bool cookiesEnabled = _configuration.GetValue<bool>("Auth:SessionCookiesEnabled");
+            
             if (cookiesEnabled)
             {
                 // Récupération de l'expiration du JWT existant
@@ -244,12 +260,12 @@ public class AuthController : ControllerBase
     public IActionResult GetCurrentUser()
     {
         string? userId = User.FindFirst(
-            JwtRegisteredClaimNames.Email
-            )?.Value;
-        
+            JwtRegisteredClaimNames.Sub
+        )?.Value;
+
         string? email = User.FindFirst(
             JwtRegisteredClaimNames.Email
-            )?.Value;
+        )?.Value;
 
         if (string.IsNullOrWhiteSpace(userId) ||
             string.IsNullOrWhiteSpace(email))
