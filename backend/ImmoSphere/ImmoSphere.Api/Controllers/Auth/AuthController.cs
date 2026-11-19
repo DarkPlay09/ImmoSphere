@@ -1,7 +1,10 @@
 using ImmoSphere.Api.Dtos.auth;
+using ImmoSphere.Api.Security;
 using ImmoSphere.Domain.Exceptions.Auth;
 using ImmoSphere.Domain.Services.Interfaces;
 using Microsoft.AspNetCore.Mvc;
+
+using System.IdentityModel.Tokens.Jwt;
 
 namespace ImmoSphere.Api.Controllers.Auth;
 /**
@@ -43,13 +46,21 @@ namespace ImmoSphere.Api.Controllers.Auth;
 [Route("api/auth")]
 public class AuthController : ControllerBase
 {
-    IRegisterService _service;
-    ILogger<AuthController> _logger;
+    private readonly IRegisterService _service;
+    private readonly ILogger<AuthController> _logger;
+    private readonly IConfiguration _configuration;
+    private readonly IWebHostEnvironment _environment;
 
-    public AuthController(IRegisterService service, ILogger<AuthController> logger)
+    public AuthController(
+        IRegisterService service,
+        ILogger<AuthController> logger,
+        IConfiguration configuration,
+        IWebHostEnvironment environment)
     {
         _service = service;
         _logger = logger;
+        _configuration = configuration;
+        _environment = environment;
     }
 
     /**
@@ -118,6 +129,44 @@ public class AuthController : ControllerBase
                 return BadRequest(new
                 {
                     message = "Code invalide ou expiré."
+                });
+            }
+            
+            bool cookiesEnabled = _configuration.GetValue<bool>("Auth:CookiesEnabled");
+
+            if (cookiesEnabled)
+            {
+                // Récupération de l'expiration du JWT existant
+                var jwt = new JwtSecurityTokenHandler()
+                    .ReadJwtToken(token);
+                
+                // Création du cookie sécurisé
+                Response.Cookies.Append(
+                    AuthSessionCookie.Name,
+                    token,
+                    new CookieOptions
+                    {
+                        HttpOnly = true,
+
+                        Secure = !_environment.IsDevelopment(),
+
+                        SameSite = SameSiteMode.Lax,
+
+                        Path = "/",
+
+                        Expires = new DateTimeOffset(jwt.ValidTo),
+
+                        IsEssential = true
+
+                    }
+                );
+                
+                _logger.LogInformation(
+                    "Compte confirmé : cookie de session créé");
+
+                return Ok(new
+                {
+                    message = "Adresse e-mail confirmée."
                 });
             }
 
