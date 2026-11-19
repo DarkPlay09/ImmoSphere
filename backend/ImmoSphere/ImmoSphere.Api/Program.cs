@@ -87,12 +87,14 @@ builder.Services.AddCors(options =>
 // ==========================================
 //                          Interface, Classe qui l'implémente
 builder.Services.AddScoped<IBienRepository, BienRepository>();
+builder.Services.AddScoped<IAgenceRepository, AgenceRepository>();
 
 // ==========================================
 // Inscription des services
 // ==========================================
 //                          Interface, Classe qui l'implémente
 builder.Services.AddScoped<IBienService, BienService>();
+builder.Services.AddScoped<IAgenceService, AgenceService>();
 
 // ==========================================
 // CONSTRUCTION DE L'APPLICATION
