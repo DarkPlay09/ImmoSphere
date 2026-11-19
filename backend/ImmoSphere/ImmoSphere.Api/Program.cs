@@ -266,13 +266,79 @@ app.UseHttpsRedirection();
 // Autoriser le front Angular
 app.UseCors("AngularDev");
 
-// Authentification Identity
+// Authentification
 app.UseAuthentication();
 
-// Vérification des autorisations
+// Autorisation
 app.UseAuthorization();
 
-// Endpoints des controllers
+// ==========================================
+// VALIDATION CSRF DES SESSIONS PAR COOKIE
+// ==========================================
+
+app.Use(async (context, next) =>
+{
+    // Protection active uniquement lorsque
+    // les cookies de session sont activés.
+    var cookiesEnabled = app.Configuration
+        .GetValue<bool>("Auth:SessionCookiesEnabled");
+
+    // Les méthodes de lecture ne nécessitent pas
+    // de jeton CSRF.
+    var method = context.Request.Method;
+
+    var isUnsafeMethod =
+        !HttpMethods.IsGet(method) &&
+        !HttpMethods.IsHead(method) &&
+        !HttpMethods.IsOptions(method) &&
+        !HttpMethods.IsTrace(method);
+
+    // Vérifier que l'authentification utilise
+    // réellement notre cookie de session.
+    var hasSessionCookie = context.Request.Cookies
+        .ContainsKey(AuthSessionCookie.Name);
+
+    var hasAuthorizationHeader = context.Request.Headers
+        .ContainsKey("Authorization");
+
+    var isAuthenticated =
+        context.User.Identity?.IsAuthenticated == true;
+
+    var usesCookieAuthentication =
+        hasSessionCookie &&
+        !hasAuthorizationHeader &&
+        isAuthenticated;
+
+    if (
+        cookiesEnabled &&
+        isUnsafeMethod &&
+        usesCookieAuthentication
+    )
+    {
+        var antiforgery = context.RequestServices
+            .GetRequiredService<IAntiforgery>();
+
+        var isValid = await antiforgery
+            .IsRequestValidAsync(context);
+
+        if (!isValid)
+        {
+            context.Response.StatusCode =
+                StatusCodes.Status403Forbidden;
+
+            await context.Response.WriteAsJsonAsync(new
+            {
+                message = "Jeton CSRF absent ou invalide."
+            });
+
+            return;
+        }
+    }
+
+    await next();
+});
+
+// Endpoints
 app.MapControllers();
 
 // ==========================================
