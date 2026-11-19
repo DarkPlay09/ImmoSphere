@@ -2,7 +2,7 @@ using ImmoSphere.Domain.Core.Agence;
 
 namespace ImmoSphere.Api.Dtos.Agences;
 
-/// <summary>Domaine → DTO, et valeurs des paramètres de requête → domaine.</summary>
+/// <summary>Conversions domaine → DTO.</summary>
 public static class AgenceDtoMapper
 {
     public static AgenceDto ToDto(Agence agence)
@@ -19,7 +19,7 @@ public static class AgenceDtoMapper
             Street = agence.Rue,
             Number = agence.Numero,
             PostalCode = agence.CodePostal,
-            Region = agence.Region is { } region ? RegionToDto(region) : null,
+            Region = agence.Region is { } region ? AgenceApiValues.RegionVersTexte(region) : null,
             Phone = agence.Telephone,
             Email = agence.Mail,
             Website = agence.SiteWeb,
@@ -51,54 +51,4 @@ public static class AgenceDtoMapper
         Page = page.Page,
         PageCount = page.NombrePages,
     };
-
-    public static string RegionToDto(Region region) => region switch
-    {
-        Region.Bruxelles => "brussels",
-        Region.Flandre => "flanders",
-        Region.Wallonie => "wallonia",
-        _ => throw new ArgumentOutOfRangeException(nameof(region), region, null),
-    };
-
-    /// <summary>« all » ou vide : toutes les régions. Faux si la valeur est inconnue.</summary>
-    public static bool TryParseRegion(string? valeur, out Region? region)
-    {
-        region = null;
-        switch (valeur?.Trim().ToLowerInvariant())
-        {
-            case null or "" or "all":
-                return true;
-            case "brussels":
-                region = Region.Bruxelles;
-                return true;
-            case "flanders":
-                region = Region.Flandre;
-                return true;
-            case "wallonia":
-                region = Region.Wallonie;
-                return true;
-            default:
-                return false;
-        }
-    }
-
-    /// <summary>Vide : « relevance ». Faux si la valeur est inconnue.</summary>
-    public static bool TryParseSort(string? valeur, out AgenceTri tri)
-    {
-        switch (valeur?.Trim().ToLowerInvariant())
-        {
-            case null or "" or "relevance":
-                tri = AgenceTri.Pertinence;
-                return true;
-            case "name":
-                tri = AgenceTri.Nom;
-                return true;
-            case "rating":
-                tri = AgenceTri.Note;
-                return true;
-            default:
-                tri = AgenceTri.Pertinence;
-                return false;
-        }
-    }
 }

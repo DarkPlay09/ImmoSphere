@@ -6,7 +6,6 @@ using ImmoSphere.Infrastructure.Mappers;
 using ImmoSphere.Infrastructure.Persistence;
 using ImmoSphere.Infrastructure.Persistence.Entities;
 using Microsoft.EntityFrameworkCore;
-using Microsoft.Extensions.Logging;
 
 namespace ImmoSphere.Infrastructure.Repositories;
 
@@ -18,12 +17,10 @@ public class AgenceRepository : IAgenceRepository
         typeof(string).GetMethod(nameof(string.Compare), [typeof(string), typeof(string)])!;
 
     private readonly ApplicationDbContext _context;
-    private readonly ILogger<AgenceRepository> _logger;
 
-    public AgenceRepository(ApplicationDbContext context, ILogger<AgenceRepository> logger)
+    public AgenceRepository(ApplicationDbContext context)
     {
         _context = context;
-        _logger = logger;
     }
 
     public Task<int> CompterAsync(AgenceRecherche recherche, CancellationToken cancellationToken = default)
@@ -37,16 +34,11 @@ public class AgenceRepository : IAgenceRepository
         int nombre,
         CancellationToken cancellationToken = default)
     {
-        var requete = Trier(Filtrer(_context.Agences.AsNoTracking(), recherche), recherche.Tri)
+        // Une seule requête SQL : filtre, tri, pagination et spécifications.
+        var lignes = await Trier(Projeter(Filtrer(_context.Agences.AsNoTracking(), recherche)), recherche.Tri)
             .Skip(decalage)
-            .Take(nombre);
-
-        var lignes = await Projeter(requete).ToListAsync(cancellationToken);
-
-        _logger.LogDebug(
-            "Recherche d'agences : {Nombre} résultat(s) à partir de {Decalage}",
-            lignes.Count,
-            decalage);
+            .Take(nombre)
+            .ToListAsync(cancellationToken);
 
         return lignes.Select(AgenceMapper.AgenceToDomain).ToList();
     }
@@ -128,7 +120,8 @@ public class AgenceRepository : IAgenceRepository
     // TRI
     // ==========================================
 
-    private static IQueryable<AgenceEntity> Trier(IQueryable<AgenceEntity> requete, AgenceTri tri)
+    /// <summary>Tri sur la projection : le calcul de la note n'est défini qu'à un seul endroit (<see cref="Projeter"/>).</summary>
+    private static IQueryable<AgenceLigne> Trier(IQueryable<AgenceLigne> requete, AgenceTri tri)
     {
         return tri switch
         {
@@ -136,8 +129,8 @@ public class AgenceRepository : IAgenceRepository
 
             // Agences notées d'abord (PostgreSQL place les NULL en tête d'un tri décroissant).
             AgenceTri.Note => requete
-                .OrderBy(a => a.Membres.SelectMany(m => m.AvisRecus).Any(av => av.NbEtoiles != null) ? 0 : 1)
-                .ThenByDescending(a => a.Membres.SelectMany(m => m.AvisRecus).Average(av => (double?)av.NbEtoiles))
+                .OrderBy(a => a.Note == null)
+                .ThenByDescending(a => a.Note)
                 .ThenBy(a => a.Id),
 
             _ => requete.OrderBy(a => a.Id),

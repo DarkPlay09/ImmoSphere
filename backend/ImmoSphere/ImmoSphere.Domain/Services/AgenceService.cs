@@ -16,7 +16,9 @@ public class AgenceService : IAgenceService
 
     public async Task<AgencePage> RechercherAsync(AgenceRecherche recherche, CancellationToken cancellationToken = default)
     {
-        int taillePage = Math.Clamp(recherche.TaillePage, 1, AgenceRecherche.TailleMax);
+        // Les critères sont validés à l'entrée de l'API ; garde contre une division par zéro.
+        ArgumentOutOfRangeException.ThrowIfNegativeOrZero(recherche.TaillePage);
+        int taillePage = recherche.TaillePage;
 
         int total = await _repository.CompterAsync(recherche, cancellationToken);
 

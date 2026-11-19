@@ -14,6 +14,7 @@ public class AgenceRecherche
 {
     public const int TailleParDefaut = 6;
     public const int TailleMax = 50;
+    public const int LongueurMaxTexte = 100;
 
     /// <summary>Recherche dans le nom (insensible à la casse et aux accents).</summary>
     public string? Nom { get; set; }

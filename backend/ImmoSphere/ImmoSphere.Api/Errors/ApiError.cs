@@ -14,4 +14,7 @@ public static class ApiErrorCodes
     public const string AgenceNotFound = "AGENCE_NOT_FOUND";
     public const string InvalidRegion = "INVALID_REGION";
     public const string InvalidSort = "INVALID_SORT";
+    public const string InvalidPage = "INVALID_PAGE";
+    public const string InvalidPageSize = "INVALID_PAGE_SIZE";
+    public const string SearchTooLong = "SEARCH_TOO_LONG";
 }

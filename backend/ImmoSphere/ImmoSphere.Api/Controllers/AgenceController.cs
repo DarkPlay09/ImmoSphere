@@ -1,6 +1,5 @@
 using ImmoSphere.Api.Dtos.Agences;
 using ImmoSphere.Api.Errors;
-using ImmoSphere.Domain.Core.Agence;
 using ImmoSphere.Domain.Exceptions;
 using ImmoSphere.Domain.Services.Interfaces;
 using Microsoft.AspNetCore.Mvc;
@@ -12,56 +11,39 @@ namespace ImmoSphere.Api.Controllers;
 public class AgenceController : ControllerBase
 {
     private readonly IAgenceService _agenceService;
+    private readonly ILogger<AgenceController> _logger;
 
-    public AgenceController(IAgenceService agenceService)
+    public AgenceController(IAgenceService agenceService, ILogger<AgenceController> logger)
     {
         _agenceService = agenceService;
+        _logger = logger;
     }
 
-    /// <summary>Liste paginée des agences (UC37).</summary>
-    /// <param name="name">Recherche dans le nom.</param>
-    /// <param name="location">Ville ou code postal (« Liège », « 4000 », « Liège, 4000 »).</param>
-    /// <param name="region">all | brussels | flanders | wallonia</param>
-    /// <param name="sort">relevance | name | rating</param>
-    /// <param name="page">Page à partir de 1, ramenée dans les bornes.</param>
-    /// <param name="pageSize">Agences par page (1 à 50, 6 par défaut).</param>
+    /// <summary>Liste paginée des agences, avec recherche et tri (UC37).</summary>
     [HttpGet]
     [ProducesResponseType<AgenceSearchResultDto>(StatusCodes.Status200OK)]
     [ProducesResponseType<ApiError>(StatusCodes.Status400BadRequest)]
     public async Task<ActionResult<AgenceSearchResultDto>> Rechercher(
-        [FromQuery] string? name,
-        [FromQuery] string? location,
-        [FromQuery] string? region,
-        [FromQuery] string? sort,
-        [FromQuery] int page = 1,
-        [FromQuery] int pageSize = AgenceRecherche.TailleParDefaut,
-        CancellationToken cancellationToken = default)
+        [FromQuery] AgenceSearchQuery query,
+        CancellationToken cancellationToken)
     {
-        if (!AgenceDtoMapper.TryParseRegion(region, out Region? regionRecherchee))
+        if (!AgenceSearchQueryParser.TryParse(query, out var recherche, out var erreur))
         {
-            return BadRequest(new ApiError(
-                ApiErrorCodes.InvalidRegion,
-                "La région doit valoir all, brussels, flanders ou wallonia."));
+            _logger.LogInformation("Recherche d'agences refusée : {Code}", erreur.Code);
+            return BadRequest(erreur);
         }
 
-        if (!AgenceDtoMapper.TryParseSort(sort, out AgenceTri tri))
-        {
-            return BadRequest(new ApiError(
-                ApiErrorCodes.InvalidSort,
-                "Le tri doit valoir relevance, name ou rating."));
-        }
+        var resultat = await _agenceService.RechercherAsync(recherche, cancellationToken);
 
-        var resultat = await _agenceService.RechercherAsync(
-            new AgenceRecherche
-            {
-                Nom = name,
-                Localisation = location,
-                Region = regionRecherchee,
-                Tri = tri,
-                Page = page,
-                TaillePage = pageSize,
-            },
-            cancellationToken);
+        _logger.LogInformation(
+            "Recherche d'agences (nom : {Nom}, localisation : {Localisation}, région : {Region}, tri : {Tri}, page : {Page}/{NombrePages}) : {Total} résultat(s)",
+            recherche.Nom,
+            recherche.Localisation,
+            recherche.Region,
+            recherche.Tri,
+            resultat.Page,
+            resultat.NombrePages,
+            resultat.Total);
 
         return Ok(AgenceDtoMapper.ToDto(resultat));
     }
@@ -79,6 +61,7 @@ public class AgenceController : ControllerBase
         }
         catch (AgenceNotFoundException ex)
         {
+            _logger.LogWarning("Agence {AgenceId} introuvable", ex.AgenceId);
             return NotFound(new ApiError(ApiErrorCodes.AgenceNotFound, ex.Message));
         }
     }
