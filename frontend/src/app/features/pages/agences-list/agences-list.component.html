@@ -65,6 +65,8 @@
       } @empty {
         @if (loading()) {
           <p class="agences-list__message">{{ 'agences.list.loading' | translate }}</p>
+        } @else if (error()) {
+          <p class="agences-list__message" role="alert">{{ 'agences.loadError' | translate }}</p>
         } @else {
           <div class="agences-list__message">
             <p>{{ 'agences.list.empty' | translate }}</p>

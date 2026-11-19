@@ -6,6 +6,10 @@
       <p class="agence-detail__status" aria-live="polite">{{ 'agences.detail.loading' | translate }}</p>
     }
 
+    @case ('error') {
+      <p class="agence-detail__status" role="alert">{{ 'agences.loadError' | translate }}</p>
+    }
+
     @case ('not-found') {
       <section class="agence-detail__not-found" aria-labelledby="agence-not-found-title">
         <span class="material-symbols-outlined agence-detail__not-found-icon" aria-hidden="true">domain_disabled</span>

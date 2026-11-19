@@ -51,6 +51,7 @@
     "tagline": "Belgisch vastgoed, helder en duidelijk."
   },
   "agences": {
+    "loadError": "De agentschappen kunnen momenteel niet worden geladen. Probeer het later opnieuw.",
     "list": {
       "eyebrow": "Vastgoedprofessionals",
       "title": "Vind een vastgoedkantoor",

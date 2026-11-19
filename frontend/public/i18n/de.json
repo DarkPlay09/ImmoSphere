@@ -51,6 +51,7 @@
     "tagline": "Belgische Immobilien auf einen Blick."
   },
   "agences": {
+    "loadError": "Die Agenturen können derzeit nicht geladen werden. Bitte versuchen Sie es später erneut.",
     "list": {
       "eyebrow": "Immobilienprofis",
       "title": "Finden Sie eine Immobilienagentur",

@@ -1,7 +1,7 @@
 import { ComponentFixture, TestBed } from '@angular/core/testing';
 import { provideRouter } from '@angular/router';
 import { provideTranslateService } from '@ngx-translate/core';
-import { of } from 'rxjs';
+import { of, throwError } from 'rxjs';
 
 import { MOCK_AGENCES } from '../../../shared/agences/data/agences.mock';
 import { AgenceSearchCriteria } from '../../../shared/agences/models/agence-search.model';
@@ -83,5 +83,29 @@ describe('AgencesListComponent', () => {
     expect(component.nameInput()).toBe('');
     expect(component.criteria().sort).toBe('name');
     expect(component.total()).toBe(MOCK_AGENCES.length);
+  });
+});
+
+describe('AgencesListComponent en cas d’erreur', () => {
+  it('affiche un message d’erreur si la recherche échoue', async () => {
+    await TestBed.configureTestingModule({
+      imports: [AgencesListComponent],
+      providers: [
+        provideRouter([]),
+        provideTranslateService(),
+        { provide: AgencesService, useValue: { search: () => throwError(() => new Error('réseau')) } },
+      ],
+    }).compileComponents();
+
+    const fixture = TestBed.createComponent(AgencesListComponent);
+    fixture.detectChanges();
+    await fixture.whenStable();
+    fixture.detectChanges();
+
+    const element = fixture.nativeElement as HTMLElement;
+    expect(fixture.componentInstance.error()).toBe(true);
+    expect(fixture.componentInstance.loading()).toBe(false);
+    expect(element.querySelector('.agences-list__message[role="alert"]')?.textContent).toContain('agences.loadError');
+    expect(element.querySelectorAll('app-agence-card')).toHaveLength(0);
   });
 });

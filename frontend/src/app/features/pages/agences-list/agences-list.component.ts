@@ -9,7 +9,7 @@ import {
 } from '@angular/core';
 import { toObservable, toSignal } from '@angular/core/rxjs-interop';
 import { TranslatePipe } from '@ngx-translate/core';
-import { finalize, switchMap } from 'rxjs';
+import { catchError, finalize, of, switchMap } from 'rxjs';
 
 import { AgenceCardComponent } from '../../../shared/agences/components/agence-card/agence-card.component';
 import { AgenceRegion } from '../../../shared/agences/models/agence.model';
@@ -54,11 +54,21 @@ export class AgencesListComponent {
 
   readonly loading = signal(true);
 
+  /** Vrai si le dernier chargement a échoué (réseau, 400, 500…). */
+  readonly error = signal(false);
+
   readonly result = toSignal(
     toObservable(this.criteria).pipe(
       switchMap((criteria) => {
         this.loading.set(true);
-        return this.agencesService.search(criteria).pipe(finalize(() => this.loading.set(false)));
+        this.error.set(false);
+        return this.agencesService.search(criteria).pipe(
+          catchError(() => {
+            this.error.set(true);
+            return of(undefined);
+          }),
+          finalize(() => this.loading.set(false)),
+        );
       }),
     ),
   );

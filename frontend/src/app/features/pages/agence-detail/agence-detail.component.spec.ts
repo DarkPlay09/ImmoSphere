@@ -1,7 +1,7 @@
 import { ComponentFixture, TestBed } from '@angular/core/testing';
 import { ActivatedRoute, convertToParamMap, provideRouter } from '@angular/router';
 import { provideTranslateService } from '@ngx-translate/core';
-import { of } from 'rxjs';
+import { of, throwError } from 'rxjs';
 
 import { MOCK_AGENCES } from '../../../shared/agences/data/agences.mock';
 import { AgencesService } from '../../../shared/agences/services/agences.service';
@@ -64,5 +64,27 @@ describe('AgenceDetailComponent', () => {
     const element = await render('abc');
 
     expect(element.querySelector('.agence-detail__not-found')).not.toBeNull();
+  });
+});
+
+describe('AgenceDetailComponent en cas d’erreur', () => {
+  it('affiche un message d’erreur si le chargement échoue', async () => {
+    await TestBed.configureTestingModule({
+      imports: [AgenceDetailComponent],
+      providers: [
+        provideRouter([]),
+        provideTranslateService(),
+        { provide: AgencesService, useValue: { getById: () => throwError(() => new Error('réseau')) } },
+        { provide: ActivatedRoute, useValue: { paramMap: of(convertToParamMap({ id: '1' })) } },
+      ],
+    }).compileComponents();
+
+    const fixture = TestBed.createComponent(AgenceDetailComponent);
+    fixture.detectChanges();
+    await fixture.whenStable();
+
+    const element = fixture.nativeElement as HTMLElement;
+    expect(element.querySelector('.agence-detail__status[role="alert"]')?.textContent).toContain('agences.loadError');
+    expect(element.querySelector('.agence-detail__not-found')).toBeNull();
   });
 });

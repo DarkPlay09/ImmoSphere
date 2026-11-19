@@ -1,35 +1,72 @@
-import { Injectable } from '@angular/core';
-import { Observable, delay, map, of } from 'rxjs';
+import { HttpClient, HttpErrorResponse, HttpParams } from '@angular/common/http';
+import { Injectable, inject } from '@angular/core';
+import { Observable, catchError, of, throwError } from 'rxjs';
 
-import { MOCK_AGENCES } from '../data/agences.mock';
+import { environment } from '../../../../../environments/environments';
 import { Agence } from '../models/agence.model';
 import { AgenceSearchCriteria, AgenceSearchResult } from '../models/agence-search.model';
 
-/** Délai simulé d'un appel réseau. */
-const MOCK_LATENCY_MS = 150;
+const AGENCES_URL = `${environment.apiUrl}/api/agences`;
+
+/** Code renvoyé par `GET /api/agences/{id}` quand l'agence n'existe pas. */
+const AGENCE_NOT_FOUND = 'AGENCE_NOT_FOUND';
 
 /**
- * Accès aux agences. Lit pour l'instant les données factices ; les signatures
- * sont celles du futur client HTTP (`GET /api/agences`, `GET /api/agences/{id}`).
+ * Accès aux agences via l'API (`GET /api/agences`, `GET /api/agences/{id}`).
+ * Les champs optionnels absents du JSON restent `undefined`, comme le modèle les décrit.
  */
 @Injectable({ providedIn: 'root' })
 export class AgencesService {
+  private readonly http = inject(HttpClient);
+
   search(criteria: AgenceSearchCriteria): Observable<AgenceSearchResult> {
-    return of(MOCK_AGENCES).pipe(
-      delay(MOCK_LATENCY_MS),
-      map((agences) => searchAgences(agences, criteria)),
-    );
+    return this.http.get<AgenceSearchResult>(AGENCES_URL, { params: toSearchParams(criteria) });
   }
 
-  /** Émet `null` si l'agence n'existe pas. */
+  /** Émet `null` si l'agence n'existe pas (404 `AGENCE_NOT_FOUND`) ; les autres erreurs sont propagées. */
   getById(id: number): Observable<Agence | null> {
-    return of(MOCK_AGENCES.find((agence) => agence.id === id) ?? null).pipe(
-      delay(MOCK_LATENCY_MS),
-    );
+    return this.http
+      .get<Agence>(`${AGENCES_URL}/${id}`)
+      .pipe(catchError((error: unknown) => (isAgenceNotFound(error) ? of(null) : throwError(() => error))));
   }
 }
 
-/** Filtre, trie et pagine une liste d'agences. Fonction pure, reprise côté backend plus tard. */
+/** Paramètres de requête attendus par le back ; les critères vides ou par défaut sont omis. */
+function toSearchParams(criteria: AgenceSearchCriteria): HttpParams {
+  let params = new HttpParams()
+    .set('sort', criteria.sort)
+    .set('page', criteria.page)
+    .set('pageSize', criteria.pageSize);
+
+  const name = criteria.name.trim();
+  const location = criteria.location.trim();
+
+  if (name) {
+    params = params.set('name', name);
+  }
+  if (location) {
+    params = params.set('location', location);
+  }
+  if (criteria.region !== 'all') {
+    params = params.set('region', criteria.region);
+  }
+
+  return params;
+}
+
+function isAgenceNotFound(error: unknown): boolean {
+  return (
+    error instanceof HttpErrorResponse &&
+    error.status === 404 &&
+    (error.error as { code?: unknown } | null)?.code === AGENCE_NOT_FOUND
+  );
+}
+
+/**
+ * Filtre, trie et pagine une liste d'agences, comme le fait le back.
+ * N'est plus utilisée par le service : conservée pour les tests qui simulent l'API
+ * à partir de `agences.mock.ts` (liste des agences).
+ */
 export function searchAgences(agences: readonly Agence[], criteria: AgenceSearchCriteria): AgenceSearchResult {
   const name = normalize(criteria.name);
   const locationTokens = normalize(criteria.location).split(/[\s,]+/).filter(Boolean);

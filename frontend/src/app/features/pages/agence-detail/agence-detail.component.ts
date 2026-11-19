@@ -2,7 +2,7 @@ import { ChangeDetectionStrategy, Component, computed, inject } from '@angular/c
 import { toSignal } from '@angular/core/rxjs-interop';
 import { ActivatedRoute, RouterLink } from '@angular/router';
 import { TranslatePipe } from '@ngx-translate/core';
-import { Observable, map, of, startWith, switchMap } from 'rxjs';
+import { Observable, catchError, map, of, startWith, switchMap } from 'rxjs';
 
 import { Agence } from '../../../shared/agences/models/agence.model';
 import { AgencesService } from '../../../shared/agences/services/agences.service';
@@ -13,7 +13,8 @@ import { AgenceSpecsComponent } from './components/agence-specs/agence-specs.com
 type AgenceDetailState =
   | { status: 'loading' }
   | { status: 'found'; agence: Agence }
-  | { status: 'not-found' };
+  | { status: 'not-found' }
+  | { status: 'error' };
 
 @Component({
   selector: 'app-agence-detail',
@@ -38,6 +39,8 @@ export class AgenceDetailComponent {
 
         return this.agencesService.getById(id).pipe(
           map((agence): AgenceDetailState => (agence ? { status: 'found', agence } : { status: 'not-found' })),
+          // Erreur réseau, 400, 500… (la 404 AGENCE_NOT_FOUND est déjà convertie en `null` par le service).
+          catchError(() => of<AgenceDetailState>({ status: 'error' })),
           startWith<AgenceDetailState>({ status: 'loading' }),
         );
       }),
