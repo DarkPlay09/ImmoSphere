@@ -15,17 +15,35 @@ export interface VerifyEmailRequest {
 export class AuthApiService {
   private readonly http = inject(HttpClient);
 
+  // Création du compte
   postRegisterForm(data: RegistrationFormValue) {
-    return this.http.post(`${environment.apiUrl}/api/auth/register`, data);
+    return this.http.post(
+      `${environment.apiUrl}/api/auth/register`,
+      data
+    );
   }
 
+  // Confirmation de l'adresse e-mail
   verifyEmail(data: VerifyEmailRequest) {
-    return this.http.post<void>(`${environment.apiUrl}/api/auth/verify-email`, data);
+    return this.http.post<void>(
+      `${environment.apiUrl}/api/auth/verify-email`,
+      data,
+      {
+        withCredentials: environment.authSessionCookiesEnabled,
+      },
+    );
   }
 
+  // Récupération de l'utilisateur connecté
   getCurrentUser() {
-    return this.http.get<{ id: string; email: string }>(`${environment.apiUrl}/api/auth/me`, {
-      withCredentials: true,
-    });
+    return this.http.get<{
+      id: string;
+      email: string
+    }>(
+      `${environment.apiUrl}/api/auth/me`,
+      {
+        withCredentials: true,
+      },
+    );
   }
 }
