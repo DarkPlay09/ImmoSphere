@@ -85,6 +85,32 @@ public class EmailConfirmationService : IEmailConfirmationService
         return code;
     }
 
+    public async Task<string?> GenerateResendCodeAsync(string userId)
+    {
+        if (string.IsNullOrWhiteSpace(userId))
+        {
+            throw new ArgumentException(
+                "UserId invalide.",
+                nameof(userId));
+        }
+        
+        var existingCode = await _dbContext.EmailConfirmationCodes
+            .AsNoTracking()
+            .SingleOrDefaultAsync(c => c.UserId == userId);
+
+        if (existingCode != null)
+        {
+            var elapsed = DateTime.UtcNow - existingCode.ExpiresAtUtc;
+
+            if (elapsed < TimeSpan.FromSeconds(60))
+            {
+                return null;
+            }
+        }
+        
+        return await GenerateCodeAsync(userId);
+    }
+
     public async Task<bool> VerifyCodeAsync(string email, string code)
     {
         if (string.IsNullOrWhiteSpace(email) ||
