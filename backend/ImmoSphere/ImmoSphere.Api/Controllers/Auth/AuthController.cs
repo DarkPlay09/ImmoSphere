@@ -3,6 +3,8 @@ using ImmoSphere.Api.Security;
 using ImmoSphere.Domain.Exceptions.Auth;
 using ImmoSphere.Domain.Services.Interfaces;
 using Microsoft.AspNetCore.Mvc;
+using Microsoft.AspNetCore.Authentication.JwtBearer;
+using Microsoft.AspNetCore.Authorization;
 
 using System.IdentityModel.Tokens.Jwt;
 
@@ -201,5 +203,33 @@ public class AuthController : ControllerBase
     public IActionResult Logout()
     {
         return Ok(new { message = "Déconnexion reçue" });
+    }
+    
+    [HttpGet("me")]
+    [Authorize(AuthenticationSchemes = JwtBearerDefaults.AuthenticationScheme)]
+    public IActionResult GetCurrentUser()
+    {
+        string? userId = User.FindFirst(
+            JwtRegisteredClaimNames.Email
+            )?.Value;
+        
+        string? email = User.FindFirst(
+            JwtRegisteredClaimNames.Email
+            )?.Value;
+
+        if (string.IsNullOrWhiteSpace(userId) ||
+            string.IsNullOrWhiteSpace(email))
+        {
+            return Unauthorized(new
+            {
+                message = "Session invalide."
+            });
+        }
+
+        return Ok(new
+        {
+            id = userId,
+            email = email
+        });
     }
 }
