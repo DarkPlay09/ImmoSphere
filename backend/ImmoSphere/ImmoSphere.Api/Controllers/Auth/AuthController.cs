@@ -5,6 +5,7 @@ using ImmoSphere.Domain.Services.Interfaces;
 using Microsoft.AspNetCore.Mvc;
 using Microsoft.AspNetCore.Authentication.JwtBearer;
 using Microsoft.AspNetCore.Authorization;
+using Microsoft.AspNetCore.RateLimiting;
 
 using System.IdentityModel.Tokens.Jwt;
 
@@ -191,6 +192,29 @@ public class AuthController : ControllerBase
 
             return Problem("Une erreur interne est survenue.");
         }
+    }
+
+    [HttpPost("resend-confirmation")]
+    [EnableRateLimiting("resend-confirmation")]
+    public async Task<IActionResult> ResendConfirmation(
+        [FromBody] ResendConfirmationRequestDto request)
+    {
+        try
+        {
+            await _service.ResendConfirmationCodeAsync(request.Email);
+        }
+        catch (Exception e)
+        {
+            _logger.LogError(
+                e,
+                "Erreur lors du renvoi d'un code de confirmation");
+        }
+
+        return Ok(new
+        {
+            message = "Si cette adresse correspond à un compte non confirmé, " +
+                      "un nouveau code vous sera envoyé lorsque le renvoi sera possible."
+        });
     }
 
     [HttpPost("login")]

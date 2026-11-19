@@ -14,7 +14,9 @@ using ImmoSphere.Infrastructure.Services.Email;
 using Microsoft.AspNetCore.Authentication.JwtBearer;
 using Microsoft.AspNetCore.Identity;
 using Microsoft.AspNetCore.Antiforgery;
+using Microsoft.AspNetCore.RateLimiting;
 using Microsoft.IdentityModel.Tokens;
+using System.Threading.RateLimiting;
 
 var builder = WebApplication.CreateBuilder(args);
 
@@ -150,6 +152,32 @@ builder.Services.AddScoped<UtilisateurRegistrationService>();
 builder.Services.AddAuthorization();
 
 // ==========================================
+// LIMITATION DES REQUÊTES
+// ==========================================
+
+builder.Services.AddRateLimiter(options =>
+{
+    options.RejectionStatusCode =
+        StatusCodes.Status429TooManyRequests;
+
+    options.AddPolicy("resend-confirmation", context =>
+        RateLimitPartition.GetFixedWindowLimiter(
+            partitionKey:
+            context.Connection.RemoteIpAddress?.ToString()
+            ?? "unknown",
+
+            factory: _ => new FixedWindowRateLimiterOptions
+            {
+                PermitLimit = 5,
+                Window = TimeSpan.FromMinutes(5),
+                QueueLimit = 0,
+                AutoReplenishment = true
+            }
+        )
+    );
+});
+
+// ==========================================
 // CORS (FRONT-END ANGULAR)
 // ==========================================
 
@@ -263,8 +291,12 @@ app.UseMiddleware<LogOriginMiddleware>();
 // Redirection HTTPS
 app.UseHttpsRedirection();
 
+app.UseRouting();
+
 // Autoriser le front Angular
 app.UseCors("AngularDev");
+
+app.UseRateLimiter();
 
 // Authentification
 app.UseAuthentication();
