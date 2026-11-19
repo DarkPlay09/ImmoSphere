@@ -3,6 +3,7 @@ import { Router, RouterLink } from '@angular/router';
 import { TranslatePipe } from '@ngx-translate/core';
 
 import { LanguagePickerComponent } from '../../LanguagePicker/language-picker.component';
+import { AuthSessionService } from '../../../features/auth/data-access/auth-session.service';
 import { NAVBAR_LINKS } from './data/navbar-links.data';
 
 @Component({
@@ -16,7 +17,10 @@ import { NAVBAR_LINKS } from './data/navbar-links.data';
 export class NavbarComponent {
   private readonly router = inject(Router);
 
-  readonly isLoggedIn = input(false);
+  readonly session = inject(AuthSessionService);
+
+  readonly isLoggedIn = this.session.isAuthenticated;
+
   readonly publishRequested = output<void>();
   readonly favoritesCount = input(0);
   readonly navigationLinks = NAVBAR_LINKS;
