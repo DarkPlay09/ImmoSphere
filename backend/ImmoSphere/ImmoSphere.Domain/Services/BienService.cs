@@ -13,8 +13,13 @@ public class BienService : IBienService
         _repository = repository;
     }
 
-    public Bien getBienById(int id)
+    public Task<Bien> GetBienByIdAsync(int id, CancellationToken cancellationToken)
     {
-        return _repository.getBienById(id);
+        return _repository.GetBienByIdAsync(id,  cancellationToken);
+    }
+
+    public Task<Bien> GetPublishedBienByIdAsync(int id, CancellationToken cancellationToken)
+    {
+        return _repository.GetPublishedBienByIdAsync(id,  cancellationToken);
     }
 }

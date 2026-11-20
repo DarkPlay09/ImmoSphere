@@ -52,4 +52,30 @@ public class Bien
     public int nbFavori { get; set; }
     public IList<InformationAnnexe>  InformationAnnexes { get; set; }
 
- }
+    /// <summary>Retourne l'adresse du bien en masquant les informations confidentielles.</summary>
+    public AdressePublique ObtenirAdressePublique()
+    {
+        if (AdresseConfidentielle)
+        {
+            return new AdressePublique(
+                EstConfidentielle: true,
+                Rue: null,
+                Numero: null,
+                Boite: null,
+                CodePostal: CodePostal,
+                Localite: Localite,
+                Province: Province
+            );
+        }
+
+        return new AdressePublique(
+            EstConfidentielle: false,
+            Rue: Rue,
+            Numero: Numero,
+            Boite: Boite,
+            CodePostal: CodePostal,
+            Localite: Localite,
+            Province: Province
+        );
+    }
+}

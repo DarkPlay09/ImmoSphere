@@ -1,0 +1,53 @@
+
+<section
+  class="featured-notaries"
+  aria-labelledby="featured-notaries-title"
+>
+  <div class="featured-notaries__container">
+
+    <header class="featured-notaries__header">
+      <span class="featured-notaries__eyebrow">
+        {{ 'home.notaries.eyebrow' | translate }}
+      </span>
+
+      <h2 id="featured-notaries-title">
+        {{ 'home.notaries.title' | translate }}
+      </h2>
+
+      <p>
+        {{ 'home.notaries.description' | translate }}
+      </p>
+    </header>
+
+    <div class="featured-notaries__grid">
+      @for (notary of notaries; track notary.id) {
+        <app-notary-card [notary]="notary" />
+      }
+    </div>
+
+    <div class="featured-notaries__notice">
+      <div class="featured-notaries__notice-text">
+        <!-- Mettre le logo -->
+
+        <p>
+          <strong>
+            {{ 'home.notaries.freedomTitle' | translate }}
+          </strong>
+          {{ 'home.notaries.freedomText' | translate }}
+        </p>
+      </div>
+
+      <button
+        type="button"
+        class="featured-notaries__all-button"
+        disabled
+        [title]="'home.notaries.unavailable' | translate"
+      >
+        {{ 'home.notaries.discoverAll' | translate }}
+
+        <!-- Mettre le logo -->
+      </button>
+    </div>
+
+  </div>
+</section>

@@ -149,5 +149,103 @@
         "back": "Back to the agency list"
       }
     }
+  },
+  "home": {
+    "hero": {
+      "badge": "THE IMMOSPHERE EXPERIENCE · BRUSSELS · FLANDERS · WALLONIA",
+      "title": "Find the property that's right for you.",
+      "description": "Houses, apartments, plots of land and much more throughout Belgium, with virtual tours and certified energy assessments."
+    },
+
+    "search": {
+      "buy": "Buy",
+      "rent": "Rent",
+      "location": "Location",
+      "locationPlaceholder": "Brussels, Liège, Namur...",
+      "propertyType": "Property type",
+      "anyProperty": "All properties",
+      "house": "House",
+      "apartment": "Apartment",
+      "land": "Land",
+      "budgetMax": "Max budget",
+      "anyBudget": "Any",
+      "bedrooms": "Bedrooms",
+      "anyBedrooms": "Any",
+      "minArea": "Min. area (m²)",
+      "minAreaPlaceholder": "E.g. 80",
+      "peb": "Energy rating",
+      "anyPeb": "Any",
+      "moreFilters": "More filters",
+      "lessFilters": "Fewer filters",
+      "viewMap": "View on map",
+      "mapUnavailable": "Map view is not yet available.",
+      "submit": "Search"
+    },
+
+    "latest": {
+      "eyebrow": "Property selection",
+      "title": "Discover the latest listings",
+      "filtersLabel": "Filter property listings",
+      "all": "All",
+      "sale": "For sale",
+      "rent": "For rent",
+      "new": "New listings",
+      "virtualTour": "360° tour",
+      "viewAll": "View all listings",
+      "empty": "No properties match this filter."
+    },
+
+    "notaries": {
+      "eyebrow": "Real estate guidance",
+      "title": "Find a notary to guide you.",
+      "description": "Discover notaries in Belgium, explore their offices and freely choose a professional for preliminary advice, sale agreements and authentic deeds.",
+      "languages": "Languages",
+      "viewProfile": "View notary office",
+      "discoverAll": "Discover all notaries",
+      "freedomTitle": "Freedom of choice:",
+      "freedomText": "you remain entirely free to choose your notary in Belgium, whether or not they are listed on ImmoSphere. Notarial guidance is optional during your property search and independent of our platform.",
+      "unavailable": "Notary pages are not available yet.",
+      "expertise": {
+        "claireMain": "Property law & sale agreements",
+        "claireSecondary": "Leases, easements & public sales",
+        "julienMain": "Residential sales & purchases",
+        "julienSecondary": "Mortgages & donations",
+        "sophieMain": "Authentic deeds & co-ownership",
+        "sophieSecondary": "Bilingual guidance & investments"
+      }
+    },
+
+    "map": {
+      "eyebrow": "Smart mapping",
+      "title": "Explore properties around you",
+      "description": "Filter properties by proximity to Belgian train stations, schools and business districts.",
+      "searchOnMap": "Search on the map",
+      "regionsLabel": "Filter properties by region",
+      "ariaLabel": "Interactive property map",
+      "allBelgium": "All Belgium",
+      "brussels": "Brussels",
+      "flanders": "Flanders",
+      "wallonia": "Wallonia",
+      "viewProperty": "View property",
+      "detailsUnavailable": "The property details page is not available yet.",
+      "imageAlt": "Property in {{city}}",
+      "types": {
+        "penthouse": "Penthouse",
+        "apartment": "Apartment",
+        "villa": "Villa",
+        "house": "House"
+      }
+    },
+
+    "publish": {
+      "badge": "Individuals & Landlords",
+      "title": "Want to sell or rent out a property?",
+      "description": "Publish your listing in a few steps, manage viewing requests and communicate with interested people by email.",
+      "benefit1": "Publish your first listing for free in 5 minutes",
+      "benefit2": "Indicative property valuation based on your local market",
+      "benefit3": "Manage viewing time slots directly to avoid unwanted calls",
+      "button": "List my property",
+      "unavailable": "Property publishing is not available yet."
+    }
   }
 }

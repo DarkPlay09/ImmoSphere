@@ -1,0 +1,81 @@
+.ui-select {
+  position: relative;
+  display: flex;
+  align-items: center;
+  min-inline-size: 0;
+
+  > select {
+    box-sizing: border-box;
+    inline-size: 100%;
+    min-inline-size: 0;
+    padding: 0;
+    padding-inline-end: 20px;
+    border: 0;
+    appearance: none;
+    background: transparent;
+    color: inherit;
+    font: inherit;
+    cursor: pointer;
+
+    &:focus-visible {
+      outline: 2px solid #6c2d6b;
+      outline-offset: 2px;
+    }
+  }
+
+  > .ui-select__chevron {
+    position: absolute;
+    inset-inline-end: 0;
+    top: 50%;
+    transform: translateY(-50%);
+    width: 9px;
+    height: 6px;
+    pointer-events: none;
+  }
+
+  @supports (appearance: base-select) and selector(::picker(select)) {
+    select,
+    select::picker(select) {
+      appearance: base-select;
+    }
+
+    select::picker-icon {
+      display: none;
+    }
+
+    select::picker(select) {
+      position-area: block-end span-inline-end;
+      position-try-fallbacks: none;
+      max-block-size: min(16rem, calc(100% - 8px));
+      overflow-y: auto;
+      margin-block-start: 8px;
+      padding: 6px;
+      border: 1px solid rgb(211 194 205 / 60%);
+      border-radius: 8px;
+      background: #fff;
+      box-shadow: 0 8px 24px rgb(15 37 55 / 12%);
+      color: #4f434c;
+      font: 500 14px / 20px Inter, sans-serif;
+    }
+
+    option {
+      padding: 8px 12px;
+      border-radius: 6px;
+    }
+
+    option::checkmark {
+      display: none;
+    }
+
+    option:hover,
+    option:focus-visible {
+      background: #f5f0f5;
+      color: #6c2d6b;
+    }
+
+    option:checked {
+      background: #6c2d6b;
+      color: #fff;
+    }
+  }
+}

@@ -8,8 +8,9 @@ export const routes: Routes = [
     children: [
       {
         path: '',
-        pathMatch: 'full',
-        redirectTo: 'properties',
+        loadComponent: () =>
+          import('./features/pages/home/home.component').then(
+            (m) => m.HomeComponent),
       },
       {
         path: 'properties',

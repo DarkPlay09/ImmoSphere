@@ -1,0 +1,40 @@
+import { Notary } from '../../../shared/notaries/models/notary.model';
+
+export const FEATURED_NOTARIES: readonly Notary[] = [
+  {
+    id: 'claire-dubois',
+    initials: 'CD',
+    fullName: 'Maître Claire Dubois',
+    officeName: 'Étude Dubois & Associés',
+    city: 'Liège',
+    postalCode: '4000',
+    languages: ['FR', 'NL'],
+    mainExpertiseKey: 'home.notaries.expertise.claireMain',
+    secondaryExpertiseKey: 'home.notaries.expertise.claireSecondary',
+    avatarTone: 'plum',
+  },
+  {
+    id: 'julien-lambert',
+    initials: 'JL',
+    fullName: 'Maître Julien Lambert',
+    officeName: 'Étude Lambert',
+    city: 'Chaudfontaine',
+    postalCode: '4050',
+    languages: ['FR', 'EN'],
+    mainExpertiseKey: 'home.notaries.expertise.julienMain',
+    secondaryExpertiseKey: 'home.notaries.expertise.julienSecondary',
+    avatarTone: 'purple',
+  },
+  {
+    id: 'sophie-de-smet',
+    initials: 'SD',
+    fullName: 'Maître Sophie De Smet',
+    officeName: 'Étude De Smet & Partners',
+    city: 'Bruxelles',
+    postalCode: '1000',
+    languages: ['FR', 'NL', 'EN'],
+    mainExpertiseKey: 'home.notaries.expertise.sophieMain',
+    secondaryExpertiseKey: 'home.notaries.expertise.sophieSecondary',
+    avatarTone: 'dark',
+  },
+];

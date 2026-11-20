@@ -1,0 +1,108 @@
+<section class="home-map" aria-labelledby="home-map-title">
+  <div class="home-map__container">
+
+    <header class="home-map__header">
+      <div class="home-map__heading">
+        <span class="home-map__eyebrow">
+          {{ 'home.map.eyebrow' | translate }}
+        </span>
+
+        <h2 id="home-map-title">
+          {{ 'home.map.title' | translate }}
+        </h2>
+
+        <p>
+          {{ 'home.map.description' | translate }}
+        </p>
+      </div>
+
+      <button
+        type="button"
+        class="home-map__search-button"
+        (click)="focusMap()"
+      >
+        <!-- Mettre le logo -->
+
+        {{ 'home.map.searchOnMap' | translate }}
+      </button>
+    </header>
+
+    <div class="home-map__map-wrapper">
+
+      <app-property-map
+        [properties]="visibleProperties()"
+        [selectedPropertyId]="selectedPropertyId()"
+        [ariaLabel]="'home.map.ariaLabel' | translate"
+        (propertySelected)="selectProperty($event)"
+      />
+
+      <div
+        class="home-map__regions"
+        role="group"
+        [attr.aria-label]="'home.map.regionsLabel' | translate"
+      >
+        @for (region of regions; track region.value) {
+          <button
+            type="button"
+            class="home-map__region"
+            [class.home-map__region--active]="
+              activeRegion() === region.value
+            "
+            [attr.aria-pressed]="activeRegion() === region.value"
+            (click)="selectRegion(region.value)"
+          >
+            {{ region.labelKey | translate }}
+          </button>
+        }
+      </div>
+
+      @if (selectedProperty(); as property) {
+        <article class="home-map__preview">
+
+          <div class="home-map__preview-image">
+            <img
+              [src]="property.imageUrl"
+              [alt]="
+                'home.map.imageAlt'
+                  | translate: { city: property.city }
+              "
+            />
+
+            @if (property.peb) {
+              <span class="home-map__peb">
+                PEB {{ property.peb }}
+              </span>
+            }
+          </div>
+
+          <div class="home-map__preview-content">
+            <p class="home-map__preview-location">
+              {{ property.city }}
+              {{ property.postalCode }}
+              ·
+              {{
+                ('home.map.types.' + property.kind) | translate
+              }}
+            </p>
+
+            <p class="home-map__preview-price">
+              {{ property.price.toLocaleString('fr-BE') }} €
+            </p>
+
+            <button
+              type="button"
+              class="home-map__view-property"
+              disabled
+              [title]="'home.map.detailsUnavailable' | translate"
+            >
+              {{ 'home.map.viewProperty' | translate }}
+
+              <!-- Mettre le logo -->
+            </button>
+          </div>
+        </article>
+      }
+
+    </div>
+  </div>
+</section>
