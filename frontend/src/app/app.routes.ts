@@ -64,6 +64,13 @@ export const routes: Routes = [
             (m) => m.AgenceDetailComponent,
           ),
       },
+      {
+        path: 'faq',
+        loadComponent: () =>
+          import('./features/pages/faq/faq.component').then(
+            (m) => m.FaqComponent,
+          ),
+      },
     ],
   },
 ];
