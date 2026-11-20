@@ -1,7 +1,7 @@
 import { ComponentFixture, TestBed } from '@angular/core/testing';
 import { provideRouter } from '@angular/router';
 import { provideTranslateService } from '@ngx-translate/core';
-import { of } from 'rxjs';
+import { NEVER, of, throwError } from 'rxjs';
 import { Mock } from 'vitest';
 
 import { MOCK_FAQ_QUESTIONS } from '../../../shared/faq/data/faq.mock';
@@ -91,10 +91,39 @@ describe('FaqComponent', () => {
     expect(items()).toBe(0);
     expect(component.countKey()).toBe('faq.list.countNone');
 
-    element().querySelector<HTMLButtonElement>('.faq-page__reset')!.click();
+    element().querySelector<HTMLButtonElement>('.faq-page__action')!.click();
     await render();
 
     expect(component.searchInput()).toBe('');
+    expect(items()).toBe(MOCK_FAQ_QUESTIONS.length);
+  });
+
+  it('affiche un message de chargement tant que la FAQ n’est pas reçue', async () => {
+    search.mockReturnValue(NEVER);
+    fixture = TestBed.createComponent(FaqComponent);
+    await render();
+
+    expect(element().querySelector('.faq-page__list')?.getAttribute('aria-busy')).toBe('true');
+    expect(element().querySelector('.faq-page__message')?.textContent).toContain('faq.list.loading');
+    expect(items()).toBe(0);
+  });
+
+  it('affiche une erreur avec « Réessayer », qui relance la même recherche', async () => {
+    search.mockReturnValueOnce(throwError(() => new Error('API coupée')));
+    fixture = TestBed.createComponent(FaqComponent);
+    component = fixture.componentInstance;
+    await render();
+
+    const alert = element().querySelector('[role="alert"]');
+    expect(alert?.textContent).toContain('faq.list.loadError');
+    expect(element().querySelector('.faq-page__count')?.textContent?.trim()).toBe('');
+    expect(items()).toBe(0);
+
+    element().querySelector<HTMLButtonElement>('.faq-page__action')!.click();
+    await render();
+
+    expect(search).toHaveBeenLastCalledWith('');
+    expect(element().querySelector('[role="alert"]')).toBeNull();
     expect(items()).toBe(MOCK_FAQ_QUESTIONS.length);
   });
 });

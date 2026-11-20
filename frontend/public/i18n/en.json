@@ -354,7 +354,10 @@
       "countOne": "1 question",
       "countNone": "No questions",
       "empty": "No question matches “{{term}}”.",
-      "emptyReset": "Reset search"
+      "emptyReset": "Reset search",
+      "loading": "Loading questions…",
+      "loadError": "The FAQ could not be loaded right now. Check your connection and try again.",
+      "retry": "Try again"
     },
     "rating": {
       "question": "Was this answer helpful?",

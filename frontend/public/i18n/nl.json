@@ -354,7 +354,10 @@
       "countOne": "1 vraag",
       "countNone": "Geen vragen",
       "empty": "Geen enkele vraag komt overeen met ‘{{term}}’.",
-      "emptyReset": "Zoekopdracht wissen"
+      "emptyReset": "Zoekopdracht wissen",
+      "loading": "Vragen worden geladen…",
+      "loadError": "De FAQ kan momenteel niet worden geladen. Controleer uw verbinding en probeer het opnieuw.",
+      "retry": "Opnieuw proberen"
     },
     "rating": {
       "question": "Was dit antwoord nuttig?",

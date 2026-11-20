@@ -162,6 +162,10 @@
     display: flex;
     flex-direction: column;
     gap: 8px;
+
+    &--loading {
+      opacity: 0.6;
+    }
   }
 
   &__message {
@@ -177,7 +181,7 @@
     }
   }
 
-  &__reset {
+  &__action {
     padding: 10px 16px;
 
     background: $surface-low;
@@ -192,7 +196,7 @@
   }
 
   &__breadcrumb-link,
-  &__reset {
+  &__action {
     &:focus-visible {
       outline: 2px solid $primary;
       outline-offset: 2px;

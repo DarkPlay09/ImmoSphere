@@ -354,7 +354,10 @@
       "countOne": "1 question",
       "countNone": "Aucune question",
       "empty": "Aucune question ne correspond à « {{term}} ».",
-      "emptyReset": "Réinitialiser la recherche"
+      "emptyReset": "Réinitialiser la recherche",
+      "loading": "Chargement des questions…",
+      "loadError": "Impossible de charger la FAQ pour le moment. Vérifiez votre connexion puis réessayez.",
+      "retry": "Réessayer"
     },
     "rating": {
       "question": "Cette réponse vous a-t-elle été utile ?",

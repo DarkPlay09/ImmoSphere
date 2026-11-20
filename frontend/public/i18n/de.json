@@ -354,7 +354,10 @@
       "countOne": "1 Frage",
       "countNone": "Keine Fragen",
       "empty": "Keine Frage entspricht „{{term}}“.",
-      "emptyReset": "Suche zurücksetzen"
+      "emptyReset": "Suche zurücksetzen",
+      "loading": "Fragen werden geladen…",
+      "loadError": "Die FAQ können derzeit nicht geladen werden. Prüfen Sie Ihre Verbindung und versuchen Sie es erneut.",
+      "retry": "Erneut versuchen"
     },
     "rating": {
       "question": "War diese Antwort hilfreich?",
