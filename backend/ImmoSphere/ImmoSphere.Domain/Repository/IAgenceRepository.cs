@@ -5,15 +5,15 @@ namespace ImmoSphere.Domain.Repository;
 public interface IAgenceRepository
 {
     /// <summary>Nombre d'agences correspondant aux filtres (nom, localisation, région).</summary>
-    Task<int> CompterAsync(AgenceRecherche recherche, CancellationToken cancellationToken = default);
+    Task<int> CountAsync(AgenceRecherche recherche, CancellationToken cancellationToken = default);
 
-    /// <summary>Agences filtrées et triées, en sautant les <paramref name="decalage"/> premières.</summary>
-    Task<IList<Agence>> RechercherAsync(
+    /// <summary>Agences filtrées et triées, en sautant les <paramref name="offset"/> premières.</summary>
+    Task<IList<Agence>> SearchAsync(
         AgenceRecherche recherche,
-        int decalage,
-        int nombre,
+        int offset,
+        int count,
         CancellationToken cancellationToken = default);
 
     /// <summary>Null si l'agence n'existe pas.</summary>
-    Task<Agence?> TrouverParIdAsync(int id, CancellationToken cancellationToken = default);
+    Task<Agence?> FindByIdAsync(int id, CancellationToken cancellationToken = default);
 }

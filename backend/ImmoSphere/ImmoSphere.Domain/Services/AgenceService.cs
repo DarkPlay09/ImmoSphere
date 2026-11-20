@@ -14,13 +14,13 @@ public class AgenceService : IAgenceService
         _repository = repository;
     }
 
-    public async Task<AgencePage> RechercherAsync(AgenceRecherche recherche, CancellationToken cancellationToken = default)
+    public async Task<AgencePage> SearchAsync(AgenceRecherche recherche, CancellationToken cancellationToken = default)
     {
         // Les critères sont validés à l'entrée de l'API ; garde contre une division par zéro.
         ArgumentOutOfRangeException.ThrowIfNegativeOrZero(recherche.TaillePage);
         int taillePage = recherche.TaillePage;
 
-        int total = await _repository.CompterAsync(recherche, cancellationToken);
+        int total = await _repository.CountAsync(recherche, cancellationToken);
 
         // Même règle que le front : la page demandée est ramenée dans [1, nombre de pages].
         int nombrePages = Math.Max(1, (int)Math.Ceiling(total / (double)taillePage));
@@ -28,7 +28,7 @@ public class AgenceService : IAgenceService
 
         IList<Agence> agences = total == 0
             ? new List<Agence>()
-            : await _repository.RechercherAsync(recherche, (page - 1) * taillePage, taillePage, cancellationToken);
+            : await _repository.SearchAsync(recherche, (page - 1) * taillePage, taillePage, cancellationToken);
 
         return new AgencePage
         {
@@ -39,9 +39,9 @@ public class AgenceService : IAgenceService
         };
     }
 
-    public async Task<Agence> ObtenirParIdAsync(int id, CancellationToken cancellationToken = default)
+    public async Task<Agence> GetByIdAsync(int id, CancellationToken cancellationToken = default)
     {
-        return await _repository.TrouverParIdAsync(id, cancellationToken)
+        return await _repository.FindByIdAsync(id, cancellationToken)
             ?? throw new AgenceNotFoundException(id);
     }
 }

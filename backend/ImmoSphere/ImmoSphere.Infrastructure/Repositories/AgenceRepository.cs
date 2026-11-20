@@ -23,29 +23,29 @@ public class AgenceRepository : IAgenceRepository
         _context = context;
     }
 
-    public Task<int> CompterAsync(AgenceRecherche recherche, CancellationToken cancellationToken = default)
+    public Task<int> CountAsync(AgenceRecherche recherche, CancellationToken cancellationToken = default)
     {
-        return Filtrer(_context.Agences.AsNoTracking(), recherche).CountAsync(cancellationToken);
+        return Filter(_context.Agences.AsNoTracking(), recherche).CountAsync(cancellationToken);
     }
 
-    public async Task<IList<Agence>> RechercherAsync(
+    public async Task<IList<Agence>> SearchAsync(
         AgenceRecherche recherche,
-        int decalage,
-        int nombre,
+        int offset,
+        int count,
         CancellationToken cancellationToken = default)
     {
         // Une seule requête SQL : filtre, tri, pagination et spécifications.
-        var lignes = await Trier(Projeter(Filtrer(_context.Agences.AsNoTracking(), recherche)), recherche.Tri)
-            .Skip(decalage)
-            .Take(nombre)
+        var lignes = await Sort(Project(Filter(_context.Agences.AsNoTracking(), recherche)), recherche.Tri)
+            .Skip(offset)
+            .Take(count)
             .ToListAsync(cancellationToken);
 
         return lignes.Select(AgenceMapper.AgenceToDomain).ToList();
     }
 
-    public async Task<Agence?> TrouverParIdAsync(int id, CancellationToken cancellationToken = default)
+    public async Task<Agence?> FindByIdAsync(int id, CancellationToken cancellationToken = default)
     {
-        var ligne = await Projeter(_context.Agences.AsNoTracking().Where(a => a.Id == id))
+        var ligne = await Project(_context.Agences.AsNoTracking().Where(a => a.Id == id))
             .FirstOrDefaultAsync(cancellationToken);
 
         return ligne is null ? null : AgenceMapper.AgenceToDomain(ligne);
@@ -55,7 +55,7 @@ public class AgenceRepository : IAgenceRepository
     // FILTRES
     // ==========================================
 
-    private static IQueryable<AgenceEntity> Filtrer(IQueryable<AgenceEntity> requete, AgenceRecherche recherche)
+    private static IQueryable<AgenceEntity> Filter(IQueryable<AgenceEntity> requete, AgenceRecherche recherche)
     {
         var agence = Expression.Parameter(typeof(AgenceEntity), "a");
         Expression Champ(string nom) => Expression.Property(agence, nom);
@@ -81,7 +81,7 @@ public class AgenceRepository : IAgenceRepository
 
         if (recherche.Region is { } region)
         {
-            requete = requete.Where(Lambda(FiltreRegion(Champ(nameof(AgenceEntity.CodePostal)), region)));
+            requete = requete.Where(Lambda(RegionFilter(Champ(nameof(AgenceEntity.CodePostal)), region)));
         }
 
         return requete;
@@ -91,7 +91,7 @@ public class AgenceRepository : IAgenceRepository
     /// La région n'est pas stockée : filtre sur les tranches de codes postaux de la région
     /// (<c>code_postal</c> de 4 caractères compris entre le début et la fin d'une tranche).
     /// </summary>
-    private static Expression FiltreRegion(Expression codePostal, Region region)
+    private static Expression RegionFilter(Expression codePostal, Region region)
     {
         Expression longueurValide = Expression.AndAlso(
             Expression.NotEqual(codePostal, Expression.Constant(null, typeof(string))),
@@ -120,8 +120,8 @@ public class AgenceRepository : IAgenceRepository
     // TRI
     // ==========================================
 
-    /// <summary>Tri sur la projection : le calcul de la note n'est défini qu'à un seul endroit (<see cref="Projeter"/>).</summary>
-    private static IQueryable<AgenceLigne> Trier(IQueryable<AgenceLigne> requete, AgenceTri tri)
+    /// <summary>Tri sur la projection : le calcul de la note n'est défini qu'à un seul endroit (<see cref="Project"/>).</summary>
+    private static IQueryable<AgenceLigne> Sort(IQueryable<AgenceLigne> requete, AgenceTri tri)
     {
         return tri switch
         {
@@ -141,7 +141,7 @@ public class AgenceRepository : IAgenceRepository
     // PROJECTION
     // ==========================================
 
-    private static IQueryable<AgenceLigne> Projeter(IQueryable<AgenceEntity> requete)
+    private static IQueryable<AgenceLigne> Project(IQueryable<AgenceEntity> requete)
     {
         return requete.Select(a => new AgenceLigne
         {

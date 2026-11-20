@@ -23,7 +23,7 @@ public class AgenceController : ControllerBase
     [HttpGet]
     [ProducesResponseType<AgenceSearchResultDto>(StatusCodes.Status200OK)]
     [ProducesResponseType<ApiError>(StatusCodes.Status400BadRequest)]
-    public async Task<ActionResult<AgenceSearchResultDto>> Rechercher(
+    public async Task<ActionResult<AgenceSearchResultDto>> Search(
         [FromQuery] AgenceSearchQuery query,
         CancellationToken cancellationToken)
     {
@@ -33,7 +33,7 @@ public class AgenceController : ControllerBase
             return BadRequest(erreur);
         }
 
-        var resultat = await _agenceService.RechercherAsync(recherche, cancellationToken);
+        var resultat = await _agenceService.SearchAsync(recherche, cancellationToken);
 
         _logger.LogInformation(
             "Recherche d'agences (nom : {Nom}, localisation : {Localisation}, région : {Region}, tri : {Tri}, page : {Page}/{NombrePages}) : {Total} résultat(s)",
@@ -52,11 +52,11 @@ public class AgenceController : ControllerBase
     [HttpGet("{id:int}")]
     [ProducesResponseType<AgenceDto>(StatusCodes.Status200OK)]
     [ProducesResponseType<ApiError>(StatusCodes.Status404NotFound)]
-    public async Task<ActionResult<AgenceDto>> ObtenirParId(int id, CancellationToken cancellationToken)
+    public async Task<ActionResult<AgenceDto>> GetById(int id, CancellationToken cancellationToken)
     {
         try
         {
-            var agence = await _agenceService.ObtenirParIdAsync(id, cancellationToken);
+            var agence = await _agenceService.GetByIdAsync(id, cancellationToken);
             return Ok(AgenceDtoMapper.ToDto(agence));
         }
         catch (AgenceNotFoundException ex)
