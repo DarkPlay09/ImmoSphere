@@ -2,6 +2,7 @@ import { ChangeDetectionStrategy, Component, computed, inject, input, signal } f
 import { TranslatePipe, TranslateService } from '@ngx-translate/core';
 
 import { Agence } from '../../../../../shared/agences/models/agence.model';
+import { AgenceMailtoPipe } from '../../../../../shared/agences/pipes/agence-mailto.pipe';
 import { formatRating } from '../../../../../shared/agences/utils/format-rating';
 import { AgenceContactComponent } from '../agence-contact/agence-contact.component';
 
@@ -13,7 +14,7 @@ const STAR_COUNT = 5;
 @Component({
   selector: 'app-agence-header',
   standalone: true,
-  imports: [AgenceContactComponent, TranslatePipe],
+  imports: [AgenceContactComponent, AgenceMailtoPipe, TranslatePipe],
   templateUrl: './agence-header.component.html',
   styleUrl: './agence-header.component.scss',
   changeDetection: ChangeDetectionStrategy.OnPush,

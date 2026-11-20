@@ -51,6 +51,9 @@
     "tagline": "Belgian real estate, made clear."
   },
   "agences": {
+    "contact": {
+      "label": "Email {{name}}"
+    },
     "loadError": "Agencies could not be loaded right now. Please try again later.",
     "list": {
       "eyebrow": "Real estate professionals",

@@ -51,6 +51,9 @@
     "tagline": "L’immobilier belge en toute clarté."
   },
   "agences": {
+    "contact": {
+      "label": "Contacter {{name}} par e-mail"
+    },
     "loadError": "Impossible de charger les agences pour le moment. Veuillez réessayer plus tard.",
     "list": {
       "eyebrow": "Professionnels de l’immobilier",

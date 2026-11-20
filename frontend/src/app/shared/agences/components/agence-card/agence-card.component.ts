@@ -3,12 +3,13 @@ import { RouterLink } from '@angular/router';
 import { TranslatePipe, TranslateService } from '@ngx-translate/core';
 
 import { Agence } from '../../models/agence.model';
+import { AgenceMailtoPipe } from '../../pipes/agence-mailto.pipe';
 import { formatRating } from '../../utils/format-rating';
 
 @Component({
   selector: 'app-agence-card',
   standalone: true,
-  imports: [RouterLink, TranslatePipe],
+  imports: [AgenceMailtoPipe, RouterLink, TranslatePipe],
   templateUrl: './agence-card.component.html',
   styleUrl: './agence-card.component.scss',
   changeDetection: ChangeDetectionStrategy.OnPush,

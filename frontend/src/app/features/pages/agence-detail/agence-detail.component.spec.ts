@@ -220,3 +220,38 @@ describe('AgenceDetailComponent — éléments optionnels', () => {
     expect(favorite.getAttribute('aria-label')).toBe('agences.detail.favoriteRemove');
   });
 });
+
+describe('AgenceDetailComponent — contact par e-mail', () => {
+  const render = async (agence: Agence): Promise<HTMLElement> => {
+    await TestBed.configureTestingModule({
+      imports: [AgenceDetailComponent],
+      providers: [
+        provideRouter([]),
+        provideTranslateService(),
+        { provide: AgencesService, useValue: { getById: () => of(agence) } },
+        { provide: ActivatedRoute, useValue: { paramMap: of(convertToParamMap({ id: String(agence.id) })) } },
+      ],
+    }).compileComponents();
+
+    const fixture = TestBed.createComponent(AgenceDetailComponent);
+    fixture.detectChanges();
+    await fixture.whenStable();
+    return fixture.nativeElement as HTMLElement;
+  };
+
+  it('le bouton « Contacter l’agence » est un lien mailto: avec un libellé accessible', async () => {
+    const element = await render(MOCK_AGENCES[0]!);
+    const contact = element.querySelector<HTMLAnchorElement>('.agence-header__button')!;
+
+    expect(contact.tagName).toBe('A');
+    expect(contact.getAttribute('href')).toBe('mailto:contact@horizon-immo-liege.be');
+    expect(contact.getAttribute('aria-label')).toBe('agences.contact.label');
+  });
+
+  it('masque le bouton « Contacter l’agence » sans adresse e-mail', async () => {
+    const element = await render({ ...MOCK_AGENCES[0]!, email: undefined });
+
+    expect(element.querySelector('.agence-header__button')).toBeNull();
+    expect(element.querySelector('a[href^="mailto:"]')).toBeNull();
+  });
+});

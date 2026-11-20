@@ -115,8 +115,8 @@
     @if (agence().email; as email) {
       <a
         class="agence-card__button agence-card__button--ghost"
-        [href]="'mailto:' + email"
-        [attr.aria-label]="'agences.card.contactAria' | translate: { name: agence().name }"
+        [href]="email | agenceMailto"
+        [attr.aria-label]="'agences.contact.label' | translate: { name: agence().name }"
       >
         <span class="material-symbols-outlined" aria-hidden="true">mail</span>
         {{ 'agences.card.contact' | translate }}

@@ -79,4 +79,30 @@ describe('AgenceCardComponent', () => {
 
     expect(element.querySelector('.agence-card__button--ghost')).toBeNull();
   });
+
+  it('propose un lien mailto: vers l’agence, avec un libellé accessible traduit', async () => {
+    const element = await render(MOCK_AGENCES[0]!);
+    const contact = element.querySelector<HTMLAnchorElement>('.agence-card__button--ghost')!;
+
+    expect(contact.tagName).toBe('A');
+    expect(contact.getAttribute('href')).toBe('mailto:contact@horizon-immo-liege.be');
+    expect(contact.getAttribute('aria-label')).toBe('agences.contact.label');
+  });
+
+  it('encode l’adresse dans le lien mailto:', async () => {
+    const element = await render({ ...MOCK_AGENCES[0]!, email: 'jean+agence@exemple.be' });
+
+    expect(element.querySelector('.agence-card__button--ghost')?.getAttribute('href')).toBe(
+      'mailto:jean%2Bagence@exemple.be',
+    );
+  });
+
+  it('le lien Contacter ne mène pas au profil ; seul « Voir l’agence » y mène', async () => {
+    const element = await render(MOCK_AGENCES[0]!);
+    const contact = element.querySelector('.agence-card__button--ghost')!;
+
+    expect(contact.getAttribute('href')).not.toContain('/agences');
+    expect(contact.closest('a[href^="/agences"]')).toBeNull();
+    expect(element.querySelector('.agence-card__button--primary')?.getAttribute('href')).toBe('/agences/1');
+  });
 });

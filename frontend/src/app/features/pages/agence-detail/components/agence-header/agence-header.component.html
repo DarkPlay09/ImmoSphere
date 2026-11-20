@@ -91,8 +91,8 @@
         @if (agence().email; as email) {
           <a
             class="agence-header__button"
-            [href]="'mailto:' + email"
-            [attr.aria-label]="'agences.detail.contactAria' | translate: { name: agence().name }"
+            [href]="email | agenceMailto"
+            [attr.aria-label]="'agences.contact.label' | translate: { name: agence().name }"
           >
             <span class="material-symbols-outlined" aria-hidden="true">mail</span>
             {{ 'agences.detail.contactAgency' | translate }}

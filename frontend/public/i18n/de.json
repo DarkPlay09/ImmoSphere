@@ -51,6 +51,9 @@
     "tagline": "Belgische Immobilien auf einen Blick."
   },
   "agences": {
+    "contact": {
+      "label": "{{name}} per E-Mail kontaktieren"
+    },
     "loadError": "Die Agenturen können derzeit nicht geladen werden. Bitte versuchen Sie es später erneut.",
     "list": {
       "eyebrow": "Immobilienprofis",
