@@ -8,7 +8,9 @@
   $outline: #81737d;
 
   display: grid;
-  grid-template-columns: repeat(12, minmax(0, 1fr));
+  // Proportions de la maquette (4 / 3 / 3 colonnes) ; la colonne des boutons prend
+  // la largeur de son contenu pour que le bouton d'actualisation reste dans le padding.
+  grid-template-columns: minmax(0, 4fr) minmax(0, 3fr) minmax(0, 3fr) auto;
   align-items: end;
   gap: 16px;
   padding: 24px;
@@ -24,15 +26,6 @@
     flex-direction: column;
     gap: 6px;
     min-width: 0;
-
-    &--name {
-      grid-column: span 4;
-    }
-
-    &--location,
-    &--region {
-      grid-column: span 3;
-    }
   }
 
   &__label {
@@ -90,7 +83,6 @@
 
   &__actions {
     display: flex;
-    grid-column: span 2;
     gap: 8px;
   }
 

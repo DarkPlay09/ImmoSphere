@@ -20,15 +20,25 @@
   $text-secondary: #4f434c;
   $outline: #81737d;
 
+  $border: #ebe5ee;
+
+  // border-box : sans cela, le padding s'ajoute à height: 100% et la carte
+  // déborde de sa cellule (écarts entre rangées et avant la pagination mangés).
+  box-sizing: border-box;
   display: flex;
   flex-direction: column;
-  justify-content: space-between;
+  // Les boutons suivent directement le contenu ; sur une rangée, la carte la plus
+  // courte garde la hauteur commune avec l'espace libre sous les boutons.
+  justify-content: flex-start;
   height: 100%;
   padding: 24px;
 
   background: $surface;
+  border: 1px solid $border;
   border-radius: 12px;
-  box-shadow: 0 1px 1px rgba(0, 0, 0, 0.05);
+  box-shadow:
+    0 1px 2px rgba(27, 27, 32, 0.06),
+    0 1px 3px rgba(27, 27, 32, 0.04);
 
   color: $text;
   font-family: 'Manrope', sans-serif;
