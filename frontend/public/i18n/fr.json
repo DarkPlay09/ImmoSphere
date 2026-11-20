@@ -50,6 +50,106 @@
     "copyright": "© ImmoSphere {{year}}. Tous droits réservés.",
     "tagline": "L’immobilier belge en toute clarté."
   },
+  "agences": {
+    "contact": {
+      "label": "Contacter {{name}} par e-mail"
+    },
+    "loadError": "Impossible de charger les agences pour le moment. Veuillez réessayer plus tard.",
+    "list": {
+      "eyebrow": "Professionnels de l’immobilier",
+      "title": "Trouvez une agence immobilière",
+      "subtitle": "Découvrez les agences agréées présentes sur ImmoSphere et consultez leurs biens, leurs services et les avis certifiés de leurs acquéreurs et vendeurs en Belgique.",
+      "resultsTitle": "Agences immobilières",
+      "resultsCount": "{{count}} agences trouvées",
+      "resultsCountOne": "1 agence trouvée",
+      "sortLabel": "Trier par :",
+      "loading": "Chargement des agences…",
+      "empty": "Aucune agence ne correspond à votre recherche.",
+      "emptyReset": "Réinitialiser la recherche"
+    },
+    "search": {
+      "label": "Rechercher une agence",
+      "name": "Nom de l’agence",
+      "namePlaceholder": "Rechercher ex. Horizon Immo…",
+      "location": "Localisation",
+      "locationPlaceholder": "Ville ou code postal ex. Liège, 4000",
+      "region": "Région",
+      "regionAll": "Toutes les régions",
+      "submit": "Rechercher",
+      "reset": "Réinitialiser la recherche"
+    },
+    "sort": {
+      "relevance": "Pertinence",
+      "name": "Nom (A–Z)",
+      "rating": "Meilleure note"
+    },
+    "pagination": {
+      "label": "Pagination des agences",
+      "previous": "Précédent",
+      "next": "Suivant",
+      "page": "Page {{page}}"
+    },
+    "card": {
+      "logoAlt": "Logo de {{name}}",
+      "ipiApproved": "Agréée IPI",
+      "rating": "{{rating}} / 5",
+      "reviews": "{{count}} avis clients vérifiés",
+      "available": "{{count}} biens disponibles",
+      "forSale": "{{count}} biens en vente",
+      "view": "Voir l’agence",
+      "viewAria": "Voir l’agence {{name}}",
+      "contact": "Contacter"
+    },
+    "cta": {
+      "badge": "Espace professionnels IPI",
+      "title": "Vous êtes une agence immobilière en Belgique ?",
+      "text": "Rejoignez le réseau certifié ImmoSphere. Publiez vos annonces, recevez des demandes d’acheteurs qualifiés et profitez de nos outils d’estimation et d’analyse PEB / EPC intégrés.",
+      "button": "Créer un compte professionnel",
+      "unavailable": "Bientôt disponible"
+    },
+    "detail": {
+      "reviews": "{{count}} avis clients vérifiés",
+      "ratingAria": "Note moyenne : {{rating}} sur 5",
+      "favoriteAdd": "Ajouter l’agence aux favoris",
+      "favoriteRemove": "Retirer l’agence des favoris",
+      "breadcrumbLabel": "Fil d’Ariane",
+      "home": "Accueil",
+      "agencies": "Agences",
+      "loading": "Chargement de l’agence…",
+      "ipiNumber": "Agréée IPI N° {{number}}",
+      "federia": "Membre Federia",
+      "bce": "BCE : {{bce}}",
+      "country": "Belgique",
+      "contactAgency": "Contacter l’agence",
+      "address": "Siège & accueil",
+      "phone": "Ligne directe",
+      "hours": "Horaires d’ouverture",
+      "hoursLine": "{{days}} : {{opens}} – {{closes}}",
+      "byAppointment": "(sur RdV)",
+      "days": {
+        "mondayToFriday": "Lun – Ven",
+        "saturday": "Samedi",
+        "sunday": "Dimanche"
+      },
+      "website": "Site officiel & réseau",
+      "websiteAria": "{{site}} (s’ouvre dans un nouvel onglet)",
+      "aboutEyebrow": "Présentation du cabinet",
+      "aboutTitle": "À propos de {{name}}",
+      "specsTitle": "Spécifications de l’agence",
+      "specs": {
+        "zone": "Zone d’activité prioritaire",
+        "propertyTypes": "Typologies de biens gérées",
+        "transactionPoles": "Pôles de transaction",
+        "languages": "Langues véhiculées"
+      },
+      "nativeLanguage": "{{language}} (maternelle)",
+      "notFound": {
+        "title": "Agence introuvable",
+        "text": "Cette agence n’existe pas ou n’est plus référencée sur ImmoSphere.",
+        "back": "Retour à la liste des agences"
+      }
+    }
+  },
   "home": {
     "hero": {
       "badge": "L'EXPÉRIENCE IMMOSPHERE · BRUXELLES · FLANDRE · WALLONIE",

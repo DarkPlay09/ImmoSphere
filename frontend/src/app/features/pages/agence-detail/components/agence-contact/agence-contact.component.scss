@@ -1,0 +1,99 @@
+// Valeurs reprises de la maquette Figma (coordonnées 183:1870).
+
+.agence-contact {
+  $primary: #521453;
+
+  display: grid;
+  grid-template-columns: repeat(4, minmax(0, 1fr));
+  gap: 16px;
+  padding: 16px;
+
+  background: rgba(245, 242, 249, 0.5);
+  border-radius: 8px;
+
+  p {
+    margin: 0;
+  }
+
+  &__item {
+    display: flex;
+    align-items: flex-start;
+    gap: 8px;
+    min-width: 0;
+  }
+
+  &__icon {
+    display: inline-flex;
+    flex-shrink: 0;
+    align-items: center;
+    justify-content: center;
+    width: 32px;
+    height: 32px;
+
+    background: #eae7ee;
+    border-radius: 8px;
+    color: $primary;
+
+    font-size: 16px;
+  }
+
+  &__label {
+    color: #635f4b;
+    font-size: 11px;
+    font-weight: 600;
+    line-height: 16px;
+    letter-spacing: 0.03em;
+  }
+
+  &__value {
+    font-size: 14px;
+    line-height: 20px;
+    overflow-wrap: anywhere;
+
+    &--strong {
+      font-weight: 500;
+    }
+
+    &--secondary {
+      color: #4f434c;
+      font-size: 11px;
+      font-weight: 600;
+      line-height: 16px;
+    }
+  }
+
+  &__link {
+    display: inline-flex;
+    align-items: center;
+    gap: 4px;
+
+    color: $primary;
+    font-weight: 500;
+    text-decoration: none;
+
+    &:hover {
+      text-decoration: underline;
+    }
+
+    &:focus-visible {
+      outline: 2px solid $primary;
+      outline-offset: 2px;
+    }
+
+    &--phone {
+      font-weight: 600;
+    }
+
+    .material-symbols-outlined {
+      font-size: 14px;
+    }
+  }
+
+  @media (max-width: 1024px) {
+    grid-template-columns: repeat(2, minmax(0, 1fr));
+  }
+
+  @media (max-width: 720px) {
+    grid-template-columns: minmax(0, 1fr);
+  }
+}

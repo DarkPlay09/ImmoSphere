@@ -1,0 +1,128 @@
+<article class="agence-card">
+
+  <div class="agence-card__content">
+
+    <!-- EN-TÊTE : LOGO, NOM, LOCALITÉ, BADGE IPI -->
+    <header class="agence-card__header">
+
+      <div class="agence-card__identity">
+
+        @if (agence().logoUrl; as logoUrl) {
+          <img
+            class="agence-card__logo"
+            [src]="logoUrl"
+            [alt]="'agences.card.logoAlt' | translate: { name: agence().name }"
+            width="56"
+            height="56"
+            loading="lazy"
+          />
+        } @else {
+          <span class="agence-card__logo agence-card__logo--placeholder" aria-hidden="true">
+            {{ initial() }}
+          </span>
+        }
+
+        <div class="agence-card__titles">
+          <h3 class="agence-card__name">
+            <a class="agence-card__name-link" [routerLink]="['/agences', agence().id]">
+              {{ agence().name }}
+            </a>
+          </h3>
+
+          <p class="agence-card__location">
+            <span class="material-symbols-outlined" aria-hidden="true">location_on</span>
+            <span>{{ location() }}</span>
+          </p>
+        </div>
+
+      </div>
+
+      @if (agence().ipiNumber) {
+        <span class="agence-card__badge">
+          <span class="material-symbols-outlined" aria-hidden="true">verified</span>
+          {{ 'agences.card.ipiApproved' | translate }}
+        </span>
+      }
+
+    </header>
+
+    <!-- NOTE, AVIS, BIENS (optionnels) -->
+    @if (hasStats()) {
+      <div class="agence-card__stats">
+
+        @if (hasReviews()) {
+          <div class="agence-card__reviews">
+            @if (rating(); as rating) {
+              <span class="agence-card__rating">
+                <span class="material-symbols-outlined" aria-hidden="true">star</span>
+                {{ 'agences.card.rating' | translate: { rating } }}
+              </span>
+            }
+
+            @if (rating() && reviewCount()) {
+              <span class="agence-card__dot" aria-hidden="true">•</span>
+            }
+
+            @if (reviewCount(); as reviewCount) {
+              <span class="agence-card__review-count">
+                {{ 'agences.card.reviews' | translate: { count: reviewCount } }}
+              </span>
+            }
+          </div>
+        }
+
+        @if (propertyCount(); as propertyCount) {
+          <span class="agence-card__available">
+            <span class="agence-card__available-dot" aria-hidden="true"></span>
+            {{ 'agences.card.available' | translate: { count: propertyCount } }}
+          </span>
+        }
+
+      </div>
+    }
+
+    <p class="agence-card__description">{{ agence().description }}</p>
+
+    @if (agence().tags.length) {
+      <ul class="agence-card__tags">
+        @for (tag of agence().tags; track tag) {
+          <li class="agence-card__tag">{{ tag }}</li>
+        }
+      </ul>
+    }
+
+  </div>
+
+  <!-- ACTIONS -->
+  <footer class="agence-card__actions">
+
+    <div class="agence-card__actions-main">
+      <a
+        class="agence-card__button agence-card__button--primary"
+        [routerLink]="['/agences', agence().id]"
+        [attr.aria-label]="'agences.card.viewAria' | translate: { name: agence().name }"
+      >
+        {{ 'agences.card.view' | translate }}
+      </a>
+
+      @if (propertyCount(); as propertyCount) {
+        <span class="agence-card__button agence-card__button--muted">
+          {{ 'agences.card.forSale' | translate: { count: propertyCount } }}
+        </span>
+      }
+    </div>
+
+    @if (agence().email; as email) {
+      <a
+        class="agence-card__button agence-card__button--ghost"
+        [href]="email | agenceMailto"
+        [attr.aria-label]="'agences.contact.label' | translate: { name: agence().name }"
+      >
+        <span class="material-symbols-outlined" aria-hidden="true">mail</span>
+        {{ 'agences.card.contact' | translate }}
+      </a>
+    }
+
+  </footer>
+
+</article>

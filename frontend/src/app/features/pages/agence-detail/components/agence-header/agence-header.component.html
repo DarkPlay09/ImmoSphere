@@ -1,0 +1,120 @@
+<section class="agence-header" aria-labelledby="agence-name">
+
+  <div class="agence-header__main">
+
+    <div class="agence-header__identity">
+      @if (agence().logoUrl; as logoUrl) {
+        <img
+          class="agence-header__logo"
+          [src]="logoUrl"
+          [alt]="'agences.card.logoAlt' | translate: { name: agence().name }"
+          width="96"
+          height="96"
+        />
+      } @else {
+        <span class="agence-header__logo agence-header__logo--placeholder" aria-hidden="true">{{ initial() }}</span>
+      }
+
+      <div class="agence-header__summary">
+
+        @if (hasBadges()) {
+          <ul class="agence-header__badges">
+            @if (agence().ipiNumber; as ipiNumber) {
+              <li class="agence-header__badge agence-header__badge--ipi">
+                <span class="material-symbols-outlined" aria-hidden="true">verified</span>
+                {{ 'agences.detail.ipiNumber' | translate: { number: ipiNumber } }}
+              </li>
+            }
+            @if (agence().federiaMember) {
+              <li class="agence-header__badge agence-header__badge--federia">
+                {{ 'agences.detail.federia' | translate }}
+              </li>
+            }
+            @if (agence().bce; as bce) {
+              <li class="agence-header__badge agence-header__badge--bce">
+                {{ 'agences.detail.bce' | translate: { bce } }}
+              </li>
+            }
+          </ul>
+        }
+
+        <h1 id="agence-name" class="agence-header__name">{{ agence().name }}</h1>
+
+        <p class="agence-header__location">
+          <span class="material-symbols-outlined" aria-hidden="true">location_on</span>
+          <span>
+            {{ agence().city }}, {{ 'agences.detail.country' | translate }}
+            @if (agence().district) {
+              · {{ agence().district }}
+            }
+          </span>
+        </p>
+
+        <p class="agence-header__description">{{ agence().description }}</p>
+
+        @if (agence().tags.length) {
+          <ul class="agence-header__tags">
+            @for (tag of agence().tags; track tag) {
+              <li class="agence-header__tag">{{ tag }}</li>
+            }
+          </ul>
+        }
+      </div>
+    </div>
+
+    <div class="agence-header__side">
+
+      @if (rating(); as rating) {
+        <div class="agence-header__rating">
+          <p class="agence-header__rating-value">
+            <span class="agence-header__rating-number">{{ rating.label }}</span>
+            <span class="agence-header__rating-max">/ 5</span>
+            <span class="agence-header__sr-only">{{ 'agences.detail.ratingAria' | translate: { rating: rating.label } }}</span>
+          </p>
+
+          <span class="agence-header__stars" aria-hidden="true">
+            @for (star of rating.stars; track $index) {
+              <span
+                class="material-symbols-outlined agence-header__star"
+                [class.agence-header__star--filled]="star !== 'empty'"
+              >{{ star === 'half' ? 'star_half' : 'star' }}</span>
+            }
+          </span>
+
+          <p class="agence-header__reviews">
+            {{ 'agences.detail.reviews' | translate: { count: rating.reviewCount } }}
+          </p>
+        </div>
+      }
+
+      <div class="agence-header__actions">
+        @if (agence().email; as email) {
+          <a
+            class="agence-header__button"
+            [href]="email | agenceMailto"
+            [attr.aria-label]="'agences.contact.label' | translate: { name: agence().name }"
+          >
+            <span class="material-symbols-outlined" aria-hidden="true">mail</span>
+            {{ 'agences.detail.contactAgency' | translate }}
+          </a>
+        }
+
+        <button
+          type="button"
+          class="agence-header__favorite"
+          [class.agence-header__favorite--active]="isFavorite()"
+          [attr.aria-label]="(isFavorite() ? 'agences.detail.favoriteRemove' : 'agences.detail.favoriteAdd') | translate"
+          [attr.aria-pressed]="isFavorite()"
+          (click)="toggleFavorite()"
+        >
+          <span class="material-symbols-outlined" aria-hidden="true">
+favorite
+          </span>
+        </button>
+      </div>
+    </div>
+  </div>
+
+  <app-agence-contact [agence]="agence()" />
+
+</section>

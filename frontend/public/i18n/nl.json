@@ -50,6 +50,106 @@
     "copyright": "© ImmoSphere {{year}}. Alle rechten voorbehouden.",
     "tagline": "Belgisch vastgoed, helder en duidelijk."
   },
+  "agences": {
+    "contact": {
+      "label": "{{name}} e-mailen"
+    },
+    "loadError": "De agentschappen kunnen momenteel niet worden geladen. Probeer het later opnieuw.",
+    "list": {
+      "eyebrow": "Vastgoedprofessionals",
+      "title": "Vind een vastgoedkantoor",
+      "subtitle": "Ontdek de erkende kantoren op ImmoSphere en bekijk hun panden, hun diensten en de geverifieerde beoordelingen van hun kopers en verkopers in België.",
+      "resultsTitle": "Vastgoedkantoren",
+      "resultsCount": "{{count}} kantoren gevonden",
+      "resultsCountOne": "1 kantoor gevonden",
+      "sortLabel": "Sorteren op:",
+      "loading": "Kantoren worden geladen…",
+      "empty": "Geen enkel kantoor komt overeen met uw zoekopdracht.",
+      "emptyReset": "Zoekopdracht wissen"
+    },
+    "search": {
+      "label": "Een kantoor zoeken",
+      "name": "Naam van het kantoor",
+      "namePlaceholder": "Zoeken bv. Horizon Immo…",
+      "location": "Locatie",
+      "locationPlaceholder": "Stad of postcode bv. Luik, 4000",
+      "region": "Gewest",
+      "regionAll": "Alle gewesten",
+      "submit": "Zoeken",
+      "reset": "Zoekopdracht wissen"
+    },
+    "sort": {
+      "relevance": "Relevantie",
+      "name": "Naam (A–Z)",
+      "rating": "Beste beoordeling"
+    },
+    "pagination": {
+      "label": "Paginering van de kantoren",
+      "previous": "Vorige",
+      "next": "Volgende",
+      "page": "Pagina {{page}}"
+    },
+    "card": {
+      "logoAlt": "Logo van {{name}}",
+      "ipiApproved": "BIV-erkend",
+      "rating": "{{rating}} / 5",
+      "reviews": "{{count}} geverifieerde klantbeoordelingen",
+      "available": "{{count}} panden beschikbaar",
+      "forSale": "{{count}} panden te koop",
+      "view": "Kantoor bekijken",
+      "viewAria": "Kantoor {{name}} bekijken",
+      "contact": "Contact"
+    },
+    "cta": {
+      "badge": "BIV-professionele ruimte",
+      "title": "Bent u een vastgoedkantoor in België?",
+      "text": "Sluit u aan bij het gecertificeerde ImmoSphere-netwerk. Publiceer uw zoekertjes, ontvang aanvragen van gekwalificeerde kopers en gebruik onze geïntegreerde tools voor schatting en EPC-analyse.",
+      "button": "Professioneel account aanmaken",
+      "unavailable": "Binnenkort beschikbaar"
+    },
+    "detail": {
+      "reviews": "{{count}} geverifieerde klantbeoordelingen",
+      "ratingAria": "Gemiddelde score: {{rating}} op 5",
+      "favoriteAdd": "Agentschap toevoegen aan favorieten",
+      "favoriteRemove": "Agentschap verwijderen uit favorieten",
+      "breadcrumbLabel": "Kruimelpad",
+      "home": "Home",
+      "agencies": "Kantoren",
+      "loading": "Kantoor wordt geladen…",
+      "ipiNumber": "BIV-erkend nr. {{number}}",
+      "federia": "Lid van Federia",
+      "bce": "KBO: {{bce}}",
+      "country": "België",
+      "contactAgency": "Kantoor contacteren",
+      "address": "Hoofdkantoor & onthaal",
+      "phone": "Rechtstreekse lijn",
+      "hours": "Openingsuren",
+      "hoursLine": "{{days}}: {{opens}} – {{closes}}",
+      "byAppointment": "(op afspraak)",
+      "days": {
+        "mondayToFriday": "Ma – Vr",
+        "saturday": "Zaterdag",
+        "sunday": "Zondag"
+      },
+      "website": "Officiële website & netwerk",
+      "websiteAria": "{{site}} (opent in een nieuw tabblad)",
+      "aboutEyebrow": "Voorstelling van het kantoor",
+      "aboutTitle": "Over {{name}}",
+      "specsTitle": "Specificaties van het kantoor",
+      "specs": {
+        "zone": "Belangrijkste werkgebied",
+        "propertyTypes": "Beheerde vastgoedtypes",
+        "transactionPoles": "Transactiedomeinen",
+        "languages": "Gesproken talen"
+      },
+      "nativeLanguage": "{{language}} (moedertaal)",
+      "notFound": {
+        "title": "Kantoor niet gevonden",
+        "text": "Dit kantoor bestaat niet of staat niet meer op ImmoSphere.",
+        "back": "Terug naar de lijst met kantoren"
+      }
+    }
+  },
   "home": {
     "hero": {
       "badge": "DE IMMOSPHERE-ERVARING · BRUSSEL · VLAANDEREN · WALLONIË",

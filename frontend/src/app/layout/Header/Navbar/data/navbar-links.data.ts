@@ -16,7 +16,7 @@ export const NAVBAR_LINKS: NavbarLink[] = [
   {
     id: 'agencies',
     label: 'Agences',
-    route: null,
+    route: '/agences',
   },
   {
     id: 'notaries',

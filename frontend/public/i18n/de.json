@@ -50,6 +50,106 @@
     "copyright": "© ImmoSphere {{year}}. Alle Rechte vorbehalten.",
     "tagline": "Belgische Immobilien auf einen Blick."
   },
+  "agences": {
+    "contact": {
+      "label": "{{name}} per E-Mail kontaktieren"
+    },
+    "loadError": "Die Agenturen können derzeit nicht geladen werden. Bitte versuchen Sie es später erneut.",
+    "list": {
+      "eyebrow": "Immobilienprofis",
+      "title": "Finden Sie eine Immobilienagentur",
+      "subtitle": "Entdecken Sie die zugelassenen Agenturen auf ImmoSphere und sehen Sie sich ihre Immobilien, ihre Leistungen und die geprüften Bewertungen ihrer Käufer und Verkäufer in Belgien an.",
+      "resultsTitle": "Immobilienagenturen",
+      "resultsCount": "{{count}} Agenturen gefunden",
+      "resultsCountOne": "1 Agentur gefunden",
+      "sortLabel": "Sortieren nach:",
+      "loading": "Agenturen werden geladen…",
+      "empty": "Keine Agentur entspricht Ihrer Suche.",
+      "emptyReset": "Suche zurücksetzen"
+    },
+    "search": {
+      "label": "Eine Agentur suchen",
+      "name": "Name der Agentur",
+      "namePlaceholder": "Suchen z. B. Horizon Immo…",
+      "location": "Ort",
+      "locationPlaceholder": "Stadt oder Postleitzahl z. B. Lüttich, 4000",
+      "region": "Region",
+      "regionAll": "Alle Regionen",
+      "submit": "Suchen",
+      "reset": "Suche zurücksetzen"
+    },
+    "sort": {
+      "relevance": "Relevanz",
+      "name": "Name (A–Z)",
+      "rating": "Beste Bewertung"
+    },
+    "pagination": {
+      "label": "Seitennavigation der Agenturen",
+      "previous": "Zurück",
+      "next": "Weiter",
+      "page": "Seite {{page}}"
+    },
+    "card": {
+      "logoAlt": "Logo von {{name}}",
+      "ipiApproved": "IPI-zugelassen",
+      "rating": "{{rating}} / 5",
+      "reviews": "{{count}} geprüfte Kundenbewertungen",
+      "available": "{{count}} Immobilien verfügbar",
+      "forSale": "{{count}} Immobilien zu verkaufen",
+      "view": "Agentur ansehen",
+      "viewAria": "Agentur {{name}} ansehen",
+      "contact": "Kontaktieren"
+    },
+    "cta": {
+      "badge": "IPI-Profibereich",
+      "title": "Sind Sie eine Immobilienagentur in Belgien?",
+      "text": "Treten Sie dem zertifizierten ImmoSphere-Netzwerk bei. Veröffentlichen Sie Ihre Anzeigen, erhalten Sie Anfragen qualifizierter Käufer und nutzen Sie unsere integrierten Tools für Bewertung und Energieausweis-Analyse.",
+      "button": "Professionelles Konto erstellen",
+      "unavailable": "Demnächst verfügbar"
+    },
+    "detail": {
+      "reviews": "{{count}} verifizierte Kundenbewertungen",
+      "ratingAria": "Durchschnittliche Bewertung: {{rating}} von 5",
+      "favoriteAdd": "Agentur zu den Favoriten hinzufügen",
+      "favoriteRemove": "Agentur aus den Favoriten entfernen",
+      "breadcrumbLabel": "Brotkrümelnavigation",
+      "home": "Startseite",
+      "agencies": "Agenturen",
+      "loading": "Agentur wird geladen…",
+      "ipiNumber": "IPI-Zulassung Nr. {{number}}",
+      "federia": "Federia-Mitglied",
+      "bce": "ZDU: {{bce}}",
+      "country": "Belgien",
+      "contactAgency": "Agentur kontaktieren",
+      "address": "Hauptsitz & Empfang",
+      "phone": "Direktwahl",
+      "hours": "Öffnungszeiten",
+      "hoursLine": "{{days}}: {{opens}} – {{closes}}",
+      "byAppointment": "(nach Vereinbarung)",
+      "days": {
+        "mondayToFriday": "Mo – Fr",
+        "saturday": "Samstag",
+        "sunday": "Sonntag"
+      },
+      "website": "Offizielle Website & Netzwerk",
+      "websiteAria": "{{site}} (öffnet in einem neuen Tab)",
+      "aboutEyebrow": "Vorstellung der Agentur",
+      "aboutTitle": "Über {{name}}",
+      "specsTitle": "Merkmale der Agentur",
+      "specs": {
+        "zone": "Haupttätigkeitsgebiet",
+        "propertyTypes": "Betreute Immobilienarten",
+        "transactionPoles": "Transaktionsbereiche",
+        "languages": "Gesprochene Sprachen"
+      },
+      "nativeLanguage": "{{language}} (Muttersprache)",
+      "notFound": {
+        "title": "Agentur nicht gefunden",
+        "text": "Diese Agentur existiert nicht oder ist nicht mehr auf ImmoSphere gelistet.",
+        "back": "Zurück zur Agenturliste"
+      }
+    }
+  },
   "home": {
     "hero": {
       "badge": "DAS IMMOSPHERE-ERLEBNIS · BRÜSSEL · FLANDERN · WALLONIEN",
