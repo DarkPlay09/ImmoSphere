@@ -5,7 +5,8 @@ import { of, throwError } from 'rxjs';
 
 import { MOCK_AGENCES } from '../../../shared/agences/data/agences.mock';
 import { AgenceSearchCriteria } from '../../../shared/agences/models/agence-search.model';
-import { AgencesService, searchAgences } from '../../../shared/agences/services/agences.service';
+import { searchAgences } from '../../../shared/agences/data/agences-mock-search';
+import { AgencesService } from '../../../shared/agences/services/agences.service';
 import { AgencesListComponent } from './agences-list.component';
 
 describe('AgencesListComponent', () => {
