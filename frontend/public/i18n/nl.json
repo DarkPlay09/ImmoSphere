@@ -106,6 +106,10 @@
       "unavailable": "Binnenkort beschikbaar"
     },
     "detail": {
+      "reviews": "{{count}} geverifieerde klantbeoordelingen",
+      "ratingAria": "Gemiddelde score: {{rating}} op 5",
+      "favoriteAdd": "Agentschap toevoegen aan favorieten",
+      "favoriteRemove": "Agentschap verwijderen uit favorieten",
       "breadcrumbLabel": "Kruimelpad",
       "home": "Home",
       "agencies": "Kantoren",

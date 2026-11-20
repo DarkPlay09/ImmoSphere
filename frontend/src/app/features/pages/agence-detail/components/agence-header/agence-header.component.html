@@ -62,18 +62,57 @@
       </div>
     </div>
 
-    @if (agence().email; as email) {
-      <div class="agence-header__side">
-        <a
-          class="agence-header__button"
-          [href]="'mailto:' + email"
-          [attr.aria-label]="'agences.detail.contactAria' | translate: { name: agence().name }"
+    <div class="agence-header__side">
+
+      @if (rating(); as rating) {
+        <div class="agence-header__rating">
+          <p class="agence-header__rating-value">
+            <span class="agence-header__rating-number">{{ rating.label }}</span>
+            <span class="agence-header__rating-max">/ 5</span>
+            <span class="agence-header__sr-only">{{ 'agences.detail.ratingAria' | translate: { rating: rating.label } }}</span>
+          </p>
+
+          <span class="agence-header__stars" aria-hidden="true">
+            @for (star of rating.stars; track $index) {
+              <span
+                class="material-symbols-outlined agence-header__star"
+                [class.agence-header__star--filled]="star !== 'empty'"
+              >{{ star === 'half' ? 'star_half' : 'star' }}</span>
+            }
+          </span>
+
+          <p class="agence-header__reviews">
+            {{ 'agences.detail.reviews' | translate: { count: rating.reviewCount } }}
+          </p>
+        </div>
+      }
+
+      <div class="agence-header__actions">
+        @if (agence().email; as email) {
+          <a
+            class="agence-header__button"
+            [href]="'mailto:' + email"
+            [attr.aria-label]="'agences.detail.contactAria' | translate: { name: agence().name }"
+          >
+            <span class="material-symbols-outlined" aria-hidden="true">mail</span>
+            {{ 'agences.detail.contactAgency' | translate }}
+          </a>
+        }
+
+        <button
+          type="button"
+          class="agence-header__favorite"
+          [class.agence-header__favorite--active]="isFavorite()"
+          [attr.aria-label]="(isFavorite() ? 'agences.detail.favoriteRemove' : 'agences.detail.favoriteAdd') | translate"
+          [attr.aria-pressed]="isFavorite()"
+          (click)="toggleFavorite()"
         >
-          <span class="material-symbols-outlined" aria-hidden="true">mail</span>
-          {{ 'agences.detail.contactAgency' | translate }}
-        </a>
+          <span class="material-symbols-outlined" aria-hidden="true">
+favorite
+          </span>
+        </button>
       </div>
-    }
+    </div>
   </div>
 
   <app-agence-contact [agence]="agence()" />

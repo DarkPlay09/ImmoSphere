@@ -106,6 +106,10 @@
       "unavailable": "Coming soon"
     },
     "detail": {
+      "reviews": "{{count}} verified customer reviews",
+      "ratingAria": "Average rating: {{rating}} out of 5",
+      "favoriteAdd": "Add the agency to favourites",
+      "favoriteRemove": "Remove the agency from favourites",
       "breadcrumbLabel": "Breadcrumb",
       "home": "Home",
       "agencies": "Agencies",

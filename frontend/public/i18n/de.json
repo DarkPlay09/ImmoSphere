@@ -106,6 +106,10 @@
       "unavailable": "Demnächst verfügbar"
     },
     "detail": {
+      "reviews": "{{count}} verifizierte Kundenbewertungen",
+      "ratingAria": "Durchschnittliche Bewertung: {{rating}} von 5",
+      "favoriteAdd": "Agentur zu den Favoriten hinzufügen",
+      "favoriteRemove": "Agentur aus den Favoriten entfernen",
       "breadcrumbLabel": "Brotkrümelnavigation",
       "home": "Startseite",
       "agencies": "Agenturen",

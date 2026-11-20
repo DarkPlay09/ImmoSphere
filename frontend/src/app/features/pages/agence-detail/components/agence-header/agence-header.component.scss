@@ -150,14 +150,123 @@
     line-height: 18px;
   }
 
+  // CARTE DE DROITE (maquette 183:1841) : note, avis, contact et favori
   &__side {
+    display: flex;
+    flex-direction: column;
+    gap: 16px;
+    box-sizing: border-box;
     min-width: 280px;
     padding: 16px;
     background: #f5f2f9;
     border-radius: 12px;
   }
 
+  &__rating {
+    display: flex;
+    flex-direction: column;
+    gap: 2px;
+  }
+
+  &__rating-value {
+    display: flex;
+    align-items: baseline;
+    gap: 6px;
+    margin: 0;
+  }
+
+  &__rating-number {
+    color: $primary;
+    font-size: 32px;
+    font-weight: 700;
+    line-height: 32px;
+  }
+
+  &__rating-max {
+    color: #4f434c;
+    font-size: 14px;
+    line-height: 20px;
+  }
+
+  &__stars {
+    display: flex;
+    gap: 2px;
+    color: $primary;
+  }
+
+  &__star {
+    font-size: 16px;
+
+    &--filled {
+      font-variation-settings: 'FILL' 1;
+    }
+  }
+
+  &__reviews {
+    margin: 0;
+    color: #635f4b;
+    font-size: 11px;
+    font-weight: 600;
+    line-height: 16px;
+    letter-spacing: 0.33px;
+  }
+
+  &__sr-only {
+    position: absolute;
+    width: 1px;
+    height: 1px;
+    overflow: hidden;
+    clip: rect(0 0 0 0);
+    white-space: nowrap;
+  }
+
+  &__actions {
+    display: flex;
+    align-items: stretch;
+    gap: 4px;
+    padding-top: 4px;
+  }
+
+  &__favorite {
+    display: inline-flex;
+    flex-shrink: 0;
+    align-items: center;
+    justify-content: center;
+    width: 34px;
+    min-height: 34px;
+    margin-left: auto;
+    padding: 0;
+
+    background: #f0edf4;
+    border: none;
+    border-radius: 8px;
+    color: #1b1b20;
+    cursor: pointer;
+
+    .material-symbols-outlined {
+      font-size: 18px;
+    }
+
+    &:hover {
+      color: $primary;
+    }
+
+    &:focus-visible {
+      outline: 2px solid $primary;
+      outline-offset: 2px;
+    }
+
+    &--active {
+      color: $primary;
+
+      .material-symbols-outlined {
+        font-variation-settings: 'FILL' 1;
+      }
+    }
+  }
+
   &__button {
+    flex: 1;
     display: flex;
     align-items: center;
     justify-content: center;

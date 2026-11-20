@@ -106,6 +106,10 @@
       "unavailable": "Bientôt disponible"
     },
     "detail": {
+      "reviews": "{{count}} avis clients vérifiés",
+      "ratingAria": "Note moyenne : {{rating}} sur 5",
+      "favoriteAdd": "Ajouter l’agence aux favoris",
+      "favoriteRemove": "Retirer l’agence des favoris",
       "breadcrumbLabel": "Fil d’Ariane",
       "home": "Accueil",
       "agencies": "Agences",
