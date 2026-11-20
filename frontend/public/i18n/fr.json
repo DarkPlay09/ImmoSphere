@@ -331,5 +331,42 @@
       "button": "Publier mon bien",
       "unavailable": "La publication de biens n'est pas encore disponible."
     }
+  },
+  "faq": {
+    "breadcrumb": {
+      "label": "Fil d'Ariane",
+      "home": "Accueil",
+      "current": "FAQ"
+    },
+    "hero": {
+      "badge": "Centre d'aide ImmoSphere",
+      "title": "Comment pouvons-nous vous aider ?",
+      "subtitle": "Retrouvez les réponses aux questions les plus fréquentes sur la recherche, les visites certifiées PEB et les démarches notariales en Belgique."
+    },
+    "search": {
+      "label": "Rechercher une question dans la FAQ",
+      "placeholder": "Rechercher une question (ex. visite 360°, PEB, compromis de vente)...",
+      "submit": "Rechercher"
+    },
+    "list": {
+      "title": "Questions fréquentes",
+      "count": "{{count}} questions",
+      "countOne": "1 question",
+      "countNone": "Aucune question",
+      "empty": "Aucune question ne correspond à « {{term}} ».",
+      "emptyReset": "Réinitialiser la recherche"
+    },
+    "rating": {
+      "question": "Cette réponse vous a-t-elle été utile ?",
+      "useful": "Oui, cette réponse m'a été utile",
+      "notUseful": "Non, cette réponse ne m'a pas été utile"
+    },
+    "contact": {
+      "title": "Vous n'avez pas trouvé votre réponse ?",
+      "text": "Notre équipe peut vous aider à mieux comprendre le fonctionnement d'ImmoSphere.",
+      "note": "Transmettez-nous votre demande par formulaire électronique sécurisé.",
+      "button": "Nous contacter",
+      "unavailable": "Bientôt disponible"
+    }
   }
 }
