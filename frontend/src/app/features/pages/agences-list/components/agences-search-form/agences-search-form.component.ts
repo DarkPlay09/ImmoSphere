@@ -30,4 +30,9 @@ export class AgencesSearchFormComponent {
   readValue(event: Event): string {
     return (event.target as HTMLInputElement | HTMLSelectElement).value;
   }
+
+  /** Les options du select ne proposent que « all » et les régions de `regions`. */
+  readRegion(event: Event): AgenceRegion | 'all' {
+    return this.readValue(event) as AgenceRegion | 'all';
+  }
 }

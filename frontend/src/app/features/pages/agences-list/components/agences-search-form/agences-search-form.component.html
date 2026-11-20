@@ -45,7 +45,7 @@
       <select
         id="agences-search-region"
         class="agences-search__input"
-        (change)="region.set($any(readValue($event)))"
+        (change)="region.set(readRegion($event))"
       >
         <option value="all" [selected]="region() === 'all'">
           {{ 'agences.search.regionAll' | translate }}
