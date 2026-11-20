@@ -1,7 +1,5 @@
 import { Component, inject, input, output, signal } from '@angular/core';
-import { Router, RouterLink } from '@angular/router';
-import { Component, input, output } from '@angular/core';
-import { RouterLink, RouterLinkActive } from '@angular/router';
+import { Router, RouterLink, RouterLinkActive } from '@angular/router';
 import { TranslatePipe } from '@ngx-translate/core';
 import { finalize } from 'rxjs';
 
