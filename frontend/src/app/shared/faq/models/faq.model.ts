@@ -14,5 +14,5 @@ export interface FaqQuestion {
   answer: string;
 }
 
-/** Longueur maximale du texte recherché, identique à la limite du back (`FAQ_SEARCH_TOO_LONG`). */
+/** Longueur maximale du texte recherché, identique à la limite du back (400 `SEARCH_TOO_LONG` au-delà). */
 export const FAQ_SEARCH_MAX_LENGTH = 100;
