@@ -41,7 +41,7 @@ export class FooterComponent {
       links: [
         { labelKey: 'footer.about.aboutUs' },
         { labelKey: 'footer.about.howItWorks' },
-        { labelKey: 'footer.about.faq' },
+        { labelKey: 'footer.about.faq', route: '/faq' },
       ],
     },
     {
