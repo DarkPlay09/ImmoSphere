@@ -1,0 +1,106 @@
+// Valeurs reprises de la maquette Figma (bandeau de contact 328:12839).
+
+.faq-contact {
+  display: flex;
+  align-items: center;
+  justify-content: space-between;
+  gap: 24px;
+  padding: 40px;
+
+  background: #e9e3ca;
+  border-radius: 16px;
+  box-shadow: 0 1px 1px rgba(0, 0, 0, 0.05);
+
+  &__content {
+    display: flex;
+    align-items: flex-start;
+    gap: 16px;
+  }
+
+  &__badge {
+    display: flex;
+    flex-shrink: 0;
+    align-items: center;
+    justify-content: center;
+    width: 48px;
+    height: 48px;
+
+    background: #6c2d6b;
+    border-radius: 12px;
+    box-shadow: 0 1px 1px rgba(0, 0, 0, 0.05);
+  }
+
+  &__text-group {
+    display: flex;
+    flex-direction: column;
+    max-width: 320px;
+  }
+
+  &__title {
+    margin: 0;
+    color: #1e1c0d;
+    font-size: 20px;
+    font-weight: 700;
+    line-height: 25px;
+  }
+
+  &__text {
+    margin: 4px 0 0;
+    color: #696551;
+    font-size: 14px;
+    line-height: 20px;
+  }
+
+  &__note {
+    display: flex;
+    align-items: center;
+    gap: 4px;
+    margin: 8px 0 0;
+
+    color: rgba(105, 101, 81, 0.8);
+    font-size: 11px;
+    font-weight: 600;
+    line-height: 16px;
+    letter-spacing: 0.03em;
+  }
+
+  &__button {
+    display: flex;
+    flex-shrink: 0;
+    align-items: center;
+    gap: 8px;
+    padding: 16px 40px;
+
+    background: #6c2d6b;
+    border: none;
+    border-radius: 8px;
+    box-shadow:
+      0 4px 6px -1px rgba(0, 0, 0, 0.1),
+      0 2px 4px -2px rgba(0, 0, 0, 0.1);
+    color: #ffffff;
+
+    font: inherit;
+    font-size: 13px;
+    font-weight: 600;
+    line-height: 18px;
+    letter-spacing: 0.01em;
+    white-space: nowrap;
+    cursor: not-allowed;
+
+    &:focus-visible {
+      outline: 2px solid #521453;
+      outline-offset: 2px;
+    }
+  }
+
+  img {
+    display: block;
+    flex-shrink: 0;
+  }
+
+  @media (max-width: 720px) {
+    flex-direction: column;
+    align-items: flex-start;
+    padding: 24px;
+  }
+}
