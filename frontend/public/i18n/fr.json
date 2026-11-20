@@ -98,8 +98,7 @@
       "forSale": "{{count}} biens en vente",
       "view": "Voir l’agence",
       "viewAria": "Voir l’agence {{name}}",
-      "contact": "Contacter",
-      "contactAria": "Contacter {{name}} par e-mail"
+      "contact": "Contacter"
     },
     "cta": {
       "badge": "Espace professionnels IPI",
@@ -122,7 +121,6 @@
       "bce": "BCE : {{bce}}",
       "country": "Belgique",
       "contactAgency": "Contacter l’agence",
-      "contactAria": "Contacter {{name}} par e-mail",
       "address": "Siège & accueil",
       "phone": "Ligne directe",
       "hours": "Horaires d’ouverture",

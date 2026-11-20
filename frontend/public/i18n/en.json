@@ -98,8 +98,7 @@
       "forSale": "{{count}} properties for sale",
       "view": "View agency",
       "viewAria": "View agency {{name}}",
-      "contact": "Contact",
-      "contactAria": "Email {{name}}"
+      "contact": "Contact"
     },
     "cta": {
       "badge": "IPI professional area",
@@ -122,7 +121,6 @@
       "bce": "CBE: {{bce}}",
       "country": "Belgium",
       "contactAgency": "Contact the agency",
-      "contactAria": "Email {{name}}",
       "address": "Head office & reception",
       "phone": "Direct line",
       "hours": "Opening hours",

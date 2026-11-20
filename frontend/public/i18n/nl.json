@@ -98,8 +98,7 @@
       "forSale": "{{count}} panden te koop",
       "view": "Kantoor bekijken",
       "viewAria": "Kantoor {{name}} bekijken",
-      "contact": "Contact",
-      "contactAria": "{{name}} e-mailen"
+      "contact": "Contact"
     },
     "cta": {
       "badge": "BIV-professionele ruimte",
@@ -122,7 +121,6 @@
       "bce": "KBO: {{bce}}",
       "country": "België",
       "contactAgency": "Kantoor contacteren",
-      "contactAria": "{{name}} e-mailen",
       "address": "Hoofdkantoor & onthaal",
       "phone": "Rechtstreekse lijn",
       "hours": "Openingsuren",
