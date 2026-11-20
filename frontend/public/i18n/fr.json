@@ -63,6 +63,26 @@
       "privacy": "Confidentialité",
       "locale": "Belgique (FR)"
     },
+    "login": {
+      "title": "Heureux de vous retrouver !",
+      "subtitle": "Connectez-vous à votre espace ImmoSphere pour retrouver vos biens et vos favoris.",
+      "email": "Adresse e-mail",
+      "emailPlaceholder": "vous@exemple.be",
+      "password": "Mot de passe",
+      "passwordPlaceholder": "Votre mot de passe",
+      "showPassword": "Afficher le mot de passe",
+      "hidePassword": "Masquer le mot de passe",
+      "forgotPassword": "Mot de passe oublié ?",
+      "rememberMe": "Rester connecté",
+      "submit": "Se connecter",
+      "noAccount": "Vous n'avez pas encore de compte ?",
+      "createAccount": "Créer un compte",
+      "backendPending": "Le formulaire est prêt. La connexion sera disponible après l'intégration de l'API.",
+      "errors": {
+        "required": "Ce champ est obligatoire.",
+        "email": "Saisissez une adresse e-mail valide."
+      }
+    },
     "register": {
       "title": "Créez votre compte",
       "subtitle": "Rejoignez ImmoSphere et centralisez votre parcours immobilier en quelques clics.",

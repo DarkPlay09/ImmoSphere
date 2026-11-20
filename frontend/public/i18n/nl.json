@@ -63,6 +63,26 @@
       "privacy": "Privacy",
       "locale": "België (NL)"
     },
+    "login": {
+      "title": "Welkom terug!",
+      "subtitle": "Meld u aan bij ImmoSphere om uw panden en favorieten terug te vinden.",
+      "email": "E-mailadres",
+      "emailPlaceholder": "u@voorbeeld.be",
+      "password": "Wachtwoord",
+      "passwordPlaceholder": "Uw wachtwoord",
+      "showPassword": "Wachtwoord tonen",
+      "hidePassword": "Wachtwoord verbergen",
+      "forgotPassword": "Wachtwoord vergeten?",
+      "rememberMe": "Aangemeld blijven",
+      "submit": "Aanmelden",
+      "noAccount": "Nog geen account?",
+      "createAccount": "Een account aanmaken",
+      "backendPending": "Het formulier is klaar. Aanmelden is beschikbaar zodra de API is gekoppeld.",
+      "errors": {
+        "required": "Dit veld is verplicht.",
+        "email": "Voer een geldig e-mailadres in."
+      }
+    },
     "register": {
       "title": "Maak uw account aan",
       "subtitle": "Word lid van ImmoSphere en beheer uw vastgoedtraject in enkele klikken.",

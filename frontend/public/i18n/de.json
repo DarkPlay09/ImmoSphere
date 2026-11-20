@@ -63,6 +63,26 @@
       "privacy": "Datenschutz",
       "locale": "Belgien (DE)"
     },
+    "login": {
+      "title": "Willkommen zurück!",
+      "subtitle": "Melden Sie sich bei ImmoSphere an, um Ihre Immobilien und Favoriten zu sehen.",
+      "email": "E-Mail-Adresse",
+      "emailPlaceholder": "sie@beispiel.be",
+      "password": "Passwort",
+      "passwordPlaceholder": "Ihr Passwort",
+      "showPassword": "Passwort anzeigen",
+      "hidePassword": "Passwort verbergen",
+      "forgotPassword": "Passwort vergessen?",
+      "rememberMe": "Angemeldet bleiben",
+      "submit": "Anmelden",
+      "noAccount": "Noch kein Konto?",
+      "createAccount": "Konto erstellen",
+      "backendPending": "Das Formular ist bereit. Die Anmeldung wird nach der API-Anbindung verfügbar sein.",
+      "errors": {
+        "required": "Dieses Feld ist erforderlich.",
+        "email": "Geben Sie eine gültige E-Mail-Adresse ein."
+      }
+    },
     "register": {
       "title": "Konto erstellen",
       "subtitle": "Werden Sie Teil von ImmoSphere und verwalten Sie Ihr Immobilienvorhaben mit wenigen Klicks.",
