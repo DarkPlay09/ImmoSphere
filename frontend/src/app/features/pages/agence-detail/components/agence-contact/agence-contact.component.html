@@ -1,0 +1,65 @@
+<div class="agence-contact">
+
+  <div class="agence-contact__item">
+    <span class="agence-contact__icon material-symbols-outlined" aria-hidden="true">location_on</span>
+    <div>
+      <p class="agence-contact__label">{{ 'agences.detail.address' | translate }}</p>
+      <p class="agence-contact__value agence-contact__value--strong">{{ fullAddress() }}</p>
+    </div>
+  </div>
+
+  @if (agence().phone; as phone) {
+    <div class="agence-contact__item">
+      <span class="agence-contact__icon material-symbols-outlined" aria-hidden="true">call</span>
+      <div>
+        <p class="agence-contact__label">{{ 'agences.detail.phone' | translate }}</p>
+        <p class="agence-contact__value">
+          <a class="agence-contact__link agence-contact__link--phone" [href]="phoneHref()">{{ phone }}</a>
+        </p>
+      </div>
+    </div>
+  }
+
+  @if (agence().openingHours?.length) {
+    <div class="agence-contact__item">
+      <span class="agence-contact__icon material-symbols-outlined" aria-hidden="true">schedule</span>
+      <div>
+        <p class="agence-contact__label">{{ 'agences.detail.hours' | translate }}</p>
+        @for (slot of agence().openingHours; track slot.days; let first = $first) {
+          <p class="agence-contact__value" [class.agence-contact__value--secondary]="!first">
+            {{ 'agences.detail.hoursLine' | translate: {
+              days: ('agences.detail.days.' + slot.days | translate),
+              opens: slot.opens,
+              closes: slot.closes
+            } }}
+            @if (slot.byAppointment) {
+              {{ 'agences.detail.byAppointment' | translate }}
+            }
+          </p>
+        }
+      </div>
+    </div>
+  }
+
+  @if (agence().website; as website) {
+    <div class="agence-contact__item">
+      <span class="agence-contact__icon material-symbols-outlined" aria-hidden="true">language</span>
+      <div>
+        <p class="agence-contact__label">{{ 'agences.detail.website' | translate }}</p>
+        <p class="agence-contact__value">
+          <a
+            class="agence-contact__link"
+            [href]="website"
+            target="_blank"
+            rel="noopener noreferrer"
+            [attr.aria-label]="'agences.detail.websiteAria' | translate: { site: websiteLabel() }"
+          >
+            {{ websiteLabel() }}
+            <span class="material-symbols-outlined" aria-hidden="true">open_in_new</span>
+          </a>
+        </p>
+      </div>
+    </div>
+  }
+
+</div>

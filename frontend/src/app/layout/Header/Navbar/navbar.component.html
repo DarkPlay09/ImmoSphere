@@ -4,6 +4,8 @@
     [attr.aria-label]="'navbar.navigationLabel' | translate"
   >
     <a class="navbar__logo" routerLink="/properties">
+  <nav class="navbar__navigation" [attr.aria-label]="'navbar.navigationLabel' | translate">
+    <a class="navbar__logo" routerLink="/">
       <img
         src="logo/logo-immosphere.png"
         [alt]="'navbar.logoAlt' | translate"
@@ -18,6 +20,8 @@
               class="navbar__link"
               [routerLink]="link.route"
               [queryParams]="link.queryParams"
+              routerLinkActive="navbar__link--active"
+              ariaCurrentWhenActive="page"
             >
               {{ ('navbar.' + link.id) | translate }}
             </a>
@@ -32,17 +36,15 @@
         </li>
       }
     </ul>
-
     <div class="navbar__actions">
-
       <button
         class="navbar__favorites"
         type="button"
         [attr.aria-label]="
-          isLoggedIn()
-            ? ('navbar.favoritesWithCount' | translate: { count: favoritesCount() })
-            : ('navbar.favorites' | translate)
-        "
+      isLoggedIn()
+        ? ('navbar.favoritesWithCount' | translate: { count: favoritesCount() })
+        : ('navbar.favorites' | translate)
+    "
       >
         <img src="icons/heart.svg" alt="" />
 
@@ -58,10 +60,7 @@
 
       <app-language-picker />
 
-      <span
-        class="navbar__divider"
-        aria-hidden="true"
-      ></span>
+      <span class="navbar__divider" aria-hidden="true"></span>
 
       @if (session.status() !== 'loading') {
         @if (isLoggedIn()) {

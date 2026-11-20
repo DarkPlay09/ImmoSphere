@@ -50,11 +50,11 @@ builder.Services.AddAntiforgery(options =>
 
     // Cookie technique contenant le jeton antiforgery.
     options.Cookie.Name = "ImmoSphere.Antiforgery";
-    
+
     options.Cookie.HttpOnly = true;
 
     options.Cookie.SameSite = SameSiteMode.Lax;
-    
+
     options.Cookie.SecurePolicy = CookieSecurePolicy.SameAsRequest;
 });
 
@@ -139,7 +139,7 @@ builder.Services
                 {
                     context.Token = jwt;
                 }
-                
+
                 return Task.CompletedTask;
             }
         };
@@ -198,6 +198,7 @@ builder.Services.AddCors(options =>
 //                          Interface, Classe qui l'implémente
 builder.Services.AddScoped<IBienRepository, BienRepository>();
 builder.Services.AddScoped<IUserRepository, UserRepository>();
+builder.Services.AddScoped<IAgenceRepository, AgenceRepository>();
 
 // ==========================================
 // Inscription des services
@@ -206,6 +207,7 @@ builder.Services.AddScoped<IUserRepository, UserRepository>();
 builder.Services.AddScoped<IBienService, BienService>();
 builder.Services.AddScoped<IRegisterService, RegisterService>();
 builder.Services.AddScoped<IEmailConfirmationService, EmailConfirmationService>();
+builder.Services.AddScoped<IAgenceService, AgenceService>();
 
 // ==========================================
 // CONSTRUCTION DE L'APPLICATION

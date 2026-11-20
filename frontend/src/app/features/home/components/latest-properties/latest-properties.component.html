@@ -1,0 +1,63 @@
+
+<section
+  class="latest-properties"
+  aria-labelledby="latest-properties-title"
+>
+  <div class="latest-properties__container">
+
+    <header class="latest-properties__header">
+      <div class="latest-properties__heading">
+        <span class="latest-properties__eyebrow">
+          {{ 'home.latest.eyebrow' | translate }}
+        </span>
+
+        <h2 id="latest-properties-title">
+          {{ 'home.latest.title' | translate }}
+        </h2>
+      </div>
+
+      <div class="latest-properties__actions">
+        <div
+          class="latest-properties__filters"
+          role="group"
+          [attr.aria-label]="'home.latest.filtersLabel' | translate"
+        >
+          @for (filter of filters; track filter.value) {
+            <button
+              type="button"
+              class="latest-properties__filter"
+              [class.latest-properties__filter--active]="
+                activeFilter() === filter.value
+              "
+              [attr.aria-pressed]="
+                activeFilter() === filter.value
+              "
+              (click)="selectFilter(filter.value)"
+            >
+              {{ filter.label | translate }}
+            </button>
+          }
+        </div>
+
+        <a
+          class="latest-properties__all-link"
+          routerLink="/properties"
+        >
+          {{ 'home.latest.viewAll' | translate }}
+          <span aria-hidden="true">→</span>
+        </a>
+      </div>
+    </header>
+
+    <div class="latest-properties__grid">
+      @for (property of filteredProperties(); track property.id) {
+        <app-property-card [property]="property" />
+      } @empty {
+        <p class="latest-properties__empty">
+          {{ 'home.latest.empty' | translate }}
+        </p>
+      }
+    </div>
+
+  </div>
+</section>

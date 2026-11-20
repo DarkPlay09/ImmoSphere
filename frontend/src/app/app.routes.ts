@@ -31,6 +31,12 @@ export const routes: Routes = [
     component: MainLayoutComponent,
     children: [
       {
+        path: '',
+        loadComponent: () =>
+          import('./features/pages/home/home.component').then(
+            (m) => m.HomeComponent),
+      },
+      {
         path: 'properties',
         loadComponent: () =>
           import('./features/pages/properties-list/properties-list.component').then(
@@ -38,9 +44,25 @@ export const routes: Routes = [
           ),
       },
       {
-        path: '',
-        pathMatch: 'full',
-        redirectTo: 'properties',
+        path: 'search',
+        loadComponent: () =>
+          import('./features/pages/properties-search/properties-search').then(
+            (m) => m.PropertiesSearchComponent,
+          ),
+      },
+      {
+        path: 'agences',
+        loadComponent: () =>
+          import('./features/pages/agences-list/agences-list.component').then(
+            (m) => m.AgencesListComponent,
+          ),
+      },
+      {
+        path: 'agences/:id',
+        loadComponent: () =>
+          import('./features/pages/agence-detail/agence-detail.component').then(
+            (m) => m.AgenceDetailComponent,
+          ),
       },
     ],
   },

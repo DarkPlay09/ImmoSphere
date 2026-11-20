@@ -1,0 +1,153 @@
+// Valeurs reprises de la maquette Figma (cadre « Agences - Détails d'une agence » 183:1751).
+
+:host {
+  display: block;
+  background: #fbf8fe;
+}
+
+.agence-detail {
+  $primary: #521453;
+  $text-secondary: #4f434c;
+
+  box-sizing: border-box;
+  max-width: 1280px;
+  margin: 0 auto;
+  padding: 40px 40px 64px;
+
+  color: #1b1b20;
+  font-family: 'Manrope', sans-serif;
+
+  // CHARGEMENT
+  &__status {
+    margin: 0;
+    padding: 64px 0;
+    color: $text-secondary;
+    text-align: center;
+  }
+
+  // AGENCE INTROUVABLE
+  &__not-found {
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    gap: 12px;
+    max-width: 560px;
+    margin: 40px auto;
+    padding: 48px 32px;
+
+    background: #ffffff;
+    border-radius: 12px;
+    box-shadow: 0 1px 2px rgba(0, 0, 0, 0.05);
+    text-align: center;
+  }
+
+  &__not-found-icon {
+    color: $primary;
+    font-size: 48px;
+  }
+
+  &__not-found-title {
+    margin: 0;
+    font-size: 28px;
+    font-weight: 700;
+    line-height: 36px;
+  }
+
+  &__not-found-text {
+    margin: 0 0 12px;
+    color: $text-secondary;
+    font-size: 16px;
+    line-height: 26px;
+  }
+
+  &__back {
+    display: inline-flex;
+    align-items: center;
+    gap: 6px;
+    padding: 8px 16px;
+
+    background: $primary;
+    border-radius: 8px;
+    color: #ffffff;
+
+    font-size: 13px;
+    font-weight: 500;
+    line-height: 18px;
+    text-decoration: none;
+
+    &:hover {
+      background: #6c2d6b;
+    }
+
+    .material-symbols-outlined {
+      font-size: 18px;
+    }
+  }
+
+  // FIL D'ARIANE
+  &__breadcrumb-list {
+    display: flex;
+    flex-wrap: wrap;
+    align-items: center;
+    gap: 8px;
+    margin: 0;
+    padding: 0;
+    list-style: none;
+
+    font-size: 13px;
+    font-weight: 500;
+    line-height: 18px;
+
+    li + li::before {
+      content: '/';
+      margin-right: 8px;
+      color: #d3c2cd;
+    }
+  }
+
+  &__breadcrumb-link {
+    color: $text-secondary;
+    text-decoration: none;
+
+    &:hover {
+      color: $primary;
+      text-decoration: underline;
+    }
+  }
+
+  &__breadcrumb-current {
+    font-weight: 600;
+  }
+
+  &__back,
+  &__breadcrumb-link {
+    &:focus-visible {
+      outline: 2px solid $primary;
+      outline-offset: 2px;
+    }
+  }
+
+  &__header {
+    display: block;
+    margin-top: 24px;
+  }
+
+  // À PROPOS + SPÉCIFICATIONS
+  &__columns {
+    display: grid;
+    grid-template-columns: minmax(0, 7fr) minmax(0, 5fr);
+    align-items: start;
+    gap: 40px;
+    margin-top: 48px;
+  }
+
+  @media (max-width: 1024px) {
+    &__columns {
+      grid-template-columns: minmax(0, 1fr);
+    }
+  }
+
+  @media (max-width: 720px) {
+    padding: 24px 16px 48px;
+  }
+}

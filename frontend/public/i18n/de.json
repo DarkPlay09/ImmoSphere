@@ -133,5 +133,203 @@
         "resendError": "Ein neuer Code konnte nicht angefordert werden. Bitte versuchen Sie es erneut."
       }
     }
+  },
+  "agences": {
+    "contact": {
+      "label": "{{name}} per E-Mail kontaktieren"
+    },
+    "loadError": "Die Agenturen können derzeit nicht geladen werden. Bitte versuchen Sie es später erneut.",
+    "list": {
+      "eyebrow": "Immobilienprofis",
+      "title": "Finden Sie eine Immobilienagentur",
+      "subtitle": "Entdecken Sie die zugelassenen Agenturen auf ImmoSphere und sehen Sie sich ihre Immobilien, ihre Leistungen und die geprüften Bewertungen ihrer Käufer und Verkäufer in Belgien an.",
+      "resultsTitle": "Immobilienagenturen",
+      "resultsCount": "{{count}} Agenturen gefunden",
+      "resultsCountOne": "1 Agentur gefunden",
+      "sortLabel": "Sortieren nach:",
+      "loading": "Agenturen werden geladen…",
+      "empty": "Keine Agentur entspricht Ihrer Suche.",
+      "emptyReset": "Suche zurücksetzen"
+    },
+    "search": {
+      "label": "Eine Agentur suchen",
+      "name": "Name der Agentur",
+      "namePlaceholder": "Suchen z. B. Horizon Immo…",
+      "location": "Ort",
+      "locationPlaceholder": "Stadt oder Postleitzahl z. B. Lüttich, 4000",
+      "region": "Region",
+      "regionAll": "Alle Regionen",
+      "submit": "Suchen",
+      "reset": "Suche zurücksetzen"
+    },
+    "sort": {
+      "relevance": "Relevanz",
+      "name": "Name (A–Z)",
+      "rating": "Beste Bewertung"
+    },
+    "pagination": {
+      "label": "Seitennavigation der Agenturen",
+      "previous": "Zurück",
+      "next": "Weiter",
+      "page": "Seite {{page}}"
+    },
+    "card": {
+      "logoAlt": "Logo von {{name}}",
+      "ipiApproved": "IPI-zugelassen",
+      "rating": "{{rating}} / 5",
+      "reviews": "{{count}} geprüfte Kundenbewertungen",
+      "available": "{{count}} Immobilien verfügbar",
+      "forSale": "{{count}} Immobilien zu verkaufen",
+      "view": "Agentur ansehen",
+      "viewAria": "Agentur {{name}} ansehen",
+      "contact": "Kontaktieren"
+    },
+    "cta": {
+      "badge": "IPI-Profibereich",
+      "title": "Sind Sie eine Immobilienagentur in Belgien?",
+      "text": "Treten Sie dem zertifizierten ImmoSphere-Netzwerk bei. Veröffentlichen Sie Ihre Anzeigen, erhalten Sie Anfragen qualifizierter Käufer und nutzen Sie unsere integrierten Tools für Bewertung und Energieausweis-Analyse.",
+      "button": "Professionelles Konto erstellen",
+      "unavailable": "Demnächst verfügbar"
+    },
+    "detail": {
+      "reviews": "{{count}} verifizierte Kundenbewertungen",
+      "ratingAria": "Durchschnittliche Bewertung: {{rating}} von 5",
+      "favoriteAdd": "Agentur zu den Favoriten hinzufügen",
+      "favoriteRemove": "Agentur aus den Favoriten entfernen",
+      "breadcrumbLabel": "Brotkrümelnavigation",
+      "home": "Startseite",
+      "agencies": "Agenturen",
+      "loading": "Agentur wird geladen…",
+      "ipiNumber": "IPI-Zulassung Nr. {{number}}",
+      "federia": "Federia-Mitglied",
+      "bce": "ZDU: {{bce}}",
+      "country": "Belgien",
+      "contactAgency": "Agentur kontaktieren",
+      "address": "Hauptsitz & Empfang",
+      "phone": "Direktwahl",
+      "hours": "Öffnungszeiten",
+      "hoursLine": "{{days}}: {{opens}} – {{closes}}",
+      "byAppointment": "(nach Vereinbarung)",
+      "days": {
+        "mondayToFriday": "Mo – Fr",
+        "saturday": "Samstag",
+        "sunday": "Sonntag"
+      },
+      "website": "Offizielle Website & Netzwerk",
+      "websiteAria": "{{site}} (öffnet in einem neuen Tab)",
+      "aboutEyebrow": "Vorstellung der Agentur",
+      "aboutTitle": "Über {{name}}",
+      "specsTitle": "Merkmale der Agentur",
+      "specs": {
+        "zone": "Haupttätigkeitsgebiet",
+        "propertyTypes": "Betreute Immobilienarten",
+        "transactionPoles": "Transaktionsbereiche",
+        "languages": "Gesprochene Sprachen"
+      },
+      "nativeLanguage": "{{language}} (Muttersprache)",
+      "notFound": {
+        "title": "Agentur nicht gefunden",
+        "text": "Diese Agentur existiert nicht oder ist nicht mehr auf ImmoSphere gelistet.",
+        "back": "Zurück zur Agenturliste"
+      }
+    }
+  },
+  "home": {
+    "hero": {
+      "badge": "DAS IMMOSPHERE-ERLEBNIS · BRÜSSEL · FLANDERN · WALLONIEN",
+      "title": "Finden Sie die Immobilie, die zu Ihnen passt.",
+      "description": "Häuser, Wohnungen, Grundstücke und vieles mehr in ganz Belgien, mit virtuellen Besichtigungen und zertifizierten Energieausweisen."
+    },
+
+    "search": {
+      "buy": "Kaufen",
+      "rent": "Mieten",
+      "location": "Standort",
+      "locationPlaceholder": "Brüssel, Lüttich, Namur...",
+      "propertyType": "Immobilientyp",
+      "anyProperty": "Alle Immobilien",
+      "house": "Haus",
+      "apartment": "Wohnung",
+      "land": "Grundstück",
+      "budgetMax": "Max. Budget",
+      "anyBudget": "Beliebig",
+      "bedrooms": "Schlafzimmer",
+      "anyBedrooms": "Alle",
+      "minArea": "Mindestfläche (m²)",
+      "minAreaPlaceholder": "Z. B. 80",
+      "peb": "Energieklasse",
+      "anyPeb": "Beliebig",
+      "moreFilters": "Weitere Filter",
+      "lessFilters": "Weniger Filter",
+      "viewMap": "Auf Karte ansehen",
+      "mapUnavailable": "Die Kartenansicht ist noch nicht verfügbar.",
+      "submit": "Suchen"
+    },
+
+    "latest": {
+      "eyebrow": "Immobilienauswahl",
+      "title": "Entdecken Sie die neuesten Angebote",
+      "filtersLabel": "Immobilienangebote filtern",
+      "all": "Alle",
+      "sale": "Zum Kauf",
+      "rent": "Zur Miete",
+      "new": "Neuheiten",
+      "virtualTour": "360°-Rundgang",
+      "viewAll": "Alle Angebote ansehen",
+      "empty": "Keine Immobilien für diesen Filter gefunden."
+    },
+
+    "notaries": {
+      "eyebrow": "Immobilienbegleitung",
+      "title": "Finden Sie den Notar, der Sie begleitet.",
+      "description": "Entdecken Sie Notare in Belgien, sehen Sie sich ihre Kanzleiprofile an und wählen Sie frei einen Fachmann für Beratung, Kaufvorverträge und notarielle Urkunden.",
+      "languages": "Sprachen",
+      "viewProfile": "Kanzleiprofil ansehen",
+      "discoverAll": "Alle Notare entdecken",
+      "freedomTitle": "Freie Wahl:",
+      "freedomText": "Sie können Ihren Notar in Belgien frei wählen, unabhängig davon, ob er auf ImmoSphere gelistet ist. Notarielle Begleitung bei der Immobiliensuche ist freiwillig und unabhängig von unserer Plattform.",
+      "unavailable": "Die Notarseiten sind noch nicht verfügbar.",
+      "expertise": {
+        "claireMain": "Immobilienrecht & Kaufvorverträge",
+        "claireSecondary": "Mietrecht, Dienstbarkeiten & öffentliche Verkäufe",
+        "julienMain": "Verkauf & Kauf von Wohnimmobilien",
+        "julienSecondary": "Hypothekendarlehen & Schenkungen",
+        "sophieMain": "Notarielle Urkunden & Miteigentum",
+        "sophieSecondary": "Zweisprachige Beratung & Investitionen"
+      }
+    },
+
+    "map": {
+      "eyebrow": "Intelligente Kartendarstellung",
+      "title": "Entdecken Sie Immobilien in Ihrer Nähe",
+      "description": "Filtern Sie Immobilien nach der Nähe zu belgischen Bahnhöfen, Schulen und Gewerbegebieten.",
+      "searchOnMap": "Auf der Karte suchen",
+      "regionsLabel": "Immobilien nach Region filtern",
+      "ariaLabel": "Interaktive Immobilienkarte",
+      "allBelgium": "Ganz Belgien",
+      "brussels": "Brüssel",
+      "flanders": "Flandern",
+      "wallonia": "Wallonien",
+      "viewProperty": "Immobilie ansehen",
+      "detailsUnavailable": "Die Detailseite der Immobilie ist noch nicht verfügbar.",
+      "imageAlt": "Immobilie in {{city}}",
+      "types": {
+        "penthouse": "Penthouse",
+        "apartment": "Wohnung",
+        "villa": "Villa",
+        "house": "Haus"
+      }
+    },
+
+    "publish": {
+      "badge": "Privatpersonen & Vermieter",
+      "title": "Möchten Sie eine Immobilie verkaufen oder vermieten?",
+      "description": "Veröffentlichen Sie Ihr Inserat in wenigen Schritten, verwalten Sie Besichtigungsanfragen und kommunizieren Sie mit Interessenten per E-Mail.",
+      "benefit1": "Veröffentlichen Sie Ihr erstes Inserat kostenlos in 5 Minuten",
+      "benefit2": "Unverbindliche Wertermittlung anhand des lokalen Immobilienmarktes",
+      "benefit3": "Verwalten Sie Besichtigungstermine direkt und vermeiden Sie unerwünschte Anrufe",
+      "button": "Meine Immobilie inserieren",
+      "unavailable": "Das Veröffentlichen von Immobilien ist noch nicht verfügbar."
+    }
   }
 }

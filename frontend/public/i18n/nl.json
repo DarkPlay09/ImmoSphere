@@ -133,5 +133,203 @@
         "resendError": "Kan geen nieuwe code aanvragen. Probeer het opnieuw."
       }
     }
+  },
+  "agences": {
+    "contact": {
+      "label": "{{name}} e-mailen"
+    },
+    "loadError": "De agentschappen kunnen momenteel niet worden geladen. Probeer het later opnieuw.",
+    "list": {
+      "eyebrow": "Vastgoedprofessionals",
+      "title": "Vind een vastgoedkantoor",
+      "subtitle": "Ontdek de erkende kantoren op ImmoSphere en bekijk hun panden, hun diensten en de geverifieerde beoordelingen van hun kopers en verkopers in België.",
+      "resultsTitle": "Vastgoedkantoren",
+      "resultsCount": "{{count}} kantoren gevonden",
+      "resultsCountOne": "1 kantoor gevonden",
+      "sortLabel": "Sorteren op:",
+      "loading": "Kantoren worden geladen…",
+      "empty": "Geen enkel kantoor komt overeen met uw zoekopdracht.",
+      "emptyReset": "Zoekopdracht wissen"
+    },
+    "search": {
+      "label": "Een kantoor zoeken",
+      "name": "Naam van het kantoor",
+      "namePlaceholder": "Zoeken bv. Horizon Immo…",
+      "location": "Locatie",
+      "locationPlaceholder": "Stad of postcode bv. Luik, 4000",
+      "region": "Gewest",
+      "regionAll": "Alle gewesten",
+      "submit": "Zoeken",
+      "reset": "Zoekopdracht wissen"
+    },
+    "sort": {
+      "relevance": "Relevantie",
+      "name": "Naam (A–Z)",
+      "rating": "Beste beoordeling"
+    },
+    "pagination": {
+      "label": "Paginering van de kantoren",
+      "previous": "Vorige",
+      "next": "Volgende",
+      "page": "Pagina {{page}}"
+    },
+    "card": {
+      "logoAlt": "Logo van {{name}}",
+      "ipiApproved": "BIV-erkend",
+      "rating": "{{rating}} / 5",
+      "reviews": "{{count}} geverifieerde klantbeoordelingen",
+      "available": "{{count}} panden beschikbaar",
+      "forSale": "{{count}} panden te koop",
+      "view": "Kantoor bekijken",
+      "viewAria": "Kantoor {{name}} bekijken",
+      "contact": "Contact"
+    },
+    "cta": {
+      "badge": "BIV-professionele ruimte",
+      "title": "Bent u een vastgoedkantoor in België?",
+      "text": "Sluit u aan bij het gecertificeerde ImmoSphere-netwerk. Publiceer uw zoekertjes, ontvang aanvragen van gekwalificeerde kopers en gebruik onze geïntegreerde tools voor schatting en EPC-analyse.",
+      "button": "Professioneel account aanmaken",
+      "unavailable": "Binnenkort beschikbaar"
+    },
+    "detail": {
+      "reviews": "{{count}} geverifieerde klantbeoordelingen",
+      "ratingAria": "Gemiddelde score: {{rating}} op 5",
+      "favoriteAdd": "Agentschap toevoegen aan favorieten",
+      "favoriteRemove": "Agentschap verwijderen uit favorieten",
+      "breadcrumbLabel": "Kruimelpad",
+      "home": "Home",
+      "agencies": "Kantoren",
+      "loading": "Kantoor wordt geladen…",
+      "ipiNumber": "BIV-erkend nr. {{number}}",
+      "federia": "Lid van Federia",
+      "bce": "KBO: {{bce}}",
+      "country": "België",
+      "contactAgency": "Kantoor contacteren",
+      "address": "Hoofdkantoor & onthaal",
+      "phone": "Rechtstreekse lijn",
+      "hours": "Openingsuren",
+      "hoursLine": "{{days}}: {{opens}} – {{closes}}",
+      "byAppointment": "(op afspraak)",
+      "days": {
+        "mondayToFriday": "Ma – Vr",
+        "saturday": "Zaterdag",
+        "sunday": "Zondag"
+      },
+      "website": "Officiële website & netwerk",
+      "websiteAria": "{{site}} (opent in een nieuw tabblad)",
+      "aboutEyebrow": "Voorstelling van het kantoor",
+      "aboutTitle": "Over {{name}}",
+      "specsTitle": "Specificaties van het kantoor",
+      "specs": {
+        "zone": "Belangrijkste werkgebied",
+        "propertyTypes": "Beheerde vastgoedtypes",
+        "transactionPoles": "Transactiedomeinen",
+        "languages": "Gesproken talen"
+      },
+      "nativeLanguage": "{{language}} (moedertaal)",
+      "notFound": {
+        "title": "Kantoor niet gevonden",
+        "text": "Dit kantoor bestaat niet of staat niet meer op ImmoSphere.",
+        "back": "Terug naar de lijst met kantoren"
+      }
+    }
+  },
+  "home": {
+    "hero": {
+      "badge": "DE IMMOSPHERE-ERVARING · BRUSSEL · VLAANDEREN · WALLONIË",
+      "title": "Vind de woning die bij u past.",
+      "description": "Huizen, appartementen, bouwgronden en nog veel meer in heel België, met virtuele rondleidingen en gecertificeerde EPC-attesten."
+    },
+
+    "search": {
+      "buy": "Kopen",
+      "rent": "Huren",
+      "location": "Locatie",
+      "locationPlaceholder": "Brussel, Luik, Namen...",
+      "propertyType": "Type pand",
+      "anyProperty": "Alle panden",
+      "house": "Huis",
+      "apartment": "Appartement",
+      "land": "Grond",
+      "budgetMax": "Max. budget",
+      "anyBudget": "Onverschillig",
+      "bedrooms": "Slaapkamers",
+      "anyBedrooms": "Alle",
+      "minArea": "Min. oppervlakte (m²)",
+      "minAreaPlaceholder": "Bijv. 80",
+      "peb": "EPC-label",
+      "anyPeb": "Onverschillig",
+      "moreFilters": "Meer filters",
+      "lessFilters": "Minder filters",
+      "viewMap": "Bekijk op kaart",
+      "mapUnavailable": "De kaartweergave is nog niet beschikbaar.",
+      "submit": "Zoeken"
+    },
+
+    "latest": {
+      "eyebrow": "Vastgoedselectie",
+      "title": "Ontdek de nieuwste panden",
+      "filtersLabel": "Vastgoedaanbod filteren",
+      "all": "Alle",
+      "sale": "Te koop",
+      "rent": "Te huur",
+      "new": "Nieuw",
+      "virtualTour": "360°-rondleiding",
+      "viewAll": "Bekijk alle panden",
+      "empty": "Geen panden gevonden voor deze filter."
+    },
+
+    "notaries": {
+      "eyebrow": "Vastgoedbegeleiding",
+      "title": "Vind de notaris die u begeleidt.",
+      "description": "Ontdek notarissen in België, bekijk hun notariskantoren en kies vrij een professional voor voorafgaand advies, verkoopovereenkomsten en authentieke akten.",
+      "languages": "Talen",
+      "viewProfile": "Bekijk het notariskantoor",
+      "discoverAll": "Ontdek alle notarissen",
+      "freedomTitle": "Vrije keuze:",
+      "freedomText": "u bent volledig vrij om uw notaris in België te kiezen, ongeacht of deze op ImmoSphere vermeld staat. Notariële begeleiding tijdens het zoeken is facultatief en onafhankelijk van ons platform.",
+      "unavailable": "De pagina's van notarissen zijn nog niet beschikbaar.",
+      "expertise": {
+        "claireMain": "Vastgoedrecht & verkoopovereenkomsten",
+        "claireSecondary": "Huur, erfdienstbaarheden & openbare verkopen",
+        "julienMain": "Residentiële verkoop & aankoop",
+        "julienSecondary": "Hypothecaire kredieten & schenkingen",
+        "sophieMain": "Authentieke akten & mede-eigendom",
+        "sophieSecondary": "Tweetalige begeleiding & investeringen"
+      }
+    },
+
+    "map": {
+      "eyebrow": "Slimme kaartweergave",
+      "title": "Ontdek vastgoed bij u in de buurt",
+      "description": "Filter panden op basis van de nabijheid van Belgische treinstations, scholen en bedrijventerreinen.",
+      "searchOnMap": "Zoeken op de kaart",
+      "regionsLabel": "Panden filteren per regio",
+      "ariaLabel": "Interactieve vastgoedkaart",
+      "allBelgium": "Heel België",
+      "brussels": "Brussel",
+      "flanders": "Vlaanderen",
+      "wallonia": "Wallonië",
+      "viewProperty": "Bekijk het pand",
+      "detailsUnavailable": "De detailpagina van het pand is nog niet beschikbaar.",
+      "imageAlt": "Pand in {{city}}",
+      "types": {
+        "penthouse": "Penthouse",
+        "apartment": "Appartement",
+        "villa": "Villa",
+        "house": "Huis"
+      }
+    },
+
+    "publish": {
+      "badge": "Particulieren & Verhuurders",
+      "title": "Wilt u een pand verkopen of verhuren?",
+      "description": "Publiceer uw advertentie in enkele stappen, beheer bezichtigingsaanvragen en communiceer met geïnteresseerden via e-mail.",
+      "benefit1": "Publiceer uw eerste advertentie gratis in 5 minuten",
+      "benefit2": "Indicatieve waardebepaling op basis van de lokale vastgoedmarkt",
+      "benefit3": "Beheer bezichtigingsmomenten rechtstreeks om ongewenste oproepen te vermijden",
+      "button": "Mijn pand publiceren",
+      "unavailable": "Panden publiceren is nog niet beschikbaar."
+    }
   }
 }

@@ -133,5 +133,203 @@
         "resendError": "Unable to request a new code. Please try again."
       }
     }
+  },
+  "agences": {
+    "contact": {
+      "label": "Email {{name}}"
+    },
+    "loadError": "Agencies could not be loaded right now. Please try again later.",
+    "list": {
+      "eyebrow": "Real estate professionals",
+      "title": "Find a real estate agency",
+      "subtitle": "Discover the licensed agencies on ImmoSphere and browse their properties, their services and verified reviews from their buyers and sellers in Belgium.",
+      "resultsTitle": "Real estate agencies",
+      "resultsCount": "{{count}} agencies found",
+      "resultsCountOne": "1 agency found",
+      "sortLabel": "Sort by:",
+      "loading": "Loading agencies…",
+      "empty": "No agency matches your search.",
+      "emptyReset": "Reset search"
+    },
+    "search": {
+      "label": "Search for an agency",
+      "name": "Agency name",
+      "namePlaceholder": "Search e.g. Horizon Immo…",
+      "location": "Location",
+      "locationPlaceholder": "City or postcode e.g. Liège, 4000",
+      "region": "Region",
+      "regionAll": "All regions",
+      "submit": "Search",
+      "reset": "Reset search"
+    },
+    "sort": {
+      "relevance": "Relevance",
+      "name": "Name (A–Z)",
+      "rating": "Top rated"
+    },
+    "pagination": {
+      "label": "Agency pagination",
+      "previous": "Previous",
+      "next": "Next",
+      "page": "Page {{page}}"
+    },
+    "card": {
+      "logoAlt": "{{name}} logo",
+      "ipiApproved": "IPI licensed",
+      "rating": "{{rating}} / 5",
+      "reviews": "{{count}} verified client reviews",
+      "available": "{{count}} properties available",
+      "forSale": "{{count}} properties for sale",
+      "view": "View agency",
+      "viewAria": "View agency {{name}}",
+      "contact": "Contact"
+    },
+    "cta": {
+      "badge": "IPI professional area",
+      "title": "Are you a real estate agency in Belgium?",
+      "text": "Join the certified ImmoSphere network. Publish your listings, receive enquiries from qualified buyers and use our built-in valuation and EPC analysis tools.",
+      "button": "Create a professional account",
+      "unavailable": "Coming soon"
+    },
+    "detail": {
+      "reviews": "{{count}} verified customer reviews",
+      "ratingAria": "Average rating: {{rating}} out of 5",
+      "favoriteAdd": "Add the agency to favourites",
+      "favoriteRemove": "Remove the agency from favourites",
+      "breadcrumbLabel": "Breadcrumb",
+      "home": "Home",
+      "agencies": "Agencies",
+      "loading": "Loading agency…",
+      "ipiNumber": "IPI licence No. {{number}}",
+      "federia": "Federia member",
+      "bce": "CBE: {{bce}}",
+      "country": "Belgium",
+      "contactAgency": "Contact the agency",
+      "address": "Head office & reception",
+      "phone": "Direct line",
+      "hours": "Opening hours",
+      "hoursLine": "{{days}}: {{opens}} – {{closes}}",
+      "byAppointment": "(by appointment)",
+      "days": {
+        "mondayToFriday": "Mon – Fri",
+        "saturday": "Saturday",
+        "sunday": "Sunday"
+      },
+      "website": "Official website & network",
+      "websiteAria": "{{site}} (opens in a new tab)",
+      "aboutEyebrow": "About the agency",
+      "aboutTitle": "About {{name}}",
+      "specsTitle": "Agency specifications",
+      "specs": {
+        "zone": "Main area of activity",
+        "propertyTypes": "Property types handled",
+        "transactionPoles": "Transaction areas",
+        "languages": "Languages spoken"
+      },
+      "nativeLanguage": "{{language}} (native)",
+      "notFound": {
+        "title": "Agency not found",
+        "text": "This agency does not exist or is no longer listed on ImmoSphere.",
+        "back": "Back to the agency list"
+      }
+    }
+  },
+  "home": {
+    "hero": {
+      "badge": "THE IMMOSPHERE EXPERIENCE · BRUSSELS · FLANDERS · WALLONIA",
+      "title": "Find the property that's right for you.",
+      "description": "Houses, apartments, plots of land and much more throughout Belgium, with virtual tours and certified energy assessments."
+    },
+
+    "search": {
+      "buy": "Buy",
+      "rent": "Rent",
+      "location": "Location",
+      "locationPlaceholder": "Brussels, Liège, Namur...",
+      "propertyType": "Property type",
+      "anyProperty": "All properties",
+      "house": "House",
+      "apartment": "Apartment",
+      "land": "Land",
+      "budgetMax": "Max budget",
+      "anyBudget": "Any",
+      "bedrooms": "Bedrooms",
+      "anyBedrooms": "Any",
+      "minArea": "Min. area (m²)",
+      "minAreaPlaceholder": "E.g. 80",
+      "peb": "Energy rating",
+      "anyPeb": "Any",
+      "moreFilters": "More filters",
+      "lessFilters": "Fewer filters",
+      "viewMap": "View on map",
+      "mapUnavailable": "Map view is not yet available.",
+      "submit": "Search"
+    },
+
+    "latest": {
+      "eyebrow": "Property selection",
+      "title": "Discover the latest listings",
+      "filtersLabel": "Filter property listings",
+      "all": "All",
+      "sale": "For sale",
+      "rent": "For rent",
+      "new": "New listings",
+      "virtualTour": "360° tour",
+      "viewAll": "View all listings",
+      "empty": "No properties match this filter."
+    },
+
+    "notaries": {
+      "eyebrow": "Real estate guidance",
+      "title": "Find a notary to guide you.",
+      "description": "Discover notaries in Belgium, explore their offices and freely choose a professional for preliminary advice, sale agreements and authentic deeds.",
+      "languages": "Languages",
+      "viewProfile": "View notary office",
+      "discoverAll": "Discover all notaries",
+      "freedomTitle": "Freedom of choice:",
+      "freedomText": "you remain entirely free to choose your notary in Belgium, whether or not they are listed on ImmoSphere. Notarial guidance is optional during your property search and independent of our platform.",
+      "unavailable": "Notary pages are not available yet.",
+      "expertise": {
+        "claireMain": "Property law & sale agreements",
+        "claireSecondary": "Leases, easements & public sales",
+        "julienMain": "Residential sales & purchases",
+        "julienSecondary": "Mortgages & donations",
+        "sophieMain": "Authentic deeds & co-ownership",
+        "sophieSecondary": "Bilingual guidance & investments"
+      }
+    },
+
+    "map": {
+      "eyebrow": "Smart mapping",
+      "title": "Explore properties around you",
+      "description": "Filter properties by proximity to Belgian train stations, schools and business districts.",
+      "searchOnMap": "Search on the map",
+      "regionsLabel": "Filter properties by region",
+      "ariaLabel": "Interactive property map",
+      "allBelgium": "All Belgium",
+      "brussels": "Brussels",
+      "flanders": "Flanders",
+      "wallonia": "Wallonia",
+      "viewProperty": "View property",
+      "detailsUnavailable": "The property details page is not available yet.",
+      "imageAlt": "Property in {{city}}",
+      "types": {
+        "penthouse": "Penthouse",
+        "apartment": "Apartment",
+        "villa": "Villa",
+        "house": "House"
+      }
+    },
+
+    "publish": {
+      "badge": "Individuals & Landlords",
+      "title": "Want to sell or rent out a property?",
+      "description": "Publish your listing in a few steps, manage viewing requests and communicate with interested people by email.",
+      "benefit1": "Publish your first listing for free in 5 minutes",
+      "benefit2": "Indicative property valuation based on your local market",
+      "benefit3": "Manage viewing time slots directly to avoid unwanted calls",
+      "button": "List my property",
+      "unavailable": "Property publishing is not available yet."
+    }
   }
 }

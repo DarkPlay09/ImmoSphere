@@ -73,6 +73,13 @@
     &--disabled {
       cursor: default;
     }
+
+    // Page courante (maquette Figma : texte violet souligné).
+    &--active {
+      color: #521453;
+      text-decoration: underline;
+      text-underline-offset: from-font;
+    }
   }
 
   &__actions {

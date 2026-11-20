@@ -1,0 +1,47 @@
+<section class="agence-specs" aria-labelledby="agence-specs-title">
+  <h2 id="agence-specs-title" class="agence-specs__title">{{ 'agences.detail.specsTitle' | translate }}</h2>
+
+  <div class="agence-specs__list">
+    <div class="agence-specs__item">
+      <span class="agence-specs__icon material-symbols-outlined" aria-hidden="true">explore</span>
+      <div>
+        <p class="agence-specs__label">{{ 'agences.detail.specs.zone' | translate }}</p>
+        <p class="agence-specs__value">{{ specifications().zone }}</p>
+      </div>
+    </div>
+
+    <div class="agence-specs__item">
+      <span class="agence-specs__icon material-symbols-outlined" aria-hidden="true">home_work</span>
+      <div>
+        <p class="agence-specs__label">{{ 'agences.detail.specs.propertyTypes' | translate }}</p>
+        <p class="agence-specs__value">{{ specifications().propertyTypes }}</p>
+      </div>
+    </div>
+
+    <div class="agence-specs__item">
+      <span class="agence-specs__icon material-symbols-outlined" aria-hidden="true">swap_horiz</span>
+      <div>
+        <p class="agence-specs__label">{{ 'agences.detail.specs.transactionPoles' | translate }}</p>
+        <p class="agence-specs__value">{{ specifications().transactionPoles }}</p>
+      </div>
+    </div>
+
+    <div class="agence-specs__item">
+      <span class="agence-specs__icon material-symbols-outlined" aria-hidden="true">translate</span>
+      <div>
+        <p class="agence-specs__label">{{ 'agences.detail.specs.languages' | translate }}</p>
+        <ul class="agence-specs__languages">
+          @for (language of specifications().languages; track language.code) {
+            <li class="agence-specs__language">
+              @if (language.native) {
+                {{ 'agences.detail.nativeLanguage' | translate: { language: ('navbar.languages.' + language.code | translate) } }}
+              } @else {
+                {{ 'navbar.languages.' + language.code | translate }}
+              }
+            </li>
+          }
+        </ul>
+      </div>
+    </div>
+  </div>
+</section>

@@ -1,5 +1,7 @@
 import { Component, inject, input, output, signal } from '@angular/core';
 import { Router, RouterLink } from '@angular/router';
+import { Component, input, output } from '@angular/core';
+import { RouterLink, RouterLinkActive } from '@angular/router';
 import { TranslatePipe } from '@ngx-translate/core';
 import { finalize } from 'rxjs';
 
@@ -10,7 +12,7 @@ import { NAVBAR_LINKS } from './data/navbar-links.data';
 @Component({
   selector: 'app-navbar',
   standalone: true,
-  imports: [RouterLink, TranslatePipe, LanguagePickerComponent],
+  imports: [RouterLink, RouterLinkActive, TranslatePipe, LanguagePickerComponent],
   templateUrl: './navbar.component.html',
   styleUrl: './navbar.component.scss',
 })
