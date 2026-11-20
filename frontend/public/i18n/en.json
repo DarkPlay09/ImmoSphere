@@ -19,7 +19,10 @@
       "nl": "Nederlands",
       "de": "Deutsch",
       "en": "English"
-    }
+    },
+    "logout": "Log out",
+    "loggingOut": "Logging out...",
+    "logoutError": "Unable to log out. Please try again."
   },
   "footer": {
     "description": "Belgium’s leading real estate platform. Transparency, notarial accuracy and certified transactions.",
@@ -49,6 +52,87 @@
     "languageSelection": "Select a language:",
     "copyright": "© ImmoSphere {{year}}. All rights reserved.",
     "tagline": "Belgian real estate, made clear."
+  },
+  "auth": {
+    "shell": {
+      "title": "Your property journey starts here.",
+      "description": "Search, publish and manage your property project with peace of mind in one intuitive, secure space.",
+      "copyright": "© ImmoSphere {{year}}",
+      "backHome": "Back to home",
+      "terms": "Terms of use",
+      "privacy": "Privacy",
+      "locale": "Belgium (EN)"
+    },
+    "register": {
+      "title": "Create your account",
+      "subtitle": "Join ImmoSphere and manage your property journey in just a few clicks.",
+      "accountType": "You are…",
+      "personal": "Individual",
+      "professional": "Professional",
+      "professionalRole": "What type of professional?",
+      "agent": "Real estate agent",
+      "notary": "Notary",
+      "givenName": "First name",
+      "givenNamePlaceholder": "Marc",
+      "name": "Last name",
+      "namePlaceholder": "Lambert",
+      "email": "Email address",
+      "emailPlaceholder": "you@example.be",
+      "password": "Password",
+      "passwordPlaceholder": "Your password",
+      "showPassword": "Show password",
+      "hidePassword": "Hide password",
+      "confirmPassword": "Confirm password",
+      "confirmPasswordPlaceholder": "Confirm your password",
+      "privacy": "Privacy policy",
+      "termsPrefix": "I accept the",
+      "termsJoin": "and the",
+      "termsSuffix": "of ImmoSphere.",
+      "submit": "Create my account",
+      "submitting": "Creating account...",
+      "success": "A confirmation email has been sent to you. Please check your email inbox to activate your account.",
+      "localSuccess": "Form is valid. No account has been created yet: API integration to follow.",
+      "alreadyRegistered": "Already have an account?",
+      "login": "Sign in",
+      "rules": {
+        "length": "8 characters min.",
+        "upper": "One uppercase",
+        "digit": "One number",
+        "lower": "One lowercase"
+      },
+      "errors": {
+        "required": "This field is required.",
+        "professionalRole": "Please select your profession.",
+        "email": "Enter a valid email address.",
+        "password": "The password does not meet all requirements.",
+        "mismatch": "Passwords do not match.",
+        "conditions": "You must accept the terms to continue.",
+        "server": "An error occurred during registration. Please try again."
+      },
+      "verifyEmail": {
+        "eyebrow": "Final step",
+        "title": "Verify your email address",
+        "description": "We sent a 6-digit confirmation code to the email address you used to sign up.",
+        "codeLabel": "Verification code",
+        "digits": "digits",
+        "digitLabel": "Digit {{index}} of {{total}}",
+        "submit": "Verify my email address",
+        "submitting": "Verifying…",
+        "notReceived": "Didn't receive the code?",
+        "resend": "Resend code",
+        "spamHint": "Please check your spam folder, too.",
+        "backToRegister": "Change my email address",
+        "previewNotice": "No code was verified: connection to the authentication server is still pending.",
+        "errors": {
+          "incomplete": "Please enter all 6 digits of the code."
+        },
+        "resending": "Sending…",
+        "resendCountdown": "You can request another code in {{seconds}} s.",
+        "resendSuccess": "If your account is awaiting confirmation, a new code will be sent when resending is available.",
+        "resendRateLimit": "Too many requests. Please wait a few minutes.",
+        "resendError": "Unable to request a new code. Please try again."
+      }
+    }
   },
   "agences": {
     "contact": {

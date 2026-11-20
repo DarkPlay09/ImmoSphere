@@ -19,7 +19,10 @@
       "nl": "Nederlands",
       "de": "Deutsch",
       "en": "English"
-    }
+    },
+    "logout": "Se déconnecter",
+    "loggingOut": "Déconnexion...",
+    "logoutError": "Impossible de se déconnecter. Réessayez."
   },
   "footer": {
     "description": "L’écosystème immobilier de référence en Belgique. Transparence, précision notariale et transactions certifiées.",
@@ -49,6 +52,87 @@
     "languageSelection": "Sélection de langue :",
     "copyright": "© ImmoSphere {{year}}. Tous droits réservés.",
     "tagline": "L’immobilier belge en toute clarté."
+  },
+  "auth": {
+    "shell": {
+      "title": "Votre projet immobilier commence ici.",
+      "description": "Recherchez, publiez et gérez votre projet immobilier en toute sérénité depuis un seul espace intuitif et sécurisé.",
+      "copyright": "© ImmoSphere {{year}}",
+      "backHome": "Retour à l’accueil",
+      "terms": "Conditions d’utilisation",
+      "privacy": "Confidentialité",
+      "locale": "Belgique (FR)"
+    },
+    "register": {
+      "title": "Créez votre compte",
+      "subtitle": "Rejoignez ImmoSphere et centralisez votre parcours immobilier en quelques clics.",
+      "accountType": "Vous êtes…",
+      "personal": "Particulier",
+      "professional": "Professionnel",
+      "professionalRole": "Quel type de professionnel ?",
+      "agent": "Agent immobilier",
+      "notary": "Notaire",
+      "givenName": "Prénom",
+      "givenNamePlaceholder": "Marc",
+      "name": "Nom",
+      "namePlaceholder": "Lambert",
+      "email": "Adresse e-mail",
+      "emailPlaceholder": "vous@exemple.be",
+      "password": "Mot de passe",
+      "passwordPlaceholder": "Votre mot de passe",
+      "showPassword": "Afficher le mot de passe",
+      "hidePassword": "Masquer le mot de passe",
+      "confirmPassword": "Confirmer le mot de passe",
+      "confirmPasswordPlaceholder": "Confirmez votre mot de passe",
+      "privacy": "Politique de confidentialité",
+      "termsPrefix": "J’accepte les",
+      "termsJoin": "et la",
+      "termsSuffix": "d’ImmoSphere.",
+      "submit": "Créer mon compte",
+      "submitting": "Création du compte en cours...",
+      "success": "Un e-mail de confirmation vous a été envoyé. Consultez votre boîte mail pour activer votre compte.",
+      "localSuccess": "Formulaire valide. Aucun compte n’a encore été créé : connexion à l’API à venir.",
+      "alreadyRegistered": "Vous avez déjà un compte ?",
+      "login": "Se connecter",
+      "rules": {
+        "length": "8 car. min.",
+        "upper": "Une majuscule",
+        "digit": "Un chiffre",
+        "lower": "Une minuscule"
+      },
+      "errors": {
+        "required": "Ce champ est obligatoire.",
+        "professionalRole": "Veuillez choisir votre profession.",
+        "email": "Saisissez une adresse e-mail valide.",
+        "password": "Le mot de passe ne respecte pas tous les critères.",
+        "mismatch": "Les mots de passe ne correspondent pas.",
+        "conditions": "Vous devez accepter les conditions pour continuer.",
+        "server": "Une erreur est survenue lors de l'inscription. Veuillez réessayer."
+      }
+    },
+    "verifyEmail": {
+      "eyebrow": "Dernière étape",
+      "title": "Vérifiez votre adresse e-mail",
+      "description": "Nous avons envoyé un code de confirmation à 6 chiffres à l’adresse utilisée pour votre inscription.",
+      "codeLabel": "Code de vérification",
+      "digits": "chiffres",
+      "digitLabel": "Chiffre {{index}} sur {{total}}",
+      "submit": "Vérifier mon adresse e-mail",
+      "submitting": "Vérification en cours…",
+      "notReceived": "Vous n’avez pas reçu le code ?",
+      "resend": "Renvoyer un code",
+      "spamHint": "Pensez à vérifier vos courriers indésirables.",
+      "backToRegister": "Modifier mon adresse e-mail",
+      "previewNotice": "Aucun code n’a été vérifié : la connexion au serveur d’authentification reste à faire.",
+      "errors": {
+        "incomplete": "Veuillez saisir les 6 chiffres du code."
+      },
+      "resending": "Envoi en cours…",
+      "resendCountdown": "Nouvelle demande possible dans {{seconds}} s.",
+      "resendSuccess": "Si votre compte attend une confirmation, un nouveau code vous sera envoyé lorsque le renvoi sera possible.",
+      "resendRateLimit": "Trop de demandes. Veuillez patienter quelques minutes.",
+      "resendError": "Impossible de demander un nouveau code. Veuillez réessayer."
+    }
   },
   "agences": {
     "contact": {

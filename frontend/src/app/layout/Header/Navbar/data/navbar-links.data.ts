@@ -28,4 +28,9 @@ export const NAVBAR_LINKS: NavbarLink[] = [
     label: 'Services',
     route: null,
   },
+  {
+    id: 'login',
+    label: 'login',
+    route: '/register',
+  }
 ];

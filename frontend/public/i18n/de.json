@@ -19,7 +19,10 @@
       "nl": "Nederlands",
       "de": "Deutsch",
       "en": "English"
-    }
+    },
+    "logout": "Abmelden",
+    "loggingOut": "Abmeldung läuft...",
+    "logoutError": "Abmeldung fehlgeschlagen. Bitte erneut versuchen."
   },
   "footer": {
     "description": "Die Immobilienplattform für Belgien. Transparenz, notarielle Genauigkeit und zertifizierte Transaktionen.",
@@ -49,6 +52,87 @@
     "languageSelection": "Sprachauswahl:",
     "copyright": "© ImmoSphere {{year}}. Alle Rechte vorbehalten.",
     "tagline": "Belgische Immobilien auf einen Blick."
+  },
+  "auth": {
+    "shell": {
+      "title": "Ihr Immobilienprojekt beginnt hier.",
+      "description": "Suchen, veröffentlichen und verwalten Sie Ihr Immobilienprojekt entspannt in einer einzigen intuitiven und sicheren Umgebung.",
+      "copyright": "© ImmoSphere {{year}}",
+      "backHome": "Zurück zur Startseite",
+      "terms": "Nutzungsbedingungen",
+      "privacy": "Datenschutz",
+      "locale": "Belgien (DE)"
+    },
+    "register": {
+      "title": "Konto erstellen",
+      "subtitle": "Werden Sie Teil von ImmoSphere und verwalten Sie Ihr Immobilienvorhaben mit wenigen Klicks.",
+      "accountType": "Sie sind…",
+      "personal": "Privatperson",
+      "professional": "Gewerblich",
+      "professionalRole": "Welche Berufsgruppe?",
+      "agent": "Immobilienmakler",
+      "notary": "Notar",
+      "givenName": "Vorname",
+      "givenNamePlaceholder": "Marc",
+      "name": "Nachname",
+      "namePlaceholder": "Lambert",
+      "email": "E-Mail-Adresse",
+      "emailPlaceholder": "sie@beispiel.be",
+      "password": "Passwort",
+      "passwordPlaceholder": "Ihr Passwort",
+      "showPassword": "Passwort anzeigen",
+      "hidePassword": "Passwort verbergen",
+      "confirmPassword": "Passwort bestätigen",
+      "confirmPasswordPlaceholder": "Bestätigen Sie Ihr Passwort",
+      "privacy": "Datenschutzerklärung",
+      "termsPrefix": "Ich akzeptiere die",
+      "termsJoin": "und die",
+      "termsSuffix": "von ImmoSphere.",
+      "submit": "Mein Konto erstellen",
+      "submitting": "Das Konto wird gerade erstellt...",
+      "success": "Sie haben eine Bestätigungs-E-Mail erhalten. Bitte überprüfen Sie Ihren E-Mail-Posteingang, um Ihr Konto zu aktivieren.",
+      "localSuccess": "Formular gültig. Es wurde noch kein Konto erstellt: API-Anbindung folgt.",
+      "alreadyRegistered": "Sie haben bereits ein Konto?",
+      "login": "Anmelden",
+      "rules": {
+        "length": "Mind. 8 Zeichen",
+        "upper": "Ein Großbuchstabe",
+        "digit": "Eine Zahl",
+        "lower": "Ein Kleinbuchstabe"
+      },
+      "errors": {
+        "required": "Dieses Feld ist erforderlich.",
+        "professionalRole": "Bitte waehlen Sie Ihren Beruf.",
+        "email": "Geben Sie eine gültige E-Mail-Adresse ein.",
+        "password": "Das Passwort erfüllt nicht alle Anforderungen.",
+        "mismatch": "Die Passwörter stimmen nicht überein.",
+        "conditions": "Sie müssen die Bedingungen akzeptieren, um fortzufahren.",
+        "server": "Bei der Registrierung ist ein Fehler aufgetreten. Bitte versuchen Sie es erneut."
+      },
+      "verifyEmail": {
+        "eyebrow": "Letzter Schritt",
+        "title": "Bestätigen Sie Ihre E-Mail-Adresse",
+        "description": "Wir haben einen sechsstelligen Bestätigungscode an die bei der Registrierung verwendete E-Mail-Adresse gesendet.",
+        "codeLabel": "Bestätigungscode",
+        "digits": "Ziffern",
+        "digitLabel": "Ziffer {{index}} von {{total}}",
+        "submit": "E-Mail-Adresse bestätigen",
+        "submitting": "Wird überprüft…",
+        "notReceived": "Keinen Code erhalten?",
+        "resend": "Code erneut senden",
+        "spamHint": "Bitte prüfen Sie auch Ihren Spamordner.",
+        "backToRegister": "Meine E-Mail-Adresse ändern",
+        "previewNotice": "Es wurde kein Code geprüft: Die Anbindung an den Authentifizierungsserver steht noch aus.",
+        "errors": {
+          "incomplete": "Bitte geben Sie alle 6 Ziffern des Codes ein."
+        },
+        "resending": "Wird gesendet…",
+        "resendCountdown": "Sie können in {{seconds}} s einen neuen Code anfordern.",
+        "resendSuccess": "Falls Ihr Konto noch bestätigt werden muss, erhalten Sie einen neuen Code, sobald der erneute Versand möglich ist.",
+        "resendRateLimit": "Zu viele Anfragen. Bitte warten Sie einige Minuten.",
+        "resendError": "Ein neuer Code konnte nicht angefordert werden. Bitte versuchen Sie es erneut."
+      }
+    }
   },
   "agences": {
     "contact": {

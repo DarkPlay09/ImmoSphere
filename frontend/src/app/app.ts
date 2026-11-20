@@ -2,6 +2,7 @@ import { Component, inject, signal } from '@angular/core';
 import { RouterOutlet } from '@angular/router';
 
 import { TestApiService } from './features/home/data-access/test-api.service';
+import { AuthSessionService } from './features/auth/data-access/auth-session.service';
 
 @Component({
   selector: 'app-root',
@@ -12,8 +13,13 @@ import { TestApiService } from './features/home/data-access/test-api.service';
 })
 export class App {
   private readonly testApiService = inject(TestApiService);
+  private readonly authSession = inject(AuthSessionService);
 
   message = signal('');
+
+  constructor() {
+    this.authSession.refresh();
+  }
 
   envoyerRequete() {
     this.testApiService.test().subscribe({

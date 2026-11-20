@@ -1,6 +1,10 @@
+
 <header class="navbar">
-  <nav class="navbar__navigation" [attr.aria-label]="'navbar.navigationLabel' | translate">
-    <a class="navbar__logo" routerLink="/">
+  <nav
+    class="navbar__navigation"
+    [attr.aria-label]="'navbar.navigationLabel' | translate"
+  >
+    <a class="navbar__logo" routerLink="/properties">
       <img
         src="logo/logo-immosphere.png"
         [alt]="'navbar.logoAlt' | translate"
@@ -8,9 +12,9 @@
     </a>
 
     <ul class="navbar__links">
-      @for (link of navigationLinks; track link.id){
+      @for (link of navigationLinks; track link.id) {
         <li>
-          @if (link.route){
+          @if (link.route) {
             <a
               class="navbar__link"
               [routerLink]="link.route"
@@ -31,22 +35,26 @@
         </li>
       }
     </ul>
+
     <div class="navbar__actions">
       <button
         class="navbar__favorites"
         type="button"
         [attr.aria-label]="
-      isLoggedIn()
-        ? ('navbar.favoritesWithCount' | translate: { count: favoritesCount() })
-        : ('navbar.favorites' | translate)
-    "
+          isLoggedIn()
+            ? ('navbar.favoritesWithCount' | translate: { count: favoritesCount() })
+            : ('navbar.favorites' | translate)
+        "
       >
         <img src="icons/heart.svg" alt="" />
 
         @if (isLoggedIn()) {
-          <span class="navbar__favorites-count" aria-hidden="true">
-        {{ favoritesCount() }}
-      </span>
+          <span
+            class="navbar__favorites-count"
+            aria-hidden="true"
+          >
+            {{ favoritesCount() }}
+          </span>
         }
       </button>
 
@@ -54,14 +62,46 @@
 
       <span class="navbar__divider" aria-hidden="true"></span>
 
-      @if (!isLoggedIn()) {
-        <button
-          class="navbar__login"
-          type="button"
-          (click)="loginRequested.emit()"
-        >
-          {{ 'navbar.login' | translate }}
-        </button>
+      @if (session.status() !== 'loading') {
+        @if (isLoggedIn()) {
+          <span
+            class="navbar__login navbar__account"
+            [attr.title]="session.user()?.email"
+          >
+            {{ 'navbar.account' | translate }}
+          </span>
+
+          <button
+            class="navbar__login navbar__logout"
+            type="button"
+            (click)="logout()"
+            [disabled]="isLoggingOut()"
+            [attr.aria-busy]="isLoggingOut()"
+          >
+            {{
+              (isLoggingOut()
+                ? 'navbar.loggingOut'
+                : 'navbar.logout') | translate
+            }}
+          </button>
+
+          @if (logoutFailed()) {
+            <span
+              class="navbar__logout-error"
+              role="alert"
+            >
+              {{ 'navbar.logoutError' | translate }}
+            </span>
+          }
+        } @else {
+          <button
+            class="navbar__login"
+            type="button"
+            (click)="goToLogin()"
+          >
+            {{ 'navbar.login' | translate }}
+          </button>
+        }
       }
 
       <button
@@ -71,7 +111,6 @@
       >
         {{ 'navbar.publish' | translate }}
       </button>
-
     </div>
   </nav>
 </header>

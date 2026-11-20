@@ -19,7 +19,10 @@
       "nl": "Nederlands",
       "de": "Deutsch",
       "en": "English"
-    }
+    },
+    "logout": "Uitloggen",
+    "loggingOut": "Bezig met uitloggen...",
+    "logoutError": "Uitloggen mislukt. Probeer opnieuw."
   },
   "footer": {
     "description": "Het toonaangevende vastgoedplatform in België. Transparantie, notariële nauwkeurigheid en gecertificeerde transacties.",
@@ -49,6 +52,87 @@
     "languageSelection": "Taalkeuze:",
     "copyright": "© ImmoSphere {{year}}. Alle rechten voorbehouden.",
     "tagline": "Belgisch vastgoed, helder en duidelijk."
+  },
+  "auth": {
+    "shell": {
+      "title": "Uw vastgoedproject begint hier.",
+      "description": "Zoek, publiceer en beheer uw vastgoedproject met een gerust hart vanuit één intuïtieve en veilige omgeving.",
+      "copyright": "© ImmoSphere {{year}}",
+      "backHome": "Terug naar de startpagina",
+      "terms": "Gebruiksvoorwaarden",
+      "privacy": "Privacy",
+      "locale": "België (NL)"
+    },
+    "register": {
+      "title": "Maak uw account aan",
+      "subtitle": "Word lid van ImmoSphere en beheer uw vastgoedtraject in enkele klikken.",
+      "accountType": "U bent…",
+      "personal": "Particulier",
+      "professional": "Professional",
+      "professionalRole": "Welk type professional?",
+      "agent": "Vastgoedmakelaar",
+      "notary": "Notaris",
+      "givenName": "Voornaam",
+      "givenNamePlaceholder": "Marc",
+      "name": "Achternaam",
+      "namePlaceholder": "Lambert",
+      "email": "E-mailadres",
+      "emailPlaceholder": "u@voorbeeld.be",
+      "password": "Wachtwoord",
+      "passwordPlaceholder": "Uw wachtwoord",
+      "showPassword": "Wachtwoord tonen",
+      "hidePassword": "Wachtwoord verbergen",
+      "confirmPassword": "Wachtwoord bevestigen",
+      "confirmPasswordPlaceholder": "Bevestig uw wachtwoord",
+      "privacy": "Privacybeleid",
+      "termsPrefix": "Ik ga akkoord met de",
+      "termsJoin": "en het",
+      "termsSuffix": "van ImmoSphere.",
+      "submit": "Mijn account aanmaken",
+      "submitting": "Het account wordt aangemaakt...",
+      "success": "Er is een bevestigingsmail naar u verzonden. Kijk in uw mailbox om uw account te activeren.",
+      "localSuccess": "Formulier geldig. Er is nog geen account aangemaakt: API-koppeling volgt.",
+      "alreadyRegistered": "Heeft u al een account?",
+      "login": "Aanmelden",
+      "rules": {
+        "length": "Min. 8 tekens",
+        "upper": "Een hoofdletter",
+        "digit": "Een cijfer",
+        "lower": "Een kleine letter"
+      },
+      "errors": {
+        "required": "Dit veld is verplicht.",
+        "professionalRole": "Kies uw beroep.",
+        "email": "Voer een geldig e-mailadres in.",
+        "password": "Het wachtwoord voldoet niet aan alle vereisten.",
+        "mismatch": "Wachtwoorden komen niet overeen.",
+        "conditions": "U moet de voorwaarden accepteren om door te gaan.",
+        "server": "Er is een fout opgetreden tijdens het registreren. Probeer het nog eens."
+      },
+      "verifyEmail": {
+        "eyebrow": "Laatste stap",
+        "title": "Verifieer uw e-mailadres",
+        "description": "We hebben een bevestigingscode van 6 cijfers gestuurd naar het e-mailadres dat u bij de registratie gebruikte.",
+        "codeLabel": "Verificatiecode",
+        "digits": "cijfers",
+        "digitLabel": "Cijfer {{index}} van {{total}}",
+        "submit": "Mijn e-mailadres verifiëren",
+        "submitting": "Bezig met verifiëren…",
+        "notReceived": "Geen code ontvangen?",
+        "resend": "Code opnieuw verzenden",
+        "spamHint": "Controleer ook uw spammap.",
+        "backToRegister": "Mijn e-mailadres wijzigen",
+        "previewNotice": "Er is geen code geverifieerd: de koppeling met de authenticatieserver moet nog gebeuren.",
+        "errors": {
+          "incomplete": "Voer alle 6 cijfers van de code in."
+        },
+        "resending": "Bezig met verzenden…",
+        "resendCountdown": "U kunt over {{seconds}} s een nieuwe code aanvragen.",
+        "resendSuccess": "Als uw account nog bevestigd moet worden, ontvangt u een nieuwe code zodra opnieuw verzenden mogelijk is.",
+        "resendRateLimit": "Te veel aanvragen. Wacht enkele minuten.",
+        "resendError": "Kan geen nieuwe code aanvragen. Probeer het opnieuw."
+      }
+    }
   },
   "agences": {
     "contact": {
