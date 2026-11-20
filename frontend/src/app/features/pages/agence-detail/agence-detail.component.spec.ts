@@ -199,6 +199,14 @@ describe('AgenceDetailComponent — éléments optionnels', () => {
     });
   });
 
+  it('affiche le profil sans région, sans texte vide', async () => {
+    const { element } = await render({ ...complete, region: undefined });
+
+    expect(element.querySelector('.agence-header__name')?.textContent).toContain('Horizon Immo Liège');
+    expect(element.querySelector('.agence-header__location')?.textContent).toContain('Liège');
+    expect(element.textContent).not.toContain('undefined');
+  });
+
   it('masque le bloc de note si le nombre d’avis manque', async () => {
     const { element } = await render({ ...complete, reviewCount: undefined });
 

@@ -105,4 +105,12 @@ describe('AgenceCardComponent', () => {
     expect(contact.closest('a[href^="/agences"]')).toBeNull();
     expect(element.querySelector('.agence-card__button--primary')?.getAttribute('href')).toBe('/agences/1');
   });
+
+  it('s’affiche normalement sans région', async () => {
+    const element = await render({ ...MOCK_AGENCES[0]!, region: undefined });
+
+    expect(element.querySelector('.agence-card__name')?.textContent).toContain('Horizon Immo Liège');
+    expect(element.querySelector('.agence-card__location')?.textContent).toContain('Liège');
+    expect(element.textContent).not.toContain('undefined');
+  });
 });

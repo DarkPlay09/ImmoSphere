@@ -72,4 +72,14 @@ describe('searchAgences', () => {
 
     expect(ids).toEqual(MOCK_AGENCES.map((agence) => agence.id));
   });
+
+  it('garde une agence sans région pour « toutes les régions » et l’exclut d’une région précise', () => {
+    const sansRegion = { ...MOCK_AGENCES[0]!, id: 99, region: undefined };
+    const agences = [...MOCK_AGENCES, sansRegion];
+
+    expect(searchAgences(agences, { ...DEFAULT_AGENCE_SEARCH, pageSize: 100 }).items).toContain(sansRegion);
+    expect(searchAgences(agences, { ...DEFAULT_AGENCE_SEARCH, region: 'wallonia', pageSize: 100 }).items).not.toContain(
+      sansRegion,
+    );
+  });
 });

@@ -26,8 +26,11 @@ export interface Agence {
   postalCode: string;
   /** Absent de AgenceEntity : quartier ou zone affiché après la ville (« Quai de la Meuse & Centre »). */
   district?: string;
-  /** Absent de AgenceEntity : nécessaire au filtre par région de la liste. */
-  region: AgenceRegion;
+  /**
+   * Absent de AgenceEntity : déduite du code postal par l'API, qui l'omet si le code
+   * postal n'est pas belge. Sert au filtre par région de la liste, jamais affichée.
+   */
+  region?: AgenceRegion;
 
   // Contact
   /** AgenceEntity.NumeroTel */
