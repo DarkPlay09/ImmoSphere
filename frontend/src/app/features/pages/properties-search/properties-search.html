@@ -1,27 +1,87 @@
-
 <section class="search-results">
 
   <div class="search-results__header">
+
     <h1>Résultats de recherche</h1>
-    <p>{{ results.length }} bien(s) disponible(s)</p>
-  </div>
 
-  <div class="search-results__list">
-
-    @for (property of results; track property.id) {
-
-      <app-property-search-card
-        [property]="property"
-        [selected]="property.id === selectedPropertyId"
-        (detailsRequested)="onDetailsRequested($event)"
-      />
-
-    } @empty {
-
-      <p>Aucun bien immobilier disponible.</p>
-
+    @if (!loading() && !error()) {
+      <p>
+        {{ total() }} bien(s) disponible(s)
+      </p>
     }
 
   </div>
+
+  @if (loading()) {
+
+    <div
+      class="search-results__state"
+      role="status"
+      aria-live="polite"
+    >
+      <span class="material-symbols-outlined" aria-hidden="true">
+        progress_activity
+      </span>
+
+      <p>Chargement des biens immobiliers...</p>
+    </div>
+
+  } @else if (error()) {
+
+    <div
+      class="search-results__state search-results__state--error"
+      role="alert"
+    >
+      <span class="material-symbols-outlined" aria-hidden="true">
+        error
+      </span>
+
+      <p>{{ error() }}</p>
+
+      <button
+        type="button"
+        class="search-results__retry"
+        (click)="loadResults()"
+      >
+        Réessayer
+      </button>
+    </div>
+
+  } @else {
+
+    <div class="search-results__list">
+
+      @for (property of results(); track property.id) {
+
+        <app-property-search-card
+          [property]="property"
+          [selected]="property.id === selectedPropertyId()"
+          (detailsRequested)="onDetailsRequested($event)"
+        />
+
+      } @empty {
+
+        <div class="search-results__state">
+
+          <span
+            class="material-symbols-outlined"
+            aria-hidden="true"
+          >
+            search_off
+          </span>
+
+          <h2>Aucun bien trouvé</h2>
+
+          <p>
+            Aucun bien immobilier ne correspond à votre recherche.
+          </p>
+
+        </div>
+
+      }
+
+    </div>
+
+  }
 
 </section>

@@ -1,40 +1,92 @@
-import { Component } from '@angular/core';
+import {
+  ChangeDetectionStrategy,
+  Component,
+  DestroyRef,
+  OnInit,
+  inject,
+  signal,
+} from '@angular/core';
+
+import { takeUntilDestroyed } from '@angular/core/rxjs-interop';
 
 import { PropertySearchCardComponent } from '../../../shared/properties/components/property-search-card/property-search-card';
 
-import { PropertySearchResult } from '../../../shared/properties/models/property-search-result.model';
+import { PropertySearchService } from '../../../shared/properties/data-access/property-search.service';
 
-import { MOCK_PROPERTIES } from '../../../shared/properties/data/properties.mock';
+import { mapPropertySearchResult } from '../../../shared/properties/mappers/property-search.mapper';
+
+import { PropertySearchResult } from '../../../shared/properties/models/property-search-result.model';
 
 @Component({
   selector: 'app-properties-search',
   standalone: true,
+
   imports: [PropertySearchCardComponent],
+
   templateUrl: './properties-search.html',
   styleUrl: './properties-search.scss',
+
+  changeDetection: ChangeDetectionStrategy.OnPush,
 })
+export class PropertiesSearchComponent implements OnInit {
+  private readonly searchService = inject(PropertySearchService);
+  private readonly destroyRef = inject(DestroyRef);
 
-export class PropertiesSearchComponent {
-  readonly results: PropertySearchResult[] = [
-    {
-      ...MOCK_PROPERTIES[0]!,
+  readonly results = signal<PropertySearchResult[]>([]);
 
-      description: 'Superbe vue dégagée sur la Meuse, cuisine contemporaine hyper-équipée.',
+  readonly total = signal(0);
 
-      photoCount: 14,
-      photoIndex: 1,
+  readonly loading = signal(false);
 
-      extraFeatures: ['14 m² terr.', 'Étage 3/6'],
+  readonly error = signal<string | null>(null);
 
-      financialNote: 'Estimation frais notariaux : ~35 600 €',
+  readonly selectedPropertyId = signal<number | null>(null);
 
-      advertiserName: 'Horizon Immo Liège (IPI 508.214)',
-    },
-  ];
+  ngOnInit(): void {
+    this.loadResults();
+  }
 
-  readonly selectedPropertyId = this.results[0]?.id ?? null;
+  loadResults(): void {
+    this.loading.set(true);
+    this.error.set(null);
+
+    this.searchService
+      .search({
+        page: 1,
+        taillePage: 12,
+      })
+      .pipe(takeUntilDestroyed(this.destroyRef))
+      .subscribe({
+        next: (response) => {
+          const properties = response.biens.map(mapPropertySearchResult);
+
+          this.results.set(properties);
+
+          this.total.set(response.total);
+
+          this.selectedPropertyId.set(null);
+
+          this.loading.set(false);
+        },
+
+        error: (error) => {
+          console.error('Erreur lors du chargement des biens :', error);
+
+          this.results.set([]);
+
+          this.total.set(0);
+
+          this.error.set('Impossible de charger les biens immobiliers. Veuillez réessayer.');
+
+          this.loading.set(false);
+        },
+      });
+  }
 
   onDetailsRequested(propertyId: number): void {
+    this.selectedPropertyId.set(propertyId);
+
+    // TODO: Brancher le lien vers le détails d'un bien.
     console.log('Détails du bien :', propertyId);
   }
 }
