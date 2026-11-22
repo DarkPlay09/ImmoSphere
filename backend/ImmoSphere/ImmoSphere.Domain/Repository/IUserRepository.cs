@@ -13,4 +13,6 @@ public interface IUserRepository
         string password,
         string accountType
     );
+
+    Task<bool> CheckPassFor(string login, string password);
 }

@@ -85,7 +85,7 @@ public class RegisterService : IRegisterService
         }
 
         // 2. Générer un token d'authentification
-        string token = await _tokenService.GenerateTokenAsync(email);
+        string token = await _tokenService.GenerateTokenAsync(email,false);
 
         _logger.LogInformation(
             "Adresse confirmée et token généré pour {Email}",

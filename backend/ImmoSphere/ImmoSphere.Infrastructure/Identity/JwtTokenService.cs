@@ -13,6 +13,10 @@ public class JwtTokenService : ITokenService
     private readonly UserManager<ApplicationUser> _userManager;
     private readonly IConfiguration _configuration;
 
+    private const int LIVE_TIME_TOKEN_WITH_REMEMBER_IN_DAYS = 30;
+    private const int LIVE_TIME_TOKEN_WITHOUT_REMEMBER_IN_DAYS = 1;
+
+
     public JwtTokenService(
         UserManager<ApplicationUser> userManager,
         IConfiguration configuration)
@@ -21,7 +25,7 @@ public class JwtTokenService : ITokenService
         _configuration = configuration;
     }
 
-    public async Task<string> GenerateTokenAsync(string email)
+    public async Task<string> GenerateTokenAsync(string email, bool remeber)
     {
         var user = await _userManager.FindByEmailAsync(email);
 
@@ -61,7 +65,8 @@ public class JwtTokenService : ITokenService
             issuer: _configuration["Jwt:Issuer"],
             audience: _configuration["Jwt:Audience"],
             claims: claims,
-            expires: DateTime.UtcNow.AddHours(1),
+            expires: remeber ? DateTime.UtcNow.AddDays(LIVE_TIME_TOKEN_WITH_REMEMBER_IN_DAYS)
+                : DateTime.UtcNow.AddDays(LIVE_TIME_TOKEN_WITHOUT_REMEMBER_IN_DAYS),
             signingCredentials: credentials
         );
 
