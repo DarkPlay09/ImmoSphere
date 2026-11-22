@@ -5,76 +5,106 @@
     <h1>Résultats de recherche</h1>
 
     @if (!loading() && !error()) {
-      <p>
-        {{ total() }} bien(s) disponible(s)
-      </p>
+      <p>{{ total() }} bien(s) disponible(s)</p>
     }
 
   </div>
 
-  @if (loading()) {
+  <div
+    class="search-results__layout"
+    [class.search-results__layout--without-filters]="!filterOptions()"
+  >
 
-    <div
-      class="search-results__state"
-      role="status"
-      aria-live="polite"
-    >
-      <span class="material-symbols-outlined" aria-hidden="true">
-        progress_activity
-      </span>
+    @if (filterOptions(); as options) {
 
-      <p>Chargement des biens immobiliers...</p>
-    </div>
+      <aside class="search-results__filters">
 
-  } @else if (error()) {
-
-    <div
-      class="search-results__state search-results__state--error"
-      role="alert"
-    >
-      <span class="material-symbols-outlined" aria-hidden="true">
-        error
-      </span>
-
-      <p>{{ error() }}</p>
-
-      <button
-        type="button"
-        class="search-results__retry"
-        (click)="loadResults()"
-      >
-        Réessayer
-      </button>
-    </div>
-
-  } @else {
-
-    <div class="search-results__list">
-
-      @for (property of results(); track property.id) {
-
-        <app-property-search-card
-          [property]="property"
-          [selected]="property.id === selectedPropertyId()"
-          (detailsRequested)="onDetailsRequested($event)"
+        <app-property-search-advanced-filters
+          [options]="options"
+          [initialProvinceId]="selectedProvinceId()"
+          [initialEtatId]="selectedEtatId()"
+          (filtersApplied)="onAdvancedFiltersApplied($event)"
         />
 
-      } @empty {
+      </aside>
 
-        <div class="search-results__state">
+    }
 
+    <div class="search-results__results">
+
+      @if (loading()) {
+
+        <div
+          class="search-results__state"
+          role="status"
+          aria-live="polite"
+        >
           <span
             class="material-symbols-outlined"
             aria-hidden="true"
           >
-            search_off
+            progress_activity
           </span>
 
-          <h2>Aucun bien trouvé</h2>
+          <p>Chargement des biens immobiliers...</p>
+        </div>
 
-          <p>
-            Aucun bien immobilier ne correspond à votre recherche.
-          </p>
+      } @else if (error()) {
+
+        <div
+          class="search-results__state search-results__state--error"
+          role="alert"
+        >
+          <span
+            class="material-symbols-outlined"
+            aria-hidden="true"
+          >
+            error
+          </span>
+
+          <p>{{ error() }}</p>
+
+          <button
+            type="button"
+            class="search-results__retry"
+            (click)="loadResults()"
+          >
+            Réessayer
+          </button>
+        </div>
+
+      } @else {
+
+        <div class="search-results__list">
+
+          @for (property of results(); track property.id) {
+
+            <app-property-search-card
+              [property]="property"
+              [selected]="property.id === selectedPropertyId()"
+              (detailsRequested)="onDetailsRequested($event)"
+            />
+
+          } @empty {
+
+            <div class="search-results__state">
+
+              <span
+                class="material-symbols-outlined"
+                aria-hidden="true"
+              >
+                search_off
+              </span>
+
+              <h2>Aucun bien trouvé</h2>
+
+              <p>
+                Aucun bien immobilier ne correspond à vos critères.
+              </p>
+
+            </div>
+
+          }
 
         </div>
 
@@ -82,6 +112,6 @@
 
     </div>
 
-  }
+  </div>
 
 </section>

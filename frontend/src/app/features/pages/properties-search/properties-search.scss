@@ -20,6 +20,29 @@
     }
   }
 
+  // MISE EN PAGE : FILTRES + RÉSULTATS
+  &__layout {
+    display: grid;
+    grid-template-columns: minmax(260px, 310px) minmax(0, 1fr);
+    align-items: start;
+    gap: 24px;
+
+    &--without-filters {
+      grid-template-columns: minmax(0, 709px);
+    }
+  }
+
+  &__filters {
+    width: 100%;
+    min-width: 0;
+  }
+
+  &__results {
+    width: 100%;
+    min-width: 0;
+  }
+
+  // LISTE DES ANNONCES
   &__list {
     display: flex;
     flex-direction: column;
@@ -29,6 +52,7 @@
     max-width: 709px;
   }
 
+  // CHARGEMENT / ERREUR / AUCUN RÉSULTAT
   &__state {
     display: flex;
     flex-direction: column;
@@ -78,6 +102,7 @@
     }
   }
 
+  // BOUTON RÉESSAYER
   &__retry {
     padding: 10px 20px;
 
@@ -106,6 +131,20 @@
   }
 }
 
+// TABLETTES ET PETITS ÉCRANS
+@media (max-width: 900px) {
+  .search-results {
+    &__layout {
+      grid-template-columns: minmax(0, 1fr);
+    }
+
+    &__filters {
+      max-width: 709px;
+    }
+  }
+}
+
+// MOBILE
 @media (max-width: 600px) {
   .search-results {
     padding: 20px 16px;

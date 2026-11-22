@@ -7,7 +7,7 @@ import {
   signal,
 } from '@angular/core';
 
-import { ActivatedRoute } from '@angular/router';
+import { ActivatedRoute, Router } from '@angular/router';
 import { takeUntilDestroyed } from '@angular/core/rxjs-interop';
 import { Subscription, switchMap } from 'rxjs';
 
@@ -25,12 +25,16 @@ import {
   PropertySearchOption,
   PropertySearchOptionsResponse,
 } from '../../../shared/properties/models/property-search-options.model';
+import {
+  PropertySearchAdvancedFilters,
+  PropertySearchAdvancedFiltersComponent,
+} from '../../../shared/properties/components/property-search-advanced-filters/property-search-advanced-filters.component';
 
 @Component({
   selector: 'app-properties-search',
   standalone: true,
 
-  imports: [PropertySearchCardComponent],
+  imports: [PropertySearchCardComponent, PropertySearchAdvancedFiltersComponent],
 
   templateUrl: './properties-search.html',
   styleUrl: './properties-search.scss',
@@ -40,8 +44,10 @@ import {
 export class PropertiesSearchComponent implements OnInit {
   private readonly searchService = inject(PropertySearchService);
   private readonly optionsService = inject(PropertySearchOptionsService);
+
   private readonly destroyRef = inject(DestroyRef);
   private readonly route = inject(ActivatedRoute);
+  private readonly router = inject(Router);
 
   private currentRequest?: Subscription;
 
@@ -55,9 +61,17 @@ export class PropertiesSearchComponent implements OnInit {
 
   readonly selectedPropertyId = signal<number | null>(null);
 
+  readonly filterOptions = signal<PropertySearchOptionsResponse | null>(null);
+
+  readonly selectedProvinceId = signal<number | null>(null);
+  readonly selectedEtatId = signal<number | null>(null);
+
   ngOnInit(): void {
-    // Relance la recherche si les paramètres de l'URL changent.
-    this.route.queryParamMap.pipe(takeUntilDestroyed(this.destroyRef)).subscribe(() => {
+    this.route.queryParamMap.pipe(takeUntilDestroyed(this.destroyRef)).subscribe((params) => {
+      this.selectedProvinceId.set(this.readId(params.get('provinceId')));
+
+      this.selectedEtatId.set(this.readId(params.get('etatId')));
+
       this.loadResults();
     });
   }
@@ -78,6 +92,19 @@ export class PropertiesSearchComponent implements OnInit {
     }
 
     return parsed;
+  }
+
+  /**
+   * Lit un identifiant PostgreSQL valide.
+   */
+  private readId(value: string | null): number | null {
+    const id = this.readNumber(value);
+
+    if (id === undefined || !Number.isInteger(id) || id <= 0) {
+      return null;
+    }
+
+    return id;
   }
 
   /**
@@ -207,6 +234,30 @@ export class PropertiesSearchComponent implements OnInit {
       query.pebBienId = this.findOptionId(options.pebs, peb);
     }
 
+    // ==========================================
+    // PROVINCE
+    // ==========================================
+
+    const provinceId = this.readId(
+      params.get('provinceId')
+    );
+
+    if (provinceId !== null) {
+      query.provinceId = provinceId;
+    }
+
+    // ==========================================
+    // ÉTAT DU BIEN
+    // ==========================================
+
+    const etatId = this.readId(
+      params.get('etatId')
+    );
+
+    if (etatId !== null) {
+      query.etatId = etatId;
+    }
+
     return query;
   }
 
@@ -226,6 +277,8 @@ export class PropertiesSearchComponent implements OnInit {
       .getOptions()
       .pipe(
         switchMap((options) => {
+          this.filterOptions.set(options);
+
           const query = this.buildSearchQuery(options);
 
           return this.searchService.search(query);
@@ -258,6 +311,22 @@ export class PropertiesSearchComponent implements OnInit {
           this.loading.set(false);
         },
       });
+  }
+
+  /**
+   * Applique les filtres avancés.
+   */
+  onAdvancedFiltersApplied(filters: PropertySearchAdvancedFilters): void {
+    void this.router.navigate([], {
+      relativeTo: this.route,
+
+      queryParams: {
+        provinceId: filters.provinceId,
+        etatId: filters.etatId,
+      },
+
+      queryParamsHandling: 'merge',
+    });
   }
 
   onDetailsRequested(propertyId: number): void {
