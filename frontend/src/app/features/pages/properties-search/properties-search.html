@@ -1,6 +1,66 @@
 <section class="search-results">
 
-  <div class="search-results__header">
+  <div class="search-results__toolbar">
+
+    <div class="search-results__toolbar-info">
+
+      <span class="material-symbols-outlined" aria-hidden="true">
+        search
+      </span>
+
+      <div>
+        <strong>Recherche immobilière</strong>
+        <p>Retrouvez les biens correspondant à vos critères.</p>
+      </div>
+
+    </div>
+
+    <details class="search-results__filter-menu">
+
+      <summary class="search-results__filter-button">
+
+        <span
+          class="material-symbols-outlined"
+          aria-hidden="true"
+        >
+          tune
+        </span>
+
+        Filtres
+
+        <span
+          class="material-symbols-outlined"
+          aria-hidden="true"
+        >
+          expand_more
+        </span>
+
+      </summary>
+
+      <div class="search-results__filter-panel">
+
+        @if (filterOptions(); as options) {
+
+          <app-property-search-advanced-filters
+            [options]="options"
+            [initialProvinceId]="selectedProvinceId()"
+            [initialEtatId]="selectedEtatId()"
+            (filtersApplied)="onAdvancedFiltersApplied($event)"
+          />
+
+        } @else {
+
+          <p>Chargement des filtres...</p>
+
+        }
+
+      </div>
+
+    </details>
+
+  </div>
+
+  <header class="search-results__header">
 
     <h1>Résultats de recherche</h1>
 
@@ -8,29 +68,11 @@
       <p>{{ total() }} bien(s) disponible(s)</p>
     }
 
-  </div>
+  </header>
 
-  <div
-    class="search-results__layout"
-    [class.search-results__layout--without-filters]="!filterOptions()"
-  >
+  <div class="search-results__layout">
 
-    @if (filterOptions(); as options) {
-
-      <aside class="search-results__filters">
-
-        <app-property-search-advanced-filters
-          [options]="options"
-          [initialProvinceId]="selectedProvinceId()"
-          [initialEtatId]="selectedEtatId()"
-          (filtersApplied)="onAdvancedFiltersApplied($event)"
-        />
-
-      </aside>
-
-    }
-
-    <div class="search-results__results">
+    <div class="search-results__list-column">
 
       @if (loading()) {
 
@@ -39,6 +81,7 @@
           role="status"
           aria-live="polite"
         >
+
           <span
             class="material-symbols-outlined"
             aria-hidden="true"
@@ -47,6 +90,7 @@
           </span>
 
           <p>Chargement des biens immobiliers...</p>
+
         </div>
 
       } @else if (error()) {
@@ -55,6 +99,7 @@
           class="search-results__state search-results__state--error"
           role="alert"
         >
+
           <span
             class="material-symbols-outlined"
             aria-hidden="true"
@@ -71,6 +116,7 @@
           >
             Réessayer
           </button>
+
         </div>
 
       } @else {
@@ -111,6 +157,31 @@
       }
 
     </div>
+
+    <aside
+      class="search-results__map-column"
+      aria-label="Emplacement de la carte immobilière"
+    >
+
+      <div class="search-results__map-placeholder">
+
+        <span
+          class="material-symbols-outlined"
+          aria-hidden="true"
+        >
+          map
+        </span>
+
+        <h2>Carte des biens immobiliers</h2>
+
+        <p>
+          La carte interactive sera intégrée dans les
+          prochains commits.
+        </p>
+
+      </div>
+
+    </aside>
 
   </div>
 
