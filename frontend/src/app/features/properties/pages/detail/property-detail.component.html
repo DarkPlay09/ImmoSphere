@@ -1,5 +1,25 @@
 <main class="property-detail">
-  <h1>Détail du bien</h1>
+  @if (state(); as currentState) {
+    @switch (currentState.status) {
+      @case ('loading') {
+        <p>Chargement du bien...</p>
+      }
 
-  <p>Identifiant demandé : {{ propertyId() }}</p>
+      @case ('success') {
+        <h1>{{ currentState.property.titre }}</h1>
+        <p>{{ currentState.property.description }}</p>
+        <p>{{ currentState.property.prix }} €</p>
+      }
+
+      @case ('not-found') {
+        <h1>Bien introuvable</h1>
+        <p>Ce bien n’existe pas ou n’est pas publié.</p>
+      }
+
+      @case ('error') {
+        <h1>Une erreur est survenue</h1>
+        <p>Impossible de charger ce bien pour le moment.</p>
+      }
+    }
+  }
 </main>
