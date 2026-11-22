@@ -30,6 +30,7 @@ import {
   PropertySearchAdvancedFiltersComponent,
 } from '../../../shared/properties/components/property-search-advanced-filters/property-search-advanced-filters.component';
 import { PropertySearchResultsToolbarComponent } from '../../../shared/properties/components/property-search-results-toolbar/property-search-results-toolbar.component';
+import { PropertySearchActiveFiltersComponent } from '../../../shared/properties/components/property-search-active-filters/property-search-active-filters.component';
 
 @Component({
   selector: 'app-properties-search',
@@ -39,6 +40,7 @@ import { PropertySearchResultsToolbarComponent } from '../../../shared/propertie
     PropertySearchCardComponent,
     PropertySearchAdvancedFiltersComponent,
     PropertySearchResultsToolbarComponent,
+    PropertySearchActiveFiltersComponent,
   ],
 
   templateUrl: './properties-search.html',
