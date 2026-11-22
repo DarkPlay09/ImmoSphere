@@ -1,0 +1,86 @@
+﻿<section class="advanced-filters">
+
+  <div class="advanced-filters__header">
+    <h2>Affiner votre recherche</h2>
+
+    <p>
+      Précisez vos critères pour trouver le bien idéal.
+    </p>
+  </div>
+
+  <form
+    class="advanced-filters__form"
+    [formGroup]="form"
+    (ngSubmit)="applyFilters()"
+  >
+
+    <div class="advanced-filters__field">
+
+      <label for="search-province">
+        Province
+      </label>
+
+      <select
+        id="search-province"
+        formControlName="provinceId"
+      >
+        <option value="">
+          Toutes les provinces
+        </option>
+
+        @for (province of options().provinces; track province.id) {
+          <option [value]="province.id">
+            {{ province.libelle }}
+          </option>
+        }
+
+      </select>
+
+    </div>
+
+    <div class="advanced-filters__field">
+
+      <label for="search-etat">
+        État du bien
+      </label>
+
+      <select
+        id="search-etat"
+        formControlName="etatId"
+      >
+        <option value="">
+          Tous les états
+        </option>
+
+        @for (etat of options().etats; track etat.id) {
+          <option [value]="etat.id">
+            {{ etat.libelle }}
+          </option>
+        }
+
+      </select>
+
+    </div>
+
+    <div class="advanced-filters__actions">
+
+      <button
+        type="button"
+        class="advanced-filters__reset"
+        (click)="resetFilters()"
+      >
+        Effacer
+      </button>
+
+      <button
+        type="submit"
+        class="advanced-filters__submit"
+      >
+        Appliquer les filtres
+      </button>
+
+    </div>
+
+  </form>
+
+</section>
