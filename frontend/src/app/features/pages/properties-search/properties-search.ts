@@ -77,6 +77,11 @@ export class PropertiesSearchComponent implements OnInit {
   readonly selectedJardin = signal(false);
   readonly selectedTerrasse = signal(false);
 
+  readonly selectedParking = signal(false);
+  readonly selectedBalcon = signal(false);
+  readonly selectedAscenseur = signal(false);
+  readonly selectedPiscine = signal(false);
+
   ngOnInit(): void {
     this.route.queryParamMap.pipe(takeUntilDestroyed(this.destroyRef)).subscribe((params) => {
       this.selectedProvinceId.set(this.readId(params.get('provinceId')));
@@ -88,6 +93,14 @@ export class PropertiesSearchComponent implements OnInit {
       this.selectedJardin.set(params.get('jardin') === 'true');
 
       this.selectedTerrasse.set(params.get('terrasse') === 'true');
+
+      this.selectedParking.set(params.get('parking') === 'true');
+
+      this.selectedBalcon.set(params.get('balcon') === 'true');
+
+      this.selectedAscenseur.set(params.get('ascenseur') === 'true');
+
+      this.selectedPiscine.set(params.get('piscine') === 'true');
 
       this.loadResults();
     });
@@ -295,6 +308,26 @@ export class PropertiesSearchComponent implements OnInit {
       query.terrasse = true;
     }
 
+    // ==========================================
+    // ÉQUIPEMENTS SUPPLÉMENTAIRES
+    // ==========================================
+
+    if (params.get('parking') === 'true') {
+      query.parking = true;
+    }
+
+    if (params.get('balcon') === 'true') {
+      query.balcon = true;
+    }
+
+    if (params.get('ascenseur') === 'true') {
+      query.ascenseur = true;
+    }
+
+    if (params.get('piscine') === 'true') {
+      query.piscine = true;
+    }
+
     return query;
   }
 
@@ -364,6 +397,11 @@ export class PropertiesSearchComponent implements OnInit {
         garage: filters.garage ? 'true' : null,
         jardin: filters.jardin ? 'true' : null,
         terrasse: filters.terrasse ? 'true' : null,
+
+        parking: filters.parking ? 'true' : null,
+        balcon: filters.balcon ? 'true' : null,
+        ascenseur: filters.ascenseur ? 'true' : null,
+        piscine: filters.piscine ? 'true' : null,
       },
 
       queryParamsHandling: 'merge',

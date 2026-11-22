@@ -11,29 +11,36 @@ export interface PropertySearchAdvancedFilters {
   garage: boolean;
   jardin: boolean;
   terrasse: boolean;
+  parking: boolean;
+  balcon: boolean;
+  ascenseur: boolean;
+  piscine: boolean;
 }
 
 @Component({
   selector: 'app-property-search-advanced-filters',
   standalone: true,
-
   imports: [ReactiveFormsModule],
-
   templateUrl: './property-search-advanced-filters.component.html',
   styleUrl: './property-search-advanced-filters.component.scss',
-
   changeDetection: ChangeDetectionStrategy.OnPush,
 })
 export class PropertySearchAdvancedFiltersComponent {
   readonly options = input.required<PropertySearchOptionsResponse>();
 
+  // Valeurs initiales provenant de l'URL.
   readonly initialProvinceId = input<number | null>(null);
   readonly initialEtatId = input<number | null>(null);
 
   readonly initialGarage = input(false);
   readonly initialJardin = input(false);
   readonly initialTerrasse = input(false);
+  readonly initialParking = input(false);
+  readonly initialBalcon = input(false);
+  readonly initialAscenseur = input(false);
+  readonly initialPiscine = input(false);
 
+  // Envoie les filtres au composant parent.
   readonly filtersApplied = output<PropertySearchAdvancedFilters>();
 
   readonly form = new FormGroup({
@@ -56,10 +63,26 @@ export class PropertySearchAdvancedFiltersComponent {
     terrasse: new FormControl(false, {
       nonNullable: true,
     }),
+
+    parking: new FormControl(false, {
+      nonNullable: true,
+    }),
+
+    balcon: new FormControl(false, {
+      nonNullable: true,
+    }),
+
+    ascenseur: new FormControl(false, {
+      nonNullable: true,
+    }),
+
+    piscine: new FormControl(false, {
+      nonNullable: true,
+    }),
   });
 
   constructor() {
-    // Synchronise les champs avec les filtres présents dans l'URL.
+    // Synchronise le formulaire avec les paramètres de l'URL.
     effect(() => {
       this.form.patchValue(
         {
@@ -69,6 +92,10 @@ export class PropertySearchAdvancedFiltersComponent {
           garage: this.initialGarage(),
           jardin: this.initialJardin(),
           terrasse: this.initialTerrasse(),
+          parking: this.initialParking(),
+          balcon: this.initialBalcon(),
+          ascenseur: this.initialAscenseur(),
+          piscine: this.initialPiscine(),
         },
         {
           emitEvent: false,
@@ -77,6 +104,9 @@ export class PropertySearchAdvancedFiltersComponent {
     });
   }
 
+  /**
+   * Convertit la valeur d'un select en identifiant valide.
+   */
   private parseId(value: string): number | null {
     if (!value) {
       return null;
@@ -92,7 +122,7 @@ export class PropertySearchAdvancedFiltersComponent {
   }
 
   /**
-   * Transmet les filtres sélectionnés au parent.
+   * Applique les filtres sélectionnés.
    */
   applyFilters(): void {
     const values = this.form.getRawValue();
@@ -104,11 +134,15 @@ export class PropertySearchAdvancedFiltersComponent {
       garage: values.garage,
       jardin: values.jardin,
       terrasse: values.terrasse,
+      parking: values.parking,
+      balcon: values.balcon,
+      ascenseur: values.ascenseur,
+      piscine: values.piscine,
     });
   }
 
   /**
-   * Réinitialise uniquement les filtres de ce panneau.
+   * Réinitialise uniquement les filtres avancés.
    */
   resetFilters(): void {
     this.form.reset({
@@ -118,6 +152,10 @@ export class PropertySearchAdvancedFiltersComponent {
       garage: false,
       jardin: false,
       terrasse: false,
+      parking: false,
+      balcon: false,
+      ascenseur: false,
+      piscine: false,
     });
 
     this.filtersApplied.emit({
@@ -127,6 +165,10 @@ export class PropertySearchAdvancedFiltersComponent {
       garage: false,
       jardin: false,
       terrasse: false,
+      parking: false,
+      balcon: false,
+      ascenseur: false,
+      piscine: false,
     });
   }
 }

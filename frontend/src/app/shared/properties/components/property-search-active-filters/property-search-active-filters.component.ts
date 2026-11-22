@@ -17,7 +17,11 @@ type FilterKey =
   | 'etatId'
   | 'garage'
   | 'jardin'
-  | 'terrasse';
+  | 'terrasse'
+  | 'parking'
+  | 'balcon'
+  | 'ascenseur'
+  | 'piscine';
 
 interface SearchFilterChip {
   key: FilterKey;
@@ -249,6 +253,34 @@ export class PropertySearchActiveFiltersComponent {
         chips.push({
           key: 'terrasse',
           label: 'Terrasse',
+        });
+      }
+
+      if (params.get('parking') === 'true') {
+        chips.push({
+          key: 'parking',
+          label: 'Parking',
+        });
+      }
+
+      if (params.get('balcon') === 'true') {
+        chips.push({
+          key: 'balcon',
+          label: 'Balcon',
+        });
+      }
+
+      if (params.get('ascenseur') === 'true') {
+        chips.push({
+          key: 'ascenseur',
+          label: 'Ascenseur',
+        });
+      }
+
+      if (params.get('piscine') === 'true') {
+        chips.push({
+          key: 'piscine',
+          label: 'Piscine',
         });
       }
     }
