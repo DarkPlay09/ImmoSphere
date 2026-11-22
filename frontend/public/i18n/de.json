@@ -276,7 +276,9 @@
       "new": "Neuheiten",
       "virtualTour": "360°-Rundgang",
       "viewAll": "Alle Angebote ansehen",
-      "empty": "Keine Immobilien für diesen Filter gefunden."
+      "empty": "Keine Immobilien für diesen Filter gefunden.",
+      "loading": "Immobilienangebote werden geladen...",
+      "apiError": "Die Immobilienangebote können derzeit nicht geladen werden."
     },
 
     "notaries": {
@@ -318,7 +320,11 @@
         "apartment": "Wohnung",
         "villa": "Villa",
         "house": "Haus"
-      }
+      },
+      "approximateNotice": "Die Markierungen zeigen ungefähre Positionen innerhalb der Gemeinde, nicht die genauen Immobilienadressen.",
+      "loading": "Immobilien auf der Karte werden geladen...",
+      "apiError": "Die Immobilien können derzeit nicht geladen werden.",
+      "noProperties": "Keine Immobilien mit verfügbarer Position in dieser Region."
     },
 
     "publish": {
