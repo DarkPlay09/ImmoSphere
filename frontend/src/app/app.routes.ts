@@ -22,9 +22,7 @@ export const routes: Routes = [
   {
     path: 'register',
     loadComponent: () =>
-      import('./features/auth/pages/register/register.component').then(
-        (m) => m.RegisterComponent,
-      ),
+      import('./features/auth/pages/register/register.component').then((m) => m.RegisterComponent),
   },
   {
     path: '',
@@ -41,6 +39,13 @@ export const routes: Routes = [
         loadComponent: () =>
           import('./features/properties/pages/list/properties-list.component').then(
             (m) => m.PropertiesListComponent,
+          ),
+      },
+      {
+        path: 'properties/:id',
+        loadComponent: () =>
+          import('./features/properties/pages/detail/property-detail.component').then(
+            (m) => m.PropertyDetailComponent,
           ),
       },
       {
