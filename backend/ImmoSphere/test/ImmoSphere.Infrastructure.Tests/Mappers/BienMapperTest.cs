@@ -45,6 +45,11 @@ public sealed class BienMapperTest
         Assert.AreEqual("Trois façades", bien.TypeConfiguration);
         Assert.AreEqual("Liège", bien.Province);
         Assert.AreEqual("Gaz", bien.TypeChauffage);
+        Assert.AreEqual(2, bien.Images.Count);
+        Assert.AreEqual("/images/properties/demo/maison.png", bien.Images[0].Chemin);
+        Assert.AreEqual(0, bien.Images[0].Ordre);
+        Assert.AreEqual("Façade principale", bien.Images[0].TexteAlternatif);
+        Assert.AreEqual("/images/properties/demo/interieur.png", bien.Images[1].Chemin);
         Assert.AreEqual(1, bien.RendezVous.Count);
         Assert.AreEqual("Confirmé", bien.RendezVous[0].Statut);
         Assert.AreEqual(1, bien.Disponibilites.Count);
@@ -77,6 +82,7 @@ public sealed class BienMapperTest
         Assert.IsFalse(bien.IsVisible);
         Assert.AreEqual(string.Empty, bien.TypeBien);
         Assert.AreEqual(string.Empty, bien.Etat);
+        Assert.AreEqual(0, bien.Images.Count);
         Assert.AreEqual(0, bien.RendezVous.Count);
         Assert.AreEqual(0, bien.Disponibilites.Count);
         Assert.AreEqual(0, bien.InformationAnnexes.Count);
@@ -128,6 +134,21 @@ public sealed class BienMapperTest
             TypeConfiguration = new TypeConfigurationEntity { Libelle = "Trois façades" },
             Province = new ProvinceEntity { Libelle = "Liège" },
             TypeChauffage = new TypeChauffageEntity { Libelle = "Gaz" },
+            Images =
+            [
+                new ImageEntity
+                {
+                    Chemin = "/images/properties/demo/interieur.png",
+                    Ordre = 1,
+                    TexteAlternatif = "Pièce de vie"
+                },
+                new ImageEntity
+                {
+                    Chemin = "/images/properties/demo/maison.png",
+                    Ordre = 0,
+                    TexteAlternatif = "Façade principale"
+                }
+            ],
             RendezVous =
             [
                 new RendezVousEntity
