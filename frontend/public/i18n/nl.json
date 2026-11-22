@@ -337,5 +337,45 @@
       "button": "Mijn pand publiceren",
       "unavailable": "Panden publiceren is nog niet beschikbaar."
     }
+  },
+  "faq": {
+    "breadcrumb": {
+      "label": "Kruimelpad",
+      "home": "Home",
+      "current": "FAQ"
+    },
+    "hero": {
+      "badge": "ImmoSphere-helpcentrum",
+      "title": "Hoe kunnen we u helpen?",
+      "subtitle": "Vind antwoorden op de meest gestelde vragen over zoeken, EPC-gecertificeerde bezoeken en notariële stappen in België."
+    },
+    "search": {
+      "label": "Een vraag zoeken in de FAQ",
+      "placeholder": "Een vraag zoeken (bv. 360°-rondleiding, EPC, verkoopovereenkomst)...",
+      "submit": "Zoeken"
+    },
+    "list": {
+      "title": "Veelgestelde vragen",
+      "count": "{{count}} vragen",
+      "countOne": "1 vraag",
+      "countNone": "Geen vragen",
+      "empty": "Geen enkele vraag komt overeen met ‘{{term}}’.",
+      "emptyReset": "Zoekopdracht wissen",
+      "loading": "Vragen worden geladen…",
+      "loadError": "De FAQ kan momenteel niet worden geladen. Controleer uw verbinding en probeer het opnieuw.",
+      "retry": "Opnieuw proberen"
+    },
+    "rating": {
+      "question": "Was dit antwoord nuttig?",
+      "useful": "Ja, dit antwoord was nuttig",
+      "notUseful": "Nee, dit antwoord was niet nuttig"
+    },
+    "contact": {
+      "title": "Geen antwoord gevonden?",
+      "text": "Ons team helpt u graag om beter te begrijpen hoe ImmoSphere werkt.",
+      "note": "Bezorg ons uw vraag via een beveiligd online formulier.",
+      "button": "Contact opnemen",
+      "unavailable": "Binnenkort beschikbaar"
+    }
   }
 }

@@ -1,0 +1,17 @@
+<form class="faq-search" role="search" [attr.aria-label]="'faq.search.label' | translate" (submit)="submit($event)">
+  <div class="faq-search__field">
+    <img class="faq-search__icon" src="/icons/faq/search.svg" alt="" width="16.5" height="16.5" />
+    <input
+      class="faq-search__input"
+      type="search"
+      autocomplete="off"
+      [attr.aria-label]="'faq.search.label' | translate"
+      [placeholder]="'faq.search.placeholder' | translate"
+      [attr.maxlength]="maxLength"
+      [value]="term()"
+      (input)="term.set(readValue($event))"
+    />
+  </div>
+
+  <button type="submit" class="faq-search__button">{{ 'faq.search.submit' | translate }}</button>
+</form>

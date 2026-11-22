@@ -1,0 +1,69 @@
+<div class="faq-page">
+
+  <!-- EN-TÊTE -->
+  <header class="faq-page__hero">
+    <div class="faq-page__hero-inner">
+      <nav class="faq-page__breadcrumb" [attr.aria-label]="'faq.breadcrumb.label' | translate">
+        <ol class="faq-page__breadcrumb-list">
+          <li><a class="faq-page__breadcrumb-link" routerLink="/">{{ 'faq.breadcrumb.home' | translate }}</a></li>
+          <li class="faq-page__breadcrumb-current" aria-current="page">{{ 'faq.breadcrumb.current' | translate }}</li>
+        </ol>
+      </nav>
+
+      <span class="faq-page__badge">
+        <img src="/icons/faq/help-center.svg" alt="" width="12.5" height="12.5" />
+        {{ 'faq.hero.badge' | translate }}
+      </span>
+
+      <h1 class="faq-page__title">{{ 'faq.hero.title' | translate }}</h1>
+
+      <p class="faq-page__subtitle">{{ 'faq.hero.subtitle' | translate }}</p>
+
+      <app-faq-search-bar class="faq-page__search" [(term)]="searchInput" (searched)="searchNow()" />
+    </div>
+  </header>
+
+  <!-- QUESTIONS -->
+  <section class="faq-page__body" aria-labelledby="faq-list-title">
+    <div class="faq-page__toolbar">
+      <h2 id="faq-list-title" class="faq-page__list-title">{{ 'faq.list.title' | translate }}</h2>
+      <p class="faq-page__count" aria-live="polite">
+        @if (listState() === 'ready') {
+          {{ countKey() | translate: { count: count() } }}
+        }
+      </p>
+    </div>
+
+    <div class="faq-page__list" [class.faq-page__list--loading]="loading()" [attr.aria-busy]="loading()">
+      @switch (listState()) {
+        @case ('error') {
+          <div class="faq-page__message" role="alert">
+            <p>{{ 'faq.list.loadError' | translate }}</p>
+            <button type="button" class="faq-page__action" (click)="retry()">
+              {{ 'faq.list.retry' | translate }}
+            </button>
+          </div>
+        }
+        @case ('loading') {
+          <p class="faq-page__message">{{ 'faq.list.loading' | translate }}</p>
+        }
+        @default {
+          @for (item of questions(); track item.id) {
+            <app-faq-accordion-item [item]="item" />
+          } @empty {
+            <div class="faq-page__message">
+              <p>{{ 'faq.list.empty' | translate: { term: appliedTerm() } }}</p>
+              <button type="button" class="faq-page__action" (click)="resetSearch()">
+                {{ 'faq.list.emptyReset' | translate }}
+              </button>
+            </div>
+          }
+        }
+      }
+    </div>
+
+    <!-- BANDEAU DE CONTACT -->
+    <app-faq-contact-banner class="faq-page__contact" />
+  </section>
+
+</div>

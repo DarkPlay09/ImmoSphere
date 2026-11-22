@@ -337,5 +337,45 @@
       "button": "List my property",
       "unavailable": "Property publishing is not available yet."
     }
+  },
+  "faq": {
+    "breadcrumb": {
+      "label": "Breadcrumb",
+      "home": "Home",
+      "current": "FAQ"
+    },
+    "hero": {
+      "badge": "ImmoSphere help centre",
+      "title": "How can we help you?",
+      "subtitle": "Find answers to the most frequently asked questions about searching, EPC-certified viewings and notarial procedures in Belgium."
+    },
+    "search": {
+      "label": "Search a question in the FAQ",
+      "placeholder": "Search a question (e.g. 360° tour, EPC, sales agreement)...",
+      "submit": "Search"
+    },
+    "list": {
+      "title": "Frequently asked questions",
+      "count": "{{count}} questions",
+      "countOne": "1 question",
+      "countNone": "No questions",
+      "empty": "No question matches “{{term}}”.",
+      "emptyReset": "Reset search",
+      "loading": "Loading questions…",
+      "loadError": "The FAQ could not be loaded right now. Check your connection and try again.",
+      "retry": "Try again"
+    },
+    "rating": {
+      "question": "Was this answer helpful?",
+      "useful": "Yes, this answer was helpful",
+      "notUseful": "No, this answer was not helpful"
+    },
+    "contact": {
+      "title": "Didn't find your answer?",
+      "text": "Our team can help you better understand how ImmoSphere works.",
+      "note": "Send us your request through a secure online form.",
+      "button": "Contact us",
+      "unavailable": "Coming soon"
+    }
   }
 }

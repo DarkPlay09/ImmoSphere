@@ -1,0 +1,28 @@
+<aside class="faq-contact" aria-labelledby="faq-contact-title">
+  <div class="faq-contact__content">
+    <span class="faq-contact__badge">
+      <img src="/icons/faq/contact-help.svg" alt="" width="18.4167" height="21.6667" />
+    </span>
+
+    <div class="faq-contact__text-group">
+      <h2 id="faq-contact-title" class="faq-contact__title">{{ 'faq.contact.title' | translate }}</h2>
+      <p class="faq-contact__text">{{ 'faq.contact.text' | translate }}</p>
+      <p class="faq-contact__note">
+        <img src="/icons/faq/lock.svg" alt="" width="10.6667" height="14" />
+        {{ 'faq.contact.note' | translate }}
+      </p>
+    </div>
+  </div>
+
+  <!-- Pas encore de page de contact de la plateforme : bouton inactif mais atteignable au clavier
+       (aria-disabled plutôt que disabled, qui le retirerait de l'ordre de tabulation). -->
+  <button
+    type="button"
+    class="faq-contact__button"
+    aria-disabled="true"
+    [title]="'faq.contact.unavailable' | translate"
+  >
+    <img src="/icons/faq/mail.svg" alt="" width="15" height="12" />
+    {{ 'faq.contact.button' | translate }}
+  </button>
+</aside>

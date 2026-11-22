@@ -337,5 +337,45 @@
       "button": "Meine Immobilie inserieren",
       "unavailable": "Das Veröffentlichen von Immobilien ist noch nicht verfügbar."
     }
+  },
+  "faq": {
+    "breadcrumb": {
+      "label": "Brotkrümelnavigation",
+      "home": "Startseite",
+      "current": "FAQ"
+    },
+    "hero": {
+      "badge": "ImmoSphere-Hilfecenter",
+      "title": "Wie können wir Ihnen helfen?",
+      "subtitle": "Hier finden Sie Antworten auf die häufigsten Fragen zur Suche, zu EPB-zertifizierten Besichtigungen und zu notariellen Schritten in Belgien."
+    },
+    "search": {
+      "label": "Eine Frage in den FAQ suchen",
+      "placeholder": "Eine Frage suchen (z. B. 360°-Rundgang, EPB, Kaufvorvertrag)...",
+      "submit": "Suchen"
+    },
+    "list": {
+      "title": "Häufig gestellte Fragen",
+      "count": "{{count}} Fragen",
+      "countOne": "1 Frage",
+      "countNone": "Keine Fragen",
+      "empty": "Keine Frage entspricht „{{term}}“.",
+      "emptyReset": "Suche zurücksetzen",
+      "loading": "Fragen werden geladen…",
+      "loadError": "Die FAQ können derzeit nicht geladen werden. Prüfen Sie Ihre Verbindung und versuchen Sie es erneut.",
+      "retry": "Erneut versuchen"
+    },
+    "rating": {
+      "question": "War diese Antwort hilfreich?",
+      "useful": "Ja, diese Antwort war hilfreich",
+      "notUseful": "Nein, diese Antwort war nicht hilfreich"
+    },
+    "contact": {
+      "title": "Keine Antwort gefunden?",
+      "text": "Unser Team hilft Ihnen gerne, die Funktionsweise von ImmoSphere besser zu verstehen.",
+      "note": "Senden Sie uns Ihre Anfrage über ein sicheres Online-Formular.",
+      "button": "Kontakt aufnehmen",
+      "unavailable": "Demnächst verfügbar"
+    }
   }
 }

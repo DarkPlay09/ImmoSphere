@@ -1,0 +1,230 @@
+// Valeurs reprises de la maquette Figma (cadre « FAQ » 328:12048), sans la colonne des catégories.
+
+:host {
+  display: block;
+  background: #fbf8ff;
+}
+
+.faq-page {
+  $primary: #521453;
+  $surface-low: #f5f2f9;
+  $text: #1b1b20;
+  $text-secondary: #4f434c;
+
+  color: $text;
+  font-family: 'Manrope', sans-serif;
+
+  // EN-TÊTE
+  &__hero {
+    padding: 40px 64px;
+    background: rgba(245, 242, 249, 0.7);
+  }
+
+  &__hero-inner {
+    box-sizing: border-box;
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    max-width: 1152px;
+    margin: 0 auto;
+    padding: 0 24px;
+  }
+
+  &__breadcrumb {
+    align-self: stretch;
+    min-height: 37px;
+  }
+
+  &__breadcrumb-list {
+    display: flex;
+    flex-wrap: wrap;
+    align-items: center;
+    gap: 8px;
+    margin: 0;
+    padding: 0;
+    list-style: none;
+
+    font-size: 13px;
+    font-weight: 500;
+    line-height: 18px;
+
+    li + li::before {
+      content: '/';
+      margin-right: 8px;
+      color: #d3c2cd;
+    }
+  }
+
+  &__breadcrumb-link {
+    color: $text-secondary;
+    text-decoration: none;
+
+    &:hover {
+      color: $primary;
+      text-decoration: underline;
+    }
+  }
+
+  &__breadcrumb-current {
+    font-weight: 600;
+  }
+
+  &__badge {
+    display: inline-flex;
+    align-items: center;
+    gap: 4px;
+    margin-bottom: 8px;
+    padding: 4px 16px;
+
+    background: #e4e1e8;
+    border-radius: 9999px;
+    color: $primary;
+
+    font-size: 11px;
+    font-weight: 700;
+    line-height: 16px;
+    letter-spacing: 0.05em;
+    text-transform: uppercase;
+
+    img {
+      display: block;
+    }
+  }
+
+  &__title {
+    max-width: 672px;
+    margin: 0 0 8px;
+
+    font-size: 36px;
+    font-weight: 600;
+    line-height: 44px;
+    letter-spacing: -0.025em;
+    text-align: center;
+  }
+
+  &__subtitle {
+    max-width: 576px;
+    margin: 0 0 24px;
+
+    color: $text-secondary;
+    font-size: 16px;
+    line-height: 24px;
+    text-align: center;
+  }
+
+  &__search {
+    display: block;
+    width: 100%;
+    max-width: 672px;
+  }
+
+  // QUESTIONS
+  &__body {
+    box-sizing: border-box;
+    display: flex;
+    flex-direction: column;
+    gap: 8px;
+    max-width: 1152px;
+    margin: 0 auto;
+    padding: 40px 24px;
+  }
+
+  &__toolbar {
+    display: flex;
+    align-items: center;
+    justify-content: flex-end;
+    padding: 0 8px 4px;
+  }
+
+  // Titre utile aux lecteurs d'écran, absent visuellement de la maquette.
+  &__list-title {
+    position: absolute;
+    width: 1px;
+    height: 1px;
+    margin: -1px;
+    padding: 0;
+    overflow: hidden;
+    clip: rect(0, 0, 0, 0);
+    white-space: nowrap;
+    border: 0;
+  }
+
+  &__count {
+    margin: 0;
+    color: $text-secondary;
+    font-size: 11px;
+    font-weight: 600;
+    line-height: 16px;
+    letter-spacing: 0.03em;
+  }
+
+  &__list {
+    display: flex;
+    flex-direction: column;
+    gap: 8px;
+
+    &--loading {
+      opacity: 0.6;
+    }
+  }
+
+  &__message {
+    padding: 48px 24px;
+
+    background: #ffffff;
+    border-radius: 12px;
+    color: $text-secondary;
+    text-align: center;
+
+    p {
+      margin: 0 0 16px;
+    }
+  }
+
+  &__action {
+    padding: 10px 16px;
+
+    background: $surface-low;
+    border: none;
+    border-radius: 8px;
+    color: $primary;
+
+    font: inherit;
+    font-size: 13px;
+    font-weight: 600;
+    cursor: pointer;
+  }
+
+  &__breadcrumb-link,
+  &__action {
+    &:focus-visible {
+      outline: 2px solid $primary;
+      outline-offset: 2px;
+    }
+  }
+
+  &__contact {
+    display: block;
+    margin-top: 48px;
+  }
+
+  // RESPONSIVE (la version mobile détaillée viendra plus tard)
+  @media (max-width: 720px) {
+    &__hero {
+      padding: 24px 16px;
+    }
+
+    &__hero-inner {
+      padding: 0;
+    }
+
+    &__body {
+      padding: 24px 16px;
+    }
+
+    &__title {
+      font-size: 28px;
+      line-height: 36px;
+    }
+  }
+}
