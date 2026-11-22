@@ -347,6 +347,9 @@ public class BienRepository : IBienRepository
             .Include(b => b.Province)
             .Include(b => b.TypeChauffage)
 
+            // Images publiques, dans l'ordre de la galerie
+            .Include(b => b.Images.OrderBy(image => image.Ordre))
+
             // Rendez-vous et leur statut
             .Include(b => b.RendezVous)
             .ThenInclude(r => r.StatutRendezVous)

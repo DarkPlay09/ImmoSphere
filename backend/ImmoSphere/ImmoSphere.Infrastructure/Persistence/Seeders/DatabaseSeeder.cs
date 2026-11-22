@@ -366,6 +366,69 @@ public static class DatabaseSeeder
 
         var maisonLiege = await db.Biens.SingleAsync(x => x.Titre == "Maison 3 chambres avec jardin à Liège (démo)");
         var studioLiege = await db.Biens.SingleAsync(x => x.Titre == "Studio à louer près de l'université (démo)");
+
+        // Images publiques de démonstration. Les fichiers correspondants sont
+        // servis par ImmoSphere.Api depuis wwwroot/images/properties/demo.
+        var imagesDemo = new Dictionary<string, (string Chemin, int Ordre, string TexteAlternatif)[]>
+        {
+            ["Maison 3 chambres avec jardin à Liège (démo)"] =
+            [
+                ("/images/properties/demo/maison.png", 0, "Façade de la maison avec jardin à Liège")
+            ],
+            ["Appartement 2 chambres à Liège-Centre (démo)"] =
+            [
+                ("/images/properties/demo/appartement-lumineux.jpg", 0, "Pièce de vie lumineuse de l'appartement à Liège"),
+                ("/images/properties/demo/appartement.png", 1, "Façade d'un appartement à Liège"),
+                ("/images/properties/demo/penthouse.png", 2, "Vue complémentaire de l'appartement à Liège")
+            ],
+            ["Studio à louer près de l'université (démo)"] =
+            [
+                ("/images/properties/demo/appartement.png", 0, "Vue du studio à louer près de l'université")
+            ],
+            ["Villa 4 façades à Spa (démo)"] =
+            [
+                ("/images/properties/demo/villa.png", 0, "Façade de la villa quatre façades à Spa")
+            ],
+            ["Duplex 3 chambres à Namur (démo)"] =
+            [
+                ("/images/properties/demo/duplex.png", 0, "Vue extérieure du duplex à Namur")
+            ],
+            ["Maison mitoyenne à Seraing (démo)"] =
+            [
+                ("/images/properties/demo/maison.png", 0, "Façade de la maison mitoyenne à Seraing")
+            ],
+            ["Appartement 1 chambre à louer à Mons (démo)"] =
+            [
+                ("/images/properties/demo/appartement.png", 0, "Vue de l'appartement à louer à Mons")
+            ],
+            ["Maison 4 chambres à Waterloo (démo)"] =
+            [
+                ("/images/properties/demo/maison.png", 0, "Façade de la maison familiale à Waterloo")
+            ],
+            ["Commerce à louer à Charleroi (démo)"] =
+            [
+                ("/images/properties/demo/appartement-lumineux.jpg", 0, "Intérieur du commerce à louer à Charleroi")
+            ],
+            ["Maison de campagne à Huy (démo)"] =
+            [
+                ("/images/properties/demo/maison.png", 0, "Façade de la maison de campagne à Huy")
+            ],
+            ["Appartement en brouillon à Verviers (démo)"] =
+            [
+                ("/images/properties/demo/penthouse.png", 0, "Vue de l'appartement en brouillon à Verviers")
+            ]
+        };
+
+        foreach (var association in imagesDemo)
+        {
+            var bien = await db.Biens.SingleAsync(
+                x => x.Titre == association.Key);
+            await AddImagesIfMissingAsync(
+                db,
+                bien,
+                association.Value);
+        }
+
         var infoNegociable = await db.InformationsAnnexes.SingleAsync(x => x.Libelle == "Prix négociable");
         var infoCharges = await db.InformationsAnnexes.SingleAsync(x => x.Libelle == "Charges mensuelles");
         await AddBienInfoIfMissing(db, maisonLiege.Id, infoNegociable.Id);
@@ -386,7 +449,6 @@ public static class DatabaseSeeder
 
         // Les tables dépendant d'un compte utilisateur (favoris, avis,
         // souscriptions, RDV, agences administrées) ne sont PAS remplies ici.
-        // Idem pour les images, conformément à la demande.
         await db.SaveChangesAsync();
         await transaction.CommitAsync();
     }
@@ -415,5 +477,31 @@ public static class DatabaseSeeder
     {
         if (!await db.BiensInformationsAnnexes.AnyAsync(x => x.BienId == bienId && x.InformationAnnexeId == infoId))
             db.BiensInformationsAnnexes.Add(new BienInformationAnnexeEntity { BienId = bienId, InformationAnnexeId = infoId });
+    }
+
+    private static async Task AddImagesIfMissingAsync(
+        ApplicationDbContext db,
+        BienEntity bien,
+        IEnumerable<(string Chemin, int Ordre, string TexteAlternatif)> images)
+    {
+        var cheminsExistants = (await db.Images
+            .Where(image => image.BienId == bien.Id)
+            .Select(image => image.Chemin)
+            .ToListAsync())
+            .ToHashSet(StringComparer.OrdinalIgnoreCase);
+
+        foreach (var image in images)
+        {
+            if (!cheminsExistants.Add(image.Chemin))
+                continue;
+
+            db.Images.Add(new ImageEntity
+            {
+                Bien = bien,
+                Chemin = image.Chemin,
+                Ordre = image.Ordre,
+                TexteAlternatif = image.TexteAlternatif
+            });
+        }
     }
 }

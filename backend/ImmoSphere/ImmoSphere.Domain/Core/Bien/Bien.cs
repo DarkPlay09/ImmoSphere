@@ -45,7 +45,7 @@ public class Bien
     public string Province { get; set; }
     public string TypeChauffage { get; set; }
     // public User Publicator { get; set; } Todo : décommenter quand se sera mis en place
-    // public IList<Images>  Images { get; set; }
+    public IList<ImageBien> Images { get; set; } = new List<ImageBien>();
     public IList<RendezVous>  RendezVous { get; set; }
     public IList<Disponibilite>  Disponibilites { get; set; }
     // public IList<Favori>  Favoris { get; set; } A voir comment représenter ça, car many to many

@@ -13,6 +13,10 @@ public class ImageConfiguration : IEntityTypeConfiguration<ImageEntity>
         builder.HasKey(e => e.Id);
         builder.Property(e => e.Id).HasColumnName("id_image").ValueGeneratedOnAdd();
         builder.Property(e => e.Chemin).HasColumnName("chemin").IsRequired();
+        builder.Property(e => e.Ordre).HasColumnName("ordre").IsRequired();
+        builder.Property(e => e.TexteAlternatif)
+            .HasColumnName("texte_alternatif")
+            .IsRequired();
 
         // Associations et clés étrangères
         builder.Property(e => e.BienId).HasColumnName("id_bien");

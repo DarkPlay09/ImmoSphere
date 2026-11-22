@@ -31,6 +31,9 @@ public sealed class BienDetailResponseDto
 
     public string Peb { get; init; } = string.Empty;
 
+    public IReadOnlyList<ImageBienResponseDto> Images { get; init; }
+        = Array.Empty<ImageBienResponseDto>();
+
     public CaracteristiquesBienResponseDto Caracteristiques { get; init; } = new();
 
     public EquipementsBienResponseDto Equipements { get; init; } = new();
