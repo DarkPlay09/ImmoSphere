@@ -29,12 +29,17 @@ import {
   PropertySearchAdvancedFilters,
   PropertySearchAdvancedFiltersComponent,
 } from '../../../shared/properties/components/property-search-advanced-filters/property-search-advanced-filters.component';
+import { PropertySearchResultsToolbarComponent } from '../../../shared/properties/components/property-search-results-toolbar/property-search-results-toolbar.component';
 
 @Component({
   selector: 'app-properties-search',
   standalone: true,
 
-  imports: [PropertySearchCardComponent, PropertySearchAdvancedFiltersComponent],
+  imports: [
+    PropertySearchCardComponent,
+    PropertySearchAdvancedFiltersComponent,
+    PropertySearchResultsToolbarComponent,
+  ],
 
   templateUrl: './properties-search.html',
   styleUrl: './properties-search.scss',
@@ -238,9 +243,7 @@ export class PropertiesSearchComponent implements OnInit {
     // PROVINCE
     // ==========================================
 
-    const provinceId = this.readId(
-      params.get('provinceId')
-    );
+    const provinceId = this.readId(params.get('provinceId'));
 
     if (provinceId !== null) {
       query.provinceId = provinceId;
@@ -250,9 +253,7 @@ export class PropertiesSearchComponent implements OnInit {
     // ÉTAT DU BIEN
     // ==========================================
 
-    const etatId = this.readId(
-      params.get('etatId')
-    );
+    const etatId = this.readId(params.get('etatId'));
 
     if (etatId !== null) {
       query.etatId = etatId;

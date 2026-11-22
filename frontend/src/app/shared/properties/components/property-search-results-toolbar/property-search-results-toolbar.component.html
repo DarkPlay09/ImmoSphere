@@ -1,0 +1,136 @@
+﻿<form
+  class="search-toolbar"
+  [formGroup]="form"
+  (ngSubmit)="submit()"
+>
+
+  <div
+    class="search-toolbar__tabs"
+    role="group"
+    aria-label="Type de transaction"
+  >
+
+    <button
+      type="button"
+      [class.active]="transactionType() === 'sale'"
+      [attr.aria-pressed]="transactionType() === 'sale'"
+      (click)="setTransactionType('sale')"
+    >
+      Acheter
+    </button>
+
+    <button
+      type="button"
+      [class.active]="transactionType() === 'rent'"
+      [attr.aria-pressed]="transactionType() === 'rent'"
+      (click)="setTransactionType('rent')"
+    >
+      Louer
+    </button>
+
+  </div>
+
+  <label class="search-toolbar__field">
+
+    <span class="search-toolbar__label">
+      Commune / CP
+    </span>
+
+    <input
+      type="text"
+      formControlName="location"
+      autocomplete="off"
+      placeholder="Liège (4000)"
+    />
+
+  </label>
+
+  <label class="search-toolbar__field">
+
+    <span class="search-toolbar__label">
+      Type de bien
+    </span>
+
+    <select formControlName="propertyType">
+
+      <option value="all">
+        Tous les types
+      </option>
+
+      <option value="house">
+        Maison
+      </option>
+
+      <option value="apartment">
+        Appartement
+      </option>
+
+      <option value="land">
+        Terrain
+      </option>
+
+    </select>
+
+  </label>
+
+  <label class="search-toolbar__field">
+
+    <span class="search-toolbar__label">
+      Budget max.
+    </span>
+
+    <select formControlName="budgetMax">
+
+      <option value="">
+        Sans maximum
+      </option>
+
+      @for (amount of budgetOptions(); track amount) {
+        <option [value]="amount">
+          {{ formatBudget(amount) }}
+        </option>
+      }
+
+    </select>
+
+  </label>
+
+  <label class="search-toolbar__field">
+
+    <span class="search-toolbar__label">
+      Chambres
+    </span>
+
+    <select formControlName="bedrooms">
+
+      <option value="">
+        Toutes
+      </option>
+
+      @for (count of bedroomsOptions; track count) {
+        <option [value]="count">
+          {{ count }}{{ count === 5 ? '+' : '' }} ch.
+        </option>
+      }
+
+    </select>
+
+  </label>
+
+  <button
+    type="submit"
+    class="search-toolbar__submit"
+  >
+
+    <span
+      class="material-symbols-outlined"
+      aria-hidden="true"
+    >
+      search
+    </span>
+
+    Rechercher
+
+  </button>
+
+</form>
