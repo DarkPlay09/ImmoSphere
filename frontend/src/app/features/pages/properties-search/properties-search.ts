@@ -73,11 +73,21 @@ export class PropertiesSearchComponent implements OnInit {
   readonly selectedProvinceId = signal<number | null>(null);
   readonly selectedEtatId = signal<number | null>(null);
 
+  readonly selectedGarage = signal(false);
+  readonly selectedJardin = signal(false);
+  readonly selectedTerrasse = signal(false);
+
   ngOnInit(): void {
     this.route.queryParamMap.pipe(takeUntilDestroyed(this.destroyRef)).subscribe((params) => {
       this.selectedProvinceId.set(this.readId(params.get('provinceId')));
 
       this.selectedEtatId.set(this.readId(params.get('etatId')));
+
+      this.selectedGarage.set(params.get('garage') === 'true');
+
+      this.selectedJardin.set(params.get('jardin') === 'true');
+
+      this.selectedTerrasse.set(params.get('terrasse') === 'true');
 
       this.loadResults();
     });
@@ -261,6 +271,30 @@ export class PropertiesSearchComponent implements OnInit {
       query.etatId = etatId;
     }
 
+    // ==========================================
+    // GARAGE
+    // ==========================================
+
+    if (params.get('garage') === 'true') {
+      query.garage = true;
+    }
+
+    // ==========================================
+    // JARDIN
+    // ==========================================
+
+    if (params.get('jardin') === 'true') {
+      query.jardin = true;
+    }
+
+    // ==========================================
+    // TERRASSE
+    // ==========================================
+
+    if (params.get('terrasse') === 'true') {
+      query.terrasse = true;
+    }
+
     return query;
   }
 
@@ -326,6 +360,10 @@ export class PropertiesSearchComponent implements OnInit {
       queryParams: {
         provinceId: filters.provinceId,
         etatId: filters.etatId,
+
+        garage: filters.garage ? 'true' : null,
+        jardin: filters.jardin ? 'true' : null,
+        terrasse: filters.terrasse ? 'true' : null,
       },
 
       queryParamsHandling: 'merge',

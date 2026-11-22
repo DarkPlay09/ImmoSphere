@@ -4,12 +4,13 @@ import { FormControl, FormGroup, ReactiveFormsModule } from '@angular/forms';
 
 import { PropertySearchOptionsResponse } from '../../models/property-search-options.model';
 
-/**
- * Critères sélectionnés dans le panneau avancé.
- */
 export interface PropertySearchAdvancedFilters {
   provinceId: number | null;
   etatId: number | null;
+
+  garage: boolean;
+  jardin: boolean;
+  terrasse: boolean;
 }
 
 @Component({
@@ -29,6 +30,10 @@ export class PropertySearchAdvancedFiltersComponent {
   readonly initialProvinceId = input<number | null>(null);
   readonly initialEtatId = input<number | null>(null);
 
+  readonly initialGarage = input(false);
+  readonly initialJardin = input(false);
+  readonly initialTerrasse = input(false);
+
   readonly filtersApplied = output<PropertySearchAdvancedFilters>();
 
   readonly form = new FormGroup({
@@ -39,15 +44,31 @@ export class PropertySearchAdvancedFiltersComponent {
     etatId: new FormControl('', {
       nonNullable: true,
     }),
+
+    garage: new FormControl(false, {
+      nonNullable: true,
+    }),
+
+    jardin: new FormControl(false, {
+      nonNullable: true,
+    }),
+
+    terrasse: new FormControl(false, {
+      nonNullable: true,
+    }),
   });
 
   constructor() {
-    // Synchronise les champs si les filtres de l'URL changent.
+    // Synchronise les champs avec les filtres présents dans l'URL.
     effect(() => {
       this.form.patchValue(
         {
           provinceId: this.initialProvinceId()?.toString() ?? '',
           etatId: this.initialEtatId()?.toString() ?? '',
+
+          garage: this.initialGarage(),
+          jardin: this.initialJardin(),
+          terrasse: this.initialTerrasse(),
         },
         {
           emitEvent: false,
@@ -56,9 +77,6 @@ export class PropertySearchAdvancedFiltersComponent {
     });
   }
 
-  /**
-   * Convertit la valeur d'un select en identifiant.
-   */
   private parseId(value: string): number | null {
     if (!value) {
       return null;
@@ -74,7 +92,7 @@ export class PropertySearchAdvancedFiltersComponent {
   }
 
   /**
-   * Applique les filtres sélectionnés.
+   * Transmet les filtres sélectionnés au parent.
    */
   applyFilters(): void {
     const values = this.form.getRawValue();
@@ -82,21 +100,33 @@ export class PropertySearchAdvancedFiltersComponent {
     this.filtersApplied.emit({
       provinceId: this.parseId(values.provinceId),
       etatId: this.parseId(values.etatId),
+
+      garage: values.garage,
+      jardin: values.jardin,
+      terrasse: values.terrasse,
     });
   }
 
   /**
-   * Supprime les filtres de ce panneau.
+   * Réinitialise uniquement les filtres de ce panneau.
    */
   resetFilters(): void {
     this.form.reset({
       provinceId: '',
       etatId: '',
+
+      garage: false,
+      jardin: false,
+      terrasse: false,
     });
 
     this.filtersApplied.emit({
       provinceId: null,
       etatId: null,
+
+      garage: false,
+      jardin: false,
+      terrasse: false,
     });
   }
 }

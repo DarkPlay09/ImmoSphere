@@ -14,7 +14,10 @@ type FilterKey =
   | 'minArea'
   | 'peb'
   | 'provinceId'
-  | 'etatId';
+  | 'etatId'
+  | 'garage'
+  | 'jardin'
+  | 'terrasse';
 
 interface SearchFilterChip {
   key: FilterKey;
@@ -215,6 +218,39 @@ export class PropertySearchActiveFiltersComponent {
         key: 'etatId',
         label: `État : ${etat?.libelle ?? etatId}`,
       });
+
+      // ==========================================
+      // GARAGE
+      // ==========================================
+
+      if (params.get('garage') === 'true') {
+        chips.push({
+          key: 'garage',
+          label: 'Garage',
+        });
+      }
+
+      // ==========================================
+      // JARDIN
+      // ==========================================
+
+      if (params.get('jardin') === 'true') {
+        chips.push({
+          key: 'jardin',
+          label: 'Jardin',
+        });
+      }
+
+      // ==========================================
+      // TERRASSE
+      // ==========================================
+
+      if (params.get('terrasse') === 'true') {
+        chips.push({
+          key: 'terrasse',
+          label: 'Terrasse',
+        });
+      }
     }
 
     return chips;

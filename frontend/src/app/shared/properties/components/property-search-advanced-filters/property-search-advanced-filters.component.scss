@@ -139,3 +139,61 @@
     }
   }
 }
+
+// ÉQUIPEMENTS ET EXTÉRIEURS
+&__features {
+  margin: 0;
+  padding: 0;
+
+  border: none;
+
+  legend {
+    margin-bottom: 12px;
+
+    color: #1f1f24;
+
+    font-size: 12px;
+    font-weight: 700;
+    text-transform: uppercase;
+  }
+}
+
+&__features-grid {
+  display: grid;
+  grid-template-columns: repeat(2, minmax(0, 1fr));
+  gap: 10px;
+}
+
+&__checkbox {
+  display: flex;
+  align-items: center;
+  gap: 8px;
+
+  min-width: 0;
+  padding: 10px;
+
+  background: #f8f7fb;
+  border: 1px solid #e7e2ea;
+  border-radius: 8px;
+
+  color: #1f1f24;
+
+  font-size: 12px;
+  font-weight: 600;
+
+  cursor: pointer;
+
+  input {
+    width: 16px;
+    height: 16px;
+    margin: 0;
+
+    accent-color: #6c2d6b;
+    cursor: pointer;
+  }
+
+  &:focus-within {
+    outline: 2px solid #6c2d6b;
+    outline-offset: 2px;
+  }
+}
