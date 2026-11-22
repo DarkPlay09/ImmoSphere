@@ -163,26 +163,15 @@
 
     <aside
       class="search-results__map-column"
-      aria-label="Emplacement de la carte immobilière"
+      aria-label="Carte des biens immobiliers"
     >
 
-      <div class="search-results__map-placeholder">
-
-        <span
-          class="material-symbols-outlined"
-          aria-hidden="true"
-        >
-          map
-        </span>
-
-        <h2>Carte des biens immobiliers</h2>
-
-        <p>
-          La carte interactive sera intégrée dans les
-          prochains commits.
-        </p>
-
-      </div>
+      <app-property-map
+        [properties]="mapProperties()"
+        [selectedPropertyId]="selectedPropertyId()"
+        [ariaLabel]="'Carte interactive des résultats immobiliers'"
+        (propertySelected)="selectPropertyFromMap($event)"
+      />
 
     </aside>
 

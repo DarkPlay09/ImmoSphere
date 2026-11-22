@@ -3,6 +3,7 @@ import {
   Component,
   DestroyRef,
   OnInit,
+  computed,
   inject,
   signal,
 } from '@angular/core';
@@ -20,17 +21,31 @@ import { mapPropertySearchResult } from '../../../shared/properties/mappers/prop
 import { PropertySearchResult } from '../../../shared/properties/models/property-search-result.model';
 
 import { PropertySearchQuery } from '../../../shared/properties/models/property-search-api.model';
+
 import { PropertySearchOptionsService } from '../../../shared/properties/data-access/property-search-options.service';
+
 import {
   PropertySearchOption,
   PropertySearchOptionsResponse,
 } from '../../../shared/properties/models/property-search-options.model';
+
 import {
   PropertySearchAdvancedFilters,
   PropertySearchAdvancedFiltersComponent,
 } from '../../../shared/properties/components/property-search-advanced-filters/property-search-advanced-filters.component';
+
 import { PropertySearchResultsToolbarComponent } from '../../../shared/properties/components/property-search-results-toolbar/property-search-results-toolbar.component';
+
 import { PropertySearchActiveFiltersComponent } from '../../../shared/properties/components/property-search-active-filters/property-search-active-filters.component';
+
+import { PropertyMapComponent } from '../../../shared/properties/components/property-map/property-map.component';
+
+import {
+  PropertyMapItem,
+  PropertyMapKind,
+} from '../../../shared/notaries/models/property-map-tiem.model';
+
+import { getMapCityCenter, normalizeCity } from '../../home/data-access/map-city-centers';
 
 @Component({
   selector: 'app-properties-search',
@@ -41,6 +56,7 @@ import { PropertySearchActiveFiltersComponent } from '../../../shared/properties
     PropertySearchAdvancedFiltersComponent,
     PropertySearchResultsToolbarComponent,
     PropertySearchActiveFiltersComponent,
+    PropertyMapComponent,
   ],
 
   templateUrl: './properties-search.html',
@@ -61,9 +77,7 @@ export class PropertiesSearchComponent implements OnInit {
   readonly results = signal<PropertySearchResult[]>([]);
 
   readonly total = signal(0);
-
   readonly loading = signal(false);
-
   readonly error = signal<string | null>(null);
 
   readonly selectedPropertyId = signal<number | null>(null);
@@ -76,11 +90,66 @@ export class PropertiesSearchComponent implements OnInit {
   readonly selectedGarage = signal(false);
   readonly selectedJardin = signal(false);
   readonly selectedTerrasse = signal(false);
-
   readonly selectedParking = signal(false);
   readonly selectedBalcon = signal(false);
   readonly selectedAscenseur = signal(false);
   readonly selectedPiscine = signal(false);
+
+  readonly mapProperties = computed<readonly PropertyMapItem[]>(() => {
+    const occurrences = new Map<string, number>();
+
+    return this.results().flatMap((property): PropertyMapItem[] => {
+      const location = getMapCityCenter(property.city);
+
+      if (!location) {
+        return [];
+      }
+
+      const cityKey = normalizeCity(property.city);
+
+      const occurrence = occurrences.get(cityKey) ?? 0;
+
+      occurrences.set(cityKey, occurrence + 1);
+
+      /**
+       * Évite de superposer exactement les marqueurs de plusieurs biens appartenant à une même commune.
+       */
+      const angle = occurrence * 2.39996;
+
+      const radius = occurrence === 0 ? 0 : 0.006 * Math.sqrt(occurrence);
+
+      const title = property.title.toLowerCase();
+
+      let kind: PropertyMapKind = 'apartment';
+
+      if (title.includes('penthouse')) {
+        kind = 'penthouse';
+      } else if (title.includes('villa')) {
+        kind = 'villa';
+      } else if (title.includes('maison')) {
+        kind = 'house';
+      }
+
+      return [
+        {
+          id: property.id,
+          price: property.price,
+
+          city: property.city,
+          postalCode: property.postalCode,
+          region: location.region,
+
+          latitude: location.latitude + Math.sin(angle) * radius,
+
+          longitude: location.longitude + Math.cos(angle) * radius,
+
+          kind,
+          imageUrl: property.imageUrl,
+          peb: property.peb,
+        },
+      ];
+    });
+  });
 
   ngOnInit(): void {
     this.route.queryParamMap.pipe(takeUntilDestroyed(this.destroyRef)).subscribe((params) => {
@@ -413,5 +482,12 @@ export class PropertiesSearchComponent implements OnInit {
 
     // TODO: Brancher le lien vers le détails d'un bien.
     console.log('Détails du bien :', propertyId);
+  }
+
+  /**
+   * Sélection depuis un marqueur Leaflet.
+   */
+  selectPropertyFromMap(propertyId: number): void {
+    this.selectedPropertyId.set(propertyId);
   }
 }
