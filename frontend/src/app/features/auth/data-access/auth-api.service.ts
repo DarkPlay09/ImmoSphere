@@ -3,6 +3,7 @@ import { HttpClient } from '@angular/common/http';
 import { environment } from '../../../../../environments/environments';
 
 import type { RegistrationFormValue } from '../pages/register/register.component';
+import { LoginFormValue } from '../pages/login/login.component';
 
 export interface VerifyEmailRequest {
   email: string;
@@ -41,6 +42,12 @@ export class AuthApiService {
     return this.http.post<void>(`${environment.apiUrl}/api/auth/logout`, null, {
       withCredentials: true,
     });
+  }
+
+  postLoginForm(data: LoginFormValue) {
+    return this.http.post(`${environment.apiUrl}/api/auth/login`, data, {
+      withCredentials: true,
+    })
   }
 
   resendConfirmation(email: string) {

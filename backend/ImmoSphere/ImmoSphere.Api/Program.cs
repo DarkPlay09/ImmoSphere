@@ -209,6 +209,7 @@ builder.Services.AddScoped<IBienService, BienService>();
 builder.Services.AddScoped<IRegisterService, RegisterService>();
 builder.Services.AddScoped<IEmailConfirmationService, EmailConfirmationService>();
 builder.Services.AddScoped<IAgenceService, AgenceService>();
+builder.Services.AddScoped<ILoginService, LoginService>();
 builder.Services.AddScoped<IFaqService, FaqService>();
 
 // ==========================================

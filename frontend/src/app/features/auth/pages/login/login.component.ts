@@ -1,13 +1,20 @@
-﻿import { ChangeDetectionStrategy, Component, output, signal } from '@angular/core';
+﻿import { ChangeDetectionStrategy, Component, inject, output, signal } from '@angular/core';
 
 import { takeUntilDestroyed } from '@angular/core/rxjs-interop';
 
 import { FormControl, FormGroup, ReactiveFormsModule, Validators } from '@angular/forms';
 
+import { Router } from '@angular/router';
+
 import { RouterLink } from '@angular/router';
 import { TranslatePipe } from '@ngx-translate/core';
 
 import { AuthShellComponent } from '../../../../shared/auth/components/auth-shell/auth-shell.component';
+
+import { AuthApiService } from '../../data-access/auth-api.service';
+
+import { AuthSessionService } from '../../data-access/auth-session.service';
+
 
 export interface LoginFormValue {
   email: string;
@@ -29,6 +36,10 @@ export class LoginComponent {
   readonly attemptedSubmit = signal(false);
   readonly isPasswordVisible = signal(false);
   readonly integrationNoticeVisible = signal(false);
+
+  readonly apiService = inject(AuthApiService);
+  private readonly router = inject(Router);
+  private readonly authSession = inject(AuthSessionService);
 
   readonly form = new FormGroup({
     email: new FormControl('', {
@@ -78,13 +89,28 @@ export class LoginComponent {
 
     const value = this.form.getRawValue();
 
+    const data: LoginFormValue = {
+      email: value.email.trim(),
+      password: value.password.trim(),
+      rememberMe: value.rememberMe,
+    };
+
+    // A quoi sert ce morceau de code ? Je peux le supprimer ?
     this.loginRequested.emit({
       email: value.email,
       password: value.password,
       rememberMe: value.rememberMe,
     });
 
-    // En attente de l'intégration avec le backend.
-    this.integrationNoticeVisible.set(true);
+    this.apiService.postLoginForm(data).subscribe({
+      next: () => {
+        this.authSession.refresh();
+        this.router.navigateByUrl('/');
+      },
+      error: (error) => {}, // TODO Afficher message d'erreur
+    });
+
+    // // En attente de l'intégration avec le backend.
+    // this.integrationNoticeVisible.set(true);
   }
 }

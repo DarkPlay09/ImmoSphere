@@ -8,6 +8,7 @@ using Microsoft.AspNetCore.Authorization;
 using Microsoft.AspNetCore.RateLimiting;
 
 using System.IdentityModel.Tokens.Jwt;
+using Microsoft.AspNetCore.Identity.Data;
 
 namespace ImmoSphere.Api.Controllers.Auth;
 /**
@@ -25,42 +26,38 @@ namespace ImmoSphere.Api.Controllers.Auth;
  *      accountType (str),
  *      conditions (bool)
  *
- *   TODO
  *   2. Validation du code
  *   Route : /api/auth/verify-email
  *   Ayant comme paramètres :
  *      email (str),
  *      code (str)
  *
- *   TODO
  *   3. Connection
  *   Route : /api/auth/login
  *   Ayant comme paramètres :
- *      TODO
- *
-*    TODO
- *   4. Déconnection
- *   Route : /api/auth/logout
- *   Ayant comme paramètres :
- *      email (str),
- *      code (str)
+ *      email (str)
+ *      password (str)
+ *      rememberMe (bool)
  */
 [ApiController]
 [Route("api/auth")]
 public class AuthController : ControllerBase
 {
-    private readonly IRegisterService _service;
+    private readonly IRegisterService _registerService;
+    private readonly ILoginService _loginService;
     private readonly ILogger<AuthController> _logger;
     private readonly IConfiguration _configuration;
     private readonly IWebHostEnvironment _environment;
 
     public AuthController(
         IRegisterService service,
+        ILoginService loginService,
         ILogger<AuthController> logger,
         IConfiguration configuration,
         IWebHostEnvironment environment)
     {
-        _service = service;
+        _registerService = service;
+        _loginService = loginService;
         _logger = logger;
         _configuration = configuration;
         _environment = environment;
@@ -85,7 +82,7 @@ public class AuthController : ControllerBase
         try
         {
             _logger.LogInformation("Nouvelle requête : Inscription");
-            await _service.CreateUserAsync(request.Name, request.GivenName, request.Email, request.Password,
+            await _registerService.CreateUserAsync(request.Name, request.GivenName, request.Email, request.Password,
                 request.AccountType, request.Conditions);
             _logger.LogInformation("Utilisateur crée, mail envoyé. Fin de processus (code 200)");
             return Ok(new { message = "Register success" });
@@ -128,6 +125,8 @@ public class AuthController : ControllerBase
         }
     }
 
+
+
     [HttpPost("verify-email")]
     public async Task<IActionResult> VerifyEmail(
         [FromBody] VerifyEmailRequestDto request)
@@ -138,7 +137,7 @@ public class AuthController : ControllerBase
                 "Nouvelle requête : Vérification de mail"
             );
 
-            string? token = await _service.VerifyCodeAsync(
+            string? token = await _registerService.VerifyCodeAsync(
                 request.Email,
                 request.Code
             );
@@ -150,15 +149,15 @@ public class AuthController : ControllerBase
                     message = "Code invalide ou expiré."
                 });
             }
-            
+
             bool cookiesEnabled = _configuration.GetValue<bool>("Auth:SessionCookiesEnabled");
-            
+
             if (cookiesEnabled)
             {
                 // Récupération de l'expiration du JWT existant
                 var jwt = new JwtSecurityTokenHandler()
                     .ReadJwtToken(token);
-                
+
                 // Création du cookie sécurisé
                 Response.Cookies.Append(
                     AuthSessionCookie.Name,
@@ -179,7 +178,7 @@ public class AuthController : ControllerBase
 
                     }
                 );
-                
+
                 _logger.LogInformation(
                     "Compte confirmé : cookie de session créé");
 
@@ -217,7 +216,7 @@ public class AuthController : ControllerBase
     {
         try
         {
-            await _service.ResendConfirmationCodeAsync(request.Email);
+            await _registerService.ResendConfirmationCodeAsync(request.Email);
         }
         catch (Exception e)
         {
@@ -233,11 +232,112 @@ public class AuthController : ControllerBase
         });
     }
 
-    [HttpPost("login")]
-    public IActionResult Login()
+
+[HttpPost("login")]
+public async Task<IActionResult> Login([FromBody] LoginRequestDto request)
+{
+    try
     {
-        return Ok(new { message = "Connexion reçue" });
+        _logger.LogInformation("Nouvelle requête : Connexion");
+
+        // 1. Authentifier l'utilisateur et récupérer son JWT
+        string? token = await _loginService.Login(
+            request.Email,
+            request.Password,
+            request.RememberMe
+        );
+
+        if (string.IsNullOrEmpty(token))
+        {
+            return Unauthorized(new
+            {
+                message = "Connexion impossible."
+            });
+        }
+
+        // 2. Vérifier si les cookies sont activés
+        bool cookiesEnabled = _configuration.GetValue<bool>(
+            "Auth:SessionCookiesEnabled"
+        );
+
+        if (cookiesEnabled)
+        {
+            // 3. Préparer le cookie de session
+            var cookieOptions = new CookieOptions
+            {
+                HttpOnly = true,
+                Secure = !_environment.IsDevelopment(),
+                SameSite = SameSiteMode.Lax,
+                Path = "/",
+                IsEssential = true
+            };
+
+            // 4. Rendre le cookie persistant si RememberMe = true
+            if (request.RememberMe)
+            {
+                var jwt = new JwtSecurityTokenHandler()
+                    .ReadJwtToken(token);
+
+                cookieOptions.Expires = new DateTimeOffset(jwt.ValidTo);
+            }
+
+            // 5. Envoyer le cookie
+            Response.Cookies.Append(
+                AuthSessionCookie.Name,
+                token,
+                cookieOptions
+            );
+
+            _logger.LogInformation("Connexion réussie : cookie créé");
+
+            return Ok(new
+            {
+                message = "Connexion réussie."
+            });
+        }
+
+        // 6. Si les cookies sont désactivés, retourner le JWT
+        return Ok(new
+        {
+            token,
+            tokenType = "Bearer"
+        });
     }
+    catch (LoginException.UserNotExist e)
+    {
+        _logger.LogWarning(e, "Connexion refusée : utilisateur inexistant");
+
+        return Unauthorized(new
+        {
+            message = "E-mail ou mot de passe incorrect."
+        });
+    }
+    catch (LoginException.WrongPassword e)
+    {
+        _logger.LogWarning(e, "Connexion refusée : mot de passe incorrect");
+
+        return Unauthorized(new
+        {
+            message = "E-mail ou mot de passe incorrect."
+        });
+    }
+    catch (ArgumentException e)
+    {
+        _logger.LogWarning(e, "Connexion refusée : données invalides");
+
+        return BadRequest(new
+        {
+            message = "E-mail ou mot de passe manquant."
+        });
+    }
+    catch (Exception e)
+    {
+        _logger.LogError(e, "Erreur serveur lors de la connexion");
+
+        return Problem("Une erreur interne est survenue.");
+    }
+}
+
 
     [HttpPost("logout")]
     public IActionResult Logout()
@@ -251,10 +351,10 @@ public class AuthController : ControllerBase
                 SameSite = SameSiteMode.Lax,
                 Path = "/",
             });
-        
+
         return NoContent();
     }
-    
+
     [HttpGet("me")]
     [Authorize(AuthenticationSchemes = JwtBearerDefaults.AuthenticationScheme)]
     public IActionResult GetCurrentUser()

@@ -112,4 +112,30 @@ public class UserRepository : IUserRepository
 
         return user.Id;
     }
+
+
+    public async Task<bool> CheckPassFor(string login, string password)
+    {
+        // 1. Récupérer l'utilisateur via son email
+        string normalizedEmail = login.Trim().ToUpperInvariant();
+
+        var user = _context.Users
+            .FirstOrDefault(u => u.NormalizedEmail == normalizedEmail);
+
+        if (user == null || string.IsNullOrEmpty(user.PasswordHash))
+        {
+            return false;
+        }
+
+        // 2. Vérifier le mot de passe avec Identity
+        var result = _userManager.PasswordHasher.VerifyHashedPassword(
+            user,
+            user.PasswordHash,
+            password
+        );
+
+        // 3. Retourner le résultat de la vérification
+        return result != PasswordVerificationResult.Failed;
+    }
+
 }
