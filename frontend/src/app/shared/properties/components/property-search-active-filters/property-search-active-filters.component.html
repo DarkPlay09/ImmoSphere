@@ -1,0 +1,48 @@
+﻿@if (chips().length > 0) {
+
+  <div
+    class="active-filters"
+    aria-label="Filtres de recherche actifs"
+  >
+
+    <span class="active-filters__label">
+      Filtres actifs :
+    </span>
+
+    <div class="active-filters__chips">
+
+      @for (chip of chips(); track chip.key) {
+
+        <button
+          type="button"
+          class="active-filters__chip"
+          [attr.aria-label]="'Supprimer le filtre ' + chip.label"
+          (click)="removeFilter(chip.key)"
+        >
+
+          <span>{{ chip.label }}</span>
+
+          <span
+            class="material-symbols-outlined"
+            aria-hidden="true"
+          >
+            close
+          </span>
+
+        </button>
+
+      }
+
+    </div>
+
+    <button
+      type="button"
+      class="active-filters__clear"
+      (click)="clearAll()"
+    >
+      Effacer tous les filtres
+    </button>
+
+  </div>
+
+}
