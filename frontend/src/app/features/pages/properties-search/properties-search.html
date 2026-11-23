@@ -48,7 +48,7 @@
   />
 
   <header class="search-results__header">
-    <h1>Résultats de recherche</h1>
+    <h1 id="search-results-title">Résultats de recherche</h1>
 
     @if (!loading() && !error()) {
       <p>{{ total() }} bien(s) disponible(s)</p>
@@ -101,6 +101,21 @@
       </button>
     </div>
   </header>
+
+  @if (viewMode() === 'list') {
+    <a
+      class="search-results__map-jump"
+      href="#search-results-map"
+    >
+    <span class="material-symbols-outlined" aria-hidden="true">
+      map
+    </span>
+      Voir la carte
+      <span class="material-symbols-outlined" aria-hidden="true">
+      arrow_downward
+    </span>
+    </a>
+  }
 
   <div
     class="search-results__layout"
@@ -195,6 +210,7 @@
 
       <aside
         class="search-results__map-column"
+        id="search-results-map"
         aria-label="Carte des résultats immobiliers"
       >
         <div class="search-results__map-wrapper">
@@ -288,6 +304,16 @@
           }
 
         </div>
+
+        <a
+          class="search-results__back-to-results"
+          href="#search-results-title"
+        >
+          <span class="material-symbols-outlined" aria-hidden="true">
+            arrow_upward
+          </span>
+          Retour aux résultats
+        </a>
       </aside>
 
     }
