@@ -112,6 +112,8 @@ export class PropertiesSearchComponent implements OnInit {
 
   readonly selectedPropertyId = signal<number | null>(null);
 
+  readonly viewMode = signal<'list' | 'grid'>('list');
+
   // ==========================================
   // FILTRES
   // ==========================================
@@ -567,5 +569,9 @@ export class PropertiesSearchComponent implements OnInit {
       },
       queryParamsHandling: 'merge',
     });
+  }
+
+  setViewMode(mode: 'list' | 'grid'): void {
+    this.viewMode.set(mode);
   }
 }
