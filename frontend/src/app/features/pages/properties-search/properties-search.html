@@ -53,6 +53,23 @@
     @if (!loading() && !error()) {
       <p>{{ total() }} bien(s) disponible(s)</p>
     }
+
+    <div class="search-results__sort">
+      <label for="properties-sort">Trier par</label>
+
+      <select
+        #sortSelect
+        id="properties-sort"
+        [value]="selectedSort()"
+        [disabled]="loading()"
+        (change)="onSortChange(sortSelect.value)"
+      >
+        <option value="id-desc">Plus récentes</option>
+        <option value="prix-asc">Prix croissant</option>
+        <option value="prix-desc">Prix décroissant</option>
+        <option value="surface-desc">Plus grande surface</option>
+      </select>
+    </div>
   </header>
 
   <div class="search-results__layout">
@@ -234,6 +251,55 @@
 
       </div>
     </aside>
+
+    @if (!loading() && !error() && totalPages() > 1) {
+
+      <nav
+        class="search-results__pagination"
+        aria-label="Pagination des résultats"
+      >
+
+    <span>
+      {{ firstResultIndex() }}–{{ lastResultIndex() }}
+      sur {{ total() }} résultats
+    </span>
+
+        <div class="search-results__pagination-buttons">
+
+          <button
+            type="button"
+            [disabled]="currentPage() === 1"
+            (click)="goToPage(currentPage() - 1)"
+            aria-label="Page précédente"
+          >
+            Précédent
+          </button>
+
+          @for (page of visiblePages(); track page) {
+            <button
+              type="button"
+              [class.active]="currentPage() === page"
+              [attr.aria-current]="currentPage() === page ? 'page' : null"
+              (click)="goToPage(page)"
+            >
+              {{ page }}
+            </button>
+          }
+
+          <button
+            type="button"
+            [disabled]="currentPage() >= totalPages()"
+            (click)="goToPage(currentPage() + 1)"
+            aria-label="Page suivante"
+          >
+            Suivant
+          </button>
+
+        </div>
+
+      </nav>
+
+    }
 
   </div>
 </section>

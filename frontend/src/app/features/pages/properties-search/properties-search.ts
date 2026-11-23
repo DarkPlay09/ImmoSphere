@@ -8,7 +8,7 @@ import {
   signal,
 } from '@angular/core';
 
-import { ActivatedRoute, Router } from '@angular/router';
+import { ActivatedRoute, ParamMap, Params, Router } from '@angular/router';
 import { takeUntilDestroyed } from '@angular/core/rxjs-interop';
 import { Subscription, switchMap } from 'rxjs';
 
@@ -47,6 +47,8 @@ import {
 
 import { getMapCityCenter, normalizeCity } from '../../home/data-access/map-city-centers';
 
+type SearchSort = NonNullable<PropertySearchQuery['tri']>;
+
 @Component({
   selector: 'app-properties-search',
   standalone: true,
@@ -71,12 +73,40 @@ export class PropertiesSearchComponent implements OnInit {
 
   private currentRequest?: Subscription;
 
+  private previousCriteriaKey: string | null = null;
+  private readonly pageSize = 12;
+
   // ==========================================
   // RÉSULTATS
   // ==========================================
 
   readonly results = signal<PropertySearchResult[]>([]);
   readonly total = signal(0);
+
+  readonly selectedSort = signal<SearchSort>('id-desc');
+  readonly currentPage = signal(1);
+  readonly totalPages = signal(0);
+
+  readonly firstResultIndex = computed(() =>
+    this.total() === 0 ? 0 : (this.currentPage() - 1) * this.pageSize + 1,
+  );
+
+  readonly lastResultIndex = computed(() =>
+    Math.min(this.currentPage() * this.pageSize, this.total()),
+  );
+
+  readonly visiblePages = computed(() => {
+    const total = this.totalPages();
+    const current = this.currentPage();
+
+    if (total <= 0) return [];
+
+    const start = Math.max(1, Math.min(current - 2, total - 4));
+    const end = Math.min(total, start + 4);
+
+    return Array.from({ length: end - start + 1 }, (_, index) => start + index);
+  });
+
   readonly loading = signal(false);
   readonly error = signal<string | null>(null);
 
@@ -180,6 +210,33 @@ export class PropertiesSearchComponent implements OnInit {
 
   ngOnInit(): void {
     this.route.queryParamMap.pipe(takeUntilDestroyed(this.destroyRef)).subscribe((params) => {
+      const criteriaKey = this.getCriteriaKey(params);
+      const requestedPage = this.readPage(params.get('page'));
+
+      if (
+        this.previousCriteriaKey !== null &&
+        this.previousCriteriaKey !== criteriaKey &&
+        requestedPage > 1
+      ) {
+        this.previousCriteriaKey = criteriaKey;
+
+        void this.router.navigate([], {
+          relativeTo: this.route,
+          queryParams: { page: null },
+          queryParamsHandling: 'merge',
+          replaceUrl: true,
+        });
+
+        return;
+      }
+
+      this.previousCriteriaKey = criteriaKey;
+      this.currentPage.set(requestedPage);
+
+      const sort = params.get('tri');
+
+      this.selectedSort.set(this.isSort(sort) ? sort : 'id-desc');
+
       this.selectedProvinceId.set(this.readId(params.get('provinceId')));
 
       this.selectedEtatId.set(this.readId(params.get('etatId')));
@@ -246,6 +303,29 @@ export class PropertiesSearchComponent implements OnInit {
     return option.id;
   }
 
+  private readPage(value: string | null): number {
+    const page = this.readNumber(value);
+
+    return page !== undefined && Number.isSafeInteger(page) && page >= 1 ? page : 1;
+  }
+
+  private isSort(value: string | null): value is SearchSort {
+    return (
+      value === 'id-desc' ||
+      value === 'prix-asc' ||
+      value === 'prix-desc' ||
+      value === 'surface-desc'
+    );
+  }
+
+  private getCriteriaKey(params: ParamMap): string {
+    return params.keys
+      .filter((key) => key !== 'page' && key !== 'tri')
+      .sort()
+      .map((key) => `${key}=${JSON.stringify(params.getAll(key))}`)
+      .join('&');
+  }
+
   // ==========================================
   // CONSTRUCTION DE LA RECHERCHE
   // ==========================================
@@ -254,8 +334,9 @@ export class PropertiesSearchComponent implements OnInit {
     const params = this.route.snapshot.queryParamMap;
 
     const query: PropertySearchQuery = {
-      page: 1,
-      taillePage: 12,
+      page: this.readPage(params.get('page')),
+      taillePage: this.pageSize,
+      tri: this.selectedSort(),
     };
 
     // Localité ou code postal
@@ -399,6 +480,9 @@ export class PropertiesSearchComponent implements OnInit {
 
           this.total.set(response.total);
 
+          this.currentPage.set(response.page);
+          this.totalPages.set(response.nombrePages);
+
           // Sélectionne le premier marqueur disponible.
           this.selectedPropertyId.set(this.mapProperties()[0]?.id ?? null);
 
@@ -410,8 +494,8 @@ export class PropertiesSearchComponent implements OnInit {
 
           this.results.set([]);
           this.total.set(0);
+          this.totalPages.set(0);
           this.selectedPropertyId.set(null);
-
           this.error.set('Impossible de charger les biens immobiliers. Veuillez réessayer.');
 
           this.loading.set(false);
@@ -452,5 +536,36 @@ export class PropertiesSearchComponent implements OnInit {
 
   selectPropertyFromMap(propertyId: number): void {
     this.selectedPropertyId.set(propertyId);
+  }
+
+  onSortChange(value: string): void {
+    if (!this.isSort(value)) return;
+
+    void this.router.navigate([], {
+      relativeTo: this.route,
+      queryParams: {
+        tri: value === 'id-desc' ? null : value,
+        page: null,
+      },
+      queryParamsHandling: 'merge',
+    });
+  }
+
+  goToPage(page: number): void {
+    if (
+      !Number.isSafeInteger(page) ||
+      page < 1 ||
+      page > this.totalPages() ||
+      page === this.currentPage()
+    )
+      return;
+
+    void this.router.navigate([], {
+      relativeTo: this.route,
+      queryParams: {
+        page: page === 1 ? null : page,
+      },
+      queryParamsHandling: 'merge',
+    });
   }
 }
