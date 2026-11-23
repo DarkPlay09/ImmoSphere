@@ -7,56 +7,40 @@
     <details class="search-results__filter-menu">
 
       <summary class="search-results__filter-button">
-
-        <span
-          class="material-symbols-outlined"
-          aria-hidden="true"
-        >
+        <span class="material-symbols-outlined" aria-hidden="true">
           tune
         </span>
 
         Filtres
 
-        <span
-          class="material-symbols-outlined"
-          aria-hidden="true"
-        >
+        <span class="material-symbols-outlined" aria-hidden="true">
           expand_more
         </span>
-
       </summary>
 
       <div class="search-results__filter-panel">
-
         @if (filterOptions(); as options) {
 
           <app-property-search-advanced-filters
             [options]="options"
             [initialProvinceId]="selectedProvinceId()"
             [initialEtatId]="selectedEtatId()"
-
             [initialGarage]="selectedGarage()"
             [initialJardin]="selectedJardin()"
             [initialTerrasse]="selectedTerrasse()"
-
             [initialParking]="selectedParking()"
             [initialBalcon]="selectedBalcon()"
             [initialAscenseur]="selectedAscenseur()"
             [initialPiscine]="selectedPiscine()"
-
             (filtersApplied)="onAdvancedFiltersApplied($event)"
           />
 
         } @else {
-
           <p>Chargement des filtres...</p>
-
         }
-
       </div>
 
     </details>
-
   </div>
 
   <app-property-search-active-filters
@@ -64,13 +48,11 @@
   />
 
   <header class="search-results__header">
-
     <h1>Résultats de recherche</h1>
 
     @if (!loading() && !error()) {
       <p>{{ total() }} bien(s) disponible(s)</p>
     }
-
   </header>
 
   <div class="search-results__layout">
@@ -84,16 +66,11 @@
           role="status"
           aria-live="polite"
         >
-
-          <span
-            class="material-symbols-outlined"
-            aria-hidden="true"
-          >
+          <span class="material-symbols-outlined" aria-hidden="true">
             progress_activity
           </span>
 
           <p>Chargement des biens immobiliers...</p>
-
         </div>
 
       } @else if (error()) {
@@ -102,11 +79,7 @@
           class="search-results__state search-results__state--error"
           role="alert"
         >
-
-          <span
-            class="material-symbols-outlined"
-            aria-hidden="true"
-          >
+          <span class="material-symbols-outlined" aria-hidden="true">
             error
           </span>
 
@@ -119,7 +92,6 @@
           >
             Réessayer
           </button>
-
         </div>
 
       } @else {
@@ -128,16 +100,23 @@
 
           @for (property of results(); track property.id) {
 
-            <app-property-search-card
-              [property]="property"
-              [selected]="property.id === selectedPropertyId()"
-              (detailsRequested)="onDetailsRequested($event)"
-            />
+            <div
+              class="search-results__item"
+              [id]="'property-result-' + property.id"
+              [class.search-results__item--selected]="
+                property.id === selectedPropertyId()
+              "
+            >
+              <app-property-search-card
+                [property]="property"
+                [selected]="property.id === selectedPropertyId()"
+                (detailsRequested)="onDetailsRequested($event)"
+              />
+            </div>
 
           } @empty {
 
             <div class="search-results__state">
-
               <span
                 class="material-symbols-outlined"
                 aria-hidden="true"
@@ -150,31 +129,111 @@
               <p>
                 Aucun bien immobilier ne correspond à vos critères.
               </p>
-
             </div>
 
           }
 
         </div>
-
       }
 
     </div>
 
     <aside
       class="search-results__map-column"
-      aria-label="Carte des biens immobiliers"
+      aria-label="Carte des résultats immobiliers"
     >
+      <div class="search-results__map-wrapper">
 
-      <app-property-map
-        [properties]="mapProperties()"
-        [selectedPropertyId]="selectedPropertyId()"
-        [ariaLabel]="'Carte interactive des résultats immobiliers'"
-        (propertySelected)="selectPropertyFromMap($event)"
-      />
+        <app-property-map
+          [properties]="mapProperties()"
+          [selectedPropertyId]="selectedPropertyId()"
+          [ariaLabel]="'Carte interactive des résultats immobiliers'"
+          (propertySelected)="selectPropertyFromMap($event)"
+        />
 
+        <div class="search-results__location-note">
+          <span class="material-symbols-outlined" aria-hidden="true">
+            info
+          </span>
+
+          Positions indicatives par commune
+        </div>
+
+        @if (!loading() && !error()) {
+
+          @if (selectedMapProperty(); as property) {
+
+            <article class="search-results__map-preview">
+
+              <div class="search-results__preview-image">
+                <img
+                  [src]="property.imageUrl"
+                  [alt]="property.title"
+                  loading="lazy"
+                />
+
+                @if (property.peb) {
+                  <span class="search-results__preview-peb">
+                    PEB {{ property.peb }}
+                  </span>
+                }
+              </div>
+
+              <div class="search-results__preview-content">
+
+                <p class="search-results__preview-location">
+                  {{ property.city }}
+                  {{ property.postalCode }}
+                </p>
+
+                <h2 class="search-results__preview-title">
+                  {{ property.title }}
+                </h2>
+
+                <p class="search-results__preview-price">
+                  {{ property.price.toLocaleString('fr-BE') }} €
+
+                  @if (property.transactionType === 'rent') {
+                    <span>/mois</span>
+                  }
+                </p>
+
+                <a
+                  class="search-results__preview-link"
+                  [href]="'#property-result-' + property.id"
+                >
+                  Voir dans la liste
+
+                  <span
+                    class="material-symbols-outlined"
+                    aria-hidden="true"
+                  >
+                    arrow_forward
+                  </span>
+                </a>
+
+              </div>
+
+            </article>
+
+          } @else if (mapProperties().length === 0) {
+
+            <div class="search-results__map-empty">
+              <span
+                class="material-symbols-outlined"
+                aria-hidden="true"
+              >
+                location_off
+              </span>
+
+              <p>Aucun bien géolocalisable sur cette page.</p>
+            </div>
+
+          }
+        }
+
+      </div>
     </aside>
 
   </div>
-
 </section>
