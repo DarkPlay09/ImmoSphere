@@ -338,6 +338,92 @@
       "unavailable": "Property publishing is not available yet."
     }
   },
+  "propertyDetail": {
+    "page": {
+      "loadingTitle": "Loading property",
+      "loadingText": "The listing information will be available shortly.",
+      "breadcrumbLabel": "Breadcrumb",
+      "home": "Home",
+      "properties": "Properties",
+      "description": "Description",
+      "notFound": {
+        "title": "Property not found",
+        "text": "This property does not exist or is not published.",
+        "action": "View available properties"
+      },
+      "error": {
+        "title": "Something went wrong",
+        "text": "This property cannot be loaded at the moment.",
+        "action": "Return to home"
+      }
+    },
+    "gallery": {
+      "label": "Property photos",
+      "photoCountOne": "{{count}} photo",
+      "photoCount": "{{count}} photos",
+      "empty": "No photos available"
+    },
+    "summary": {
+      "eyebrow": "{{type}} · {{transaction}}",
+      "box": "unit",
+      "favoriteCountOne": "Already added to {{count}} favourites list",
+      "favoriteCount": "Already added to {{count}} favourites lists",
+      "facts": {
+        "bedrooms": "Bedrooms",
+        "bathrooms": "Bathrooms",
+        "livingArea": "Living area",
+        "floor": "Floor",
+        "peb": "EPC",
+        "consumption": "Consumption"
+      }
+    },
+    "values": {
+      "area": "{{value}} m²",
+      "energyConsumption": "{{value}} kWh/m²/year"
+    },
+    "characteristics": {
+      "title": "Characteristics",
+      "groups": {
+        "general": "General",
+        "areas": "Areas",
+        "rooms": "Rooms and bathrooms",
+        "energy": "Energy"
+      },
+      "labels": {
+        "constructionYear": "Year built",
+        "condition": "Property condition",
+        "saleStatus": "Listing status",
+        "configuration": "Configuration",
+        "floorCount": "Number of floors",
+        "livingArea": "Living area",
+        "landArea": "Land area",
+        "gardenArea": "Garden area",
+        "terraceArea": "Terrace area",
+        "bedrooms": "Bedrooms",
+        "bathrooms": "Bathrooms",
+        "toilets": "Toilets",
+        "floor": "Property floor",
+        "heatingType": "Heating type",
+        "energyConsumption": "Energy consumption",
+        "pebNumber": "EPC number",
+        "energyClass": "Energy rating"
+      },
+      "equipmentTitle": "Features and annexes",
+      "equipment": {
+        "garage": "Garage",
+        "parking": "Parking",
+        "garden": "Garden",
+        "balcony": "Balcony",
+        "cellar": "Cellar",
+        "terrace": "Terrace",
+        "attic": "Attic",
+        "elevator": "Lift",
+        "pool": "Swimming pool",
+        "fireplace": "Fireplace"
+      },
+      "additionalTitle": "Additional information"
+    }
+  },
   "faq": {
     "breadcrumb": {
       "label": "Breadcrumb",

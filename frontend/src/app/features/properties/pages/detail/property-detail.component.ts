@@ -2,6 +2,7 @@ import { HttpErrorResponse } from '@angular/common/http';
 import { ChangeDetectionStrategy, Component, inject } from '@angular/core';
 import { toSignal } from '@angular/core/rxjs-interop';
 import { ActivatedRoute, RouterLink } from '@angular/router';
+import { TranslatePipe } from '@ngx-translate/core';
 import { catchError, map, of, startWith, switchMap } from 'rxjs';
 
 import { PropertyDetailApiService } from '../../data-access/property-detail-api.service';
@@ -24,6 +25,7 @@ const LOADING_STATE: PropertyDetailState = {
   selector: 'app-property-detail',
   imports: [
     RouterLink,
+    TranslatePipe,
     PropertyCharacteristicsComponent,
     PropertyGalleryComponent,
     PropertySummaryComponent,

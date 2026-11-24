@@ -1,7 +1,12 @@
 <section class="summary" aria-labelledby="property-title">
   <div class="summary__heading">
     <div>
-      <p class="summary__eyebrow">{{ property().typeBien }} à {{ property().typeTransaction }}</p>
+      <p class="summary__eyebrow">
+        {{
+          'propertyDetail.summary.eyebrow'
+            | translate: { type: property().typeBien, transaction: property().typeTransaction }
+        }}
+      </p>
       <h1 id="property-title">{{ property().titre }}</h1>
       <p class="summary__address">{{ publicAddress() }}</p>
     </div>
@@ -11,18 +16,26 @@
 
   @if (property().nombreFavoris > 0) {
     <p class="summary__favorites">
-      Déjà ajouté à {{ property().nombreFavoris }} liste{{
-        property().nombreFavoris > 1 ? 's' : ''
+      {{
+        (property().nombreFavoris === 1
+          ? 'propertyDetail.summary.favoriteCountOne'
+          : 'propertyDetail.summary.favoriteCount'
+        ) | translate: { count: property().nombreFavoris }
       }}
-      de favoris
     </p>
   }
 
   <dl class="summary__facts">
-    @for (fact of facts(); track fact.label) {
+    @for (fact of facts(); track fact.labelKey) {
       <div class="summary__fact">
-        <dt>{{ fact.label }}</dt>
-        <dd>{{ fact.value }}</dd>
+        <dt>{{ fact.labelKey | translate }}</dt>
+        <dd>
+          @if (fact.valueKey) {
+            {{ fact.valueKey | translate: fact.valueParams }}
+          } @else {
+            {{ fact.value }}
+          }
+        </dd>
       </div>
     }
   </dl>

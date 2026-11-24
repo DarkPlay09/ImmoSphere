@@ -338,6 +338,92 @@
       "unavailable": "Panden publiceren is nog niet beschikbaar."
     }
   },
+  "propertyDetail": {
+    "page": {
+      "loadingTitle": "Pand laden",
+      "loadingText": "De informatie van de advertentie is zo meteen beschikbaar.",
+      "breadcrumbLabel": "Broodkruimelpad",
+      "home": "Home",
+      "properties": "Panden",
+      "description": "Beschrijving",
+      "notFound": {
+        "title": "Pand niet gevonden",
+        "text": "Dit pand bestaat niet of is niet gepubliceerd.",
+        "action": "Beschikbare panden bekijken"
+      },
+      "error": {
+        "title": "Er is iets misgegaan",
+        "text": "Dit pand kan momenteel niet worden geladen.",
+        "action": "Terug naar home"
+      }
+    },
+    "gallery": {
+      "label": "Foto’s van het pand",
+      "photoCountOne": "{{count}} foto",
+      "photoCount": "{{count}} foto’s",
+      "empty": "Geen foto’s beschikbaar"
+    },
+    "summary": {
+      "eyebrow": "{{type}} · {{transaction}}",
+      "box": "bus",
+      "favoriteCountOne": "Al toegevoegd aan {{count}} favorietenlijst",
+      "favoriteCount": "Al toegevoegd aan {{count}} favorietenlijsten",
+      "facts": {
+        "bedrooms": "Slaapkamers",
+        "bathrooms": "Badkamers",
+        "livingArea": "Bewoonbare oppervlakte",
+        "floor": "Verdieping",
+        "peb": "EPC",
+        "consumption": "Verbruik"
+      }
+    },
+    "values": {
+      "area": "{{value}} m²",
+      "energyConsumption": "{{value}} kWh/m²/jaar"
+    },
+    "characteristics": {
+      "title": "Kenmerken",
+      "groups": {
+        "general": "Algemeen",
+        "areas": "Oppervlakten",
+        "rooms": "Kamers en sanitair",
+        "energy": "Energie"
+      },
+      "labels": {
+        "constructionYear": "Bouwjaar",
+        "condition": "Staat van het pand",
+        "saleStatus": "Status van de advertentie",
+        "configuration": "Configuratie",
+        "floorCount": "Aantal verdiepingen",
+        "livingArea": "Bewoonbare oppervlakte",
+        "landArea": "Oppervlakte van het perceel",
+        "gardenArea": "Oppervlakte van de tuin",
+        "terraceArea": "Oppervlakte van het terras",
+        "bedrooms": "Slaapkamers",
+        "bathrooms": "Badkamers",
+        "toilets": "Toiletten",
+        "floor": "Verdieping van het pand",
+        "heatingType": "Type verwarming",
+        "energyConsumption": "Energieverbruik",
+        "pebNumber": "EPC-nummer",
+        "energyClass": "Energieklasse"
+      },
+      "equipmentTitle": "Uitrusting en bijgebouwen",
+      "equipment": {
+        "garage": "Garage",
+        "parking": "Parkeerplaats",
+        "garden": "Tuin",
+        "balcony": "Balkon",
+        "cellar": "Kelder",
+        "terrace": "Terras",
+        "attic": "Zolder",
+        "elevator": "Lift",
+        "pool": "Zwembad",
+        "fireplace": "Open haard"
+      },
+      "additionalTitle": "Aanvullende informatie"
+    }
+  },
   "faq": {
     "breadcrumb": {
       "label": "Kruimelpad",

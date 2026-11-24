@@ -4,16 +4,19 @@
       @case ('loading') {
         <section class="property-detail__status" aria-live="polite">
           <span class="property-detail__loader" aria-hidden="true"></span>
-          <h1>Chargement du bien</h1>
-          <p>Les informations de l’annonce arrivent dans un instant.</p>
+          <h1>{{ 'propertyDetail.page.loadingTitle' | translate }}</h1>
+          <p>{{ 'propertyDetail.page.loadingText' | translate }}</p>
         </section>
       }
 
       @case ('success') {
-        <nav class="property-detail__breadcrumb" aria-label="Fil d’Ariane">
-          <a routerLink="/">Accueil</a>
+        <nav
+          class="property-detail__breadcrumb"
+          [attr.aria-label]="'propertyDetail.page.breadcrumbLabel' | translate"
+        >
+          <a routerLink="/">{{ 'propertyDetail.page.home' | translate }}</a>
           <span aria-hidden="true">/</span>
-          <a routerLink="/properties">Biens</a>
+          <a routerLink="/properties">{{ 'propertyDetail.page.properties' | translate }}</a>
           <span aria-hidden="true">/</span>
           <span aria-current="page">{{ currentState.property.titre }}</span>
         </nav>
@@ -23,7 +26,7 @@
           <app-property-summary [property]="currentState.property" />
 
           <section class="property-detail__description" aria-labelledby="description-title">
-            <h2 id="description-title">Description</h2>
+            <h2 id="description-title">{{ 'propertyDetail.page.description' | translate }}</h2>
             <p>{{ currentState.property.description }}</p>
           </section>
 
@@ -34,17 +37,21 @@
       @case ('not-found') {
         <section class="property-detail__status">
           <p class="property-detail__status-code">404</p>
-          <h1>Bien introuvable</h1>
-          <p>Ce bien n’existe pas ou n’est pas publié.</p>
-          <a class="property-detail__action" routerLink="/properties">Voir les biens disponibles</a>
+          <h1>{{ 'propertyDetail.page.notFound.title' | translate }}</h1>
+          <p>{{ 'propertyDetail.page.notFound.text' | translate }}</p>
+          <a class="property-detail__action" routerLink="/properties">
+            {{ 'propertyDetail.page.notFound.action' | translate }}
+          </a>
         </section>
       }
 
       @case ('error') {
         <section class="property-detail__status">
-          <h1>Une erreur est survenue</h1>
-          <p>Impossible de charger ce bien pour le moment.</p>
-          <a class="property-detail__action" routerLink="/">Revenir à l’accueil</a>
+          <h1>{{ 'propertyDetail.page.error.title' | translate }}</h1>
+          <p>{{ 'propertyDetail.page.error.text' | translate }}</p>
+          <a class="property-detail__action" routerLink="/">
+            {{ 'propertyDetail.page.error.action' | translate }}
+          </a>
         </section>
       }
     }

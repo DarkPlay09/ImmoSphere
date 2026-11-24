@@ -338,6 +338,92 @@
       "unavailable": "Das Veröffentlichen von Immobilien ist noch nicht verfügbar."
     }
   },
+  "propertyDetail": {
+    "page": {
+      "loadingTitle": "Immobilie wird geladen",
+      "loadingText": "Die Informationen zur Anzeige sind in Kürze verfügbar.",
+      "breadcrumbLabel": "Brotkrümelnavigation",
+      "home": "Startseite",
+      "properties": "Immobilien",
+      "description": "Beschreibung",
+      "notFound": {
+        "title": "Immobilie nicht gefunden",
+        "text": "Diese Immobilie existiert nicht oder ist nicht veröffentlicht.",
+        "action": "Verfügbare Immobilien ansehen"
+      },
+      "error": {
+        "title": "Ein Fehler ist aufgetreten",
+        "text": "Diese Immobilie kann derzeit nicht geladen werden.",
+        "action": "Zurück zur Startseite"
+      }
+    },
+    "gallery": {
+      "label": "Fotos der Immobilie",
+      "photoCountOne": "{{count}} Foto",
+      "photoCount": "{{count}} Fotos",
+      "empty": "Keine Fotos verfügbar"
+    },
+    "summary": {
+      "eyebrow": "{{type}} · {{transaction}}",
+      "box": "Wohnung",
+      "favoriteCountOne": "Bereits zu {{count}} Favoritenliste hinzugefügt",
+      "favoriteCount": "Bereits zu {{count}} Favoritenlisten hinzugefügt",
+      "facts": {
+        "bedrooms": "Schlafzimmer",
+        "bathrooms": "Badezimmer",
+        "livingArea": "Wohnfläche",
+        "floor": "Etage",
+        "peb": "Energieausweis",
+        "consumption": "Verbrauch"
+      }
+    },
+    "values": {
+      "area": "{{value}} m²",
+      "energyConsumption": "{{value}} kWh/m²/Jahr"
+    },
+    "characteristics": {
+      "title": "Eigenschaften",
+      "groups": {
+        "general": "Allgemein",
+        "areas": "Flächen",
+        "rooms": "Räume und Sanitäranlagen",
+        "energy": "Energie"
+      },
+      "labels": {
+        "constructionYear": "Baujahr",
+        "condition": "Zustand der Immobilie",
+        "saleStatus": "Anzeigenstatus",
+        "configuration": "Konfiguration",
+        "floorCount": "Anzahl der Etagen",
+        "livingArea": "Wohnfläche",
+        "landArea": "Grundstücksfläche",
+        "gardenArea": "Gartenfläche",
+        "terraceArea": "Terrassenfläche",
+        "bedrooms": "Schlafzimmer",
+        "bathrooms": "Badezimmer",
+        "toilets": "Toiletten",
+        "floor": "Etage der Immobilie",
+        "heatingType": "Heizungsart",
+        "energyConsumption": "Energieverbrauch",
+        "pebNumber": "Energieausweisnummer",
+        "energyClass": "Energieklasse"
+      },
+      "equipmentTitle": "Ausstattung und Nebenräume",
+      "equipment": {
+        "garage": "Garage",
+        "parking": "Stellplatz",
+        "garden": "Garten",
+        "balcony": "Balkon",
+        "cellar": "Keller",
+        "terrace": "Terrasse",
+        "attic": "Dachboden",
+        "elevator": "Aufzug",
+        "pool": "Swimmingpool",
+        "fireplace": "Kamin"
+      },
+      "additionalTitle": "Zusätzliche Informationen"
+    }
+  },
   "faq": {
     "breadcrumb": {
       "label": "Brotkrümelnavigation",

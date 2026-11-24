@@ -338,6 +338,92 @@
       "unavailable": "La publication de biens n'est pas encore disponible."
     }
   },
+  "propertyDetail": {
+    "page": {
+      "loadingTitle": "Chargement du bien",
+      "loadingText": "Les informations de l’annonce arrivent dans un instant.",
+      "breadcrumbLabel": "Fil d’Ariane",
+      "home": "Accueil",
+      "properties": "Biens",
+      "description": "Description",
+      "notFound": {
+        "title": "Bien introuvable",
+        "text": "Ce bien n’existe pas ou n’est pas publié.",
+        "action": "Voir les biens disponibles"
+      },
+      "error": {
+        "title": "Une erreur est survenue",
+        "text": "Impossible de charger ce bien pour le moment.",
+        "action": "Revenir à l’accueil"
+      }
+    },
+    "gallery": {
+      "label": "Photos du bien",
+      "photoCountOne": "{{count}} photo",
+      "photoCount": "{{count}} photos",
+      "empty": "Aucune photo disponible"
+    },
+    "summary": {
+      "eyebrow": "{{type}} · {{transaction}}",
+      "box": "boîte",
+      "favoriteCountOne": "Déjà ajouté à {{count}} liste de favoris",
+      "favoriteCount": "Déjà ajouté à {{count}} listes de favoris",
+      "facts": {
+        "bedrooms": "Chambres",
+        "bathrooms": "Salles de bain",
+        "livingArea": "Surface habitable",
+        "floor": "Étage",
+        "peb": "PEB",
+        "consumption": "Consommation"
+      }
+    },
+    "values": {
+      "area": "{{value}} m²",
+      "energyConsumption": "{{value}} kWh/m²/an"
+    },
+    "characteristics": {
+      "title": "Caractéristiques",
+      "groups": {
+        "general": "Général",
+        "areas": "Surfaces",
+        "rooms": "Pièces et sanitaires",
+        "energy": "Énergie"
+      },
+      "labels": {
+        "constructionYear": "Année de construction",
+        "condition": "État du bien",
+        "saleStatus": "État de la vente",
+        "configuration": "Configuration",
+        "floorCount": "Nombre d’étages",
+        "livingArea": "Surface habitable",
+        "landArea": "Surface du terrain",
+        "gardenArea": "Surface du jardin",
+        "terraceArea": "Surface de la terrasse",
+        "bedrooms": "Chambres",
+        "bathrooms": "Salles de bain",
+        "toilets": "Toilettes",
+        "floor": "Étage du bien",
+        "heatingType": "Type de chauffage",
+        "energyConsumption": "Consommation énergétique",
+        "pebNumber": "Numéro PEB",
+        "energyClass": "Classe énergétique"
+      },
+      "equipmentTitle": "Équipements et annexes",
+      "equipment": {
+        "garage": "Garage",
+        "parking": "Parking",
+        "garden": "Jardin",
+        "balcony": "Balcon",
+        "cellar": "Cave",
+        "terrace": "Terrasse",
+        "attic": "Grenier",
+        "elevator": "Ascenseur",
+        "pool": "Piscine",
+        "fireplace": "Cheminée"
+      },
+      "additionalTitle": "Informations complémentaires"
+    }
+  },
   "faq": {
     "breadcrumb": {
       "label": "Fil d'Ariane",

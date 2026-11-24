@@ -2,7 +2,7 @@
   class="gallery"
   [class.gallery--single]="orderedImages().length === 1"
   [class.gallery--double]="orderedImages().length === 2"
-  aria-label="Photos du bien"
+  [attr.aria-label]="'propertyDetail.gallery.label' | translate"
 >
   @if (orderedImages().length > 0) {
     @for (image of orderedImages().slice(0, 3); track image.url; let index = $index) {
@@ -12,11 +12,16 @@
     }
 
     <span class="gallery__count">
-      {{ orderedImages().length }} photo{{ orderedImages().length > 1 ? 's' : '' }}
+      {{
+        (orderedImages().length === 1
+          ? 'propertyDetail.gallery.photoCountOne'
+          : 'propertyDetail.gallery.photoCount'
+        ) | translate: { count: orderedImages().length }
+      }}
     </span>
   } @else {
     <div class="gallery__empty">
-      <span>Aucune photo disponible</span>
+      <span>{{ 'propertyDetail.gallery.empty' | translate }}</span>
     </div>
   }
 </section>
