@@ -1,0 +1,37 @@
+:host { display: block; }
+
+.active-filters {
+  display: flex;
+  align-items: center;
+  flex-wrap: wrap;
+  gap: 8px;
+  margin: 0;
+  padding: 0;
+  border: none;
+  border-radius: 0;
+  background: transparent;
+  font-family: Manrope, sans-serif;
+
+  &__label {
+    color: #65606a;
+    font-size: 10px;
+    text-transform: uppercase;
+  }
+
+  &__chip {
+    display: inline-flex;
+    align-items: center;
+    gap: 4px;
+    padding: 4px 12px;
+    border: 0;
+    border-radius: 999px;
+    background: #5a145a;
+    color: #fff;
+    font: 700 11px/18px Manrope, sans-serif;
+    cursor: pointer;
+
+    .material-symbols-outlined { font-size: 14px; }
+    &:hover { background: #521453; }
+    &:focus-visible { outline: 2px solid #521453; outline-offset: 2px; }
+  }
+}
