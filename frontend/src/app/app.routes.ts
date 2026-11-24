@@ -53,7 +53,7 @@ export const routes: Routes = [
       {
         path: 'agences',
         loadComponent: () =>
-          import('./features/pages/agences-list/agences-list.component').then(
+          import('./features/agencies/pages/list/agences-list.component').then(
             (m) => m.AgencesListComponent,
           ),
       },

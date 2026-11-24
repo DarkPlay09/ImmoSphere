@@ -1,7 +1,7 @@
 import { ChangeDetectionStrategy, Component, model, output } from '@angular/core';
 import { TranslatePipe } from '@ngx-translate/core';
 
-import { AgenceRegion } from '../../../../../shared/agences/models/agence.model';
+import { AgenceRegion } from '../../../../shared/agences/models/agence.model';
 
 /** Formulaire de recherche de la page liste (nom, localisation, région). */
 @Component({
