@@ -33,7 +33,7 @@ export const routes: Routes = [
       {
         path: '',
         loadComponent: () =>
-          import('./features/pages/home/home.component').then(
+          import('./features/home/pages/home/home.component').then(
             (m) => m.HomeComponent),
       },
       {

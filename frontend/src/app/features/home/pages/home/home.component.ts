@@ -1,13 +1,13 @@
 import { ChangeDetectionStrategy, Component, inject } from '@angular/core';
 import { Router } from '@angular/router';
 
-import { HomeHeroComponent} from '../../home/components/home-hero/home-hero.component';
-import { PropertySearchFormComponent } from '../../../shared/properties/components/property-search-form/property-search-form.component';
-import { PropertySearchFilters } from '../../../shared/properties/models/property-search-filters.model';
-import { LatestPropertiesComponent } from '../../home/components/latest-properties/latest-properties.component';
-import { FeaturedNotariesComponent } from '../../home/components/featured-notaries/featured-notaries.component';
-import { HomeMapSectionComponent } from '../../home/components/home-map-section/home-map-section.component';
-import { PublishPropertyCtaComponent } from '../../home/components/publish-property-cta/publish-property-cta.component';
+import { HomeHeroComponent} from '../../components/home-hero/home-hero.component';
+import { PropertySearchFormComponent } from '../../../../shared/properties/components/property-search-form/property-search-form.component';
+import { PropertySearchFilters } from '../../../../shared/properties/models/property-search-filters.model';
+import { LatestPropertiesComponent } from '../../components/latest-properties/latest-properties.component';
+import { FeaturedNotariesComponent } from '../../components/featured-notaries/featured-notaries.component';
+import { HomeMapSectionComponent } from '../../components/home-map-section/home-map-section.component';
+import { PublishPropertyCtaComponent } from '../../components/publish-property-cta/publish-property-cta.component';
 
 @Component({
   selector: 'app-home',
