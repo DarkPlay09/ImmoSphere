@@ -23,7 +23,7 @@ import { FaqContactBannerComponent } from '../../../shared/faq/components/faq-co
 import { FaqQuestionGroupComponent } from '../../../shared/faq/components/faq-question-group/faq-question-group.component';
 import { FaqSearchBarComponent } from '../../../shared/faq/components/faq-search-bar/faq-search-bar.component';
 import { FaqSearchResult } from '../../../shared/faq/models/faq.model';
-import { FaqSearchCriteria, FaqService } from '../../../shared/faq/services/faq.service';
+import { FaqSearchCriteria, FaqService } from '../../data-access/faq.service';
 import { groupFaqQuestions } from '../../../shared/faq/utils/group-faq-questions';
 
 /** Délai entre la dernière frappe et le lancement de la recherche. */

@@ -4,9 +4,9 @@ import { provideTranslateService } from '@ngx-translate/core';
 import { NEVER, of, throwError } from 'rxjs';
 import { Mock } from 'vitest';
 
-import { MOCK_FAQ_CATEGORIES, MOCK_FAQ_QUESTIONS } from '../../../shared/faq/data/faq.mock';
-import { FaqQuestion, FaqSearchResult } from '../../../shared/faq/models/faq.model';
-import { FaqSearchCriteria, FaqService } from '../../../shared/faq/services/faq.service';
+import { MOCK_FAQ_CATEGORIES, MOCK_FAQ_QUESTIONS } from '../../data/faq.mock';
+import { FaqQuestion, FaqSearchResult } from '../../models/faq.model';
+import { FaqSearchCriteria, FaqService } from '../../data-access/faq.service';
 import { FAQ_SEARCH_DEBOUNCE_MS, FaqComponent } from './faq.component';
 
 describe('FaqComponent', () => {
