@@ -5,11 +5,11 @@
   align-items: center;
   flex-wrap: wrap;
   gap: 8px;
-  margin-bottom: 24px;
-  padding: 10px 16px;
-  border: 1px solid #e7e2ea;
-  border-radius: 8px;
-  background: #f5f2f9;
+  margin: 0;
+  padding: 0;
+  border: none;
+  border-radius: 0;
+  background: transparent;
   font-family: Manrope, sans-serif;
 
   &__label {
@@ -22,10 +22,10 @@
     display: inline-flex;
     align-items: center;
     gap: 4px;
-    padding: 5px 10px;
+    padding: 4px 12px;
     border: 0;
     border-radius: 999px;
-    background: #6c2d6b;
+    background: #5a145a;
     color: #fff;
     font: 700 11px/18px Manrope, sans-serif;
     cursor: pointer;

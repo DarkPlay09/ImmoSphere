@@ -17,9 +17,21 @@
       >
         <span class="material-symbols-outlined" aria-hidden="true">tune</span>
         Filtres
+        @if (advancedFilterCount() > 0) {
+          <span class="search-results__filter-count">{{ advancedFilterCount() }}</span>
+        }
         <span class="material-symbols-outlined" aria-hidden="true">
           {{ filtersOpen() ? 'expand_less' : 'expand_more' }}
         </span>
+      </button>
+
+      <button
+        type="button"
+        class="search-results__submit-button"
+        (click)="searchToolbar.submit()"
+      >
+        <span class="material-symbols-outlined" aria-hidden="true">search</span>
+        Rechercher
       </button>
     </div>
 
@@ -46,81 +58,82 @@
       }
     </div>
 
-    <div class="search-results__search-actions">
-      <button
-        type="button"
-        class="search-results__clear-button"
-        (click)="clearSearch(searchToolbar)"
-      >
-        Effacer
-      </button>
-      <button
-        type="button"
-        class="search-results__submit-button"
-        (click)="searchToolbar.submit()"
-      >
-        <span class="material-symbols-outlined" aria-hidden="true">search</span>
-        Rechercher
-      </button>
-    </div>
   </div>
 
-  <app-property-search-active-filters
-    [options]="filterOptions()"
-  />
+  <div class="search-results__active-row">
+    <app-property-search-active-filters [options]="filterOptions()" />
+
+    <button
+      type="button"
+      class="search-results__clear-link"
+      (click)="clearSearch(searchToolbar)"
+    >
+      Effacer tous les filtres
+    </button>
+  </div>
 
   <header class="search-results__header">
-    <h1 id="search-results-title">Résultats de recherche</h1>
-
-    @if (!loading() && !error()) {
-      <p>{{ total() }} bien(s) disponible(s)</p>
-    }
-
-    <div class="search-results__sort">
-      <label for="properties-sort">Trier par</label>
-
-      <select
-        #sortSelect
-        id="properties-sort"
-        [value]="selectedSort()"
-        [disabled]="loading()"
-        (change)="onSortChange(sortSelect.value)"
-      >
-        <option value="id-desc">Plus récentes</option>
-        <option value="prix-asc">Prix croissant</option>
-        <option value="prix-desc">Prix décroissant</option>
-        <option value="surface-desc">Plus grande surface</option>
-      </select>
+    <div class="search-results__heading">
+      <div class="search-results__title-row">
+        <h1 id="search-results-title">{{ searchTitle() }}</h1>
+        @if (appliedLocation(); as location) {
+          <span class="search-results__location-badge">{{ location }}</span>
+        }
+      </div>
+      @if (!loading() && !error()) {
+        <p>{{ total() }} {{ total() === 1 ? 'bien disponible' : 'biens disponibles' }}</p>
+      }
     </div>
 
-    <div
-      class="search-results__view-switch"
-      role="group"
-      aria-label="Mode d'affichage des résultats"
-    >
-      <button
-        type="button"
-        [class.active]="viewMode() === 'list'"
-        [attr.aria-pressed]="viewMode() === 'list'"
-        (click)="setViewMode('list')"
-        title="Affichage liste"
-      >
-    <span class="material-symbols-outlined" aria-hidden="true">
-      view_list
-    </span>
-      </button>
+    <div class="search-results__header-controls">
+      <div class="search-results__sort">
+        <label for="properties-sort">Trier :</label>
 
-      <button
-        type="button"
-        [class.active]="viewMode() === 'grid'"
-        [attr.aria-pressed]="viewMode() === 'grid'"
-        (click)="setViewMode('grid')"
-        title="Affichage grille"
+        <select
+          #sortSelect
+          id="properties-sort"
+          [value]="selectedSort()"
+          [disabled]="loading()"
+          (change)="onSortChange(sortSelect.value)"
+        >
+          <option value="id-desc">Plus récentes</option>
+          <option value="prix-asc">Prix croissant</option>
+          <option value="prix-desc">Prix décroissant</option>
+          <option value="surface-desc">Plus grande surface</option>
+        </select>
+      </div>
+
+      <div
+        class="search-results__view-switch"
+        role="group"
+        aria-label="Mode d'affichage des résultats"
       >
-    <span class="material-symbols-outlined" aria-hidden="true">
-      grid_view
-    </span>
-      </button>
+        <button
+          type="button"
+          [class.active]="viewMode() === 'list'"
+          [attr.aria-pressed]="viewMode() === 'list'"
+          (click)="setViewMode('list')"
+          title="Affichage liste"
+          aria-label="Affichage liste"
+        >
+      <span class="material-symbols-outlined" aria-hidden="true">
+        view_list
+      </span>
+        </button>
+
+        <button
+          type="button"
+          [class.active]="viewMode() === 'grid'"
+          [attr.aria-pressed]="viewMode() === 'grid'"
+          (click)="setViewMode('grid')"
+          title="Affichage grille"
+          aria-label="Affichage grille"
+        >
+      <span class="material-symbols-outlined" aria-hidden="true">
+        grid_view
+      </span>
+        </button>
+      </div>
     </div>
   </header>
 
@@ -349,7 +362,7 @@
       aria-label="Pagination des résultats"
     >
 
-  <span>
+  <span class="search-results__pagination-info">
     {{ firstResultIndex() }}–{{ lastResultIndex() }}
     sur {{ total() }} résultats
   </span>

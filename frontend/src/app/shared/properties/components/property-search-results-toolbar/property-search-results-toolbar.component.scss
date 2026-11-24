@@ -2,28 +2,28 @@
 
 .search-toolbar {
   display: grid;
-  grid-template-columns: auto minmax(120px, 1.4fr) repeat(3, minmax(90px, 1fr));
-  align-items: stretch;
-  gap: 10px;
+  grid-template-columns: auto minmax(120px, 1.45fr) minmax(110px, 1.45fr) minmax(100px, 0.9fr) minmax(85px, 0.65fr);
+  align-items: center;
+  gap: 8px;
   font-family: Manrope, sans-serif;
 
   &__tabs {
     display: flex;
     align-items: center;
     padding: 4px;
-    border-radius: 9px;
-    background: #f3ede1;
+    border-radius: 12px;
+    background: #f6f0e6;
 
     button {
       flex: 1;
       border: 0;
-      border-radius: 6px;
-      padding: 9px 12px;
+      border-radius: 8px;
+      padding: 6px 14px;
       background: transparent;
       color: #65606a;
-      font: 700 12px Manrope, sans-serif;
+      font: 700 13px Manrope, sans-serif;
       cursor: pointer;
-      &.active { background: #6c2d6b; color: #fff; }
+      &.active { background: #5a145a; color: #fff; }
     }
   }
 
@@ -32,10 +32,12 @@
     flex-direction: column;
     justify-content: center;
     min-width: 0;
-    gap: 4px;
-    padding: 8px 12px;
-    border-radius: 8px;
-    background: #f5f2f9;
+    gap: 2px;
+    min-height: 46px;
+    box-sizing: border-box;
+    padding: 7px 13px;
+    border-radius: 12px;
+    background: #f7f5fa;
 
     input, select {
       box-sizing: border-box;
@@ -45,11 +47,11 @@
       border: 0;
       background: transparent;
       color: #1f1f24;
-      font: 600 12px Manrope, sans-serif;
+      font: 700 13px Manrope, sans-serif;
     }
   }
 
-  &__label { color: #65606a; font-size: 10px; font-weight: 700; text-transform: uppercase; }
+  &__label { color: #81737d; font-size: 10px; font-weight: 700; letter-spacing: 0.5px; text-transform: uppercase; }
   button:focus-visible, input:focus-visible, select:focus-visible { outline: 2px solid #6c2d6b; outline-offset: 2px; }
 }
 
