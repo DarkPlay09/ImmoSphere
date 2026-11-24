@@ -1,0 +1,41 @@
+<section class="characteristics" aria-labelledby="characteristics-title">
+  <h2 id="characteristics-title">Caractéristiques</h2>
+
+  <div class="characteristics__groups">
+    @for (group of groups(); track group.title) {
+      <section class="characteristics__group">
+        <h3>{{ group.title }}</h3>
+        <dl>
+          @for (item of group.items; track item.label) {
+            <div class="characteristics__row">
+              <dt>{{ item.label }}</dt>
+              <dd>{{ item.value }}</dd>
+            </div>
+          }
+        </dl>
+      </section>
+    }
+  </div>
+
+  @if (equipmentLabels().length > 0) {
+    <section class="characteristics__equipment" aria-labelledby="equipment-title">
+      <h3 id="equipment-title">Équipements et annexes</h3>
+      <ul>
+        @for (equipment of equipmentLabels(); track equipment) {
+          <li>{{ equipment }}</li>
+        }
+      </ul>
+    </section>
+  }
+
+  @if (property().informationsAnnexes.length > 0) {
+    <section class="characteristics__additional" aria-labelledby="additional-title">
+      <h3 id="additional-title">Informations complémentaires</h3>
+      <ul>
+        @for (information of property().informationsAnnexes; track information) {
+          <li>{{ information }}</li>
+        }
+      </ul>
+    </section>
+  }
+</section>
