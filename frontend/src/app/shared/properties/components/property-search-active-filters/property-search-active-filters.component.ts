@@ -1,4 +1,4 @@
-﻿import { ChangeDetectionStrategy, Component, computed, inject, input } from '@angular/core';
+import { ChangeDetectionStrategy, Component, computed, inject, input } from '@angular/core';
 
 import { ActivatedRoute, Router } from '@angular/router';
 import { toSignal } from '@angular/core/rxjs-interop';
@@ -41,22 +41,12 @@ export class PropertySearchActiveFiltersComponent {
   private readonly route = inject(ActivatedRoute);
   private readonly router = inject(Router);
 
-  /**
-   * Options PostgreSQL permettant de retrouver les
-   * libellés des provinces et des états.
-   */
   readonly options = input<PropertySearchOptionsResponse | null>(null);
 
-  /**
-   * Paramètres de recherche présents dans l'URL.
-   */
   private readonly queryParams = toSignal(this.route.queryParamMap, {
     initialValue: this.route.snapshot.queryParamMap,
   });
 
-  /**
-   * Convertit une valeur d'URL en nombre positif ou nul.
-   */
   private readNumber(value: string | null): number | null {
     if (value === null || value.trim() === '') {
       return null;
@@ -71,9 +61,6 @@ export class PropertySearchActiveFiltersComponent {
     return number;
   }
 
-  /**
-   * Convertit une valeur d'URL en identifiant PostgreSQL.
-   */
   private readId(value: string | null): number | null {
     const id = this.readNumber(value);
 
@@ -84,17 +71,12 @@ export class PropertySearchActiveFiltersComponent {
     return id;
   }
 
-  /**
-   * Génère les pastilles à partir des critères de recherche.
-   */
   readonly chips = computed<SearchFilterChip[]>(() => {
     const params = this.queryParams();
 
     const chips: SearchFilterChip[] = [];
 
-    // ==========================================
-    // TRANSACTION
-    // ==========================================
+
 
     const transaction = params.get('transactionType');
 
@@ -110,9 +92,7 @@ export class PropertySearchActiveFiltersComponent {
       });
     }
 
-    // ==========================================
-    // LOCALITÉ
-    // ==========================================
+
 
     const location = params.get('location')?.trim();
 
@@ -123,9 +103,7 @@ export class PropertySearchActiveFiltersComponent {
       });
     }
 
-    // ==========================================
-    // TYPE DE BIEN
-    // ==========================================
+
 
     const propertyType = params.get('propertyType');
 
@@ -142,9 +120,7 @@ export class PropertySearchActiveFiltersComponent {
       });
     }
 
-    // ==========================================
-    // BUDGET MAXIMUM
-    // ==========================================
+
 
     const budgetMax = this.readNumber(params.get('budgetMax'));
 
@@ -155,9 +131,7 @@ export class PropertySearchActiveFiltersComponent {
       });
     }
 
-    // ==========================================
-    // CHAMBRES
-    // ==========================================
+
 
     const bedrooms = this.readNumber(params.get('bedrooms'));
 
@@ -168,9 +142,7 @@ export class PropertySearchActiveFiltersComponent {
       });
     }
 
-    // ==========================================
-    // SURFACE MINIMALE
-    // ==========================================
+
 
     const minArea = this.readNumber(params.get('minArea'));
 
@@ -181,9 +153,7 @@ export class PropertySearchActiveFiltersComponent {
       });
     }
 
-    // ==========================================
-    // PEB
-    // ==========================================
+
 
     const peb = params.get('peb');
 
@@ -194,9 +164,7 @@ export class PropertySearchActiveFiltersComponent {
       });
     }
 
-    // ==========================================
-    // PROVINCE
-    // ==========================================
+
 
     const provinceId = this.readId(params.get('provinceId'));
 
@@ -209,9 +177,7 @@ export class PropertySearchActiveFiltersComponent {
       });
     }
 
-    // ==========================================
-    // ÉTAT DU BIEN
-    // ==========================================
+
 
     const etatId = this.readId(params.get('etatId'));
 
@@ -223,93 +189,37 @@ export class PropertySearchActiveFiltersComponent {
         label: `État : ${etat?.libelle ?? etatId}`,
       });
 
-      // ==========================================
-      // GARAGE
-      // ==========================================
+    }
 
-      if (params.get('garage') === 'true') {
-        chips.push({
-          key: 'garage',
-          label: 'Garage',
-        });
-      }
+    const equipment: { key: FilterKey; label: string }[] = [
+      { key: 'garage', label: 'Garage' },
+      { key: 'parking', label: 'Parking' },
+      { key: 'jardin', label: 'Jardin' },
+      { key: 'terrasse', label: 'Terrasse' },
+      { key: 'balcon', label: 'Balcon' },
+      { key: 'ascenseur', label: 'Ascenseur' },
+      { key: 'piscine', label: 'Piscine' },
+    ];
 
-      // ==========================================
-      // JARDIN
-      // ==========================================
-
-      if (params.get('jardin') === 'true') {
-        chips.push({
-          key: 'jardin',
-          label: 'Jardin',
-        });
-      }
-
-      // ==========================================
-      // TERRASSE
-      // ==========================================
-
-      if (params.get('terrasse') === 'true') {
-        chips.push({
-          key: 'terrasse',
-          label: 'Terrasse',
-        });
-      }
-
-      if (params.get('parking') === 'true') {
-        chips.push({
-          key: 'parking',
-          label: 'Parking',
-        });
-      }
-
-      if (params.get('balcon') === 'true') {
-        chips.push({
-          key: 'balcon',
-          label: 'Balcon',
-        });
-      }
-
-      if (params.get('ascenseur') === 'true') {
-        chips.push({
-          key: 'ascenseur',
-          label: 'Ascenseur',
-        });
-      }
-
-      if (params.get('piscine') === 'true') {
-        chips.push({
-          key: 'piscine',
-          label: 'Piscine',
-        });
+    for (const filter of equipment) {
+      if (params.get(filter.key) === 'true') {
+        chips.push(filter);
       }
     }
 
     return chips;
   });
 
-  /**
-   * Supprime un seul filtre.
-   */
   removeFilter(key: FilterKey): void {
     void this.router.navigate([], {
       relativeTo: this.route,
 
       queryParams: {
         [key]: null,
+        page: null,
       },
 
       queryParamsHandling: 'merge',
-    });
-  }
-
-  /**
-   * Supprime tous les paramètres de recherche.
-   */
-  clearAll(): void {
-    void this.router.navigate([], {
-      relativeTo: this.route,
-      queryParams: {},
     });
   }
 }

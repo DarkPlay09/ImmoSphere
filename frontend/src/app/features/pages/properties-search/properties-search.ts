@@ -6,9 +6,10 @@ import {
   computed,
   inject,
   signal,
+  ViewChild,
 } from '@angular/core';
 
-import { ActivatedRoute, ParamMap, Params, Router } from '@angular/router';
+import { ActivatedRoute, Params, Router } from '@angular/router';
 import { takeUntilDestroyed } from '@angular/core/rxjs-interop';
 import { Subscription, switchMap } from 'rxjs';
 
@@ -16,7 +17,6 @@ import { PropertySearchCardComponent } from '../../../shared/properties/componen
 
 import {
   PropertySearchAdvancedFiltersComponent,
-  PropertySearchAdvancedFilters,
 } from '../../../shared/properties/components/property-search-advanced-filters/property-search-advanced-filters.component';
 
 import { PropertySearchResultsToolbarComponent } from '../../../shared/properties/components/property-search-results-toolbar/property-search-results-toolbar.component';
@@ -71,14 +71,15 @@ export class PropertiesSearchComponent implements OnInit {
   private readonly route = inject(ActivatedRoute);
   private readonly router = inject(Router);
 
-  private currentRequest?: Subscription;
+  @ViewChild(PropertySearchAdvancedFiltersComponent)
+  private advancedFilters?: PropertySearchAdvancedFiltersComponent;
 
-  private previousCriteriaKey: string | null = null;
+  private currentRequest?: Subscription;
+  readonly filtersOpen = signal(false);
+
   private readonly pageSize = 12;
 
-  // ==========================================
-  // RÉSULTATS
-  // ==========================================
+
 
   readonly results = signal<PropertySearchResult[]>([]);
   readonly total = signal(0);
@@ -114,9 +115,7 @@ export class PropertiesSearchComponent implements OnInit {
 
   readonly viewMode = signal<'list' | 'grid'>('list');
 
-  // ==========================================
-  // FILTRES
-  // ==========================================
+
 
   readonly filterOptions = signal<PropertySearchOptionsResponse | null>(null);
 
@@ -131,14 +130,8 @@ export class PropertiesSearchComponent implements OnInit {
   readonly selectedAscenseur = signal(false);
   readonly selectedPiscine = signal(false);
 
-  // ==========================================
-  // CARTE
-  // ==========================================
 
-  /**
-   * Convertit les annonces de recherche vers
-   * le modèle du composant Leaflet partagé.
-   */
+
   readonly mapProperties = computed<readonly PropertyMapItem[]>(() => {
     const occurrences = new Map<string, number>();
 
@@ -187,9 +180,6 @@ export class PropertiesSearchComponent implements OnInit {
     });
   });
 
-  /**
-   * Bien actuellement sélectionné sur la carte.
-   */
   readonly selectedMapProperty = computed<PropertySearchResult | null>(() => {
     const selectedId = this.selectedPropertyId();
 
@@ -206,34 +196,11 @@ export class PropertiesSearchComponent implements OnInit {
     return this.results().find((property) => property.id === selectedId) ?? null;
   });
 
-  // ==========================================
-  // INITIALISATION
-  // ==========================================
+
 
   ngOnInit(): void {
     this.route.queryParamMap.pipe(takeUntilDestroyed(this.destroyRef)).subscribe((params) => {
-      const criteriaKey = this.getCriteriaKey(params);
-      const requestedPage = this.readPage(params.get('page'));
-
-      if (
-        this.previousCriteriaKey !== null &&
-        this.previousCriteriaKey !== criteriaKey &&
-        requestedPage > 1
-      ) {
-        this.previousCriteriaKey = criteriaKey;
-
-        void this.router.navigate([], {
-          relativeTo: this.route,
-          queryParams: { page: null },
-          queryParamsHandling: 'merge',
-          replaceUrl: true,
-        });
-
-        return;
-      }
-
-      this.previousCriteriaKey = criteriaKey;
-      this.currentPage.set(requestedPage);
+      this.currentPage.set(this.readPage(params.get('page')));
 
       const sort = params.get('tri');
 
@@ -261,9 +228,7 @@ export class PropertiesSearchComponent implements OnInit {
     });
   }
 
-  // ==========================================
-  // UTILITAIRES
-  // ==========================================
+
 
   private readNumber(value: string | null): number | undefined {
     if (value === null || value.trim() === '') {
@@ -320,17 +285,7 @@ export class PropertiesSearchComponent implements OnInit {
     );
   }
 
-  private getCriteriaKey(params: ParamMap): string {
-    return params.keys
-      .filter((key) => key !== 'page' && key !== 'tri')
-      .sort()
-      .map((key) => `${key}=${JSON.stringify(params.getAll(key))}`)
-      .join('&');
-  }
 
-  // ==========================================
-  // CONSTRUCTION DE LA RECHERCHE
-  // ==========================================
 
   private buildSearchQuery(options: PropertySearchOptionsResponse): PropertySearchQuery {
     const params = this.route.snapshot.queryParamMap;
@@ -341,7 +296,6 @@ export class PropertiesSearchComponent implements OnInit {
       tri: this.selectedSort(),
     };
 
-    // Localité ou code postal
     const location = params.get('location')?.trim() ?? '';
 
     if (location) {
@@ -352,28 +306,24 @@ export class PropertiesSearchComponent implements OnInit {
       }
     }
 
-    // Budget maximum
     const budgetMax = this.readNumber(params.get('budgetMax'));
 
     if (budgetMax !== undefined) {
       query.prixMax = budgetMax;
     }
 
-    // Chambres minimum
     const bedrooms = this.readNumber(params.get('bedrooms'));
 
     if (bedrooms !== undefined && Number.isInteger(bedrooms)) {
       query.nbChambresMin = bedrooms;
     }
 
-    // Surface minimale
     const minArea = this.readNumber(params.get('minArea'));
 
     if (minArea !== undefined) {
       query.surfaceMin = minArea;
     }
 
-    // Type de transaction
     const transactionType = params.get('transactionType');
 
     if (transactionType === 'sale') {
@@ -384,7 +334,6 @@ export class PropertiesSearchComponent implements OnInit {
       throw new Error(`Type de transaction non pris en charge : ${transactionType}`);
     }
 
-    // Type de bien
     const propertyType = params.get('propertyType');
 
     const propertyTypeLabels: Record<string, string> = {
@@ -403,28 +352,24 @@ export class PropertiesSearchComponent implements OnInit {
       query.typeBienId = this.findOptionId(options.typesBiens, label);
     }
 
-    // PEB
     const peb = params.get('peb');
 
     if (peb && peb !== 'any') {
       query.pebBienId = this.findOptionId(options.pebs, peb);
     }
 
-    // Province
     const provinceId = this.readId(params.get('provinceId'));
 
     if (provinceId !== null) {
       query.provinceId = provinceId;
     }
 
-    // État
     const etatId = this.readId(params.get('etatId'));
 
     if (etatId !== null) {
       query.etatId = etatId;
     }
 
-    // Équipements
     if (params.get('garage') === 'true') {
       query.garage = true;
     }
@@ -456,9 +401,7 @@ export class PropertiesSearchComponent implements OnInit {
     return query;
   }
 
-  // ==========================================
-  // CHARGEMENT DES RÉSULTATS
-  // ==========================================
+
 
   loadResults(): void {
     this.currentRequest?.unsubscribe();
@@ -485,7 +428,6 @@ export class PropertiesSearchComponent implements OnInit {
           this.currentPage.set(response.page);
           this.totalPages.set(response.nombrePages);
 
-          // Sélectionne le premier marqueur disponible.
           this.selectedPropertyId.set(this.mapProperties()[0]?.id ?? null);
 
           this.loading.set(false);
@@ -505,32 +447,45 @@ export class PropertiesSearchComponent implements OnInit {
       });
   }
 
-  // ==========================================
-  // FILTRES AVANCÉS
-  // ==========================================
 
-  onAdvancedFiltersApplied(filters: PropertySearchAdvancedFilters): void {
+
+  onSearchRequested(params: Params): void {
+    const filters = this.advancedFilters?.getFilters();
+    const advancedParams: Params = filters ? {
+      provinceId: filters.provinceId,
+      etatId: filters.etatId,
+      garage: filters.garage ? 'true' : null,
+      parking: filters.parking ? 'true' : null,
+      jardin: filters.jardin ? 'true' : null,
+      terrasse: filters.terrasse ? 'true' : null,
+      balcon: filters.balcon ? 'true' : null,
+      ascenseur: filters.ascenseur ? 'true' : null,
+      piscine: filters.piscine ? 'true' : null,
+    } : {};
+
     void this.router.navigate([], {
       relativeTo: this.route,
-      queryParams: {
-        provinceId: filters.provinceId,
-        etatId: filters.etatId,
-
-        garage: filters.garage ? 'true' : null,
-        jardin: filters.jardin ? 'true' : null,
-        terrasse: filters.terrasse ? 'true' : null,
-        parking: filters.parking ? 'true' : null,
-        balcon: filters.balcon ? 'true' : null,
-        ascenseur: filters.ascenseur ? 'true' : null,
-        piscine: filters.piscine ? 'true' : null,
-      },
+      queryParams: { ...params, ...advancedParams, page: null },
       queryParamsHandling: 'merge',
     });
   }
 
-  // ==========================================
-  // SÉLECTION DES BIENS
-  // ==========================================
+  toggleFilters(): void {
+    this.filtersOpen.update((value) => !value);
+  }
+
+  clearSearch(toolbar: PropertySearchResultsToolbarComponent): void {
+    toolbar.resetDraft();
+    this.advancedFilters?.resetDraft();
+
+    void this.router.navigate([], {
+      relativeTo: this.route,
+      queryParams: { tri: this.route.snapshot.queryParamMap.get('tri') },
+      queryParamsHandling: 'replace',
+    });
+  }
+
+
 
   onDetailsRequested(propertyId: number): void {
     this.selectedPropertyId.set(propertyId);

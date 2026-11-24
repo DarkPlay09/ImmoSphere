@@ -1,46 +1,68 @@
 <section class="search-results">
 
-  <div class="search-results__toolbar">
+  <div class="search-results__search-box">
+    <div class="search-results__toolbar">
+      <app-property-search-results-toolbar
+        #searchToolbar
+        (searchRequested)="onSearchRequested($event)"
+      />
 
-    <app-property-search-results-toolbar />
-
-    <details class="search-results__filter-menu">
-
-      <summary class="search-results__filter-button">
-        <span class="material-symbols-outlined" aria-hidden="true">
-          tune
-        </span>
-
+      <button
+        type="button"
+        class="search-results__filter-button"
+        [class.active]="filtersOpen()"
+        [attr.aria-expanded]="filtersOpen()"
+        aria-controls="advanced-search-filters"
+        (click)="toggleFilters()"
+      >
+        <span class="material-symbols-outlined" aria-hidden="true">tune</span>
         Filtres
-
         <span class="material-symbols-outlined" aria-hidden="true">
-          expand_more
+          {{ filtersOpen() ? 'expand_less' : 'expand_more' }}
         </span>
-      </summary>
+      </button>
+    </div>
 
-      <div class="search-results__filter-panel">
-        @if (filterOptions(); as options) {
+    <div
+      id="advanced-search-filters"
+      class="search-results__advanced-ribbon"
+      [hidden]="!filtersOpen()"
+    >
+      @if (filterOptions(); as options) {
+        <app-property-search-advanced-filters
+          [options]="options"
+          [initialProvinceId]="selectedProvinceId()"
+          [initialEtatId]="selectedEtatId()"
+          [initialGarage]="selectedGarage()"
+          [initialParking]="selectedParking()"
+          [initialJardin]="selectedJardin()"
+          [initialTerrasse]="selectedTerrasse()"
+          [initialBalcon]="selectedBalcon()"
+          [initialAscenseur]="selectedAscenseur()"
+          [initialPiscine]="selectedPiscine()"
+        />
+      } @else {
+        <p>Chargement des filtres...</p>
+      }
+    </div>
 
-          <app-property-search-advanced-filters
-            [options]="options"
-            [initialProvinceId]="selectedProvinceId()"
-            [initialEtatId]="selectedEtatId()"
-            [initialGarage]="selectedGarage()"
-            [initialJardin]="selectedJardin()"
-            [initialTerrasse]="selectedTerrasse()"
-            [initialParking]="selectedParking()"
-            [initialBalcon]="selectedBalcon()"
-            [initialAscenseur]="selectedAscenseur()"
-            [initialPiscine]="selectedPiscine()"
-            (filtersApplied)="onAdvancedFiltersApplied($event)"
-          />
-
-        } @else {
-          <p>Chargement des filtres...</p>
-        }
-      </div>
-
-    </details>
+    <div class="search-results__search-actions">
+      <button
+        type="button"
+        class="search-results__clear-button"
+        (click)="clearSearch(searchToolbar)"
+      >
+        Effacer
+      </button>
+      <button
+        type="button"
+        class="search-results__submit-button"
+        (click)="searchToolbar.submit()"
+      >
+        <span class="material-symbols-outlined" aria-hidden="true">search</span>
+        Rechercher
+      </button>
+    </div>
   </div>
 
   <app-property-search-active-filters
@@ -318,54 +340,55 @@
 
     }
 
-    @if (!loading() && !error() && totalPages() > 1) {
-
-      <nav
-        class="search-results__pagination"
-        aria-label="Pagination des résultats"
-      >
-
-    <span>
-      {{ firstResultIndex() }}–{{ lastResultIndex() }}
-      sur {{ total() }} résultats
-    </span>
-
-        <div class="search-results__pagination-buttons">
-
-          <button
-            type="button"
-            [disabled]="currentPage() === 1"
-            (click)="goToPage(currentPage() - 1)"
-            aria-label="Page précédente"
-          >
-            Précédent
-          </button>
-
-          @for (page of visiblePages(); track page) {
-            <button
-              type="button"
-              [class.active]="currentPage() === page"
-              [attr.aria-current]="currentPage() === page ? 'page' : null"
-              (click)="goToPage(page)"
-            >
-              {{ page }}
-            </button>
-          }
-
-          <button
-            type="button"
-            [disabled]="currentPage() >= totalPages()"
-            (click)="goToPage(currentPage() + 1)"
-            aria-label="Page suivante"
-          >
-            Suivant
-          </button>
-
-        </div>
-
-      </nav>
-
-    }
-
   </div>
+
+  @if (!loading() && !error() && totalPages() > 1) {
+
+    <nav
+      class="search-results__pagination"
+      aria-label="Pagination des résultats"
+    >
+
+  <span>
+    {{ firstResultIndex() }}–{{ lastResultIndex() }}
+    sur {{ total() }} résultats
+  </span>
+
+      <div class="search-results__pagination-buttons">
+
+        <button
+          type="button"
+          [disabled]="currentPage() === 1"
+          (click)="goToPage(currentPage() - 1)"
+          aria-label="Page précédente"
+        >
+          Précédent
+        </button>
+
+        @for (page of visiblePages(); track page) {
+          <button
+            type="button"
+            [class.active]="currentPage() === page"
+            [attr.aria-current]="currentPage() === page ? 'page' : null"
+            (click)="goToPage(page)"
+          >
+            {{ page }}
+          </button>
+        }
+
+        <button
+          type="button"
+          [disabled]="currentPage() >= totalPages()"
+          (click)="goToPage(currentPage() + 1)"
+          aria-label="Page suivante"
+        >
+          Suivant
+        </button>
+
+      </div>
+
+    </nav>
+
+  }
+
 </section>

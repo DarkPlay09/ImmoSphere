@@ -1,17 +1,18 @@
-﻿<section class="advanced-filters">
+<section class="advanced-filters">
 
   <div class="advanced-filters__header">
+
     <h2>Affiner votre recherche</h2>
 
     <p>
       Précisez vos critères pour trouver le bien idéal.
     </p>
+
   </div>
 
-  <form
+  <div
     class="advanced-filters__form"
     [formGroup]="form"
-    (ngSubmit)="applyFilters()"
   >
 
     <div class="advanced-filters__field">
@@ -24,6 +25,7 @@
         id="search-province"
         formControlName="provinceId"
       >
+
         <option value="">
           Toutes les provinces
         </option>
@@ -33,6 +35,7 @@
             {{ province.libelle }}
           </option>
         }
+
       </select>
 
     </div>
@@ -47,6 +50,7 @@
         id="search-etat"
         formControlName="etatId"
       >
+
         <option value="">
           Tous les états
         </option>
@@ -56,97 +60,47 @@
             {{ etat.libelle }}
           </option>
         }
+
       </select>
 
     </div>
 
     <fieldset class="advanced-filters__features">
 
-      <legend>
-        Équipements et extérieurs
-      </legend>
+      <legend>Équipements et extérieurs</legend>
 
       <div class="advanced-filters__features-grid">
-
         <label class="advanced-filters__checkbox">
-          <input
-            type="checkbox"
-            formControlName="garage"
-          />
+          <input type="checkbox" formControlName="garage" />
           <span>Garage</span>
         </label>
-
         <label class="advanced-filters__checkbox">
-          <input
-            type="checkbox"
-            formControlName="parking"
-          />
+          <input type="checkbox" formControlName="parking" />
           <span>Parking</span>
         </label>
-
         <label class="advanced-filters__checkbox">
-          <input
-            type="checkbox"
-            formControlName="jardin"
-          />
+          <input type="checkbox" formControlName="jardin" />
           <span>Jardin</span>
         </label>
-
         <label class="advanced-filters__checkbox">
-          <input
-            type="checkbox"
-            formControlName="terrasse"
-          />
+          <input type="checkbox" formControlName="terrasse" />
           <span>Terrasse</span>
         </label>
-
         <label class="advanced-filters__checkbox">
-          <input
-            type="checkbox"
-            formControlName="balcon"
-          />
+          <input type="checkbox" formControlName="balcon" />
           <span>Balcon</span>
         </label>
-
         <label class="advanced-filters__checkbox">
-          <input
-            type="checkbox"
-            formControlName="ascenseur"
-          />
+          <input type="checkbox" formControlName="ascenseur" />
           <span>Ascenseur</span>
         </label>
-
         <label class="advanced-filters__checkbox">
-          <input
-            type="checkbox"
-            formControlName="piscine"
-          />
+          <input type="checkbox" formControlName="piscine" />
           <span>Piscine</span>
         </label>
-
       </div>
 
     </fieldset>
 
-    <div class="advanced-filters__actions">
-
-      <button
-        type="button"
-        class="advanced-filters__reset"
-        (click)="resetFilters()"
-      >
-        Effacer
-      </button>
-
-      <button
-        type="submit"
-        class="advanced-filters__submit"
-      >
-        Appliquer les filtres
-      </button>
-
-    </div>
-
-  </form>
-
+  </div>
 </section>

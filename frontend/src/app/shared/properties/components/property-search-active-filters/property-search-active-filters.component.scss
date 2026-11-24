@@ -1,131 +1,37 @@
-﻿:host {
-  display: block;
-  width: 100%;
-}
+:host { display: block; }
 
 .active-filters {
   display: flex;
   align-items: center;
   flex-wrap: wrap;
-  gap: 12px;
+  gap: 8px;
+  margin-bottom: 24px;
+  padding: 10px 16px;
+  border: 1px solid #e7e2ea;
+  border-radius: 8px;
+  background: #f5f2f9;
+  font-family: Manrope, sans-serif;
 
-  margin-top: -20px;
-  margin-bottom: 26px;
-
-  padding: 12px 16px;
-
-  background: #f7f5fa;
-  border: 1px solid #eee9f0;
-  border-radius: 10px;
-
-  font-family: 'Manrope', sans-serif;
-
-  // LIBELLÉ
   &__label {
-    flex-shrink: 0;
-
-    color: #817780;
-
-    font-size: 11px;
-    font-weight: 800;
+    color: #65606a;
+    font-size: 10px;
     text-transform: uppercase;
   }
 
-  // CONTENEUR DES PASTILLES
-  &__chips {
-    display: flex;
-    align-items: center;
-    flex-wrap: wrap;
-    gap: 7px;
-
-    flex: 1;
-    min-width: 0;
-  }
-
-  // PASTILLE
   &__chip {
     display: inline-flex;
     align-items: center;
-    justify-content: center;
-    gap: 5px;
-
-    min-height: 28px;
+    gap: 4px;
     padding: 5px 10px;
-
-    background: #6c2d6b;
-    border: 1px solid #6c2d6b;
+    border: 0;
     border-radius: 999px;
-
-    color: #ffffff;
-
-    font-size: 11px;
-    font-weight: 700;
-    white-space: nowrap;
-
+    background: #6c2d6b;
+    color: #fff;
+    font: 700 11px/18px Manrope, sans-serif;
     cursor: pointer;
 
-    transition:
-      background 0.2s ease,
-      border-color 0.2s ease;
-
-    .material-symbols-outlined {
-      font-size: 14px;
-    }
-
-    &:hover {
-      background: #552354;
-      border-color: #552354;
-    }
-  }
-
-  // EFFACER TOUS LES FILTRES
-  &__clear {
-    flex-shrink: 0;
-
-    padding: 6px 4px;
-
-    border: none;
-    background: transparent;
-
-    color: #65606a;
-
-    font-size: 11px;
-    font-weight: 700;
-    text-decoration: underline;
-
-    cursor: pointer;
-
-    &:hover {
-      color: #6c2d6b;
-    }
-  }
-
-  button:focus-visible {
-    outline: 2px solid #6c2d6b;
-    outline-offset: 3px;
-  }
-}
-
-@media (max-width: 700px) {
-  .active-filters {
-    align-items: flex-start;
-
-    &__label {
-      width: 100%;
-    }
-
-    &__chips {
-      flex-basis: 100%;
-    }
-
-    &__clear {
-      margin-left: auto;
-    }
-  }
-}
-
-@media (prefers-reduced-motion: reduce) {
-  .active-filters__chip {
-    transition: none;
+    .material-symbols-outlined { font-size: 14px; }
+    &:hover { background: #521453; }
+    &:focus-visible { outline: 2px solid #521453; outline-offset: 2px; }
   }
 }

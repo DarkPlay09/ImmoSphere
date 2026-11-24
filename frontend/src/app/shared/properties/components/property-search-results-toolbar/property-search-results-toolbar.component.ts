@@ -1,4 +1,4 @@
-﻿import {
+import {
   ChangeDetectionStrategy,
   Component,
   DestroyRef,
@@ -6,11 +6,12 @@
   computed,
   inject,
   signal,
+  output,
 } from '@angular/core';
 
 import { FormControl, FormGroup, ReactiveFormsModule } from '@angular/forms';
 
-import { ActivatedRoute, Router } from '@angular/router';
+import { ActivatedRoute, ParamMap, Params, convertToParamMap } from '@angular/router';
 import { takeUntilDestroyed } from '@angular/core/rxjs-interop';
 
 type TransactionFilter = 'sale' | 'rent' | null;
@@ -28,7 +29,6 @@ type TransactionFilter = 'sale' | 'rent' | null;
 })
 export class PropertySearchResultsToolbarComponent implements OnInit {
   private readonly route = inject(ActivatedRoute);
-  private readonly router = inject(Router);
   private readonly destroyRef = inject(DestroyRef);
 
   readonly transactionType = signal<TransactionFilter>(null);
@@ -61,28 +61,27 @@ export class PropertySearchResultsToolbarComponent implements OnInit {
     }),
   });
 
+  readonly searchRequested = output<Params>();
+
   ngOnInit(): void {
-    // Recharge les valeurs lorsqu'on arrive depuis l'accueil
-    // ou lorsqu'une recherche modifie l'URL.
     this.route.queryParamMap.pipe(takeUntilDestroyed(this.destroyRef)).subscribe((params) => {
-      const transaction = params.get('transactionType');
-
-      this.transactionType.set(
-        transaction === 'sale' || transaction === 'rent' ? transaction : null,
-      );
-
-      this.form.patchValue(
-        {
-          location: params.get('location') ?? '',
-          propertyType: params.get('propertyType') ?? 'all',
-          budgetMax: params.get('budgetMax') ?? '',
-          bedrooms: params.get('bedrooms') ?? '',
-        },
-        {
-          emitEvent: false,
-        },
-      );
+      this.syncFromParams(params);
     });
+  }
+
+  private syncFromParams(params: ParamMap): void {
+    const transaction = params.get('transactionType');
+    this.transactionType.set(transaction === 'sale' || transaction === 'rent' ? transaction : null);
+    this.form.reset({
+      location: params.get('location') ?? '',
+      propertyType: params.get('propertyType') ?? 'all',
+      budgetMax: params.get('budgetMax') ?? '',
+      bedrooms: params.get('bedrooms') ?? '',
+    }, { emitEvent: false });
+  }
+
+  resetDraft(): void {
+    this.syncFromParams(convertToParamMap({}));
   }
 
   setTransactionType(type: 'sale' | 'rent'): void {
@@ -92,7 +91,6 @@ export class PropertySearchResultsToolbarComponent implements OnInit {
 
     this.transactionType.set(type);
 
-    // Les budgets proposés diffèrent entre vente et location.
     this.form.controls.budgetMax.setValue('');
   }
 
@@ -100,28 +98,15 @@ export class PropertySearchResultsToolbarComponent implements OnInit {
     return `${amount.toLocaleString('fr-BE')} €`;
   }
 
-  /**
-   * Actualise les paramètres de recherche.
-   */
   submit(): void {
     const values = this.form.getRawValue();
 
-    void this.router.navigate([], {
-      relativeTo: this.route,
-
-      queryParams: {
-        transactionType: this.transactionType(),
-
-        location: values.location.trim() || null,
-
-        propertyType: values.propertyType === 'all' ? null : values.propertyType,
-
-        budgetMax: values.budgetMax || null,
-
-        bedrooms: values.bedrooms || null,
-      },
-
-      queryParamsHandling: 'merge',
+    this.searchRequested.emit({
+      transactionType: this.transactionType(),
+      location: values.location.trim() || null,
+      propertyType: values.propertyType === 'all' ? null : values.propertyType,
+      budgetMax: values.budgetMax || null,
+      bedrooms: values.bedrooms || null,
     });
   }
 }

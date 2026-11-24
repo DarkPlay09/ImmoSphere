@@ -1,4 +1,4 @@
-﻿<form
+<form
   class="search-toolbar"
   [formGroup]="form"
   (ngSubmit)="submit()"
@@ -117,20 +117,5 @@
 
   </label>
 
-  <button
-    type="submit"
-    class="search-toolbar__submit"
-  >
-
-    <span
-      class="material-symbols-outlined"
-      aria-hidden="true"
-    >
-      search
-    </span>
-
-    Rechercher
-
-  </button>
-
+  <button type="submit" hidden>Rechercher</button>
 </form>
