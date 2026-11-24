@@ -1,0 +1,29 @@
+<section class="summary" aria-labelledby="property-title">
+  <div class="summary__heading">
+    <div>
+      <p class="summary__eyebrow">{{ property().typeBien }} à {{ property().typeTransaction }}</p>
+      <h1 id="property-title">{{ property().titre }}</h1>
+      <p class="summary__address">{{ publicAddress() }}</p>
+    </div>
+
+    <p class="summary__price">{{ formattedPrice() }}</p>
+  </div>
+
+  @if (property().nombreFavoris > 0) {
+    <p class="summary__favorites">
+      Déjà ajouté à {{ property().nombreFavoris }} liste{{
+        property().nombreFavoris > 1 ? 's' : ''
+      }}
+      de favoris
+    </p>
+  }
+
+  <dl class="summary__facts">
+    @for (fact of facts(); track fact.label) {
+      <div class="summary__fact">
+        <dt>{{ fact.label }}</dt>
+        <dd>{{ fact.value }}</dd>
+      </div>
+    }
+  </dl>
+</section>
