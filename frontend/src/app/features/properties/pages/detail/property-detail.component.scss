@@ -1,21 +1,24 @@
 .property-detail {
   min-height: 55vh;
-  background: #fff;
+  padding-bottom: 64px;
+  background: #fbf8ff;
   color: #1b1b20;
-  font-family: Inter, sans-serif;
+  font-family: Manrope, Inter, sans-serif;
 
   &__breadcrumb,
   &__content {
-    width: min(1232px, calc(100% - 48px));
+    width: min(1200px, calc(100% - 80px));
     margin-inline: auto;
   }
 
   &__breadcrumb {
     display: flex;
     gap: 8px;
-    padding-block: 24px;
+    height: 50px;
+    padding-top: 16px;
     color: #786878;
     font-size: 13px;
+    line-height: 18px;
     white-space: nowrap;
     overflow: hidden;
 
@@ -34,22 +37,39 @@
     }
   }
 
+  &__content {
+    display: grid;
+    gap: 24px;
+  }
+
+  &__main-column {
+    display: grid;
+    width: min(792px, 100%);
+    gap: 40px;
+    margin-top: 16px;
+  }
+
   &__description {
-    max-width: 840px;
-    padding-block: 40px;
-    border-bottom: 1px solid #e7e2ea;
+    min-height: 298px;
+    padding: 24px;
+    border-radius: 12px;
+    background: #fff;
+    box-shadow: 0 1px 1px rgb(0 0 0 / 5%);
 
     h2 {
-      margin: 0 0 20px;
+      margin: 0 0 8px;
       font-family: Manrope, Inter, sans-serif;
-      font-size: 28px;
+      font-size: 24px;
+      font-weight: 600;
+      line-height: 34px;
+      letter-spacing: -0.24px;
     }
 
     p {
       margin: 0;
       color: #4f434c;
       font-size: 16px;
-      line-height: 1.75;
+      line-height: 28px;
       white-space: pre-line;
     }
   }
@@ -126,18 +146,26 @@
 
 @media (max-width: 720px) {
   .property-detail {
-    &__breadcrumb {
-      width: calc(100% - 40px);
-      padding-block: 16px;
+    padding-bottom: 40px;
+
+    &__breadcrumb,
+    &__content {
+      width: min(400px, calc(100% - 40px));
     }
 
-    &__content {
-      width: 100%;
+    &__breadcrumb {
+      height: 57px;
+    }
+
+    &__main-column {
+      width: min(380px, 100%);
+      gap: 24px;
+      margin-top: 0;
     }
 
     &__description {
-      max-width: none;
-      padding: 32px 20px;
+      min-height: 0;
+      padding: 20px;
     }
   }
 }

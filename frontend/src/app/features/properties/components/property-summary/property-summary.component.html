@@ -8,34 +8,40 @@
         }}
       </p>
       <h1 id="property-title">{{ property().titre }}</h1>
-      <p class="summary__address">{{ publicAddress() }}</p>
+      <p class="summary__address">
+        <img src="icons/property-detail/location.svg" alt="" />
+        {{ publicAddress() }}
+      </p>
     </div>
 
-    <p class="summary__price">{{ formattedPrice() }}</p>
+    <div class="summary__pricing">
+      <p class="summary__price">{{ formattedPrice() }}</p>
+      <p class="summary__price-note">{{ 'propertyDetail.summary.priceNote' | translate }}</p>
+    </div>
   </div>
-
-  @if (property().nombreFavoris > 0) {
-    <p class="summary__favorites">
-      {{
-        (property().nombreFavoris === 1
-          ? 'propertyDetail.summary.favoriteCountOne'
-          : 'propertyDetail.summary.favoriteCount'
-        ) | translate: { count: property().nombreFavoris }
-      }}
-    </p>
-  }
 
   <dl class="summary__facts">
     @for (fact of facts(); track fact.labelKey) {
       <div class="summary__fact">
-        <dt>{{ fact.labelKey | translate }}</dt>
-        <dd>
-          @if (fact.valueKey) {
+        @if (fact.icon) {
+          <img class="summary__fact-icon" [src]="fact.icon" alt="" />
+        }
+
+        @if (fact.peb) {
+          <dd class="summary__peb">{{ fact.value }}</dd>
+          <dt>
             {{ fact.valueKey | translate: fact.valueParams }}
-          } @else {
-            {{ fact.value }}
-          }
-        </dd>
+          </dt>
+        } @else {
+          <dd>
+            @if (fact.valueKey) {
+              {{ fact.valueKey | translate: fact.valueParams }}
+            } @else {
+              {{ fact.value }}
+            }
+          </dd>
+          <dt>{{ fact.labelKey | translate }}</dt>
+        }
       </div>
     }
   </dl>

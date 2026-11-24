@@ -12,6 +12,7 @@ interface CharacteristicItem {
 
 interface CharacteristicGroup {
   readonly titleKey: string;
+  readonly icon: string;
   readonly items: readonly CharacteristicItem[];
 }
 
@@ -26,51 +27,31 @@ export class PropertyCharacteristicsComponent {
   readonly property = input.required<BienDetailResponseDto>();
 
   readonly groups = computed<readonly CharacteristicGroup[]>(() => {
-    const characteristics = this.property().caracteristiques;
+    const property = this.property();
+    const characteristics = property.caracteristiques;
+    const equipment = property.equipements;
 
     return [
       {
         titleKey: 'propertyDetail.characteristics.groups.general',
+        icon: 'icons/property-detail/general.svg',
         items: this.present([
+          this.area(
+            'propertyDetail.characteristics.labels.livingArea',
+            characteristics.surfaceHabitable,
+          ),
+          this.number('propertyDetail.characteristics.labels.floor', characteristics.etage),
           this.positiveNumber(
             'propertyDetail.characteristics.labels.constructionYear',
             characteristics.anneeConstruction,
           ),
           this.text('propertyDetail.characteristics.labels.condition', characteristics.etat),
           this.text('propertyDetail.characteristics.labels.saleStatus', characteristics.etatVente),
-          this.text(
-            'propertyDetail.characteristics.labels.configuration',
-            characteristics.typeConfiguration,
-          ),
-          this.positiveNumber(
-            'propertyDetail.characteristics.labels.floorCount',
-            characteristics.nombreEtages,
-          ),
-        ]),
-      },
-      {
-        titleKey: 'propertyDetail.characteristics.groups.areas',
-        items: this.present([
-          this.area(
-            'propertyDetail.characteristics.labels.livingArea',
-            characteristics.surfaceHabitable,
-          ),
-          this.area(
-            'propertyDetail.characteristics.labels.landArea',
-            characteristics.surfaceTerrain,
-          ),
-          this.area(
-            'propertyDetail.characteristics.labels.gardenArea',
-            characteristics.surfaceJardin,
-          ),
-          this.area(
-            'propertyDetail.characteristics.labels.terraceArea',
-            characteristics.surfaceTerrasse,
-          ),
         ]),
       },
       {
         titleKey: 'propertyDetail.characteristics.groups.rooms',
+        icon: 'icons/property-detail/rooms.svg',
         items: this.present([
           this.number(
             'propertyDetail.characteristics.labels.bedrooms',
@@ -84,11 +65,40 @@ export class PropertyCharacteristicsComponent {
             'propertyDetail.characteristics.labels.toilets',
             characteristics.nombreToilettes,
           ),
-          this.number('propertyDetail.characteristics.labels.floor', characteristics.etage),
+          this.text(
+            'propertyDetail.characteristics.labels.configuration',
+            characteristics.typeConfiguration,
+          ),
+          this.positiveNumber(
+            'propertyDetail.characteristics.labels.floorCount',
+            characteristics.nombreEtages,
+          ),
         ]),
       },
       {
-        titleKey: 'propertyDetail.characteristics.groups.energy',
+        titleKey: 'propertyDetail.characteristics.groups.outdoor',
+        icon: 'icons/property-detail/outdoor.svg',
+        items: this.present([
+          this.area(
+            'propertyDetail.characteristics.labels.terraceArea',
+            characteristics.surfaceTerrasse,
+          ),
+          this.area(
+            'propertyDetail.characteristics.labels.gardenArea',
+            characteristics.surfaceJardin,
+          ),
+          this.area(
+            'propertyDetail.characteristics.labels.landArea',
+            characteristics.surfaceTerrain,
+          ),
+          this.boolean('propertyDetail.characteristics.equipment.garage', equipment.garage),
+          this.boolean('propertyDetail.characteristics.equipment.parking', equipment.parking),
+          this.boolean('propertyDetail.characteristics.equipment.balcony', equipment.balcon),
+        ]),
+      },
+      {
+        titleKey: 'propertyDetail.characteristics.groups.equipment',
+        icon: 'icons/property-detail/equipment.svg',
         items: this.present([
           this.text(
             'propertyDetail.characteristics.labels.heatingType',
@@ -100,27 +110,14 @@ export class PropertyCharacteristicsComponent {
             'propertyDetail.values.energyConsumption',
           ),
           this.text('propertyDetail.characteristics.labels.pebNumber', characteristics.numeroPeb),
-          this.text('propertyDetail.characteristics.labels.energyClass', this.property().peb),
+          this.text('propertyDetail.characteristics.labels.energyClass', property.peb),
+          this.boolean('propertyDetail.characteristics.equipment.cellar', equipment.cave),
+          this.boolean('propertyDetail.characteristics.equipment.attic', equipment.grenier),
+          this.boolean('propertyDetail.characteristics.equipment.pool', equipment.piscine),
+          this.boolean('propertyDetail.characteristics.equipment.fireplace', equipment.cheminee),
         ]),
       },
     ].filter((group) => group.items.length > 0);
-  });
-
-  readonly equipmentLabels = computed<readonly string[]>(() => {
-    const equipment = this.property().equipements;
-
-    return [
-      equipment.garage ? 'propertyDetail.characteristics.equipment.garage' : null,
-      equipment.parking ? 'propertyDetail.characteristics.equipment.parking' : null,
-      equipment.jardin ? 'propertyDetail.characteristics.equipment.garden' : null,
-      equipment.balcon ? 'propertyDetail.characteristics.equipment.balcony' : null,
-      equipment.cave ? 'propertyDetail.characteristics.equipment.cellar' : null,
-      equipment.terrasse ? 'propertyDetail.characteristics.equipment.terrace' : null,
-      equipment.grenier ? 'propertyDetail.characteristics.equipment.attic' : null,
-      equipment.ascenseur ? 'propertyDetail.characteristics.equipment.elevator' : null,
-      equipment.piscine ? 'propertyDetail.characteristics.equipment.pool' : null,
-      equipment.cheminee ? 'propertyDetail.characteristics.equipment.fireplace' : null,
-    ].filter((label): label is string => label !== null);
   });
 
   private present(items: readonly (CharacteristicItem | null)[]): readonly CharacteristicItem[] {
@@ -152,5 +149,9 @@ export class PropertyCharacteristicsComponent {
 
   private area(labelKey: string, value: number): CharacteristicItem | null {
     return this.positiveNumber(labelKey, value, 'propertyDetail.values.area');
+  }
+
+  private boolean(labelKey: string, value: boolean): CharacteristicItem | null {
+    return value ? { labelKey, valueKey: 'propertyDetail.values.yes' } : null;
   }
 }

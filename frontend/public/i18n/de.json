@@ -361,25 +361,32 @@
       "label": "Fotos der Immobilie",
       "photoCountOne": "{{count}} Foto",
       "photoCount": "{{count}} Fotos",
-      "empty": "Keine Fotos verfügbar"
+      "empty": "Keine Fotos verfügbar",
+      "share": "Diese Immobilie teilen",
+      "favorite": "Diese Immobilie zu Favoriten hinzufügen oder entfernen"
     },
     "summary": {
       "eyebrow": "{{type}} · {{transaction}}",
       "box": "Wohnung",
+      "priceNote": "Angebotspreis · Regionale Registrierungsgebühren gelten",
       "favoriteCountOne": "Bereits zu {{count}} Favoritenliste hinzugefügt",
       "favoriteCount": "Bereits zu {{count}} Favoritenlisten hinzugefügt",
       "facts": {
         "bedrooms": "Schlafzimmer",
         "bathrooms": "Badezimmer",
         "livingArea": "Wohnfläche",
+        "terrace": "Terrasse",
         "floor": "Etage",
+        "elevator": "Aufzug",
         "peb": "Energieausweis",
         "consumption": "Verbrauch"
       }
     },
     "values": {
       "area": "{{value}} m²",
-      "energyConsumption": "{{value}} kWh/m²/Jahr"
+      "energyConsumption": "{{value}} kWh/m²/Jahr",
+      "yes": "Ja",
+      "no": "Nein"
     },
     "characteristics": {
       "title": "Eigenschaften",
@@ -387,7 +394,9 @@
         "general": "Allgemein",
         "areas": "Flächen",
         "rooms": "Räume und Sanitäranlagen",
-        "energy": "Energie"
+        "energy": "Energie",
+        "outdoor": "Außenbereich & Nebenräume",
+        "equipment": "Ausstattung & Kosten"
       },
       "labels": {
         "constructionYear": "Baujahr",

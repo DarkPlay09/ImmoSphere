@@ -361,25 +361,32 @@
       "label": "Photos du bien",
       "photoCountOne": "{{count}} photo",
       "photoCount": "{{count}} photos",
-      "empty": "Aucune photo disponible"
+      "empty": "Aucune photo disponible",
+      "share": "Partager ce bien",
+      "favorite": "Ajouter ou retirer ce bien des favoris"
     },
     "summary": {
       "eyebrow": "{{type}} · {{transaction}}",
       "box": "boîte",
+      "priceNote": "Prix demandé · Droits d'enregistrement régionaux applicables",
       "favoriteCountOne": "Déjà ajouté à {{count}} liste de favoris",
       "favoriteCount": "Déjà ajouté à {{count}} listes de favoris",
       "facts": {
         "bedrooms": "Chambres",
         "bathrooms": "Salles de bain",
         "livingArea": "Surface habitable",
+        "terrace": "Terrasse",
         "floor": "Étage",
+        "elevator": "Ascenseur",
         "peb": "PEB",
         "consumption": "Consommation"
       }
     },
     "values": {
       "area": "{{value}} m²",
-      "energyConsumption": "{{value}} kWh/m²/an"
+      "energyConsumption": "{{value}} kWh/m²/an",
+      "yes": "Oui",
+      "no": "Non"
     },
     "characteristics": {
       "title": "Caractéristiques",
@@ -387,7 +394,9 @@
         "general": "Général",
         "areas": "Surfaces",
         "rooms": "Pièces et sanitaires",
-        "energy": "Énergie"
+        "energy": "Énergie",
+        "outdoor": "Extérieur & Annexes",
+        "equipment": "Équipements & Charges"
       },
       "labels": {
         "constructionYear": "Année de construction",

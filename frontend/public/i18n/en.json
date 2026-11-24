@@ -361,25 +361,32 @@
       "label": "Property photos",
       "photoCountOne": "{{count}} photo",
       "photoCount": "{{count}} photos",
-      "empty": "No photos available"
+      "empty": "No photos available",
+      "share": "Share this property",
+      "favorite": "Add or remove this property from favourites"
     },
     "summary": {
       "eyebrow": "{{type}} · {{transaction}}",
       "box": "unit",
+      "priceNote": "Asking price · Regional registration duties apply",
       "favoriteCountOne": "Already added to {{count}} favourites list",
       "favoriteCount": "Already added to {{count}} favourites lists",
       "facts": {
         "bedrooms": "Bedrooms",
         "bathrooms": "Bathrooms",
         "livingArea": "Living area",
+        "terrace": "Terrace",
         "floor": "Floor",
+        "elevator": "Lift",
         "peb": "EPC",
         "consumption": "Consumption"
       }
     },
     "values": {
       "area": "{{value}} m²",
-      "energyConsumption": "{{value}} kWh/m²/year"
+      "energyConsumption": "{{value}} kWh/m²/year",
+      "yes": "Yes",
+      "no": "No"
     },
     "characteristics": {
       "title": "Characteristics",
@@ -387,7 +394,9 @@
         "general": "General",
         "areas": "Areas",
         "rooms": "Rooms and bathrooms",
-        "energy": "Energy"
+        "energy": "Energy",
+        "outdoor": "Outdoor & Annexes",
+        "equipment": "Features & Charges"
       },
       "labels": {
         "constructionYear": "Year built",

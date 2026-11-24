@@ -4,7 +4,11 @@
   <div class="characteristics__groups">
     @for (group of groups(); track group.titleKey) {
       <section class="characteristics__group">
-        <h3>{{ group.titleKey | translate }}</h3>
+        <h3>
+          <img [src]="group.icon" alt="" />
+          {{ group.titleKey | translate }}
+        </h3>
+
         <dl>
           @for (item of group.items; track item.labelKey) {
             <div class="characteristics__row">
@@ -22,19 +26,6 @@
       </section>
     }
   </div>
-
-  @if (equipmentLabels().length > 0) {
-    <section class="characteristics__equipment" aria-labelledby="equipment-title">
-      <h3 id="equipment-title">
-        {{ 'propertyDetail.characteristics.equipmentTitle' | translate }}
-      </h3>
-      <ul>
-        @for (equipment of equipmentLabels(); track equipment) {
-          <li>{{ equipment | translate }}</li>
-        }
-      </ul>
-    </section>
-  }
 
   @if (property().informationsAnnexes.length > 0) {
     <section class="characteristics__additional" aria-labelledby="additional-title">

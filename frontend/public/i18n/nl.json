@@ -361,25 +361,32 @@
       "label": "Foto’s van het pand",
       "photoCountOne": "{{count}} foto",
       "photoCount": "{{count}} foto’s",
-      "empty": "Geen foto’s beschikbaar"
+      "empty": "Geen foto’s beschikbaar",
+      "share": "Dit pand delen",
+      "favorite": "Dit pand toevoegen aan of verwijderen uit favorieten"
     },
     "summary": {
       "eyebrow": "{{type}} · {{transaction}}",
       "box": "bus",
+      "priceNote": "Vraagprijs · Regionale registratierechten van toepassing",
       "favoriteCountOne": "Al toegevoegd aan {{count}} favorietenlijst",
       "favoriteCount": "Al toegevoegd aan {{count}} favorietenlijsten",
       "facts": {
         "bedrooms": "Slaapkamers",
         "bathrooms": "Badkamers",
         "livingArea": "Bewoonbare oppervlakte",
+        "terrace": "Terras",
         "floor": "Verdieping",
+        "elevator": "Lift",
         "peb": "EPC",
         "consumption": "Verbruik"
       }
     },
     "values": {
       "area": "{{value}} m²",
-      "energyConsumption": "{{value}} kWh/m²/jaar"
+      "energyConsumption": "{{value}} kWh/m²/jaar",
+      "yes": "Ja",
+      "no": "Nee"
     },
     "characteristics": {
       "title": "Kenmerken",
@@ -387,7 +394,9 @@
         "general": "Algemeen",
         "areas": "Oppervlakten",
         "rooms": "Kamers en sanitair",
-        "energy": "Energie"
+        "energy": "Energie",
+        "outdoor": "Buitenruimte & Bijgebouwen",
+        "equipment": "Uitrusting & Kosten"
       },
       "labels": {
         "constructionYear": "Bouwjaar",

@@ -7,6 +7,8 @@ import { BienDetailResponseDto } from '../../data-access/property-detail-respons
 
 interface SummaryFact {
   readonly labelKey: string;
+  readonly icon?: string;
+  readonly peb?: boolean;
   readonly value?: string;
   readonly valueKey?: string;
   readonly valueParams?: Readonly<Record<string, string | number>>;
@@ -49,7 +51,7 @@ export class PropertySummaryComponent {
   readonly publicAddress = computed(() => {
     this.language();
     const property = this.property();
-    const locality = `${property.codePostal} ${property.localite}`;
+    const locality = `${property.localite} ${property.codePostal}`;
 
     if (property.adresseConfidentielle || !property.rue || property.numero === null) {
       return locality;
@@ -58,7 +60,7 @@ export class PropertySummaryComponent {
     const box = property.boite
       ? ` ${this.translate.instant('propertyDetail.summary.box')} ${property.boite}`
       : '';
-    return `${property.rue} ${property.numero}${box}, ${locality}`;
+    return `${locality} · ${property.rue} ${property.numero}${box}`;
   });
 
   readonly facts = computed<readonly SummaryFact[]>(() => {
@@ -67,24 +69,42 @@ export class PropertySummaryComponent {
     return [
       {
         labelKey: 'propertyDetail.summary.facts.bedrooms',
+        icon: 'icons/property-detail/bedrooms.svg',
         value: String(characteristics.nombreChambres),
       },
       {
         labelKey: 'propertyDetail.summary.facts.bathrooms',
+        icon: 'icons/property-detail/bathroom.svg',
         value: String(characteristics.nombreSallesDeBain),
       },
       {
         labelKey: 'propertyDetail.summary.facts.livingArea',
+        icon: 'icons/property-detail/area.svg',
         valueKey: 'propertyDetail.values.area',
         valueParams: { value: characteristics.surfaceHabitable },
       },
       {
-        labelKey: 'propertyDetail.summary.facts.floor',
-        value: String(characteristics.etage),
+        labelKey: 'propertyDetail.summary.facts.terrace',
+        icon: 'icons/property-detail/terrace.svg',
+        valueKey: 'propertyDetail.values.area',
+        valueParams: { value: characteristics.surfaceTerrasse },
       },
-      { labelKey: 'propertyDetail.summary.facts.peb', value: this.property().peb },
       {
-        labelKey: 'propertyDetail.summary.facts.consumption',
+        labelKey: 'propertyDetail.summary.facts.floor',
+        icon: 'icons/property-detail/floor.svg',
+        value: `${characteristics.etage} / ${characteristics.nombreEtages}`,
+      },
+      {
+        labelKey: 'propertyDetail.summary.facts.elevator',
+        icon: 'icons/property-detail/elevator.svg',
+        valueKey: this.property().equipements.ascenseur
+          ? 'propertyDetail.values.yes'
+          : 'propertyDetail.values.no',
+      },
+      {
+        labelKey: 'propertyDetail.summary.facts.peb',
+        peb: true,
+        value: `PEB ${this.property().peb}`,
         valueKey: 'propertyDetail.values.energyConsumption',
         valueParams: { value: characteristics.consommationEnergie },
       },
