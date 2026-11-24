@@ -2,23 +2,50 @@
   @if (state(); as currentState) {
     @switch (currentState.status) {
       @case ('loading') {
-        <p>Chargement du bien...</p>
+        <section class="property-detail__status" aria-live="polite">
+          <span class="property-detail__loader" aria-hidden="true"></span>
+          <h1>Chargement du bien</h1>
+          <p>Les informations de l’annonce arrivent dans un instant.</p>
+        </section>
       }
 
       @case ('success') {
-        <h1>{{ currentState.property.titre }}</h1>
-        <p>{{ currentState.property.description }}</p>
-        <p>{{ currentState.property.prix }} €</p>
+        <nav class="property-detail__breadcrumb" aria-label="Fil d’Ariane">
+          <a routerLink="/">Accueil</a>
+          <span aria-hidden="true">/</span>
+          <a routerLink="/properties">Biens</a>
+          <span aria-hidden="true">/</span>
+          <span aria-current="page">{{ currentState.property.titre }}</span>
+        </nav>
+
+        <div class="property-detail__content">
+          <app-property-gallery [images]="currentState.property.images" />
+          <app-property-summary [property]="currentState.property" />
+
+          <section class="property-detail__description" aria-labelledby="description-title">
+            <h2 id="description-title">Description</h2>
+            <p>{{ currentState.property.description }}</p>
+          </section>
+
+          <app-property-characteristics [property]="currentState.property" />
+        </div>
       }
 
       @case ('not-found') {
-        <h1>Bien introuvable</h1>
-        <p>Ce bien n’existe pas ou n’est pas publié.</p>
+        <section class="property-detail__status">
+          <p class="property-detail__status-code">404</p>
+          <h1>Bien introuvable</h1>
+          <p>Ce bien n’existe pas ou n’est pas publié.</p>
+          <a class="property-detail__action" routerLink="/properties">Voir les biens disponibles</a>
+        </section>
       }
 
       @case ('error') {
-        <h1>Une erreur est survenue</h1>
-        <p>Impossible de charger ce bien pour le moment.</p>
+        <section class="property-detail__status">
+          <h1>Une erreur est survenue</h1>
+          <p>Impossible de charger ce bien pour le moment.</p>
+          <a class="property-detail__action" routerLink="/">Revenir à l’accueil</a>
+        </section>
       }
     }
   }

@@ -1,11 +1,14 @@
 import { HttpErrorResponse } from '@angular/common/http';
 import { ChangeDetectionStrategy, Component, inject } from '@angular/core';
 import { toSignal } from '@angular/core/rxjs-interop';
-import { ActivatedRoute } from '@angular/router';
+import { ActivatedRoute, RouterLink } from '@angular/router';
 import { catchError, map, of, startWith, switchMap } from 'rxjs';
 
 import { PropertyDetailApiService } from '../../data-access/property-detail-api.service';
 import { BienDetailResponseDto } from '../../data-access/property-detail-response.model';
+import { PropertyCharacteristicsComponent } from '../../components/property-characteristics/property-characteristics.component';
+import { PropertyGalleryComponent } from '../../components/property-gallery/property-gallery.component';
+import { PropertySummaryComponent } from '../../components/property-summary/property-summary.component';
 
 type PropertyDetailState =
   | { status: 'loading' }
@@ -19,7 +22,12 @@ const LOADING_STATE: PropertyDetailState = {
 
 @Component({
   selector: 'app-property-detail',
-  imports: [],
+  imports: [
+    RouterLink,
+    PropertyCharacteristicsComponent,
+    PropertyGalleryComponent,
+    PropertySummaryComponent,
+  ],
   templateUrl: './property-detail.component.html',
   styleUrl: './property-detail.component.scss',
   changeDetection: ChangeDetectionStrategy.OnPush,
