@@ -1,0 +1,22 @@
+<section
+  class="gallery"
+  [class.gallery--single]="orderedImages().length === 1"
+  [class.gallery--double]="orderedImages().length === 2"
+  aria-label="Photos du bien"
+>
+  @if (orderedImages().length > 0) {
+    @for (image of orderedImages().slice(0, 3); track image.url; let index = $index) {
+      <figure class="gallery__item" [class.gallery__item--main]="index === 0">
+        <img [src]="image.url" [alt]="image.texteAlternatif" />
+      </figure>
+    }
+
+    <span class="gallery__count">
+      {{ orderedImages().length }} photo{{ orderedImages().length > 1 ? 's' : '' }}
+    </span>
+  } @else {
+    <div class="gallery__empty">
+      <span>Aucune photo disponible</span>
+    </div>
+  }
+</section>
