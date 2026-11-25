@@ -361,9 +361,26 @@
       "countNone": "Geen vragen",
       "empty": "Geen enkele vraag komt overeen met ‘{{term}}’.",
       "emptyReset": "Zoekopdracht wissen",
+      "emptyCategory": "Er zijn nog geen vragen in deze categorie.",
       "loading": "Vragen worden geladen…",
       "loadError": "De FAQ kan momenteel niet worden geladen. Controleer uw verbinding en probeer het opnieuw.",
       "retry": "Opnieuw proberen"
+    },
+    "allCategories": "Alle vragen",
+    "otherCategory": "Overige",
+    "categories": {
+      "account": "Mijn account",
+      "searchProperty": "Een woning zoeken",
+      "visitsAppointments": "Bezoeken en afspraken",
+      "publishProperty": "Een woning publiceren",
+      "notariesReviews": "Notarissen en beoordelingen"
+    },
+    "categoryNav": {
+      "label": "FAQ-categorieën",
+      "title": "Thema's",
+      "count": "{{count}} artikels",
+      "countOne": "1 artikel",
+      "itemLabel": "{{label}} – aantal vragen: {{count}}"
     },
     "rating": {
       "question": "Was dit antwoord nuttig?",
