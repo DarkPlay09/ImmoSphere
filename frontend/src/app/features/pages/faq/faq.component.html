@@ -23,47 +23,59 @@
     </div>
   </header>
 
-  <!-- QUESTIONS -->
+  <!-- CORPS EN DEUX COLONNES : CATÉGORIES (STICKY) ET QUESTIONS -->
   <section class="faq-page__body" aria-labelledby="faq-list-title">
-    <div class="faq-page__toolbar">
-      <h2 id="faq-list-title" class="faq-page__list-title">{{ 'faq.list.title' | translate }}</h2>
+    <h2 id="faq-list-title" class="faq-page__list-title">{{ 'faq.list.title' | translate }}</h2>
+
+    <aside class="faq-page__aside">
+      @if (result()) {
+        <app-faq-category-nav
+          class="faq-page__categories"
+          [categories]="categories()"
+          [totalCount]="totalCount()"
+          [(selected)]="selectedCategory"
+        />
+      }
+    </aside>
+
+    <div class="faq-page__main">
       <p class="faq-page__count" aria-live="polite">
         @if (listState() === 'ready') {
           {{ countKey() | translate: { count: count() } }}
         }
       </p>
-    </div>
 
-    <div class="faq-page__list" [class.faq-page__list--loading]="loading()" [attr.aria-busy]="loading()">
-      @switch (listState()) {
-        @case ('error') {
-          <div class="faq-page__message" role="alert">
-            <p>{{ 'faq.list.loadError' | translate }}</p>
-            <button type="button" class="faq-page__action" (click)="retry()">
-              {{ 'faq.list.retry' | translate }}
-            </button>
-          </div>
-        }
-        @case ('loading') {
-          <p class="faq-page__message">{{ 'faq.list.loading' | translate }}</p>
-        }
-        @default {
-          @for (item of questions(); track item.id) {
-            <app-faq-accordion-item [item]="item" />
-          } @empty {
-            <div class="faq-page__message">
-              <p>{{ 'faq.list.empty' | translate: { term: appliedTerm() } }}</p>
-              <button type="button" class="faq-page__action" (click)="resetSearch()">
-                {{ 'faq.list.emptyReset' | translate }}
+      <div class="faq-page__list" [class.faq-page__list--loading]="loading()" [attr.aria-busy]="loading()">
+        @switch (listState()) {
+          @case ('error') {
+            <div class="faq-page__message" role="alert">
+              <p>{{ 'faq.list.loadError' | translate }}</p>
+              <button type="button" class="faq-page__action" (click)="retry()">
+                {{ 'faq.list.retry' | translate }}
               </button>
             </div>
           }
+          @case ('loading') {
+            <p class="faq-page__message">{{ 'faq.list.loading' | translate }}</p>
+          }
+          @default {
+            @for (group of groups(); track group.categoryCode) {
+              <app-faq-question-group [group]="group" />
+            } @empty {
+              <div class="faq-page__message">
+                <p>{{ emptyKey() | translate: { term: appliedTerm() } }}</p>
+                <button type="button" class="faq-page__action" (click)="resetSearch()">
+                  {{ 'faq.list.emptyReset' | translate }}
+                </button>
+              </div>
+            }
+          }
         }
-      }
-    </div>
+      </div>
 
-    <!-- BANDEAU DE CONTACT -->
-    <app-faq-contact-banner class="faq-page__contact" />
+      <!-- BANDEAU DE CONTACT -->
+      <app-faq-contact-banner class="faq-page__contact" />
+    </div>
   </section>
 
 </div>

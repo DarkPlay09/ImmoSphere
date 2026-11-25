@@ -1,6 +1,6 @@
 using ImmoSphere.Api.Dtos.Faq;
 using ImmoSphere.Api.Errors;
-using ImmoSphere.Domain.Core.Faq;
+using ImmoSphere.Domain.Exceptions;
 using ImmoSphere.Domain.Services.Interfaces;
 using Microsoft.AspNetCore.Authorization;
 using Microsoft.AspNetCore.Mvc;
@@ -22,28 +22,43 @@ public class FaqController : ControllerBase
     }
 
     /// <summary>
-    /// Questions publiques de la FAQ (UC7), triées par ordre de création. <paramref name="search"/>
-    /// filtre sur la question et la réponse, sans tenir compte de la casse ni des accents.
+    /// FAQ publique (UC7) : catégories avec leur nombre de questions et questions triées par catégorie.
+    /// <paramref name="search"/> filtre sur la question et la réponse, sans tenir compte de la casse
+    /// ni des accents ; <paramref name="category"/> (code de catégorie) ne filtre que les questions.
     /// </summary>
     [HttpGet]
-    [ProducesResponseType<IEnumerable<FaqQuestionDto>>(StatusCodes.Status200OK)]
+    [ProducesResponseType<FaqSearchResultDto>(StatusCodes.Status200OK)]
     [ProducesResponseType<ApiError>(StatusCodes.Status400BadRequest)]
-    public async Task<ActionResult<IEnumerable<FaqQuestionDto>>> Search(
+    public async Task<ActionResult<FaqSearchResultDto>> Search(
         [FromQuery] string? search,
+        [FromQuery] string? category,
         CancellationToken cancellationToken)
     {
-        if (search?.Trim().Length > QuestionFaq.LongueurMaxRecherche)
+        try
         {
-            _logger.LogInformation("Recherche dans la FAQ refusée : {Code}", ApiErrorCodes.SearchTooLong);
-            return BadRequest(new ApiError(
-                ApiErrorCodes.SearchTooLong,
-                $"La recherche est limitée à {QuestionFaq.LongueurMaxRecherche} caractères."));
+            var resultat = await _faqService.SearchAsync(search, category, cancellationToken);
+
+            _logger.LogInformation(
+                "Recherche dans la FAQ ({Recherche}, catégorie : {Categorie}) : {Total} résultat(s)",
+                search,
+                category,
+                resultat.Questions.Count);
+
+            return Ok(FaqDtoMapper.ToDto(resultat));
         }
+        catch (RechercheTropLongueException ex)
+        {
+            return Refuser(ApiErrorCodes.SearchTooLong, ex.Message);
+        }
+        catch (CategorieFaqInconnueException ex)
+        {
+            return Refuser(ApiErrorCodes.FaqCategoryUnknown, ex.Message);
+        }
+    }
 
-        var questions = await _faqService.SearchAsync(search, cancellationToken);
-
-        _logger.LogInformation("Recherche dans la FAQ ({Recherche}) : {Total} résultat(s)", search, questions.Count);
-
-        return Ok(questions.Select(FaqDtoMapper.ToDto));
+    private BadRequestObjectResult Refuser(string code, string message)
+    {
+        _logger.LogInformation("Recherche dans la FAQ refusée : {Code}", code);
+        return BadRequest(new ApiError(code, message));
     }
 }

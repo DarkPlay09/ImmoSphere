@@ -4,26 +4,42 @@ import { provideTranslateService } from '@ngx-translate/core';
 import { NEVER, of, throwError } from 'rxjs';
 import { Mock } from 'vitest';
 
-import { MOCK_FAQ_QUESTIONS } from '../../../shared/faq/data/faq.mock';
-import { FaqQuestion } from '../../../shared/faq/models/faq.model';
-import { FaqService } from '../../../shared/faq/services/faq.service';
+import { MOCK_FAQ_CATEGORIES, MOCK_FAQ_QUESTIONS } from '../../../shared/faq/data/faq.mock';
+import { FaqQuestion, FaqSearchResult } from '../../../shared/faq/models/faq.model';
+import { FaqSearchCriteria, FaqService } from '../../../shared/faq/services/faq.service';
 import { FAQ_SEARCH_DEBOUNCE_MS, FaqComponent } from './faq.component';
 
 describe('FaqComponent', () => {
   let fixture: ComponentFixture<FaqComponent>;
   let component: FaqComponent;
-  let search: Mock<(term: string) => ReturnType<FaqService['search']>>;
+  let search: Mock<(criteria: FaqSearchCriteria) => ReturnType<FaqService['search']>>;
 
-  const VISIT_360 = MOCK_FAQ_QUESTIONS[5]!;
+  /** Questions de la maquette et une question sans catégorie (groupe « Autres »). */
+  const UNCATEGORIZED: FaqQuestion = { id: 99, categoryCode: null, question: 'Question sans catégorie', answer: 'R' };
+  const ALL_QUESTIONS = [...MOCK_FAQ_QUESTIONS, UNCATEGORIZED];
 
-  // Réponses simulées de l'API : « 360 » trouve une question, « introuvable » aucune.
-  const answerFor = (term: string): FaqQuestion[] => {
-    if (!term) return MOCK_FAQ_QUESTIONS;
-    return term === '360' ? [VISIT_360] : [];
+  /** Fausse API conforme au contrat : les compteurs tiennent compte de la recherche, pas de la catégorie. */
+  const answerFor = ({ term, category }: FaqSearchCriteria): FaqSearchResult => {
+    const found = ALL_QUESTIONS.filter((item) => item.question.includes(term));
+    return {
+      totalCount: found.length,
+      categories: MOCK_FAQ_CATEGORIES.map(({ code }) => ({
+        code,
+        questionCount: found.filter((item) => item.categoryCode === code).length,
+      })),
+      questions: category ? found.filter((item) => item.categoryCode === category) : found,
+    };
   };
 
   const element = (): HTMLElement => fixture.nativeElement as HTMLElement;
   const items = (): number => element().querySelectorAll('app-faq-accordion-item').length;
+  const groupTitles = (): string[] =>
+    [...element().querySelectorAll('app-faq-question-group h2')].map((heading) => heading.textContent!.trim());
+  const navButtons = (): HTMLButtonElement[] => [
+    ...element().querySelectorAll<HTMLButtonElement>('.faq-category-nav__item'),
+  ];
+  const navCounts = (): string[] =>
+    navButtons().map((button) => button.querySelector('.faq-category-nav__count')!.textContent!.trim());
 
   const render = async (): Promise<void> => {
     fixture.detectChanges();
@@ -31,7 +47,7 @@ describe('FaqComponent', () => {
   };
 
   beforeEach(async () => {
-    search = vi.fn((term: string) => of(answerFor(term)));
+    search = vi.fn((criteria: FaqSearchCriteria) => of(answerFor(criteria)));
 
     await TestBed.configureTestingModule({
       imports: [FaqComponent],
@@ -45,21 +61,47 @@ describe('FaqComponent', () => {
 
   afterEach(() => vi.useRealTimers());
 
-  it('affiche toutes les questions au chargement, avec leur nombre', () => {
-    expect(search).toHaveBeenCalledWith('');
-    expect(items()).toBe(MOCK_FAQ_QUESTIONS.length);
+  it('affiche toutes les questions regroupées par catégorie, « Autres » en dernier', () => {
+    expect(search).toHaveBeenCalledWith({ term: '', category: null });
+    expect(items()).toBe(ALL_QUESTIONS.length);
+    expect(groupTitles()).toEqual([
+      'faq.categories.account',
+      'faq.categories.searchProperty',
+      'faq.categories.visitsAppointments',
+      'faq.categories.publishProperty',
+      'faq.categories.notariesReviews',
+      'faq.otherCategory',
+    ]);
     expect(element().querySelector('.faq-page__count')?.getAttribute('aria-live')).toBe('polite');
     expect(component.countKey()).toBe('faq.list.count');
   });
 
-  it('cherche immédiatement au clic sur Rechercher (texte trimé)', async () => {
+  it('affiche la navigation : « Toutes » active avec le total, puis les compteurs par catégorie', () => {
+    expect(navCounts()).toEqual(['12', '2', '2', '2', '2', '3']);
+    expect(navButtons()[0]!.getAttribute('aria-pressed')).toBe('true');
+  });
+
+  it('filtre par catégorie : un seul groupe, sans « Autres », et compteurs inchangés', async () => {
+    navButtons()[5]!.click();
+    await render();
+
+    expect(search).toHaveBeenLastCalledWith({ term: '', category: 'notariesReviews' });
+    expect(groupTitles()).toEqual(['faq.categories.notariesReviews']);
+    expect(items()).toBe(3);
+    expect(navCounts()).toEqual(['12', '2', '2', '2', '2', '3']);
+    expect(navButtons()[5]!.getAttribute('aria-pressed')).toBe('true');
+  });
+
+  it('combine la recherche et la catégorie', async () => {
+    component.selectedCategory.set('visitsAppointments');
     component.searchInput.set('  360 ');
     component.searchNow();
     await render();
 
-    expect(search).toHaveBeenLastCalledWith('360');
+    expect(search).toHaveBeenLastCalledWith({ term: '360', category: 'visitsAppointments' });
     expect(items()).toBe(1);
     expect(component.countKey()).toBe('faq.list.countOne');
+    expect(navCounts()).toEqual(['1', '0', '0', '1', '0', '0']);
   });
 
   it('attend la fin de la saisie avant de chercher', () => {
@@ -80,22 +122,35 @@ describe('FaqComponent', () => {
     expect(search).not.toHaveBeenCalled();
 
     vi.advanceTimersByTime(1);
-    expect(search).toHaveBeenCalledExactlyOnceWith('360');
+    expect(search).toHaveBeenCalledExactlyOnceWith({ term: '360', category: null });
   });
 
-  it('affiche l’état « aucun résultat » et réinitialise la recherche', async () => {
+  it('affiche l’état « aucun résultat » et la réinitialisation remet aussi « Toutes »', async () => {
+    component.selectedCategory.set('account');
     component.searchInput.set('introuvable');
     component.searchNow();
     await render();
 
     expect(items()).toBe(0);
     expect(component.countKey()).toBe('faq.list.countNone');
+    expect(component.emptyKey()).toBe('faq.list.empty');
 
     element().querySelector<HTMLButtonElement>('.faq-page__action')!.click();
     await render();
 
     expect(component.searchInput()).toBe('');
-    expect(items()).toBe(MOCK_FAQ_QUESTIONS.length);
+    expect(component.selectedCategory()).toBeNull();
+    expect(search).toHaveBeenLastCalledWith({ term: '', category: null });
+    expect(items()).toBe(ALL_QUESTIONS.length);
+  });
+
+  it('affiche un message propre à une catégorie vide, sans recherche', async () => {
+    search.mockReturnValueOnce(of({ ...answerFor({ term: '', category: null }), questions: [] }));
+    component.selectedCategory.set('account');
+    await render();
+
+    expect(items()).toBe(0);
+    expect(component.emptyKey()).toBe('faq.list.emptyCategory');
   });
 
   it('affiche un message de chargement tant que la FAQ n’est pas reçue', async () => {
@@ -105,6 +160,7 @@ describe('FaqComponent', () => {
 
     expect(element().querySelector('.faq-page__list')?.getAttribute('aria-busy')).toBe('true');
     expect(element().querySelector('.faq-page__message')?.textContent).toContain('faq.list.loading');
+    expect(element().querySelector('app-faq-category-nav')).toBeNull();
     expect(items()).toBe(0);
   });
 
@@ -122,8 +178,8 @@ describe('FaqComponent', () => {
     element().querySelector<HTMLButtonElement>('.faq-page__action')!.click();
     await render();
 
-    expect(search).toHaveBeenLastCalledWith('');
+    expect(search).toHaveBeenLastCalledWith({ term: '', category: null });
     expect(element().querySelector('[role="alert"]')).toBeNull();
-    expect(items()).toBe(MOCK_FAQ_QUESTIONS.length);
+    expect(items()).toBe(ALL_QUESTIONS.length);
   });
 });

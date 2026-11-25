@@ -361,9 +361,26 @@
       "countNone": "No questions",
       "empty": "No question matches “{{term}}”.",
       "emptyReset": "Reset search",
+      "emptyCategory": "There are no questions in this category yet.",
       "loading": "Loading questions…",
       "loadError": "The FAQ could not be loaded right now. Check your connection and try again.",
       "retry": "Try again"
+    },
+    "allCategories": "All questions",
+    "otherCategory": "Other",
+    "categories": {
+      "account": "My account",
+      "searchProperty": "Finding a property",
+      "visitsAppointments": "Visits and appointments",
+      "publishProperty": "Listing a property",
+      "notariesReviews": "Notaries and reviews"
+    },
+    "categoryNav": {
+      "label": "FAQ categories",
+      "title": "Topics",
+      "count": "{{count}} articles",
+      "countOne": "1 article",
+      "itemLabel": "{{label}} – number of questions: {{count}}"
     },
     "rating": {
       "question": "Was this answer helpful?",

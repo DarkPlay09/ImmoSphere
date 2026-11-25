@@ -361,9 +361,26 @@
       "countNone": "Aucune question",
       "empty": "Aucune question ne correspond à « {{term}} ».",
       "emptyReset": "Réinitialiser la recherche",
+      "emptyCategory": "Aucune question dans cette catégorie pour le moment.",
       "loading": "Chargement des questions…",
       "loadError": "Impossible de charger la FAQ pour le moment. Vérifiez votre connexion puis réessayez.",
       "retry": "Réessayer"
+    },
+    "allCategories": "Toutes les questions",
+    "otherCategory": "Autres",
+    "categories": {
+      "account": "Mon compte",
+      "searchProperty": "Rechercher un bien",
+      "visitsAppointments": "Visites et rendez-vous",
+      "publishProperty": "Publier un bien",
+      "notariesReviews": "Notaires et avis"
+    },
+    "categoryNav": {
+      "label": "Catégories de la FAQ",
+      "title": "Thématiques",
+      "count": "{{count}} articles",
+      "countOne": "1 article",
+      "itemLabel": "{{label}} – nombre de questions : {{count}}"
     },
     "rating": {
       "question": "Cette réponse vous a-t-elle été utile ?",
