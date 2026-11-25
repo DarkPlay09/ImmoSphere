@@ -11,14 +11,14 @@ import { toObservable, toSignal } from '@angular/core/rxjs-interop';
 import { TranslatePipe } from '@ngx-translate/core';
 import { catchError, finalize, of, switchMap } from 'rxjs';
 
-import { AgenceCardComponent } from '../../../../shared/agences/components/agence-card/agence-card.component';
-import { AgenceRegion } from '../../../../shared/agences/models/agence.model';
+import { AgenceCardComponent } from '../../components/agence-card/agence-card.component';
+import { AgenceRegion } from '../../models/agence.model';
 import {
   AgenceSearchCriteria,
   AgenceSort,
   DEFAULT_AGENCE_SEARCH,
-} from '../../../../shared/agences/models/agence-search.model';
-import { AgencesService } from '../../../../shared/agences/services/agences.service';
+} from '../../models/agence-search.model';
+import { AgencesService } from '../../data-access/agences.service';
 import { AgencesPaginationComponent } from '../../components/agences-pagination/agences-pagination.component';
 import { AgencesProBannerComponent } from '../../components/agences-pro-banner/agences-pro-banner.component';
 import { AgencesSearchFormComponent } from '../../components/agences-search-form/agences-search-form.component';

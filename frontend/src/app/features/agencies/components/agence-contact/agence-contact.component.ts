@@ -1,7 +1,7 @@
 import { ChangeDetectionStrategy, Component, computed, input } from '@angular/core';
 import { TranslatePipe } from '@ngx-translate/core';
 
-import { Agence } from '../../../../shared/agences/models/agence.model';
+import { Agence } from '../../models/agence.model';
 
 /** Bandeau des coordonnées : adresse, téléphone, horaires, site web. */
 @Component({

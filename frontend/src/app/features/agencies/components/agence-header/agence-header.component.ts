@@ -1,9 +1,9 @@
 import { ChangeDetectionStrategy, Component, computed, inject, input, signal } from '@angular/core';
 import { TranslatePipe, TranslateService } from '@ngx-translate/core';
 
-import { Agence } from '../../../../shared/agences/models/agence.model';
-import { AgenceMailtoPipe } from '../../../../shared/agences/pipes/agence-mailto.pipe';
-import { formatRating } from '../../../../shared/agences/utils/format-rating';
+import { Agence } from '../../models/agence.model';
+import { AgenceMailtoPipe } from '../../pipes/agence-mailto.pipe';
+import { formatRating } from '../../utils/format-rating';
 import { AgenceContactComponent } from '../agence-contact/agence-contact.component';
 
 type Star = 'full' | 'half' | 'empty';

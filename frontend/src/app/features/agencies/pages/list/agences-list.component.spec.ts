@@ -3,10 +3,10 @@ import { provideRouter } from '@angular/router';
 import { provideTranslateService } from '@ngx-translate/core';
 import { of, throwError } from 'rxjs';
 
-import { MOCK_AGENCES } from '../../../../shared/agences/data/agences.mock';
-import { AgenceSearchCriteria } from '../../../../shared/agences/models/agence-search.model';
-import { searchAgences } from '../../../../shared/agences/data/agences-mock-search';
-import { AgencesService } from '../../../../shared/agences/services/agences.service';
+import { MOCK_AGENCES } from '../../data/agences.mock';
+import { AgenceSearchCriteria } from '../../models/agence-search.model';
+import { searchAgences } from '../../data/agences-mock-search';
+import { AgencesService } from '../../data-access/agences.service';
 import { AgencesListComponent } from './agences-list.component';
 
 describe('AgencesListComponent', () => {

@@ -3,9 +3,9 @@ import { ActivatedRoute, convertToParamMap, provideRouter } from '@angular/route
 import { provideTranslateService } from '@ngx-translate/core';
 import { of, throwError } from 'rxjs';
 
-import { MOCK_AGENCES } from '../../../../shared/agences/data/agences.mock';
-import { Agence } from '../../../../shared/agences/models/agence.model';
-import { AgencesService } from '../../../../shared/agences/services/agences.service';
+import { MOCK_AGENCES } from '../../data/agences.mock';
+import { Agence } from '../../models/agence.model';
+import { AgencesService } from '../../data-access/agences.service';
 import { AgenceDetailComponent } from './agence-detail.component';
 
 describe('AgenceDetailComponent', () => {
