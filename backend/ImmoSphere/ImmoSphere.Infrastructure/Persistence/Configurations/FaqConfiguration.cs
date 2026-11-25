@@ -21,5 +21,11 @@ public class FaqConfiguration : IEntityTypeConfiguration<FaqEntity>
             .WithMany(e => e.Faqs)
             .HasForeignKey(e => e.UtilisateurId)
             .OnDelete(DeleteBehavior.Restrict);
+
+        builder.Property(e => e.CategorieFaqId).HasColumnName("id_categorie_faq");
+        builder.HasOne(e => e.CategorieFaq)
+            .WithMany(e => e.Faqs)
+            .HasForeignKey(e => e.CategorieFaqId)
+            .OnDelete(DeleteBehavior.SetNull);
     }
 }

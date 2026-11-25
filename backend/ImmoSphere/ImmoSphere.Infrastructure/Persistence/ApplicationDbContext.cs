@@ -34,6 +34,7 @@ public class ApplicationDbContext : IdentityDbContext<ApplicationUser>
     public DbSet<SpecificationEntity> Specifications => Set<SpecificationEntity>();
     public DbSet<EmoticonEntity> Emoticons => Set<EmoticonEntity>();
     public DbSet<FaqEntity> Faqs => Set<FaqEntity>();
+    public DbSet<CategorieFaqEntity> CategoriesFaq => Set<CategorieFaqEntity>();
     public DbSet<FavoriEntity> Favoris => Set<FavoriEntity>();
     public DbSet<AgenceAdministrateurEntity> AgencesAdministrateurs => Set<AgenceAdministrateurEntity>();
     public DbSet<AgenceSpecificationEntity> AgencesSpecifications => Set<AgenceSpecificationEntity>();
