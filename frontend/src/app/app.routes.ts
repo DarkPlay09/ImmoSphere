@@ -39,7 +39,7 @@ export const routes: Routes = [
       {
         path: 'properties',
         loadComponent: () =>
-          import('./features/pages/properties-list/properties-list.component').then(
+          import('./features/properties/pages/list/properties-list.component').then(
             (m) => m.PropertiesListComponent,
           ),
       },

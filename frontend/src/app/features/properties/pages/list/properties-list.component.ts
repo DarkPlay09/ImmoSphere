@@ -1,8 +1,8 @@
 import { Component } from '@angular/core';
 
-import { PropertyCardComponent } from '../../../shared/properties/components/property-card/property-card.component';
+import { PropertyCardComponent } from '../../../../shared/properties/components/property-card/property-card.component';
 
-import { MOCK_PROPERTIES } from '../../../shared/properties/data/properties.mock';
+import { MOCK_PROPERTIES } from '../../../../shared/properties/data/properties.mock';
 
 @Component({
   selector: 'app-properties-list',
