@@ -60,7 +60,7 @@ export const routes: Routes = [
       {
         path: 'agences/:id',
         loadComponent: () =>
-          import('./features/pages/agence-detail/agence-detail.component').then(
+          import('./features/agencies/pages/detail/agence-detail.component').then(
             (m) => m.AgenceDetailComponent,
           ),
       },

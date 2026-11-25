@@ -1,7 +1,7 @@
 import { ChangeDetectionStrategy, Component, input } from '@angular/core';
 import { TranslatePipe } from '@ngx-translate/core';
 
-import { AgenceSpecifications } from '../../../../../shared/agences/models/agence.model';
+import { AgenceSpecifications } from '../../../../shared/agences/models/agence.model';
 
 /** Carte « Spécifications de l'agence ». */
 @Component({

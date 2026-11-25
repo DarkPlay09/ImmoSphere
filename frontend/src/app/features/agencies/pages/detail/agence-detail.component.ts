@@ -4,11 +4,11 @@ import { ActivatedRoute, RouterLink } from '@angular/router';
 import { TranslatePipe } from '@ngx-translate/core';
 import { Observable, catchError, map, of, startWith, switchMap } from 'rxjs';
 
-import { Agence } from '../../../shared/agences/models/agence.model';
-import { AgencesService } from '../../../shared/agences/services/agences.service';
-import { AgenceAboutComponent } from './components/agence-about/agence-about.component';
-import { AgenceHeaderComponent } from './components/agence-header/agence-header.component';
-import { AgenceSpecsComponent } from './components/agence-specs/agence-specs.component';
+import { Agence } from '../../../../shared/agences/models/agence.model';
+import { AgencesService } from '../../../../shared/agences/services/agences.service';
+import { AgenceAboutComponent } from '../../components/agence-about/agence-about.component';
+import { AgenceHeaderComponent } from '../../components/agence-header/agence-header.component';
+import { AgenceSpecsComponent } from '../../components/agence-specs/agence-specs.component';
 
 type AgenceDetailState =
   | { status: 'loading' }
