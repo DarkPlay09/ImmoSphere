@@ -1,4 +1,4 @@
-// Valeurs reprises de la maquette Figma (cadre « FAQ » 328:12048), sans la colonne des catégories.
+// Valeurs reprises de la maquette Figma (cadre « FAQ » 328:12048 : corps en deux colonnes 328:12610).
 
 :host {
   display: block;
@@ -118,22 +118,28 @@
     max-width: 672px;
   }
 
-  // QUESTIONS
+  // CORPS : CATÉGORIES À GAUCHE (STICKY), QUESTIONS À DROITE
   &__body {
     box-sizing: border-box;
-    display: flex;
-    flex-direction: column;
-    gap: 8px;
+    display: grid;
+    grid-template-columns: 341px minmax(0, 1fr);
+    align-items: start;
+    gap: 40px;
     max-width: 1152px;
     margin: 0 auto;
     padding: 40px 24px;
   }
 
-  &__toolbar {
+  &__aside {
+    position: sticky;
+    top: 24px;
+  }
+
+  &__main {
     display: flex;
-    align-items: center;
-    justify-content: flex-end;
-    padding: 0 8px 4px;
+    flex-direction: column;
+    gap: 8px;
+    min-width: 0;
   }
 
   // Titre utile aux lecteurs d'écran, absent visuellement de la maquette.
@@ -151,6 +157,8 @@
 
   &__count {
     margin: 0;
+    padding: 0 8px 4px;
+    text-align: right;
     color: $text-secondary;
     font-size: 11px;
     font-weight: 600;
@@ -158,10 +166,11 @@
     letter-spacing: 0.03em;
   }
 
+  // Les groupes de questions sont espacés comme dans la maquette.
   &__list {
     display: flex;
     flex-direction: column;
-    gap: 8px;
+    gap: 40px;
 
     &--loading {
       opacity: 0.6;
@@ -209,6 +218,17 @@
   }
 
   // RESPONSIVE (la version mobile détaillée viendra plus tard)
+  @media (max-width: 960px) {
+    &__body {
+      grid-template-columns: minmax(0, 1fr);
+      gap: 24px;
+    }
+
+    &__aside {
+      position: static;
+    }
+  }
+
   @media (max-width: 720px) {
     &__hero {
       padding: 24px 16px;

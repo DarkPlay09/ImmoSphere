@@ -18,22 +18,28 @@ import {
   tap,
 } from 'rxjs';
 
-import { FaqAccordionItemComponent } from '../../../shared/faq/components/faq-accordion-item/faq-accordion-item.component';
+import { FaqCategoryNavComponent } from '../../../shared/faq/components/faq-category-nav/faq-category-nav.component';
 import { FaqContactBannerComponent } from '../../../shared/faq/components/faq-contact-banner/faq-contact-banner.component';
+import { FaqQuestionGroupComponent } from '../../../shared/faq/components/faq-question-group/faq-question-group.component';
 import { FaqSearchBarComponent } from '../../../shared/faq/components/faq-search-bar/faq-search-bar.component';
-import { FaqQuestion } from '../../../shared/faq/models/faq.model';
-import { FaqService } from '../../../shared/faq/services/faq.service';
+import { FaqSearchResult } from '../../../shared/faq/models/faq.model';
+import { FaqSearchCriteria, FaqService } from '../../../shared/faq/services/faq.service';
+import { groupFaqQuestions } from '../../../shared/faq/utils/group-faq-questions';
 
 /** Délai entre la dernière frappe et le lancement de la recherche. */
 export const FAQ_SEARCH_DEBOUNCE_MS = 300;
 
-/** Page publique de la FAQ (UC7) : recherche et liste des questions en accordéon. */
+/**
+ * Page publique de la FAQ (UC7) : recherche, navigation par catégorie et questions en accordéon
+ * regroupées par catégorie. La recherche et la catégorie restent locales (pas dans l'URL).
+ */
 @Component({
   selector: 'app-faq',
   standalone: true,
   imports: [
-    FaqAccordionItemComponent,
+    FaqCategoryNavComponent,
     FaqContactBannerComponent,
+    FaqQuestionGroupComponent,
     FaqSearchBarComponent,
     RouterLink,
     TranslatePipe,
@@ -47,6 +53,9 @@ export class FaqComponent {
 
   /** Texte saisi dans la barre de recherche. */
   readonly searchInput = signal('');
+
+  /** Catégorie choisie dans la navigation (`null` : toutes). */
+  readonly selectedCategory = signal<string | null>(null);
 
   /** Recherche immédiate (bouton « Rechercher », réinitialisation), sans attendre le délai de saisie. */
   private readonly immediateSearch = new Subject<string>();
@@ -72,15 +81,27 @@ export class FaqComponent {
     tap((term) => this.appliedTerm.set(term)),
   );
 
-  readonly questions = toSignal(
-    combineLatest([this.terms$, this.retryRequests.pipe(startWith(undefined))]).pipe(
+  /** Dernière réponse de l'API, ou `null` avant la première réponse et après une erreur. */
+  readonly result = toSignal(
+    combineLatest([
+      this.terms$,
+      toObservable(this.selectedCategory),
+      this.retryRequests.pipe(startWith(undefined)),
+    ]).pipe(
       // `switchMap` annule la recherche précédente quand une nouvelle commence.
-      switchMap(([term]) => this.load(term)),
+      switchMap(([term, category]) => this.load({ term, category })),
     ),
-    { initialValue: [] },
+    { initialValue: null },
   );
 
-  readonly count = computed(() => this.questions().length);
+  readonly categories = computed(() => this.result()?.categories ?? []);
+
+  readonly totalCount = computed(() => this.result()?.totalCount ?? 0);
+
+  readonly groups = computed(() => groupFaqQuestions(this.result()?.questions ?? [], this.categories()));
+
+  /** Nombre de questions affichées (recherche et catégorie comprises). */
+  readonly count = computed(() => this.result()?.questions.length ?? 0);
 
   /**
    * Contenu de la liste : erreur, premier chargement (rien à afficher encore) ou questions.
@@ -88,7 +109,7 @@ export class FaqComponent {
    */
   readonly listState = computed<'error' | 'loading' | 'ready'>(() => {
     if (this.error()) return 'error';
-    return this.loading() && this.count() === 0 ? 'loading' : 'ready';
+    return this.loading() && this.result() === null ? 'loading' : 'ready';
   });
 
   /** Clé de traduction du nombre de résultats (singulier, pluriel ou aucun). */
@@ -103,12 +124,17 @@ export class FaqComponent {
     }
   });
 
+  /** Message de l'état vide : avec le texte recherché, ou pour une catégorie sans question. */
+  readonly emptyKey = computed(() => (this.appliedTerm() ? 'faq.list.empty' : 'faq.list.emptyCategory'));
+
   searchNow(): void {
     this.immediateSearch.next(this.searchInput());
   }
 
+  /** Efface la recherche et revient à « Toutes les questions ». */
   resetSearch(): void {
     this.searchInput.set('');
+    this.selectedCategory.set(null);
     this.immediateSearch.next('');
   }
 
@@ -116,13 +142,13 @@ export class FaqComponent {
     this.retryRequests.next();
   }
 
-  private load(term: string): Observable<FaqQuestion[]> {
+  private load(criteria: FaqSearchCriteria): Observable<FaqSearchResult | null> {
     this.loading.set(true);
     this.error.set(false);
-    return this.faqService.search(term).pipe(
+    return this.faqService.search(criteria).pipe(
       catchError(() => {
         this.error.set(true);
-        return of([]);
+        return of(null);
       }),
       finalize(() => this.loading.set(false)),
     );
