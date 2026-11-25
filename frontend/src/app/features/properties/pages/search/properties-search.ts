@@ -13,7 +13,7 @@ import { ActivatedRoute, Params, Router } from '@angular/router';
 import { takeUntilDestroyed } from '@angular/core/rxjs-interop';
 import { Subscription, switchMap } from 'rxjs';
 
-import { PropertySearchCardComponent } from '../../../shared/properties/components/property-search-card/property-search-card';
+import { PropertySearchCardComponent } from '../../../../shared/properties/components/property-search-card/property-search-card';
 
 import {
   PropertySearchAdvancedFiltersComponent,
@@ -33,21 +33,7 @@ import { mapPropertySearchResult } from '../../../shared/properties/mappers/prop
 
 import { PropertySearchResult } from '../../../shared/properties/models/property-search-result.model';
 
-import { PropertySearchQuery } from '../../../shared/properties/models/property-search-api.model';
-
-import {
-  PropertySearchOption,
-  PropertySearchOptionsResponse,
-} from '../../../shared/properties/models/property-search-options.model';
-
-import {
-  PropertyMapItem,
-  PropertyMapKind,
-} from '../../../shared/notaries/models/property-map-tiem.model';
-
-import { getMapCityCenter, normalizeCity } from '../../home/data-access/map-city-centers';
-
-type SearchSort = NonNullable<PropertySearchQuery['tri']>;
+import { MOCK_PROPERTIES } from '../../../shared/properties/data/properties.mock';
 
 @Component({
   selector: 'app-properties-search',

@@ -46,7 +46,7 @@ export const routes: Routes = [
       {
         path: 'search',
         loadComponent: () =>
-          import('./features/pages/properties-search/properties-search').then(
+          import('./features/properties/pages/search/properties-search').then(
             (m) => m.PropertiesSearchComponent,
           ),
       },
