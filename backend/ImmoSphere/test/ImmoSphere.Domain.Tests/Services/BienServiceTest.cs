@@ -81,5 +81,10 @@ public sealed class BienServiceTest
             ReceivedToken = cancellationToken;
             return Task.FromResult(_bien);
         }
+
+        public Task<ResultatRechercheBiens> SearchAsync(CriteresRechercheBiens criteres, CancellationToken cancellationToken)
+        {
+            throw new NotImplementedException();
+        }
     }
 }
