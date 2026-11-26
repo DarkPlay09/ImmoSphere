@@ -129,6 +129,14 @@
         "backToLogin": "Zurück zur Anmeldung",
         "backendPending": "Die Passwortwiederherstellung ist nach der API-Anbindung verfügbar."
       },
+      "passwordConfirmation": {
+        "title": "Überprüfen Sie Ihren Posteingang",
+        "subtitle": "Wenn ein Konto mit dieser E-Mail-Adresse existiert, erhalten Sie eine E-Mail mit einem sicheren Link zum Zurücksetzen Ihres Passworts.",
+        "emailLabel": "E-Mail-Adresse zur Wiederherstellung",
+        "spamNotice": "Sie finden die E-Mail nicht? Überprüfen Sie auch Ihren Spam-Ordner oder warten Sie einen Moment.",
+        "resend": "E-Mail erneut senden",
+        "backendPending": "Vorschau: Es wurde keine E-Mail versendet. Der Versand ist nach der API-Anbindung verfügbar."
+      },
       "errors": {
         "required": "Dieses Feld ist erforderlich.",
         "professionalRole": "Bitte waehlen Sie Ihren Beruf.",

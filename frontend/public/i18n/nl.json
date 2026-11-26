@@ -129,6 +129,14 @@
         "backToLogin": "Terug naar aanmelden",
         "backendPending": "Wachtwoordherstel is beschikbaar zodra de API is gekoppeld."
       },
+      "passwordConfirmation": {
+        "title": "Controleer uw mailbox",
+        "subtitle": "Als er een account bestaat voor dit e-mailadres, ontvangt u een e-mail met een beveiligde link om uw wachtwoord opnieuw in te stellen.",
+        "emailLabel": "E-mailadres voor herstel",
+        "spamNotice": "Vindt u de e-mail niet? Controleer ook uw spamfolder of wacht enkele ogenblikken.",
+        "resend": "E-mail opnieuw verzenden",
+        "backendPending": "Voorbeeldweergave: er is geen e-mail verzonden. Verzending is beschikbaar zodra de API is gekoppeld."
+      },
       "errors": {
         "required": "Dit veld is verplicht.",
         "professionalRole": "Kies uw beroep.",

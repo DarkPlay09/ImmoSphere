@@ -37,6 +37,13 @@ export const routes: Routes = [
       ),
   },
   {
+    path: 'forgot-password/confirmation',
+    loadComponent: () =>
+      import('./features/auth/pages/forgot-password-confirmation/forgot-password-confirmation.component').then(
+        (m) => m.ForgotPasswordConfirmationComponent,
+      ),
+  },
+  {
     path: '',
     component: MainLayoutComponent,
     children: [

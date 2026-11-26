@@ -1,8 +1,8 @@
-﻿import { ChangeDetectionStrategy, Component, signal } from '@angular/core';
+﻿import { ChangeDetectionStrategy, Component, inject, signal } from '@angular/core';
 
 import { FormControl, FormGroup, ReactiveFormsModule, Validators } from '@angular/forms';
 
-import { RouterLink } from '@angular/router';
+import { Router, RouterLink } from '@angular/router';
 import { TranslatePipe } from '@ngx-translate/core';
 
 import { AuthShellComponent } from '../../../../shared/auth/components/auth-shell/auth-shell.component';
@@ -16,8 +16,9 @@ import { AuthShellComponent } from '../../../../shared/auth/components/auth-shel
   changeDetection: ChangeDetectionStrategy.OnPush,
 })
 export class ForgotPasswordComponent {
+  private readonly router = inject(Router);
+
   readonly attemptedSubmit = signal(false);
-  readonly integrationNoticeVisible = signal(false);
 
   readonly form = new FormGroup({
     email: new FormControl('', {
@@ -34,7 +35,6 @@ export class ForgotPasswordComponent {
 
   submit(): void {
     this.attemptedSubmit.set(true);
-    this.integrationNoticeVisible.set(false);
 
     const email = this.form.controls.email.value.trim();
 
@@ -45,6 +45,8 @@ export class ForgotPasswordComponent {
       return;
     }
 
-    this.integrationNoticeVisible.set(true);
+    void this.router.navigate(['/forgot-password/confirmation'], {
+      state: { email },
+    });
   }
 }

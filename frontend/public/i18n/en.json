@@ -129,6 +129,14 @@
         "backToLogin": "Back to sign in",
         "backendPending": "Password recovery will be available once the API is connected."
       },
+      "passwordConfirmation": {
+        "title": "Check your inbox",
+        "subtitle": "If an account exists for this email address, you will receive an email containing a secure password reset link.",
+        "emailLabel": "Recovery email address",
+        "spamNotice": "Can't find the email? Check your spam folder or wait a few moments.",
+        "resend": "Resend email",
+        "backendPending": "Preview: no email has been sent. Email delivery will be available once the API is connected."
+      },
       "errors": {
         "required": "This field is required.",
         "professionalRole": "Please select your profession.",

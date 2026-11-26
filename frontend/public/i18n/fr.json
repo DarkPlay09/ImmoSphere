@@ -139,6 +139,14 @@
       "backToLogin": "Retour à la connexion",
       "backendPending": "La récupération du mot de passe sera disponible après l’intégration de l’API."
     },
+    "passwordConfirmation": {
+      "title": "Consultez votre boîte mail",
+      "subtitle": "Si un compte existe pour cette adresse, vous recevrez un e-mail contenant un lien sécurisé de réinitialisation.",
+      "emailLabel": "Adresse de récupération",
+      "spamNotice": "Vous ne trouvez pas l’e-mail ? Vérifiez également votre dossier de courriers indésirables (spams) ou patientez quelques instants.",
+      "resend": "Renvoyer l’e-mail",
+      "backendPending": "Aperçu du parcours : aucun e-mail n’a été envoyé. L’envoi sera disponible après l’intégration de l’API."
+    },
     "verifyEmail": {
       "eyebrow": "Dernière étape",
       "title": "Vérifiez votre adresse e-mail",
