@@ -18,13 +18,13 @@ import {
   tap,
 } from 'rxjs';
 
-import { FaqCategoryNavComponent } from '../../../shared/faq/components/faq-category-nav/faq-category-nav.component';
-import { FaqContactBannerComponent } from '../../../shared/faq/components/faq-contact-banner/faq-contact-banner.component';
-import { FaqQuestionGroupComponent } from '../../../shared/faq/components/faq-question-group/faq-question-group.component';
-import { FaqSearchBarComponent } from '../../../shared/faq/components/faq-search-bar/faq-search-bar.component';
-import { FaqSearchResult } from '../../../shared/faq/models/faq.model';
+import { FaqCategoryNavComponent } from '../../components/faq-category-nav/faq-category-nav.component';
+import { FaqContactBannerComponent } from '../../components/faq-contact-banner/faq-contact-banner.component';
+import { FaqQuestionGroupComponent } from '../../components/faq-question-group/faq-question-group.component';
+import { FaqSearchBarComponent } from '../../components/faq-search-bar/faq-search-bar.component';
+import { FaqSearchResult } from '../../models/faq.model';
 import { FaqSearchCriteria, FaqService } from '../../data-access/faq.service';
-import { groupFaqQuestions } from '../../../shared/faq/utils/group-faq-questions';
+import { groupFaqQuestions } from '../../utils/group-faq-questions';
 
 /** Délai entre la dernière frappe et le lancement de la recherche. */
 export const FAQ_SEARCH_DEBOUNCE_MS = 300;

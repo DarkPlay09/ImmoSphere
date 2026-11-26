@@ -17,23 +17,39 @@ import { PropertySearchCardComponent } from '../../../../shared/properties/compo
 
 import {
   PropertySearchAdvancedFiltersComponent,
-} from '../../../shared/properties/components/property-search-advanced-filters/property-search-advanced-filters.component';
+} from '../../../../shared/properties/components/property-search-advanced-filters/property-search-advanced-filters.component';
 
-import { PropertySearchResultsToolbarComponent } from '../../../shared/properties/components/property-search-results-toolbar/property-search-results-toolbar.component';
+import { PropertySearchResultsToolbarComponent } from '../../../../shared/properties/components/property-search-results-toolbar/property-search-results-toolbar.component';
 
-import { PropertySearchActiveFiltersComponent } from '../../../shared/properties/components/property-search-active-filters/property-search-active-filters.component';
+import { PropertySearchActiveFiltersComponent } from '../../../../shared/properties/components/property-search-active-filters/property-search-active-filters.component';
 
-import { PropertyMapComponent } from '../../../shared/properties/components/property-map/property-map.component';
+import { PropertyMapComponent } from '../../../../shared/properties/components/property-map/property-map.component';
 
-import { PropertySearchService } from '../../../shared/properties/data-access/property-search.service';
+import { PropertySearchService } from '../../../../shared/properties/data-access/property-search.service';
 
-import { PropertySearchOptionsService } from '../../../shared/properties/data-access/property-search-options.service';
+import { PropertySearchOptionsService } from '../../../../shared/properties/data-access/property-search-options.service';
 
-import { mapPropertySearchResult } from '../../../shared/properties/mappers/property-search.mapper';
+import { mapPropertySearchResult } from '../../../../shared/properties/mappers/property-search.mapper';
 
-import { PropertySearchResult } from '../../../shared/properties/models/property-search-result.model';
+import { PropertySearchResult } from '../../../../shared/properties/models/property-search-result.model';
 
-import { MOCK_PROPERTIES } from '../../../shared/properties/data/properties.mock';
+import { MOCK_PROPERTIES } from '../../../../shared/properties/data/properties.mock';
+
+import { PropertySearchQuery } from '../../../../shared/properties/models/property-search-api.model';
+
+import {
+  PropertySearchOption,
+  PropertySearchOptionsResponse,
+} from '../../../../shared/properties/models/property-search-options.model';
+
+import {
+  PropertyMapItem,
+  PropertyMapKind,
+} from '../../../../shared/notaries/models/property-map-tiem.model';
+
+import { getMapCityCenter, normalizeCity } from '../../../home/data-access/map-city-centers';
+
+type SearchSort = NonNullable<PropertySearchQuery['tri']>;
 
 @Component({
   selector: 'app-properties-search',
