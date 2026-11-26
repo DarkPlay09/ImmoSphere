@@ -12,6 +12,7 @@ import { TranslatePipe } from '@ngx-translate/core';
 import { catchError, map, of, tap } from 'rxjs';
 
 import { PropertyMapComponent } from '../../../../shared/properties/components/property-map/property-map.component';
+import { PebBadgeComponent } from '../../../../shared/properties/components/peb-badge/peb-badge.component';
 
 import { Property } from '../../../../shared/properties/models/property.model';
 
@@ -36,7 +37,7 @@ type MapProperty = PropertyMapItem & {
 @Component({
   selector: 'app-home-map-section',
   standalone: true,
-  imports: [TranslatePipe, PropertyMapComponent],
+  imports: [TranslatePipe, PropertyMapComponent, PebBadgeComponent],
   templateUrl: './home-map-section.component.html',
   styleUrl: './home-map-section.component.scss',
   changeDetection: ChangeDetectionStrategy.OnPush,

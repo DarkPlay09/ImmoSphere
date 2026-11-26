@@ -69,9 +69,11 @@
             />
 
             @if (property.peb) {
-              <span class="home-map__peb">
-                PEB {{ property.peb }}
-              </span>
+              <app-peb-badge
+                class="home-map__peb"
+                [rating]="property.peb"
+                size="small"
+              />
             }
           </div>
 

@@ -1,12 +1,13 @@
-import { ChangeDetectionStrategy, Component, inject, input, model, output } from '@angular/core';
+import { ChangeDetectionStrategy, Component, inject, input, output } from '@angular/core';
 import { PropertySearchResult } from '../../models/property-search-result.model';
 import { Router } from '@angular/router';
 import { PropertyFavoriteButtonComponent } from '../property-favorite-button/property-favorite-button.component';
+import { PebBadgeComponent } from '../peb-badge/peb-badge.component';
 
 @Component({
   selector: 'app-property-search-card',
   standalone: true,
-  imports: [PropertyFavoriteButtonComponent],
+  imports: [PropertyFavoriteButtonComponent, PebBadgeComponent],
   templateUrl: './property-search-card.html',
   styleUrl: './property-search-card.scss',
   changeDetection: ChangeDetectionStrategy.OnPush,

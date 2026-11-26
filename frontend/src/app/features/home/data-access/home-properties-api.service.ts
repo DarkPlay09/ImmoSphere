@@ -4,7 +4,7 @@ import { Observable, map } from 'rxjs';
 
 import { environment } from '../../../../../environments/environments';
 
-import { PebRating } from '../../../shared/properties/models/property.model';
+import { parsePebRating } from '../../../shared/properties/models/peb-rating.model';
 
 import { BienAccueilResponseDto, HomeProperty } from './home-property.model';
 
@@ -60,7 +60,7 @@ export class HomePropertiesApiService {
       isVisit360: bien.visite360,
       isNew: false,
 
-      peb: this.toPebRating(bien.peb),
+      peb: parsePebRating(bien.peb),
 
       bedrooms: bien.nombreChambres,
       bathrooms: bien.nombreSallesDeBain,
@@ -93,20 +93,4 @@ export class HomePropertiesApiService {
     return '/images/home/selections/appartement.png';
   }
 
-  private toPebRating(peb: string | null): PebRating | undefined {
-    const value = peb?.trim().toUpperCase();
-
-    switch (value) {
-      case 'A':
-      case 'B':
-      case 'C':
-      case 'D':
-      case 'E':
-      case 'F':
-        return value;
-
-      default:
-        return undefined;
-    }
-  }
 }

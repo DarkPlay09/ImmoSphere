@@ -3,12 +3,13 @@ import { toSignal } from '@angular/core/rxjs-interop';
 import { TranslatePipe, TranslateService } from '@ngx-translate/core';
 import { map, startWith } from 'rxjs';
 
+import { PebBadgeComponent } from '../../../../shared/properties/components/peb-badge/peb-badge.component';
 import { BienDetailResponseDto } from '../../data-access/property-detail-response.model';
 
 interface SummaryFact {
   readonly labelKey: string;
   readonly icon?: string;
-  readonly peb?: boolean;
+  readonly pebRating?: string;
   readonly value?: string;
   readonly valueKey?: string;
   readonly valueParams?: Readonly<Record<string, string | number>>;
@@ -23,7 +24,7 @@ const LOCALES_BY_LANGUAGE: Readonly<Record<string, string>> = {
 
 @Component({
   selector: 'app-property-summary',
-  imports: [TranslatePipe],
+  imports: [TranslatePipe, PebBadgeComponent],
   templateUrl: './property-summary.component.html',
   styleUrl: './property-summary.component.scss',
   changeDetection: ChangeDetectionStrategy.OnPush,
@@ -250,8 +251,7 @@ export class PropertySummaryComponent {
     const consumption = property.caracteristiques.consommationEnergie;
     return {
       labelKey: 'propertyDetail.summary.facts.peb',
-      peb: true,
-      value: `PEB ${peb}`,
+      pebRating: peb,
       ...(consumption > 0
         ? {
             valueKey: 'propertyDetail.values.energyConsumption',

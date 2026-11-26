@@ -20,17 +20,7 @@
     <div class="property-card__top-right">
 
       @if (property().peb; as peb) {
-        <span
-          class="property-card__peb"
-          [class.peb--a]="peb === 'A'"
-          [class.peb--b]="peb === 'B'"
-          [class.peb--c]="peb === 'C'"
-          [class.peb--d]="peb === 'D'"
-          [class.peb--e]="peb === 'E'"
-          [class.peb--f]="peb === 'F'"
-        >
-          PEB {{ peb }}
-        </span>
+        <app-peb-badge [rating]="peb" size="medium" />
       }
 
       @if (favoritesEnabled()) {

@@ -47,17 +47,11 @@
     }
 
     @if (property().peb; as peb) {
-      <span
+      <app-peb-badge
         class="search-card__peb"
-        [class.peb-a]="peb === 'A'"
-        [class.peb-b]="peb === 'B'"
-        [class.peb-c]="peb === 'C'"
-        [class.peb-d]="peb === 'D'"
-        [class.peb-e]="peb === 'E'"
-        [class.peb-f]="peb === 'F'"
-      >
-        PEB {{ peb }}
-      </span>
+        [rating]="peb"
+        size="small"
+      />
     }
   </div>
 

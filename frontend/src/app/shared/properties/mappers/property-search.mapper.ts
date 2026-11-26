@@ -2,29 +2,12 @@
 
 import { PropertySearchApiItem } from '../models/property-search-api.model';
 import { PropertySearchResult } from '../models/property-search-result.model';
-import { PebRating } from '../models/property.model';
+import { parsePebRating } from '../models/peb-rating.model';
 
 function mapTransactionType(type: string): 'sale' | 'rent' {
   const normalized = type.trim().toLowerCase();
 
   return normalized.includes('location') ? 'rent' : 'sale';
-}
-
-function mapPeb(peb: string | null): PebRating | undefined {
-  const letter = peb?.trim().charAt(0).toUpperCase();
-
-  if (
-    letter === 'A' ||
-    letter === 'B' ||
-    letter === 'C' ||
-    letter === 'D' ||
-    letter === 'E' ||
-    letter === 'F'
-  ) {
-    return letter;
-  }
-
-  return undefined;
 }
 
 function mapImageUrl(path: string | null): string {
@@ -65,7 +48,7 @@ export function mapPropertySearchResult(item: PropertySearchApiItem): PropertySe
 
     isVisit360: false,
 
-    peb: mapPeb(item.peb),
+    peb: parsePebRating(item.peb),
 
     bedrooms: item.nombreChambres ?? 0,
     bathrooms: item.nombreSallesDeBain ?? 0,

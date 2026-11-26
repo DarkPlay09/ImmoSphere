@@ -1,3 +1,5 @@
+import { PebRating } from './peb-rating.model';
+
 export interface Property {
   id: number;
   title: string;
@@ -20,4 +22,3 @@ export interface Property {
 
 export type AddressVisibility = 'full' | 'city-only';
 export type TransactionType = 'sale' | 'rent';
-export type PebRating = 'A' | 'B' | 'C' | 'D' | 'E' | 'F';

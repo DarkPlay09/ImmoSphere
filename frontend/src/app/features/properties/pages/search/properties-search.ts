@@ -14,6 +14,7 @@ import { takeUntilDestroyed } from '@angular/core/rxjs-interop';
 import { Subscription, switchMap } from 'rxjs';
 
 import { PropertySearchCardComponent } from '../../../../shared/properties/components/property-search-card/property-search-card';
+import { PebBadgeComponent } from '../../../../shared/properties/components/peb-badge/peb-badge.component';
 
 import {
   PropertySearchAdvancedFiltersComponent,
@@ -56,6 +57,7 @@ type SearchSort = NonNullable<PropertySearchQuery['tri']>;
   standalone: true,
   imports: [
     PropertySearchCardComponent,
+    PebBadgeComponent,
     PropertySearchAdvancedFiltersComponent,
     PropertySearchResultsToolbarComponent,
     PropertySearchActiveFiltersComponent,
