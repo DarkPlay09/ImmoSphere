@@ -1,0 +1,30 @@
+default:
+  tags:
+    - immosphere-ci
+
+stages:
+  - build
+
+workflow:
+  rules:
+    - if: '$CI_PIPELINE_SOURCE == "merge_request_event"'
+    - if: '$CI_COMMIT_BRANCH == "main"'
+    - if: '$CI_COMMIT_TAG =~ /^v[0-9]+\.[0-9]+\.[0-9]+$/'
+
+# Compilation du backend ASP.NET Core 10
+build-backend:
+  stage: build
+  image: mcr.microsoft.com/dotnet/sdk:10.0
+  script:
+    - cd backend/ImmoSphere
+    - dotnet restore ImmoSphere.sln
+    - dotnet build ImmoSphere.sln --configuration Release --no-restore
+
+# Compilation du frontend Angular
+build-frontend:
+  stage: build
+  image: node:24
+  script:
+    - cd frontend
+    - npm ci
+    - npm run build -- --configuration production
