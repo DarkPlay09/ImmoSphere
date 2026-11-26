@@ -234,7 +234,13 @@
 
     <div class="register__login">
       {{ 'auth.register.alreadyRegistered' | translate }}
-      <span class="register__login-label">{{ 'auth.register.login' | translate }}</span>
+
+      <a
+        routerLink="/login"
+        class="register__login-label"
+      >
+        {{ 'auth.register.login' | translate }}
+      </a>
     </div>
   </section>
 </app-auth-shell>

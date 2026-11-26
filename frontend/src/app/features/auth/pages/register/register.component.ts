@@ -10,7 +10,7 @@ import {
 } from '@angular/forms';
 import { TranslatePipe } from '@ngx-translate/core';
 
-import { Router } from '@angular/router';
+import { Router, RouterLink } from '@angular/router';
 
 import { AuthApiService } from '../../data-access/auth-api.service';
 
@@ -39,7 +39,7 @@ function samePasswordValidator(control: AbstractControl): ValidationErrors | nul
 @Component({
   selector: 'app-register',
   standalone: true,
-  imports: [ReactiveFormsModule, TranslatePipe, AuthShellComponent],
+  imports: [ReactiveFormsModule, TranslatePipe, AuthShellComponent, RouterLink],
   templateUrl: './register.component.html',
   styleUrl: './register.component.scss',
   changeDetection: ChangeDetectionStrategy.OnPush,
