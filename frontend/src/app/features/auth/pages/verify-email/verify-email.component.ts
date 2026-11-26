@@ -20,7 +20,7 @@ import { Location } from '@angular/common';
 import { AuthApiService } from '../../data-access/auth-api.service';
 import { AuthSessionService } from '../../data-access/auth-session.service';
 
-import { AuthShellComponent } from '../../../../shared/auth/components/auth-shell/auth-shell.component';
+import { AuthShellComponent } from '../../components/auth-shell/auth-shell.component';
 
 /**
  * Étape visuelle de confirmation de l'e-mail après inscription.

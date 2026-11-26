@@ -14,7 +14,7 @@ import { Router } from '@angular/router';
 
 import { AuthApiService } from '../../data-access/auth-api.service';
 
-import { AuthShellComponent } from '../../../../shared/auth/components/auth-shell/auth-shell.component';
+import { AuthShellComponent } from '../../components/auth-shell/auth-shell.component';
 
 export type RegistrationAccountType = 'particulier' | 'professionnel';
 export type RegistrationProfessionalRole = 'agent' | 'notaire';
