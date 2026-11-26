@@ -37,7 +37,7 @@ public static class DatabaseSeeder
         await SeedLookupAsync(db.StatutsSouscription, x => x.Libelle, s => new StatutSouscriptionEntity { Libelle = s },
             "Actif", "Expiré", "Annulé");
         await SeedLookupAsync(db.Provinces, x => x.Libelle, s => new ProvinceEntity { Libelle = s },
-            "Liège", "Namur", "Hainaut", "Brabant wallon", "Luxembourg");
+            "Liège", "Namur", "Hainaut", "Brabant wallon", "Luxembourg", "Flandre-Orientale");
         await SeedLookupAsync(db.TypesChauffage, x => x.Libelle, s => new TypeChauffageEntity { Libelle = s },
             "Gaz", "Mazout", "Électrique", "Pompe à chaleur", "Bois / pellets");
         await SeedLookupAsync(db.TypesConfiguration, x => x.Libelle, s => new TypeConfigurationEntity { Libelle = s },
@@ -187,6 +187,29 @@ public static class DatabaseSeeder
                 SurfaceJard = 780m, SurfaceTerrasse = 65m, NbChambres = 4, NbSdb = 2,
                 NbToilettes = 3, APiscine = true, AGarage = true, AParking = true,
                 AJardin = true, ATerrasse = true, ACheminee = true,
+                EstVisible = true, EstBrouillon = false, EstAdresseConfidentielle = false
+            },
+            new BienEntity
+            {
+                TypeBien = typesBien["Maison"],
+                TypeTransaction = typesTransactions["Vente"],
+                PebBien = pebs["A"],
+                Etat = etats["Bon état"],
+                EtatVente = etatsVente["À vendre"],
+                Province = provinces["Flandre-Orientale"],
+                TypeConfiguration = configurations["4 façades"],
+                TypeChauffage = chauffages["Pompe à chaleur"],
+
+                Titre = "Maison de standing avec piscine à Geraardsbergen (démo)",
+                Description = "Maison quatre façades spacieuse et lumineuse avec cuisine ouverte, vaste séjour, sept chambres, quatre salles de bains, terrasse et piscine. Le chauffage par pompe à chaleur, le PEB A et les généreux espaces extérieurs en font un bien familial confortable et économe en énergie.",
+                Rue = "Koppenhollestraat", Numero = "37",
+                CodePostal = "9500", Localite = "Geraardsbergen",
+                Prix = 1095000m, SurfaceHab = 429m, SurfaceTerrain = 2468m,
+                SurfaceJard = 2020m, SurfaceTerrasse = 180m, NbChambres = 7,
+                NbSdb = 4, NbToilettes = 6, NbEtage = 2, AnneeConstr = 2018,
+                ConsEnergie = 100m, NumPeb = "20260306-0003815052-RES-3",
+                AParking = true, AJardin = true, ATerrasse = true, ACave = true,
+                AGrenier = true, APiscine = true, ACheminee = true,
                 EstVisible = true, EstBrouillon = false, EstAdresseConfidentielle = false
             },
             new BienEntity
@@ -389,6 +412,15 @@ public static class DatabaseSeeder
             [
                 ("/images/properties/demo/villa.png", 0, "Façade de la villa quatre façades à Spa")
             ],
+            ["Maison de standing avec piscine à Geraardsbergen (démo)"] =
+            [
+                ("/images/properties/demo/maison-geraardsbergen-piscine.jpg", 0, "Façade arrière, terrasse et piscine de la maison à Geraardsbergen"),
+                ("/images/properties/demo/maison-geraardsbergen-cuisine.jpg", 1, "Cuisine ouverte et équipée de la maison à Geraardsbergen"),
+                ("/images/properties/demo/maison-geraardsbergen-salle-a-manger.jpg", 2, "Salle à manger lumineuse ouverte sur le séjour"),
+                ("/images/properties/demo/maison-geraardsbergen-salon-cheminee.jpg", 3, "Salon avec cheminée de la maison à Geraardsbergen"),
+                ("/images/properties/demo/maison-geraardsbergen-hall-escalier.jpg", 4, "Hall d'entrée et escalier de la maison"),
+                ("/images/properties/demo/maison-geraardsbergen-couloir.jpg", 5, "Couloir desservant les pièces de la maison")
+            ],
             ["Duplex 3 chambres à Namur (démo)"] =
             [
                 ("/images/properties/demo/duplex.png", 0, "Vue extérieure du duplex à Namur")
@@ -430,8 +462,14 @@ public static class DatabaseSeeder
         }
 
         var infoNegociable = await db.InformationsAnnexes.SingleAsync(x => x.Libelle == "Prix négociable");
+        var infoFrais = await db.InformationsAnnexes.SingleAsync(x => x.Libelle == "Frais à charge de l'acquéreur");
+        var infoRevenuCadastral = await db.InformationsAnnexes.SingleAsync(x => x.Libelle == "Revenu cadastral disponible");
         var infoCharges = await db.InformationsAnnexes.SingleAsync(x => x.Libelle == "Charges mensuelles");
+        var maisonGeraardsbergen = await db.Biens.SingleAsync(
+            x => x.Titre == "Maison de standing avec piscine à Geraardsbergen (démo)");
         await AddBienInfoIfMissing(db, maisonLiege.Id, infoNegociable.Id);
+        await AddBienInfoIfMissing(db, maisonGeraardsbergen.Id, infoFrais.Id);
+        await AddBienInfoIfMissing(db, maisonGeraardsbergen.Id, infoRevenuCadastral.Id);
         await AddBienInfoIfMissing(db, studioLiege.Id, infoCharges.Id);
 
         // 5) Quelques créneaux de visite. Insérés uniquement si aucun
