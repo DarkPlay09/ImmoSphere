@@ -199,6 +199,7 @@ builder.Services.AddCors(options =>
 builder.Services.AddScoped<IBienRepository, BienRepository>();
 builder.Services.AddScoped<IUserRepository, UserRepository>();
 builder.Services.AddScoped<IAgenceRepository, AgenceRepository>();
+builder.Services.AddScoped<IPasswordResetRepository, PasswordResetRepository>();
 builder.Services.AddScoped<IFaqRepository, FaqRepository>();
 
 // ==========================================

@@ -41,6 +41,8 @@ public class ApplicationDbContext : IdentityDbContext<ApplicationUser>
     public DbSet<BienInformationAnnexeEntity> BiensInformationsAnnexes => Set<BienInformationAnnexeEntity>();
     public DbSet<EmailConfirmationCodeEntity> EmailConfirmationCodes
         => Set<EmailConfirmationCodeEntity>();
+    public DbSet<PasswordResetCodeEntity> PasswordResetCodes
+        => Set<PasswordResetCodeEntity>();
 
     protected override void OnModelCreating(ModelBuilder modelBuilder)
     {

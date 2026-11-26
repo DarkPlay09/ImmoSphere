@@ -794,6 +794,32 @@ namespace ImmoSphere.Infrastructure.Persistence.Migrations
                     b.ToTable("informations_annexes", (string)null);
                 });
 
+            modelBuilder.Entity("ImmoSphere.Infrastructure.Persistence.Entities.PasswordResetCodeEntity", b =>
+                {
+                    b.Property<string>("UserId")
+                        .HasColumnType("text");
+
+                    b.Property<int>("Attempts")
+                        .HasColumnType("integer");
+
+                    b.Property<string>("CodeHash")
+                        .IsRequired()
+                        .HasColumnType("text");
+
+                    b.Property<DateTime>("CreatedAtUtc")
+                        .HasColumnType("timestamp with time zone");
+
+                    b.Property<DateTime>("ExpiresAtUtc")
+                        .HasColumnType("timestamp with time zone");
+
+                    b.Property<bool>("IsUsed")
+                        .HasColumnType("boolean");
+
+                    b.HasKey("UserId");
+
+                    b.ToTable("PasswordResetCodes", (string)null);
+                });
+
             modelBuilder.Entity("ImmoSphere.Infrastructure.Persistence.Entities.PebBienEntity", b =>
                 {
                     b.Property<int>("Id")
