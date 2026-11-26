@@ -118,53 +118,6 @@
   .peb--e { background: #ed8936; color: #ffffff; }
   .peb--f { background: #dc2626; color: #ffffff; }
 
-  // BOUTON COEUR
-  &__favorite {
-    display: inline-flex;
-    align-items: center;
-    justify-content: center;
-
-    width: 32px;
-    height: 32px;
-    padding: 0;
-    border: none;
-    border-radius: 50%;
-
-    background: rgba(255, 255, 255, 0.93);
-    color: $text;
-
-    cursor: pointer;
-    backdrop-filter: blur(6px);
-    box-shadow: 0 2px 6px rgba(0, 0, 0, 0.08);
-
-    transition:
-      color 0.2s ease,
-      background-color 0.2s ease,
-      transform 0.2s ease;
-
-    .material-symbols-outlined {
-      font-size: 18px;
-    }
-
-    &:hover {
-      color: $primary;
-      transform: scale(1.08);
-    }
-
-    &:focus-visible {
-      outline: 2px solid $primary;
-      outline-offset: 3px;
-    }
-
-    &--active {
-      color: $primary;
-
-      .material-symbols-outlined {
-        font-variation-settings: 'FILL' 1;
-      }
-    }
-  }
-
   // CONTENU
   &__body {
     display: flex;
@@ -302,8 +255,7 @@
 
 @media (prefers-reduced-motion: reduce) {
   .property-card,
-  .property-card__image,
-  .property-card__favorite {
+  .property-card__image {
     transition: none;
   }
 }

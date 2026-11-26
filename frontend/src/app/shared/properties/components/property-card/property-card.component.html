@@ -1,7 +1,6 @@
 
 <article class="property-card">
 
-  <!-- IMAGE DU BIEN -->
   <div class="property-card__media">
 
     <img
@@ -11,7 +10,6 @@
       loading="lazy"
     />
 
-    <!-- BADGE VENTE / LOCATION -->
     <span
       class="property-card__transaction"
       [class.property-card__transaction--rent]="property().transactionType === 'rent'"
@@ -19,7 +17,6 @@
       {{ property().transactionType === 'sale' ? 'À VENDRE' : 'À LOUER' }}
     </span>
 
-    <!-- PEB ET FAVORIS -->
     <div class="property-card__top-right">
 
       @if (property().peb; as peb) {
@@ -36,26 +33,18 @@
         </span>
       }
 
-      <button
-        type="button"
-        class="property-card__favorite"
-        [class.property-card__favorite--active]="isFavorite()"
-        [attr.aria-label]="isFavorite()
-          ? 'Retirer des favoris'
-          : 'Ajouter aux favoris'"
-        [attr.aria-pressed]="isFavorite()"
-        (click)="toggleFavorite()"
-      >
-        <span class="material-symbols-outlined" aria-hidden="true">
-          {{ isFavorite() ? 'favorite' : 'favorite_border' }}
-        </span>
-      </button>
+      @if (favoritesEnabled()) {
+        <app-property-favorite-button
+          [propertyId]="property().id"
+          size="regular"
+          (loginRequested)="onLoginRequested()"
+        />
+      }
 
     </div>
 
   </div>
 
-  <!-- INFORMATIONS -->
   <div class="property-card__body">
 
     <div class="property-card__details">
@@ -72,7 +61,6 @@
         {{ property().title }}
       </h3>
 
-      <!-- ADRESSE PUBLIQUE -->
       <p class="property-card__location">
 
         <span class="material-symbols-outlined" aria-hidden="true">
@@ -94,7 +82,6 @@
 
     </div>
 
-    <!-- BANDEAU DES CARACTÉRISTIQUES -->
     <div class="property-card__features">
 
       <span class="property-card__feature">
