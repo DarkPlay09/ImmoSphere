@@ -120,5 +120,10 @@ public sealed class BienControllerTest
 
             return Task.FromResult(_bien!);
         }
+
+        public Task<ResultatRechercheBiens> SearchAsync(CriteresRechercheBiens criteres, CancellationToken cancellationToken)
+        {
+            throw new NotImplementedException();
+        }
     }
 }
