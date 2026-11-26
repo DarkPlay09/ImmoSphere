@@ -1,5 +1,5 @@
 import { Routes } from '@angular/router';
-import { MainLayoutComponent } from './layout/MainLayout/main-layout.component';
+import { MainLayoutComponent } from './layout/main-layout/main-layout.component';
 
 export const routes: Routes = [
   {
@@ -33,41 +33,41 @@ export const routes: Routes = [
       {
         path: '',
         loadComponent: () =>
-          import('./features/pages/home/home.component').then(
+          import('./features/home/pages/home/home.component').then(
             (m) => m.HomeComponent),
       },
       {
         path: 'properties',
         loadComponent: () =>
-          import('./features/pages/properties-list/properties-list.component').then(
+          import('./features/properties/pages/list/properties-list.component').then(
             (m) => m.PropertiesListComponent,
           ),
       },
       {
         path: 'search',
         loadComponent: () =>
-          import('./features/pages/properties-search/properties-search').then(
+          import('./features/properties/pages/search/properties-search').then(
             (m) => m.PropertiesSearchComponent,
           ),
       },
       {
         path: 'agences',
         loadComponent: () =>
-          import('./features/pages/agences-list/agences-list.component').then(
+          import('./features/agencies/pages/list/agences-list.component').then(
             (m) => m.AgencesListComponent,
           ),
       },
       {
         path: 'agences/:id',
         loadComponent: () =>
-          import('./features/pages/agence-detail/agence-detail.component').then(
+          import('./features/agencies/pages/detail/agence-detail.component').then(
             (m) => m.AgenceDetailComponent,
           ),
       },
       {
         path: 'faq',
         loadComponent: () =>
-          import('./features/pages/faq/faq.component').then(
+          import('./features/faq/pages/faq/faq.component').then(
             (m) => m.FaqComponent,
           ),
       },

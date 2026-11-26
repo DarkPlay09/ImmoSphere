@@ -4,7 +4,7 @@ import { provideRouter } from '@angular/router';
 import { provideTranslateService } from '@ngx-translate/core';
 import { beforeEach, describe, expect, it, vi } from 'vitest';
 
-import { AuthShellComponent } from '../../../../shared/auth/components/auth-shell/auth-shell.component';
+import { AuthShellComponent } from '../../components/auth-shell/auth-shell.component';
 import { VerifyEmailComponent } from './verify-email.component';
 
 @Component({ selector: 'app-auth-shell', standalone: true, template: '<ng-content />' })
