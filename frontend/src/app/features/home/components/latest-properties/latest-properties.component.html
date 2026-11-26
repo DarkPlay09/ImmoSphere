@@ -69,7 +69,10 @@
 
       } @else {
         @for (property of filteredProperties().slice(0, 4); track property.id) {
-          <app-property-card [property]="property" />
+          <app-property-card
+            [property]="property"
+            [favoritesEnabled]="true"
+          />
         } @empty {
           <p class="latest-properties__empty">
             {{ 'home.latest.empty' | translate }}

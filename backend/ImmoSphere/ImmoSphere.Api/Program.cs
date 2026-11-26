@@ -200,6 +200,7 @@ builder.Services.AddScoped<IBienRepository, BienRepository>();
 builder.Services.AddScoped<IUserRepository, UserRepository>();
 builder.Services.AddScoped<IAgenceRepository, AgenceRepository>();
 builder.Services.AddScoped<IFaqRepository, FaqRepository>();
+builder.Services.AddScoped<IFavoriRepository, FavoriRepository>();
 
 // ==========================================
 // Inscription des services
@@ -210,6 +211,7 @@ builder.Services.AddScoped<IRegisterService, RegisterService>();
 builder.Services.AddScoped<IEmailConfirmationService, EmailConfirmationService>();
 builder.Services.AddScoped<IAgenceService, AgenceService>();
 builder.Services.AddScoped<IFaqService, FaqService>();
+builder.Services.AddScoped<IFavoriService, FavoriService>();
 
 // ==========================================
 // CONSTRUCTION DE L'APPLICATION

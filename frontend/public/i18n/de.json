@@ -394,5 +394,16 @@
       "button": "Kontakt aufnehmen",
       "unavailable": "Demnächst verfügbar"
     }
+  },
+  "favorites": {
+    "add": "Zu Favoriten hinzufügen",
+    "remove": "Aus Favoriten entfernen",
+    "loading": "Favoriten werden geladen",
+    "loginRequired": "Melden Sie sich an, um diese Immobilie zu Ihren Favoriten hinzuzufügen",
+    "retryLoad": "Favoriten erneut laden",
+    "retrySession": "Anmeldestatus erneut prüfen",
+    "updateFailed": "Dieser Favorit konnte nicht geändert werden. Versuchen Sie es erneut.",
+    "openLogin": "Melden Sie sich an, um Ihre Favoriten aufzurufen",
+    "pagePending": "Meine Favoriten: {{count}}. Die Favoritenseite ist bald verfügbar."
   }
 }

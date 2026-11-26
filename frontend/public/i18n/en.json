@@ -394,5 +394,16 @@
       "button": "Contact us",
       "unavailable": "Coming soon"
     }
+  },
+  "favorites": {
+    "add": "Add to favorites",
+    "remove": "Remove from favorites",
+    "loading": "Loading favorites",
+    "loginRequired": "Sign in to add this property to your favorites",
+    "retryLoad": "Retry loading favorites",
+    "retrySession": "Retry checking your session",
+    "updateFailed": "Unable to update this favorite. Please try again.",
+    "openLogin": "Sign in to access your favorites",
+    "pagePending": "My favorites: {{count}}. The favorites page will be available soon."
   }
 }

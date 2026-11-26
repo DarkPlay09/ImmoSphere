@@ -1,0 +1,41 @@
+﻿<button
+  type="button"
+  class="favorite-button"
+  [class.favorite-button--small]="size() === 'small'"
+  [class.favorite-button--large]="size() === 'large'"
+  [class.favorite-button--active]="isFavorite()"
+  [class.favorite-button--pending]="isPending()"
+  [class.favorite-button--error]="hasFailed()"
+  [attr.aria-pressed]="isFavorite()"
+  [attr.aria-busy]="isPending()"
+  [attr.aria-label]="labelKey() | translate"
+  [title]="
+    (hasFailed()
+      ? 'favorites.updateFailed'
+      : labelKey()) | translate
+  "
+  [disabled]="isDisabled()"
+  (click)="toggleFavorite($event)"
+>
+  @if (isPending()) {
+    <span
+      class="material-symbols-outlined favorite-button__spinner"
+      aria-hidden="true"
+    >
+      progress_activity
+    </span>
+  } @else {
+    <span
+      class="material-symbols-outlined"
+      aria-hidden="true"
+    >
+      {{ isFavorite() ? 'favorite' : 'favorite_border' }}
+    </span>
+  }
+</button>
+
+@if (hasFailed()) {
+  <span class="favorite-button__status" role="alert">
+    {{ 'favorites.updateFailed' | translate }}
+  </span>
+}

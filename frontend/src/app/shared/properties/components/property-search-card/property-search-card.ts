@@ -1,25 +1,27 @@
-import { ChangeDetectionStrategy, Component, input, model, output } from '@angular/core';
-
+import { ChangeDetectionStrategy, Component, inject, input, model, output } from '@angular/core';
 import { PropertySearchResult } from '../../models/property-search-result.model';
+import { Router } from '@angular/router';
+import { PropertyFavoriteButtonComponent } from '../property-favorite-button/property-favorite-button.component';
 
 @Component({
   selector: 'app-property-search-card',
   standalone: true,
+  imports: [PropertyFavoriteButtonComponent],
   templateUrl: './property-search-card.html',
   styleUrl: './property-search-card.scss',
   changeDetection: ChangeDetectionStrategy.OnPush,
 })
 export class PropertySearchCardComponent {
+  private readonly router = inject(Router);
+
   readonly property = input.required<PropertySearchResult>();
 
   readonly selected = input(false);
 
-  readonly favorite = model(false);
-
   readonly detailsRequested = output<number>();
 
-  toggleFavorite(): void {
-    this.favorite.update((value) => !value);
+  onLoginRequested(): void {
+    void this.router.navigate(['/login']);
   }
 
   openDetails(): void {
