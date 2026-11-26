@@ -18,6 +18,8 @@ export class PropertyGalleryComponent {
     [...this.images()].sort((first, second) => first.ordre - second.ordre),
   );
 
+  readonly displayedImages = computed(() => this.orderedImages().slice(0, 5));
+
   toggleFavorite(): void {
     this.favorite.update((favorite) => !favorite);
   }

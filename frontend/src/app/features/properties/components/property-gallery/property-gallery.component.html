@@ -1,11 +1,13 @@
 <section
   class="gallery"
-  [class.gallery--single]="orderedImages().length === 1"
-  [class.gallery--double]="orderedImages().length === 2"
+  [class.gallery--single]="displayedImages().length === 1"
+  [class.gallery--double]="displayedImages().length === 2"
+  [class.gallery--triple]="displayedImages().length === 3"
+  [class.gallery--quadruple]="displayedImages().length === 4"
   [attr.aria-label]="'propertyDetail.gallery.label' | translate"
 >
-  @if (orderedImages().length > 0) {
-    @for (image of orderedImages().slice(0, 5); track image.url; let index = $index) {
+  @if (displayedImages().length > 0) {
+    @for (image of displayedImages(); track image.url; let index = $index) {
       <figure class="gallery__item" [class.gallery__item--main]="index === 0">
         <img [src]="image.url" [alt]="image.texteAlternatif" />
       </figure>
