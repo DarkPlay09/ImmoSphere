@@ -137,6 +137,16 @@
         "resend": "Resend email",
         "backendPending": "Preview: no email has been sent. Email delivery will be available once the API is connected."
       },
+      "resetPassword": {
+        "title": "Choose a new password",
+        "subtitle": "For your account security, use a password that is different from your previous passwords.",
+        "password": "New password",
+        "confirmPassword": "Confirm your new password",
+        "submit": "Change my password",
+        "invalidLink": "The password reset link is incomplete. Please request a new link.",
+        "requestNewLink": "Request a new link",
+        "backendPending": "The form is valid. No password has been changed: API integration is still pending."
+      },
       "errors": {
         "required": "This field is required.",
         "professionalRole": "Please select your profession.",

@@ -137,6 +137,16 @@
         "resend": "E-mail opnieuw verzenden",
         "backendPending": "Voorbeeldweergave: er is geen e-mail verzonden. Verzending is beschikbaar zodra de API is gekoppeld."
       },
+      "resetPassword": {
+        "title": "Kies een nieuw wachtwoord",
+        "subtitle": "Gebruik voor de veiligheid van uw account een ander wachtwoord dan uw vorige wachtwoorden.",
+        "password": "Nieuw wachtwoord",
+        "confirmPassword": "Bevestig het nieuwe wachtwoord",
+        "submit": "Mijn wachtwoord wijzigen",
+        "invalidLink": "De herstellink is onvolledig. Vraag een nieuwe link aan.",
+        "requestNewLink": "Een nieuwe link aanvragen",
+        "backendPending": "Het formulier is geldig. Er is geen wachtwoord gewijzigd: de API moet nog worden gekoppeld."
+      },
       "errors": {
         "required": "Dit veld is verplicht.",
         "professionalRole": "Kies uw beroep.",

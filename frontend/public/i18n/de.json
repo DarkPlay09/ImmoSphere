@@ -137,6 +137,16 @@
         "resend": "E-Mail erneut senden",
         "backendPending": "Vorschau: Es wurde keine E-Mail versendet. Der Versand ist nach der API-Anbindung verfügbar."
       },
+      "resetPassword": {
+        "title": "Wählen Sie ein neues Passwort",
+        "subtitle": "Verwenden Sie zur Sicherheit Ihres Kontos ein anderes Passwort als Ihre bisherigen Passwörter.",
+        "password": "Neues Passwort",
+        "confirmPassword": "Neues Passwort bestätigen",
+        "submit": "Mein Passwort ändern",
+        "invalidLink": "Der Link zum Zurücksetzen des Passworts ist unvollständig. Bitte fordern Sie einen neuen Link an.",
+        "requestNewLink": "Neuen Link anfordern",
+        "backendPending": "Das Formular ist gültig. Es wurde kein Passwort geändert: Die API-Anbindung steht noch aus."
+      },
       "errors": {
         "required": "Dieses Feld ist erforderlich.",
         "professionalRole": "Bitte waehlen Sie Ihren Beruf.",
