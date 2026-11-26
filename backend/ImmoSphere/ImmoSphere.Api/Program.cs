@@ -211,6 +211,7 @@ builder.Services.AddScoped<IRegisterService, RegisterService>();
 builder.Services.AddScoped<IEmailConfirmationService, EmailConfirmationService>();
 builder.Services.AddScoped<IAgenceService, AgenceService>();
 builder.Services.AddScoped<IFaqService, FaqService>();
+builder.Services.AddScoped<IFavoriService, FavoriService>();
 
 // ==========================================
 // CONSTRUCTION DE L'APPLICATION
