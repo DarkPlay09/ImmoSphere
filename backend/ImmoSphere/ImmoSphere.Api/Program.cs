@@ -200,6 +200,7 @@ builder.Services.AddScoped<IBienRepository, BienRepository>();
 builder.Services.AddScoped<IUserRepository, UserRepository>();
 builder.Services.AddScoped<IAgenceRepository, AgenceRepository>();
 builder.Services.AddScoped<IFaqRepository, FaqRepository>();
+builder.Services.AddScoped<IFavoriRepository, FavoriRepository>();
 
 // ==========================================
 // Inscription des services
