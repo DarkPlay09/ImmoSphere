@@ -22,15 +22,18 @@ export const routes: Routes = [
   {
     path: 'register',
     loadComponent: () =>
-      import('./features/auth/pages/register/register.component').then(
-        (m) => m.RegisterComponent,
-      ),
+      import('./features/auth/pages/register/register.component').then((m) => m.RegisterComponent),
   },
   {
     path: 'login',
     loadComponent: () =>
-      import('./features/auth/pages/login/login.component').then(
-        (m) => m.LoginComponent,
+      import('./features/auth/pages/login/login.component').then((m) => m.LoginComponent),
+  },
+  {
+    path: 'forgot-password',
+    loadComponent: () =>
+      import('./features/auth/pages/forgot-password/forgot-password.component').then(
+        (m) => m.ForgotPasswordComponent,
       ),
   },
   {
@@ -40,8 +43,7 @@ export const routes: Routes = [
       {
         path: '',
         loadComponent: () =>
-          import('./features/pages/home/home.component').then(
-            (m) => m.HomeComponent),
+          import('./features/pages/home/home.component').then((m) => m.HomeComponent),
       },
       {
         path: 'properties',

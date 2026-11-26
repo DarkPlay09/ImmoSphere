@@ -120,6 +120,15 @@
         "digit": "Een cijfer",
         "lower": "Een kleine letter"
       },
+      "forgotPassword": {
+        "title": "Wachtwoord vergeten?",
+        "subtitle": "Voer het e-mailadres van uw account in. We sturen u een beveiligde link om uw wachtwoord opnieuw in te stellen.",
+        "email": "E-mailadres van uw account",
+        "emailPlaceholder": "email@voorbeeld.be",
+        "submit": "Link verzenden",
+        "backToLogin": "Terug naar aanmelden",
+        "backendPending": "Wachtwoordherstel is beschikbaar zodra de API is gekoppeld."
+      },
       "errors": {
         "required": "Dit veld is verplicht.",
         "professionalRole": "Kies uw beroep.",

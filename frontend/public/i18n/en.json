@@ -120,6 +120,15 @@
         "digit": "One number",
         "lower": "One lowercase"
       },
+      "forgotPassword": {
+        "title": "Forgot your password?",
+        "subtitle": "Enter the email address associated with your account. We will send you a secure link to reset your password.",
+        "email": "Account email address",
+        "emailPlaceholder": "email@example.be",
+        "submit": "Send the link",
+        "backToLogin": "Back to sign in",
+        "backendPending": "Password recovery will be available once the API is connected."
+      },
       "errors": {
         "required": "This field is required.",
         "professionalRole": "Please select your profession.",

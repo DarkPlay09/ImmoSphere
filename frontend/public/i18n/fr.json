@@ -130,6 +130,15 @@
         "server": "Une erreur est survenue lors de l'inscription. Veuillez réessayer."
       }
     },
+    "forgotPassword": {
+      "title": "Mot de passe oublié ?",
+      "subtitle": "Indiquez l’adresse e-mail associée à votre compte. Nous vous enverrons un lien sécurisé pour réinitialiser votre mot de passe.",
+      "email": "Adresse e-mail du compte",
+      "emailPlaceholder": "email@exemple.be",
+      "submit": "Envoyer le lien",
+      "backToLogin": "Retour à la connexion",
+      "backendPending": "La récupération du mot de passe sera disponible après l’intégration de l’API."
+    },
     "verifyEmail": {
       "eyebrow": "Dernière étape",
       "title": "Vérifiez votre adresse e-mail",
