@@ -378,6 +378,8 @@
         "terrace": "Terrasse",
         "floor": "Etage",
         "elevator": "Aufzug",
+        "landArea": "Grundstücksfläche",
+        "usableArea": "Nutzfläche",
         "peb": "Energieausweis",
         "consumption": "Verbrauch"
       }

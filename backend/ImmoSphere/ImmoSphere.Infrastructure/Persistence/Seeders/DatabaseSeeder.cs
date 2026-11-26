@@ -147,7 +147,7 @@ public static class DatabaseSeeder
                 Description = "Appartement proche des commerces, balcon et ascenseur.",
                 Rue = "Boulevard d'Avroy", Numero = "85", Boite = "12",
                 CodePostal = "4000", Localite = "Liège",
-                Prix = 219000m, SurfaceHab = 88m, Etage = 3, NbChambres = 2,
+                Prix = 219000m, SurfaceHab = 88m, Etage = 3, NbEtage = 1, NbChambres = 2,
                 NbSdb = 1, NbToilettes = 1, ABalcon = true, AAscenseur = true,
                 EstVisible = true, EstBrouillon = false, EstAdresseConfidentielle = false
             },
@@ -373,6 +373,9 @@ public static class DatabaseSeeder
                 existant.Province ??= bien.Province;
                 existant.TypeConfiguration ??= bien.TypeConfiguration;
                 existant.TypeChauffage ??= bien.TypeChauffage;
+
+                existant.Etage = bien.Etage;
+                existant.NbEtage = bien.NbEtage;
             }
         }
         await db.SaveChangesAsync();

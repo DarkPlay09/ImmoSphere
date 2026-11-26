@@ -378,6 +378,8 @@
         "terrace": "Terrasse",
         "floor": "Étage",
         "elevator": "Ascenseur",
+        "landArea": "Surface du terrain",
+        "usableArea": "Surface utile",
         "peb": "PEB",
         "consumption": "Consommation"
       }

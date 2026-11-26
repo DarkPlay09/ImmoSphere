@@ -22,16 +22,16 @@
 
   <dl class="summary__facts">
     @for (fact of facts(); track fact.labelKey) {
-      <div class="summary__fact">
+      <div class="summary__fact" [class.summary__fact--peb]="fact.peb">
         @if (fact.icon) {
           <img class="summary__fact-icon" [src]="fact.icon" alt="" />
         }
 
         @if (fact.peb) {
           <dd class="summary__peb">{{ fact.value }}</dd>
-          <dt>
-            {{ fact.valueKey | translate: fact.valueParams }}
-          </dt>
+          @if (fact.valueKey) {
+            <dt>{{ fact.valueKey | translate: fact.valueParams }}</dt>
+          }
         } @else {
           <dd>
             @if (fact.valueKey) {

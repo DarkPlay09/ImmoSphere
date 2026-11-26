@@ -378,6 +378,8 @@
         "terrace": "Terras",
         "floor": "Verdieping",
         "elevator": "Lift",
+        "landArea": "Perceeloppervlakte",
+        "usableArea": "Bruikbare oppervlakte",
         "peb": "EPC",
         "consumption": "Verbruik"
       }

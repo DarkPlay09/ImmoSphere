@@ -378,6 +378,8 @@
         "terrace": "Terrace",
         "floor": "Floor",
         "elevator": "Lift",
+        "landArea": "Land area",
+        "usableArea": "Usable area",
         "peb": "EPC",
         "consumption": "Consumption"
       }
