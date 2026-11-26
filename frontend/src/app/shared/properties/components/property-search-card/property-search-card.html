@@ -30,18 +30,12 @@
       }
     </div>
 
-    <button
-      type="button"
+    <app-property-favorite-button
       class="search-card__favorite"
-      [class.search-card__favorite--active]="favorite()"
-      [attr.aria-pressed]="favorite()"
-      [attr.aria-label]="favorite() ? 'Retirer des favoris' : 'Ajouter aux favoris'"
-      (click)="toggleFavorite()"
-    >
-      <span class="material-symbols-outlined" aria-hidden="true">
-        {{ favorite() ? 'favorite' : 'favorite_border' }}
-      </span>
-    </button>
+      [propertyId]="property().id"
+      size="small"
+      (loginRequested)="onLoginRequested()"
+    />
 
     @if (property().photoCount; as count) {
       <span class="search-card__photo-count">

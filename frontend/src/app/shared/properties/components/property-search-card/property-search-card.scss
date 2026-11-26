@@ -114,35 +114,6 @@
     top: 10px;
     right: 10px;
     z-index: 3;
-
-    display: flex;
-    align-items: center;
-    justify-content: center;
-
-    width: 28px;
-    height: 28px;
-    padding: 0;
-
-    border: none;
-    border-radius: 50%;
-    background: rgba(255, 255, 255, 0.9);
-    color: $primary;
-
-    backdrop-filter: blur(4px);
-    cursor: pointer;
-
-    .material-symbols-outlined {
-      font-size: 17px;
-    }
-
-    &--active .material-symbols-outlined {
-      font-variation-settings: 'FILL' 1;
-    }
-
-    &:focus-visible {
-      outline: 2px solid $primary;
-      outline-offset: 2px;
-    }
   }
 
   // COMPTEUR PHOTOS
