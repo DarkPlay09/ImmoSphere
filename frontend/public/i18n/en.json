@@ -402,6 +402,8 @@
     "loginRequired": "Sign in to add this property to your favorites",
     "retryLoad": "Retry loading favorites",
     "retrySession": "Retry checking your session",
-    "updateFailed": "Unable to update this favorite. Please try again."
+    "updateFailed": "Unable to update this favorite. Please try again.",
+    "openLogin": "Sign in to access your favorites",
+    "pagePending": "My favorites: {{count}}. The favorites page will be available soon."
   }
 }

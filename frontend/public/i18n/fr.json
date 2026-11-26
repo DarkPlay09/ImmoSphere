@@ -402,6 +402,8 @@
     "loginRequired": "Connectez-vous pour ajouter ce bien aux favoris",
     "retryLoad": "Réessayer de charger les favoris",
     "retrySession": "Réessayer de vérifier la connexion",
-    "updateFailed": "Impossible de modifier ce favori. Réessayez."
+    "updateFailed": "Impossible de modifier ce favori. Réessayez.",
+    "openLogin": "Connectez-vous pour accéder à vos favoris",
+    "pagePending": "Mes favoris : {{count}}. L’espace favoris sera bientôt disponible."
   }
 }

@@ -109,6 +109,20 @@
     img {
       display: block;
     }
+
+    &:hover:not(:disabled) {
+      background: #f5f2f9;
+      color: #6c2d6b;
+    }
+
+    &:disabled {
+      cursor: default;
+    }
+
+    &[aria-busy='true'] {
+      opacity: 0.6;
+      cursor: wait;
+    }
   }
 
   &__favorites-count {
@@ -120,7 +134,8 @@
     justify-content: center;
     min-width: 13px;
     height: 13px;
-    padding: 0 2px;
+    padding: 0 4px;
+    white-space: nowrap;
     border-radius: 9999px;
     background-color: #6c2d6b;
     color: #ffffff;

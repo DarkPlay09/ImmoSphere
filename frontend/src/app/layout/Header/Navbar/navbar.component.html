@@ -41,20 +41,28 @@
         class="navbar__favorites"
         type="button"
         [attr.aria-label]="
-          isLoggedIn()
-            ? ('navbar.favoritesWithCount' | translate: { count: favoritesCount() })
-            : ('navbar.favorites' | translate)
-        "
+    favoritesLabelKey() | translate: { count: favoritesCount() }
+  "
+        [attr.aria-busy]="favoritesLoading()"
+        [title]="
+    favoritesLabelKey() | translate: { count: favoritesCount() }
+  "
+        [disabled]="favoritesDisabled()"
+        (click)="onFavoritesRequested()"
       >
         <img src="icons/heart.svg" alt="" />
 
-        @if (isLoggedIn()) {
+        @if (
+          isLoggedIn() &&
+          favoritesReady() &&
+          favoritesCount() > 0
+          ) {
           <span
             class="navbar__favorites-count"
             aria-hidden="true"
           >
-            {{ favoritesCount() }}
-          </span>
+      {{ favoritesCount() > 99 ? '99+' : favoritesCount() }}
+    </span>
         }
       </button>
 

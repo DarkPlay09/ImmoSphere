@@ -402,6 +402,8 @@
     "loginRequired": "Meld u aan om dit pand aan uw favorieten toe te voegen",
     "retryLoad": "Favorieten opnieuw laden",
     "retrySession": "Aanmeldstatus opnieuw controleren",
-    "updateFailed": "Deze favoriet kon niet worden gewijzigd. Probeer opnieuw."
+    "updateFailed": "Deze favoriet kon niet worden gewijzigd. Probeer opnieuw.",
+    "openLogin": "Meld u aan om uw favorieten te bekijken",
+    "pagePending": "Mijn favorieten: {{count}}. De favorietenpagina is binnenkort beschikbaar."
   }
 }
