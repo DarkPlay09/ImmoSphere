@@ -422,6 +422,15 @@ public class AuthController : ControllerBase
         });
     }
 
+    /**
+     *   Route : /api/auth/verify-reset-code
+     *   Ayant comme paramètres :
+     *      email (str)
+     *      code (str)
+     *
+     *   Il faut appeler cette route lorsque l'utilisateur entre le code de confirmation
+     *   envoyé par mail (Réinitialisation du mot de passe)
+     */
     [HttpPost("verify-reset-code")]
     public async Task<IActionResult> VerifyResetCode(
         [FromBody] VerifyResetCodeRequestDto request)
@@ -455,6 +464,15 @@ public class AuthController : ControllerBase
         }
     }
 
+    /**
+     *   Route : /api/auth/reset-password
+     *   Ayant comme paramètres :
+     *      email (str)
+     *      code (str)
+     *      newpassword (str)
+     *
+     *   Il faut appeler cette route quand l'utilisateur a entré son nouveau mots de passe (ainsi que sa répétition)
+     */
     [HttpPost("reset-password")]
     public async Task<IActionResult> ResetPassword(
         [FromBody] ConfirmResetPasswordRequestDto request)
