@@ -197,6 +197,7 @@
       "favoriteAdd": "Add the agency to favourites",
       "favoriteRemove": "Remove the agency from favourites",
       "breadcrumbLabel": "Breadcrumb",
+      "servicesLabel": "Property services",
       "home": "Home",
       "agencies": "Agencies",
       "loading": "Loading agency…",
@@ -356,6 +357,38 @@
         "text": "This property cannot be loaded at the moment.",
         "action": "Return to home"
       }
+    },
+    "common": {
+      "comingSoon": "Coming soon"
+    },
+    "appointment": {
+      "title": "Schedule a viewing",
+      "description": "You will soon be able to choose a date to visit this property."
+    },
+    "virtualTour": {
+      "title": "Immersive 360° tour",
+      "description": "Explore the space and layout from home in ultra-high definition.",
+      "placeholder": "The immersive tour area is ready."
+    },
+    "loanSimulation": {
+      "title": "Mortgage simulation",
+      "description": "You will soon be able to estimate the monthly payment for this property."
+    },
+    "location": {
+      "title": "Location & Neighbourhood",
+      "description": "The address and nearby points of interest will be displayed here.",
+      "mapPlaceholder": "Neighbourhood map area"
+    },
+    "connectivity": {
+      "title": "Connectivity & High-speed Internet",
+      "description": "Fibre and internet coverage information for the property will be displayed here."
+    },
+    "agent": {
+      "title": "Property agent",
+      "description": "The agent’s contact and professional information will be displayed here."
+    },
+    "reviews": {
+      "title": "Recent buyer reviews"
     },
     "gallery": {
       "label": "Property photos",

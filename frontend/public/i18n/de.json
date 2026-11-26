@@ -197,6 +197,7 @@
       "favoriteAdd": "Agentur zu den Favoriten hinzufügen",
       "favoriteRemove": "Agentur aus den Favoriten entfernen",
       "breadcrumbLabel": "Brotkrümelnavigation",
+      "servicesLabel": "Dienstleistungen zur Immobilie",
       "home": "Startseite",
       "agencies": "Agenturen",
       "loading": "Agentur wird geladen…",
@@ -356,6 +357,38 @@
         "text": "Diese Immobilie kann derzeit nicht geladen werden.",
         "action": "Zurück zur Startseite"
       }
+    },
+    "common": {
+      "comingSoon": "Demnächst verfügbar"
+    },
+    "appointment": {
+      "title": "Besichtigung planen",
+      "description": "Bald können Sie einen Termin zur Besichtigung dieser Immobilie wählen."
+    },
+    "virtualTour": {
+      "title": "Immersive 360°-Besichtigung",
+      "description": "Erkunden Sie Räume und Aufteilung von zu Hause aus in ultrahoher Auflösung.",
+      "placeholder": "Der Bereich für die immersive Besichtigung ist vorbereitet."
+    },
+    "loanSimulation": {
+      "title": "Kreditsimulation",
+      "description": "Bald können Sie die monatliche Rate für diese Immobilie schätzen."
+    },
+    "location": {
+      "title": "Lage & Umgebung",
+      "description": "Die Adresse und nahegelegene Einrichtungen werden hier angezeigt.",
+      "mapPlaceholder": "Bereich für die Umgebungskarte"
+    },
+    "connectivity": {
+      "title": "Konnektivität & Highspeed-Internet",
+      "description": "Informationen zu Glasfaser und Internetabdeckung der Immobilie werden hier angezeigt."
+    },
+    "agent": {
+      "title": "Immobilienmakler",
+      "description": "Kontakt- und Berufsinformationen des Maklers werden hier angezeigt."
+    },
+    "reviews": {
+      "title": "Aktuelle Käuferbewertungen"
     },
     "gallery": {
       "label": "Fotos der Immobilie",

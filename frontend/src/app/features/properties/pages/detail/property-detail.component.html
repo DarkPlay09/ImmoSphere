@@ -25,13 +25,30 @@
           <app-property-gallery [images]="currentState.property.images" />
           <app-property-summary [property]="currentState.property" />
 
-          <div class="property-detail__main-column">
-            <section class="property-detail__description" aria-labelledby="description-title">
-              <h2 id="description-title">{{ 'propertyDetail.page.description' | translate }}</h2>
-              <p>{{ currentState.property.description }}</p>
-            </section>
+          <div class="property-detail__details-layout">
+            <div class="property-detail__main-column">
+              <section class="property-detail__description" aria-labelledby="description-title">
+                <h2 id="description-title">
+                  {{ 'propertyDetail.page.description' | translate }}
+                </h2>
+                <p>{{ currentState.property.description }}</p>
+              </section>
 
-            <app-property-characteristics [property]="currentState.property" />
+              <app-property-characteristics [property]="currentState.property" />
+              <app-property-virtual-tour />
+              <app-property-location />
+              <app-property-connectivity />
+              <app-property-agent />
+              <app-property-reviews />
+            </div>
+
+            <aside
+              class="property-detail__sidebar"
+              [attr.aria-label]="'propertyDetail.page.servicesLabel' | translate"
+            >
+              <app-property-appointment-card />
+              <app-property-loan-simulation />
+            </aside>
           </div>
         </div>
       }

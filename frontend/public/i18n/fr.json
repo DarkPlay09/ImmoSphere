@@ -197,6 +197,7 @@
       "favoriteAdd": "Ajouter l’agence aux favoris",
       "favoriteRemove": "Retirer l’agence des favoris",
       "breadcrumbLabel": "Fil d’Ariane",
+      "servicesLabel": "Services liés au bien",
       "home": "Accueil",
       "agencies": "Agences",
       "loading": "Chargement de l’agence…",
@@ -356,6 +357,38 @@
         "text": "Impossible de charger ce bien pour le moment.",
         "action": "Revenir à l’accueil"
       }
+    },
+    "common": {
+      "comingSoon": "Bientôt disponible"
+    },
+    "appointment": {
+      "title": "Planifier une visite",
+      "description": "Choisissez prochainement une date pour découvrir ce bien."
+    },
+    "virtualTour": {
+      "title": "Visite immersive 360°",
+      "description": "Explorez les volumes et l’agencement depuis chez vous en ultra-haute définition.",
+      "placeholder": "L’emplacement de la visite immersive est prêt."
+    },
+    "loanSimulation": {
+      "title": "Simulation de prêt",
+      "description": "Estimez prochainement votre mensualité pour ce bien."
+    },
+    "location": {
+      "title": "Localisation & Quartier",
+      "description": "L’adresse et les points d’intérêt du quartier seront affichés ici.",
+      "mapPlaceholder": "Emplacement de la carte du quartier"
+    },
+    "connectivity": {
+      "title": "Connectivité & Très Haut Débit",
+      "description": "Les informations sur la fibre et la couverture internet du bien seront affichées ici."
+    },
+    "agent": {
+      "title": "Agent du bien",
+      "description": "Les coordonnées et informations professionnelles de l’agent seront affichées ici."
+    },
+    "reviews": {
+      "title": "Avis récents des acquéreurs"
     },
     "gallery": {
       "label": "Photos du bien",

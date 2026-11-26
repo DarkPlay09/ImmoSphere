@@ -7,9 +7,16 @@ import { catchError, map, of, startWith, switchMap } from 'rxjs';
 
 import { PropertyDetailApiService } from '../../data-access/property-detail-api.service';
 import { BienDetailResponseDto } from '../../data-access/property-detail-response.model';
+import { PropertyAgentComponent } from '../../components/property-agent/property-agent.component';
 import { PropertyCharacteristicsComponent } from '../../components/property-characteristics/property-characteristics.component';
+import { PropertyAppointmentCardComponent } from '../../components/property-appointment-card/property-appointment-card.component';
+import { PropertyConnectivityComponent } from '../../components/property-connectivity/property-connectivity.component';
 import { PropertyGalleryComponent } from '../../components/property-gallery/property-gallery.component';
+import { PropertyLoanSimulationComponent } from '../../components/property-loan-simulation/property-loan-simulation.component';
+import { PropertyLocationComponent } from '../../components/property-location/property-location.component';
+import { PropertyReviewsComponent } from '../../components/property-reviews/property-reviews.component';
 import { PropertySummaryComponent } from '../../components/property-summary/property-summary.component';
+import { PropertyVirtualTourComponent } from '../../components/property-virtual-tour/property-virtual-tour.component';
 
 type PropertyDetailState =
   | { status: 'loading' }
@@ -26,9 +33,16 @@ const LOADING_STATE: PropertyDetailState = {
   imports: [
     RouterLink,
     TranslatePipe,
+    PropertyAgentComponent,
+    PropertyAppointmentCardComponent,
     PropertyCharacteristicsComponent,
+    PropertyConnectivityComponent,
     PropertyGalleryComponent,
+    PropertyLoanSimulationComponent,
+    PropertyLocationComponent,
+    PropertyReviewsComponent,
     PropertySummaryComponent,
+    PropertyVirtualTourComponent,
   ],
   templateUrl: './property-detail.component.html',
   styleUrl: './property-detail.component.scss',
