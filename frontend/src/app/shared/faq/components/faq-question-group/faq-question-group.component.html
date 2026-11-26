@@ -1,0 +1,14 @@
+<section class="faq-group" [attr.aria-labelledby]="headingId()">
+  <h2 class="faq-group__title" [id]="headingId()">
+    @if (icon(); as icon) {
+      <span class="faq-group__icon" aria-hidden="true" [style.mask-image]="icon"></span>
+    }
+    {{ titleKey() | translate }}
+  </h2>
+
+  <div class="faq-group__list">
+    @for (item of group().questions; track item.id) {
+      <app-faq-accordion-item [item]="item" />
+    }
+  </div>
+</section>

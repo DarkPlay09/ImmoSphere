@@ -1,0 +1,42 @@
+// Valeurs reprises de la maquette Figma (cadre « FAQ » 328:12048 : groupe « Mon compte » 328:12678).
+
+:host {
+  display: block;
+}
+
+.faq-group {
+  display: flex;
+  flex-direction: column;
+  gap: 8px;
+
+  &__title {
+    display: flex;
+    align-items: center;
+    gap: 4px;
+    margin: 0;
+    padding-bottom: 4px;
+
+    color: #1b1b20;
+    font-size: 18px;
+    font-weight: 600;
+    line-height: 26px;
+    letter-spacing: -0.025em;
+  }
+
+  // Le SVG sert de masque, à sa taille d'origine, dans la couleur primaire de la maquette.
+  &__icon {
+    flex-shrink: 0;
+    width: 18px;
+    height: 18px;
+    background-color: #521453;
+    mask-position: center;
+    mask-repeat: no-repeat;
+    mask-size: auto;
+  }
+
+  &__list {
+    display: flex;
+    flex-direction: column;
+    gap: 8px;
+  }
+}

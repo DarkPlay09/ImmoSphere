@@ -1,0 +1,42 @@
+// Valeurs reprises de la maquette Figma (zone d'évaluation 328:12780).
+
+.faq-rating {
+  display: flex;
+  align-items: center;
+  justify-content: flex-end;
+  gap: 4px;
+
+  &__label {
+    color: #4f434c;
+    font-size: 11px;
+    font-weight: 600;
+    line-height: 16px;
+    letter-spacing: 0.03em;
+  }
+
+  &__button {
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    padding: 4px;
+
+    background: none;
+    border: none;
+    border-radius: 6px;
+    cursor: pointer;
+
+    &:hover,
+    &--active {
+      background: #e4e1e8;
+    }
+
+    &:focus-visible {
+      outline: 2px solid #521453;
+      outline-offset: 1px;
+    }
+  }
+
+  &__icon {
+    display: block;
+  }
+}

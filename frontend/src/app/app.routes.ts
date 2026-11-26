@@ -51,6 +51,13 @@ export const routes: Routes = [
       ),
   },
   {
+    path: 'login',
+    loadComponent: () =>
+      import('./features/auth/pages/login/login.component').then(
+        (m) => m.LoginComponent,
+      ),
+  },
+  {
     path: '',
     component: MainLayoutComponent,
     children: [
@@ -85,6 +92,13 @@ export const routes: Routes = [
         loadComponent: () =>
           import('./features/pages/agence-detail/agence-detail.component').then(
             (m) => m.AgenceDetailComponent,
+          ),
+      },
+      {
+        path: 'faq',
+        loadComponent: () =>
+          import('./features/pages/faq/faq.component').then(
+            (m) => m.FaqComponent,
           ),
       },
     ],

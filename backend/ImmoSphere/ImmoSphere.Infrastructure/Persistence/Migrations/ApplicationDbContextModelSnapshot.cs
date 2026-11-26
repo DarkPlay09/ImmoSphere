@@ -477,6 +477,65 @@ namespace ImmoSphere.Infrastructure.Persistence.Migrations
                     b.ToTable("bien_information_annexe", (string)null);
                 });
 
+            modelBuilder.Entity("ImmoSphere.Infrastructure.Persistence.Entities.CategorieFaqEntity", b =>
+                {
+                    b.Property<int>("Id")
+                        .ValueGeneratedOnAdd()
+                        .HasColumnType("integer")
+                        .HasColumnName("id_categorie_faq");
+
+                    NpgsqlPropertyBuilderExtensions.UseIdentityByDefaultColumn(b.Property<int>("Id"));
+
+                    b.Property<string>("Code")
+                        .IsRequired()
+                        .HasMaxLength(50)
+                        .HasColumnType("character varying(50)")
+                        .HasColumnName("code");
+
+                    b.Property<int>("Ordre")
+                        .HasColumnType("integer")
+                        .HasColumnName("ordre");
+
+                    b.HasKey("Id");
+
+                    b.HasIndex("Code")
+                        .IsUnique();
+
+                    b.ToTable("categorie_faq", (string)null);
+
+                    b.HasData(
+                        new
+                        {
+                            Id = 1,
+                            Code = "account",
+                            Ordre = 1
+                        },
+                        new
+                        {
+                            Id = 2,
+                            Code = "searchProperty",
+                            Ordre = 2
+                        },
+                        new
+                        {
+                            Id = 3,
+                            Code = "visitsAppointments",
+                            Ordre = 3
+                        },
+                        new
+                        {
+                            Id = 4,
+                            Code = "publishProperty",
+                            Ordre = 4
+                        },
+                        new
+                        {
+                            Id = 5,
+                            Code = "notariesReviews",
+                            Ordre = 5
+                        });
+                });
+
             modelBuilder.Entity("ImmoSphere.Infrastructure.Persistence.Entities.DemandeCreationAgenceEntity", b =>
                 {
                     b.Property<int>("Id")
@@ -648,6 +707,10 @@ namespace ImmoSphere.Infrastructure.Persistence.Migrations
 
                     NpgsqlPropertyBuilderExtensions.UseIdentityByDefaultColumn(b.Property<int>("Id"));
 
+                    b.Property<int?>("CategorieFaqId")
+                        .HasColumnType("integer")
+                        .HasColumnName("id_categorie_faq");
+
                     b.Property<string>("Libelle")
                         .HasColumnType("text")
                         .HasColumnName("libelle");
@@ -662,6 +725,8 @@ namespace ImmoSphere.Infrastructure.Persistence.Migrations
                         .HasColumnName("id_utilisateur");
 
                     b.HasKey("Id");
+
+                    b.HasIndex("CategorieFaqId");
 
                     b.HasIndex("UtilisateurId");
 
@@ -727,6 +792,32 @@ namespace ImmoSphere.Infrastructure.Persistence.Migrations
                     b.HasKey("Id");
 
                     b.ToTable("informations_annexes", (string)null);
+                });
+
+            modelBuilder.Entity("ImmoSphere.Infrastructure.Persistence.Entities.PasswordResetCodeEntity", b =>
+                {
+                    b.Property<string>("UserId")
+                        .HasColumnType("text");
+
+                    b.Property<int>("Attempts")
+                        .HasColumnType("integer");
+
+                    b.Property<string>("CodeHash")
+                        .IsRequired()
+                        .HasColumnType("text");
+
+                    b.Property<DateTime>("CreatedAtUtc")
+                        .HasColumnType("timestamp with time zone");
+
+                    b.Property<DateTime>("ExpiresAtUtc")
+                        .HasColumnType("timestamp with time zone");
+
+                    b.Property<bool>("IsUsed")
+                        .HasColumnType("boolean");
+
+                    b.HasKey("UserId");
+
+                    b.ToTable("PasswordResetCodes", (string)null);
                 });
 
             modelBuilder.Entity("ImmoSphere.Infrastructure.Persistence.Entities.PebBienEntity", b =>
@@ -1390,10 +1481,17 @@ namespace ImmoSphere.Infrastructure.Persistence.Migrations
 
             modelBuilder.Entity("ImmoSphere.Infrastructure.Persistence.Entities.FaqEntity", b =>
                 {
+                    b.HasOne("ImmoSphere.Infrastructure.Persistence.Entities.CategorieFaqEntity", "CategorieFaq")
+                        .WithMany("Faqs")
+                        .HasForeignKey("CategorieFaqId")
+                        .OnDelete(DeleteBehavior.SetNull);
+
                     b.HasOne("ImmoSphere.Infrastructure.Persistence.Entities.UtilisateurEntity", "Utilisateur")
                         .WithMany("Faqs")
                         .HasForeignKey("UtilisateurId")
                         .OnDelete(DeleteBehavior.Restrict);
+
+                    b.Navigation("CategorieFaq");
 
                     b.Navigation("Utilisateur");
                 });
@@ -1583,6 +1681,11 @@ namespace ImmoSphere.Infrastructure.Persistence.Migrations
                     b.Navigation("InformationsAnnexes");
 
                     b.Navigation("RendezVous");
+                });
+
+            modelBuilder.Entity("ImmoSphere.Infrastructure.Persistence.Entities.CategorieFaqEntity", b =>
+                {
+                    b.Navigation("Faqs");
                 });
 
             modelBuilder.Entity("ImmoSphere.Infrastructure.Persistence.Entities.EmoticonEntity", b =>

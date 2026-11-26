@@ -1,0 +1,27 @@
+<div class="faq-rating" role="group" [attr.aria-labelledby]="labelId()">
+  <span class="faq-rating__label" [id]="labelId()">{{ 'faq.rating.question' | translate }}</span>
+
+  <button
+    type="button"
+    class="faq-rating__button"
+    [class.faq-rating__button--active]="rating() === 'useful'"
+    [attr.aria-pressed]="rating() === 'useful'"
+    [attr.aria-label]="'faq.rating.useful' | translate"
+    [title]="'faq.rating.useful' | translate"
+    (click)="rate('useful')"
+  >
+    <img class="faq-rating__icon" src="/icons/faq/thumb-up.svg" alt="" width="15.75" height="15" />
+  </button>
+
+  <button
+    type="button"
+    class="faq-rating__button"
+    [class.faq-rating__button--active]="rating() === 'notUseful'"
+    [attr.aria-pressed]="rating() === 'notUseful'"
+    [attr.aria-label]="'faq.rating.notUseful' | translate"
+    [title]="'faq.rating.notUseful' | translate"
+    (click)="rate('notUseful')"
+  >
+    <img class="faq-rating__icon" src="/icons/faq/thumb-down.svg" alt="" width="15.75" height="15" />
+  </button>
+</div>

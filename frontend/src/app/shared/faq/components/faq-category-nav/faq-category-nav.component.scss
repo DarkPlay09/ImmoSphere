@@ -1,0 +1,141 @@
+// Valeurs reprises de la maquette Figma (cadre « FAQ » 328:12048 : colonne des catégories 328:12611).
+
+:host {
+  display: block;
+}
+
+.faq-category-nav {
+  $primary: #521453;
+  $primary-container: #6c2d6b;
+  $text-secondary: #4f434c;
+
+  box-sizing: border-box;
+  display: flex;
+  flex-direction: column;
+  gap: 8px;
+  padding: 16px;
+
+  background: #ffffff;
+  border-radius: 12px;
+  box-shadow: 0 2px 12px -2px rgba(42, 19, 42, 0.04);
+  color: $text-secondary;
+
+  &__header {
+    display: flex;
+    align-items: center;
+    justify-content: space-between;
+    padding: 4px 8px;
+  }
+
+  &__title {
+    font-size: 11px;
+    font-weight: 700;
+    line-height: 16px;
+    letter-spacing: 0.05em;
+    text-transform: uppercase;
+  }
+
+  &__total {
+    font-size: 11px;
+    font-weight: 600;
+    line-height: 16px;
+    letter-spacing: 0.03em;
+  }
+
+  &__list {
+    display: flex;
+    flex-direction: column;
+    gap: 4px;
+    margin: 0;
+    padding: 0;
+    list-style: none;
+  }
+
+  &__item {
+    position: relative;
+    display: flex;
+    align-items: center;
+    justify-content: space-between;
+    gap: 8px;
+    width: 100%;
+    padding: 8px 16px;
+    overflow: hidden;
+
+    background: none;
+    border: none;
+    border-radius: 8px;
+    color: $text-secondary;
+
+    font: inherit;
+    font-size: 14px;
+    font-weight: 500;
+    line-height: 20px;
+    text-align: left;
+    cursor: pointer;
+
+    &:hover {
+      background: #f5f2f9;
+    }
+
+    &:focus-visible {
+      outline: 2px solid $primary;
+      outline-offset: 2px;
+    }
+
+    // ÉTAT ACTIF : fond doré, barre violette à gauche, texte et compteur accentués.
+    &--active,
+    &--active:hover {
+      background: #e9e3ca;
+      box-shadow: 0 1px 2px rgba(0, 0, 0, 0.05);
+      color: $primary;
+      font-weight: 700;
+
+      &::before {
+        content: '';
+        position: absolute;
+        top: 0;
+        bottom: 0;
+        left: 0;
+        width: 4px;
+        background: $primary-container;
+      }
+    }
+  }
+
+  &__label {
+    display: flex;
+    align-items: center;
+    gap: 8px;
+  }
+
+  // Le SVG sert de masque, à sa taille d'origine, pour prendre la couleur du texte.
+  &__icon {
+    flex-shrink: 0;
+    width: 18px;
+    height: 18px;
+    background-color: currentColor;
+    mask-position: center;
+    mask-repeat: no-repeat;
+    mask-size: auto;
+  }
+
+  &__count {
+    flex-shrink: 0;
+    padding: 2px 8px;
+
+    background: #f0edf4;
+    border-radius: 9999px;
+    color: $text-secondary;
+
+    font-size: 11px;
+    font-weight: 600;
+    line-height: 16px;
+    letter-spacing: 0.03em;
+  }
+
+  &__item--active &__count {
+    background: $primary-container;
+    color: #ffffff;
+    font-weight: 700;
+  }
+}

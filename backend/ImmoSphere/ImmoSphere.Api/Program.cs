@@ -199,6 +199,8 @@ builder.Services.AddCors(options =>
 builder.Services.AddScoped<IBienRepository, BienRepository>();
 builder.Services.AddScoped<IUserRepository, UserRepository>();
 builder.Services.AddScoped<IAgenceRepository, AgenceRepository>();
+builder.Services.AddScoped<IPasswordResetRepository, PasswordResetRepository>();
+builder.Services.AddScoped<IFaqRepository, FaqRepository>();
 
 // ==========================================
 // Inscription des services
@@ -209,6 +211,7 @@ builder.Services.AddScoped<IRegisterService, RegisterService>();
 builder.Services.AddScoped<IEmailConfirmationService, EmailConfirmationService>();
 builder.Services.AddScoped<IAgenceService, AgenceService>();
 builder.Services.AddScoped<ILoginService, LoginService>();
+builder.Services.AddScoped<IFaqService, FaqService>();
 
 // ==========================================
 // CONSTRUCTION DE L'APPLICATION

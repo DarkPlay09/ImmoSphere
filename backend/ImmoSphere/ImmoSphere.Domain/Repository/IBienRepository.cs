@@ -10,4 +10,9 @@ public interface IBienRepository
 
     // Récupère les biens uniquement visibles et publiés
     public Task<Bien> GetPublishedBienByIdAsync(int id, CancellationToken cancellationToken);
+    
+    /// <summary>
+    /// Recherche les biens visibles et publiés avec filtres, tri et pagination.
+    /// </summary>
+    Task<ResultatRechercheBiens> SearchAsync(CriteresRechercheBiens criteres, CancellationToken cancellationToken);
 }

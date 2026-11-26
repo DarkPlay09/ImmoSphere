@@ -1,0 +1,106 @@
+<section class="advanced-filters">
+
+  <div class="advanced-filters__header">
+
+    <h2>Affiner votre recherche</h2>
+
+    <p>
+      Précisez vos critères pour trouver le bien idéal.
+    </p>
+
+  </div>
+
+  <div
+    class="advanced-filters__form"
+    [formGroup]="form"
+  >
+
+    <div class="advanced-filters__field">
+
+      <label for="search-province">
+        Province
+      </label>
+
+      <select
+        id="search-province"
+        formControlName="provinceId"
+      >
+
+        <option value="">
+          Toutes les provinces
+        </option>
+
+        @for (province of options().provinces; track province.id) {
+          <option [value]="province.id">
+            {{ province.libelle }}
+          </option>
+        }
+
+      </select>
+
+    </div>
+
+    <div class="advanced-filters__field">
+
+      <label for="search-etat">
+        État du bien
+      </label>
+
+      <select
+        id="search-etat"
+        formControlName="etatId"
+      >
+
+        <option value="">
+          Tous les états
+        </option>
+
+        @for (etat of options().etats; track etat.id) {
+          <option [value]="etat.id">
+            {{ etat.libelle }}
+          </option>
+        }
+
+      </select>
+
+    </div>
+
+    <fieldset class="advanced-filters__features">
+
+      <legend>Équipements et extérieurs</legend>
+
+      <div class="advanced-filters__features-grid">
+        <label class="advanced-filters__checkbox">
+          <input type="checkbox" formControlName="garage" />
+          <span>Garage</span>
+        </label>
+        <label class="advanced-filters__checkbox">
+          <input type="checkbox" formControlName="parking" />
+          <span>Parking</span>
+        </label>
+        <label class="advanced-filters__checkbox">
+          <input type="checkbox" formControlName="jardin" />
+          <span>Jardin</span>
+        </label>
+        <label class="advanced-filters__checkbox">
+          <input type="checkbox" formControlName="terrasse" />
+          <span>Terrasse</span>
+        </label>
+        <label class="advanced-filters__checkbox">
+          <input type="checkbox" formControlName="balcon" />
+          <span>Balcon</span>
+        </label>
+        <label class="advanced-filters__checkbox">
+          <input type="checkbox" formControlName="ascenseur" />
+          <span>Ascenseur</span>
+        </label>
+        <label class="advanced-filters__checkbox">
+          <input type="checkbox" formControlName="piscine" />
+          <span>Piscine</span>
+        </label>
+      </div>
+
+    </fieldset>
+
+  </div>
+</section>

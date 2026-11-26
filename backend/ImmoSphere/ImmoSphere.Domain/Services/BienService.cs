@@ -22,4 +22,12 @@ public class BienService : IBienService
     {
         return _repository.GetPublishedBienByIdAsync(id,  cancellationToken);
     }
+    
+    /// <summary>
+    /// Recherche les biens disponibles.
+    /// </summary>
+    public Task<ResultatRechercheBiens> SearchAsync(CriteresRechercheBiens criteres, CancellationToken cancellationToken)
+    {
+        return _repository.SearchAsync(criteres, cancellationToken);
+    }
 }

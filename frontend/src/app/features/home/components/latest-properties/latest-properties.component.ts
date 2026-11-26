@@ -1,9 +1,15 @@
-import { ChangeDetectionStrategy, Component, computed, signal } from '@angular/core';
+import { ChangeDetectionStrategy, Component, computed, inject, signal } from '@angular/core';
+
+import { toSignal } from '@angular/core/rxjs-interop';
 import { RouterLink } from '@angular/router';
 import { TranslatePipe } from '@ngx-translate/core';
 
+import { catchError, of, tap } from 'rxjs';
+
 import { PropertyCardComponent } from '../../../../shared/properties/components/property-card/property-card.component';
-import { LATEST_PROPERTIES } from '../../data-access/latest-properties.mock';
+
+import { HomePropertiesApiService } from '../../data-access/home-properties-api.service';
+import { HomeProperty } from '../../data-access/home-property.model';
 
 type LatestFilter = 'all' | 'sale' | 'rent' | 'new' | '360';
 
@@ -16,7 +22,34 @@ type LatestFilter = 'all' | 'sale' | 'rent' | 'new' | '360';
   changeDetection: ChangeDetectionStrategy.OnPush,
 })
 export class LatestPropertiesComponent {
-  readonly properties = LATEST_PROPERTIES;
+  private readonly api = inject(HomePropertiesApiService);
+
+  readonly loading = signal(true);
+  readonly error = signal(false);
+
+  /**
+   * Les annonces sont maintenant chargées depuis
+   * le backend .NET et non depuis un fichier mock.
+   */
+  readonly properties = toSignal(
+    this.api.getProperties().pipe(
+      tap(() => {
+        this.loading.set(false);
+      }),
+
+      catchError((error) => {
+        console.error('Erreur lors du chargement des biens :', error);
+
+        this.error.set(true);
+        this.loading.set(false);
+
+        return of([] as HomeProperty[]);
+      }),
+    ),
+    {
+      initialValue: [] as HomeProperty[],
+    },
+  );
 
   readonly activeFilter = signal<LatestFilter>('all');
 
@@ -32,21 +65,23 @@ export class LatestPropertiesComponent {
   ];
 
   readonly filteredProperties = computed(() => {
+    const properties = this.properties();
+
     switch (this.activeFilter()) {
       case 'sale':
-        return this.properties.filter((property) => property.transactionType === 'sale');
+        return properties.filter((property) => property.transactionType === 'sale');
 
       case 'rent':
-        return this.properties.filter((property) => property.transactionType === 'rent');
+        return properties.filter((property) => property.transactionType === 'rent');
 
       case 'new':
-        return this.properties.filter((property) => property.isNew);
+        return properties.filter((property) => property.isNew);
 
       case '360':
-        return this.properties.filter((property) => property.isVisit360);
+        return properties.filter((property) => property.isVisit360);
 
       default:
-        return this.properties;
+        return properties;
     }
   });
 

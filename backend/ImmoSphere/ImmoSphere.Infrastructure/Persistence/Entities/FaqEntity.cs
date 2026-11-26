@@ -10,4 +10,8 @@ public class FaqEntity
     // Relations EF Core (choix à vérifier contre le MLD Looping)
     public int? UtilisateurId { get; set; }
     public UtilisateurEntity? Utilisateur { get; set; }
+
+    // Catégorie facultative : une question sans catégorie reste affichée dans « Toutes ».
+    public int? CategorieFaqId { get; set; }
+    public CategorieFaqEntity? CategorieFaq { get; set; }
 }

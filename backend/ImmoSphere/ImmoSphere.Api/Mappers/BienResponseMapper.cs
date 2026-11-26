@@ -5,6 +5,10 @@ namespace ImmoSphere.Api.Mappers;
 
 public static class BienResponseMapper
 {
+    // ==========================================
+    // DÉTAIL D'UN BIEN
+    // ==========================================
+    
     public static BienDetailResponseDto ToDetailResponseDto(Bien bien)
     {
         ArgumentNullException.ThrowIfNull(bien);
@@ -63,6 +67,61 @@ public static class BienResponseMapper
                 Piscine = bien.Piscine,
                 Cheminee = bien.Cheminee
             }
+        };
+    }
+    
+    
+    // ==========================================
+    // RÉSULTATS DE RECHERCHE
+    // ==========================================
+
+    public static RechercheBiensResponseDto ToSearchResponseDto(ResultatRechercheBiens resultat)
+    {
+        ArgumentNullException.ThrowIfNull(resultat);
+
+        return new RechercheBiensResponseDto
+        {
+            Biens = resultat.Biens
+                .Select(ToSearchItemResponseDto)
+                .ToArray(),
+
+            Total = resultat.Total,
+            Page = resultat.Page,
+            TaillePage = resultat.TaillePage
+        };
+    }
+    
+    
+    // ==========================================
+    // CARTE D'UN BIEN
+    // ==========================================
+
+    private static BienRechercheItemResponseDto ToSearchItemResponseDto(BienRechercheResume bien)
+    {
+        return new BienRechercheItemResponseDto
+        {
+            Id = bien.Id,
+
+            Titre = bien.Titre,
+            Description = bien.Description,
+            Prix = bien.Prix,
+
+            CodePostal = bien.CodePostal,
+            Localite = bien.Localite,
+            Province = bien.Province,
+
+            AdresseConfidentielle = bien.AdresseConfidentielle,
+
+            TypeBien = bien.TypeBien,
+            TypeTransaction = bien.TypeTransaction,
+            Peb = bien.Peb,
+
+            SurfaceHabitable = bien.SurfaceHabitable,
+            NombreChambres = bien.NombreChambres,
+            NombreSallesDeBains = bien.NombreSallesDeBain,
+
+            ImagePrincipale = bien.ImagePrincipale,
+            NombrePhotos = bien.NombrePhotos
         };
     }
 }

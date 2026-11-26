@@ -323,7 +323,9 @@
       "new": "Neuheiten",
       "virtualTour": "360°-Rundgang",
       "viewAll": "Alle Angebote ansehen",
-      "empty": "Keine Immobilien für diesen Filter gefunden."
+      "empty": "Keine Immobilien für diesen Filter gefunden.",
+      "loading": "Immobilienangebote werden geladen...",
+      "apiError": "Die Immobilienangebote können derzeit nicht geladen werden."
     },
 
     "notaries": {
@@ -365,7 +367,11 @@
         "apartment": "Wohnung",
         "villa": "Villa",
         "house": "Haus"
-      }
+      },
+      "approximateNotice": "Die Markierungen zeigen ungefähre Positionen innerhalb der Gemeinde, nicht die genauen Immobilienadressen.",
+      "loading": "Immobilien auf der Karte werden geladen...",
+      "apiError": "Die Immobilien können derzeit nicht geladen werden.",
+      "noProperties": "Keine Immobilien mit verfügbarer Position in dieser Region."
     },
 
     "publish": {
@@ -377,6 +383,63 @@
       "benefit3": "Verwalten Sie Besichtigungstermine direkt und vermeiden Sie unerwünschte Anrufe",
       "button": "Meine Immobilie inserieren",
       "unavailable": "Das Veröffentlichen von Immobilien ist noch nicht verfügbar."
+    }
+  },
+  "faq": {
+    "breadcrumb": {
+      "label": "Brotkrümelnavigation",
+      "home": "Startseite",
+      "current": "FAQ"
+    },
+    "hero": {
+      "badge": "ImmoSphere-Hilfecenter",
+      "title": "Wie können wir Ihnen helfen?",
+      "subtitle": "Hier finden Sie Antworten auf die häufigsten Fragen zur Suche, zu EPB-zertifizierten Besichtigungen und zu notariellen Schritten in Belgien."
+    },
+    "search": {
+      "label": "Eine Frage in den FAQ suchen",
+      "placeholder": "Eine Frage suchen (z. B. 360°-Rundgang, EPB, Kaufvorvertrag)...",
+      "submit": "Suchen"
+    },
+    "list": {
+      "title": "Häufig gestellte Fragen",
+      "count": "{{count}} Fragen",
+      "countOne": "1 Frage",
+      "countNone": "Keine Fragen",
+      "empty": "Keine Frage entspricht „{{term}}“.",
+      "emptyReset": "Suche zurücksetzen",
+      "emptyCategory": "In dieser Kategorie gibt es noch keine Fragen.",
+      "loading": "Fragen werden geladen…",
+      "loadError": "Die FAQ können derzeit nicht geladen werden. Prüfen Sie Ihre Verbindung und versuchen Sie es erneut.",
+      "retry": "Erneut versuchen"
+    },
+    "allCategories": "Alle Fragen",
+    "otherCategory": "Sonstiges",
+    "categories": {
+      "account": "Mein Konto",
+      "searchProperty": "Immobilie suchen",
+      "visitsAppointments": "Besichtigungen und Termine",
+      "publishProperty": "Immobilie veröffentlichen",
+      "notariesReviews": "Notare und Bewertungen"
+    },
+    "categoryNav": {
+      "label": "FAQ-Kategorien",
+      "title": "Themen",
+      "count": "{{count}} Artikel",
+      "countOne": "1 Artikel",
+      "itemLabel": "{{label}} – Anzahl der Fragen: {{count}}"
+    },
+    "rating": {
+      "question": "War diese Antwort hilfreich?",
+      "useful": "Ja, diese Antwort war hilfreich",
+      "notUseful": "Nein, diese Antwort war nicht hilfreich"
+    },
+    "contact": {
+      "title": "Keine Antwort gefunden?",
+      "text": "Unser Team hilft Ihnen gerne, die Funktionsweise von ImmoSphere besser zu verstehen.",
+      "note": "Senden Sie uns Ihre Anfrage über ein sicheres Online-Formular.",
+      "button": "Kontakt aufnehmen",
+      "unavailable": "Demnächst verfügbar"
     }
   }
 }

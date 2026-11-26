@@ -1,0 +1,27 @@
+<nav class="faq-category-nav" [attr.aria-label]="'faq.categoryNav.label' | translate">
+  <div class="faq-category-nav__header">
+    <span class="faq-category-nav__title">{{ 'faq.categoryNav.title' | translate }}</span>
+    <span class="faq-category-nav__total">{{ totalKey() | translate: { count: totalCount() } }}</span>
+  </div>
+
+  <ul class="faq-category-nav__list">
+    @for (item of items(); track item.code) {
+      <li>
+        <button
+          type="button"
+          class="faq-category-nav__item"
+          [class.faq-category-nav__item--active]="selected() === item.code"
+          [attr.aria-pressed]="selected() === item.code"
+          [attr.aria-label]="'faq.categoryNav.itemLabel' | translate: { label: (item.labelKey | translate), count: item.count }"
+          (click)="select(item.code)"
+        >
+          <span class="faq-category-nav__label">
+            <span class="faq-category-nav__icon" aria-hidden="true" [style.mask-image]="item.icon"></span>
+            {{ item.labelKey | translate }}
+          </span>
+          <span class="faq-category-nav__count" aria-hidden="true">{{ item.count }}</span>
+        </button>
+      </li>
+    }
+  </ul>
+</nav>

@@ -6,11 +6,12 @@ using Microsoft.AspNetCore.Mvc;
 using Microsoft.AspNetCore.Authentication.JwtBearer;
 using Microsoft.AspNetCore.Authorization;
 using Microsoft.AspNetCore.RateLimiting;
-
 using System.IdentityModel.Tokens.Jwt;
+using ImmoSphere.Domain.Repository;
 using Microsoft.AspNetCore.Identity.Data;
 
 namespace ImmoSphere.Api.Controllers.Auth;
+
 /**
  * Cette classe s'occupe des routes concernant l'inscription, connection et déconnection.
  *
@@ -126,7 +127,6 @@ public class AuthController : ControllerBase
     }
 
 
-
     [HttpPost("verify-email")]
     public async Task<IActionResult> VerifyEmail(
         [FromBody] VerifyEmailRequestDto request)
@@ -175,7 +175,6 @@ public class AuthController : ControllerBase
                         Expires = new DateTimeOffset(jwt.ValidTo),
 
                         IsEssential = true
-
                     }
                 );
 
@@ -233,110 +232,110 @@ public class AuthController : ControllerBase
     }
 
 
-[HttpPost("login")]
-public async Task<IActionResult> Login([FromBody] LoginRequestDto request)
-{
-    try
+    [HttpPost("login")]
+    public async Task<IActionResult> Login([FromBody] LoginRequestDto request)
     {
-        _logger.LogInformation("Nouvelle requête : Connexion");
-
-        // 1. Authentifier l'utilisateur et récupérer son JWT
-        string? token = await _loginService.Login(
-            request.Email,
-            request.Password,
-            request.RememberMe
-        );
-
-        if (string.IsNullOrEmpty(token))
+        try
         {
-            return Unauthorized(new
-            {
-                message = "Connexion impossible."
-            });
-        }
+            _logger.LogInformation("Nouvelle requête : Connexion");
 
-        // 2. Vérifier si les cookies sont activés
-        bool cookiesEnabled = _configuration.GetValue<bool>(
-            "Auth:SessionCookiesEnabled"
-        );
-
-        if (cookiesEnabled)
-        {
-            // 3. Préparer le cookie de session
-            var cookieOptions = new CookieOptions
-            {
-                HttpOnly = true,
-                Secure = !_environment.IsDevelopment(),
-                SameSite = SameSiteMode.Lax,
-                Path = "/",
-                IsEssential = true
-            };
-
-            // 4. Rendre le cookie persistant si RememberMe = true
-            if (request.RememberMe)
-            {
-                var jwt = new JwtSecurityTokenHandler()
-                    .ReadJwtToken(token);
-
-                cookieOptions.Expires = new DateTimeOffset(jwt.ValidTo);
-            }
-
-            // 5. Envoyer le cookie
-            Response.Cookies.Append(
-                AuthSessionCookie.Name,
-                token,
-                cookieOptions
+            // 1. Authentifier l'utilisateur et récupérer son JWT
+            string? token = await _loginService.Login(
+                request.Email,
+                request.Password,
+                request.RememberMe
             );
 
-            _logger.LogInformation("Connexion réussie : cookie créé");
+            if (string.IsNullOrEmpty(token))
+            {
+                return Unauthorized(new
+                {
+                    message = "Connexion impossible."
+                });
+            }
 
+            // 2. Vérifier si les cookies sont activés
+            bool cookiesEnabled = _configuration.GetValue<bool>(
+                "Auth:SessionCookiesEnabled"
+            );
+
+            if (cookiesEnabled)
+            {
+                // 3. Préparer le cookie de session
+                var cookieOptions = new CookieOptions
+                {
+                    HttpOnly = true,
+                    Secure = !_environment.IsDevelopment(),
+                    SameSite = SameSiteMode.Lax,
+                    Path = "/",
+                    IsEssential = true
+                };
+
+                // 4. Rendre le cookie persistant si RememberMe = true
+                if (request.RememberMe)
+                {
+                    var jwt = new JwtSecurityTokenHandler()
+                        .ReadJwtToken(token);
+
+                    cookieOptions.Expires = new DateTimeOffset(jwt.ValidTo);
+                }
+
+                // 5. Envoyer le cookie
+                Response.Cookies.Append(
+                    AuthSessionCookie.Name,
+                    token,
+                    cookieOptions
+                );
+
+                _logger.LogInformation("Connexion réussie : cookie créé");
+
+                return Ok(new
+                {
+                    message = "Connexion réussie."
+                });
+            }
+
+            // 6. Si les cookies sont désactivés, retourner le JWT
             return Ok(new
             {
-                message = "Connexion réussie."
+                token,
+                tokenType = "Bearer"
             });
         }
-
-        // 6. Si les cookies sont désactivés, retourner le JWT
-        return Ok(new
+        catch (LoginException.UserNotExist e)
         {
-            token,
-            tokenType = "Bearer"
-        });
-    }
-    catch (LoginException.UserNotExist e)
-    {
-        _logger.LogWarning(e, "Connexion refusée : utilisateur inexistant");
+            _logger.LogWarning(e, "Connexion refusée : utilisateur inexistant");
 
-        return Unauthorized(new
+            return Unauthorized(new
+            {
+                message = "E-mail ou mot de passe incorrect."
+            });
+        }
+        catch (LoginException.WrongPassword e)
         {
-            message = "E-mail ou mot de passe incorrect."
-        });
-    }
-    catch (LoginException.WrongPassword e)
-    {
-        _logger.LogWarning(e, "Connexion refusée : mot de passe incorrect");
+            _logger.LogWarning(e, "Connexion refusée : mot de passe incorrect");
 
-        return Unauthorized(new
+            return Unauthorized(new
+            {
+                message = "E-mail ou mot de passe incorrect."
+            });
+        }
+        catch (ArgumentException e)
         {
-            message = "E-mail ou mot de passe incorrect."
-        });
-    }
-    catch (ArgumentException e)
-    {
-        _logger.LogWarning(e, "Connexion refusée : données invalides");
+            _logger.LogWarning(e, "Connexion refusée : données invalides");
 
-        return BadRequest(new
+            return BadRequest(new
+            {
+                message = "E-mail ou mot de passe manquant."
+            });
+        }
+        catch (Exception e)
         {
-            message = "E-mail ou mot de passe manquant."
-        });
-    }
-    catch (Exception e)
-    {
-        _logger.LogError(e, "Erreur serveur lors de la connexion");
+            _logger.LogError(e, "Erreur serveur lors de la connexion");
 
-        return Problem("Une erreur interne est survenue.");
+            return Problem("Une erreur interne est survenue.");
+        }
     }
-}
 
 
     [HttpPost("logout")]
@@ -381,5 +380,144 @@ public async Task<IActionResult> Login([FromBody] LoginRequestDto request)
             id = userId,
             email = email
         });
+    }
+
+    /**
+     *   Route : /api/auth/verify-email-pswd
+     *   Ayant comme paramètres :
+     *      email (str)
+     *
+     *   Cette méthode retourne un boolean,
+     *   vrai si le mail a été envoyé (on peut passer à l'écran suivante),
+     *   faux sinon
+     */
+    [HttpPost("verify-email-pswd")]
+    [EnableRateLimiting("resend-confirmation")]
+    public async Task<IActionResult> VerifyEmailPswd(
+        [FromBody] ResetPasswordRequestDto request)
+    {
+        if (string.IsNullOrWhiteSpace(request.Email))
+            return BadRequest(new { message = "E-mail requis." });
+
+        try
+        {
+            bool result = await _loginService.SendVerificationEmail(request.Email);
+
+            _logger.LogInformation(
+                "Demande de réinitialisation traitée. Envoi déclenché : {Result}",
+                result);
+        }
+        catch (Exception e)
+        {
+            _logger.LogError(e,
+                "Erreur lors de la demande de réinitialisation");
+
+            return Problem("Une erreur interne est survenue.");
+        }
+
+        return Ok(new
+        {
+            message = "Si cette adresse correspond à un compte, " +
+                      "un code de réinitialisation sera envoyé."
+        });
+    }
+
+    /**
+     *   Route : /api/auth/verify-reset-code
+     *   Ayant comme paramètres :
+     *      email (str)
+     *      code (str)
+     *
+     *   Il faut appeler cette route lorsque l'utilisateur entre le code de confirmation
+     *   envoyé par mail (Réinitialisation du mot de passe)
+     */
+    [HttpPost("verify-reset-code")]
+    public async Task<IActionResult> VerifyResetCode(
+        [FromBody] VerifyResetCodeRequestDto request)
+    {
+        if (string.IsNullOrWhiteSpace(request.Email) ||
+            request.Code == null ||
+            request.Code.Length != 6 ||
+            !request.Code.All(char.IsAsciiDigit))
+        {
+            return BadRequest(new { message = "Données invalides." });
+        }
+
+        try
+        {
+            bool valid = await _loginService
+                .VerifyPasswordResetCodeAsync(
+                    request.Email, request.Code);
+
+            if (!valid)
+                return BadRequest(new
+                {
+                    message = "Code invalide ou expiré."
+                });
+
+            return Ok(new { message = "Code valide." });
+        }
+        catch (Exception e)
+        {
+            _logger.LogError(e, "Erreur de vérification du code");
+            return Problem("Une erreur interne est survenue.");
+        }
+    }
+
+    /**
+     *   Route : /api/auth/reset-password
+     *   Ayant comme paramètres :
+     *      email (str)
+     *      code (str)
+     *      newpassword (str)
+     *
+     *   Il faut appeler cette route quand l'utilisateur a entré son nouveau mots de passe (ainsi que sa répétition)
+     */
+    [HttpPost("reset-password")]
+    public async Task<IActionResult> ResetPassword(
+        [FromBody] ConfirmResetPasswordRequestDto request)
+    {
+        if (string.IsNullOrWhiteSpace(request.Email) ||
+            string.IsNullOrWhiteSpace(request.NewPassword) ||
+            request.Code == null ||
+            request.Code.Length != 6 ||
+            !request.Code.All(char.IsAsciiDigit))
+        {
+            return BadRequest(new { message = "Données invalides." });
+        }
+
+        try
+        {
+            var result = await _loginService.ResetPasswordAsync(
+                request.Email,
+                request.Code,
+                request.NewPassword);
+
+            return result switch
+            {
+                PasswordResetResult.Success => Ok(new
+                {
+                    message = "Mot de passe modifié avec succès."
+                }),
+
+                PasswordResetResult.InvalidCode => BadRequest(new
+                {
+                    message = "Code invalide ou expiré."
+                }),
+
+                PasswordResetResult.InvalidPassword => BadRequest(new
+                {
+                    message = "Le nouveau mot de passe ne respecte " +
+                              "pas les règles de sécurité."
+                }),
+
+                _ => Problem("Une erreur interne est survenue.")
+            };
+        }
+        catch (Exception e)
+        {
+            _logger.LogError(e, "Erreur de réinitialisation");
+            return Problem("Une erreur interne est survenue.");
+        }
     }
 }

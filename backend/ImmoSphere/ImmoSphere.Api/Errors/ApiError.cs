@@ -17,4 +17,5 @@ public static class ApiErrorCodes
     public const string InvalidPage = "INVALID_PAGE";
     public const string InvalidPageSize = "INVALID_PAGE_SIZE";
     public const string SearchTooLong = "SEARCH_TOO_LONG";
+    public const string FaqCategoryUnknown = "FAQ_CATEGORY_UNKNOWN";
 }

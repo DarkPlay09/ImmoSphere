@@ -323,7 +323,9 @@
       "new": "New listings",
       "virtualTour": "360° tour",
       "viewAll": "View all listings",
-      "empty": "No properties match this filter."
+      "empty": "No properties match this filter.",
+      "loading": "Loading property listings...",
+      "apiError": "Unable to load property listings at the moment."
     },
 
     "notaries": {
@@ -365,7 +367,11 @@
         "apartment": "Apartment",
         "villa": "Villa",
         "house": "House"
-      }
+      },
+      "approximateNotice": "Markers show approximate locations within each municipality, not the exact property addresses.",
+      "loading": "Loading properties on the map...",
+      "apiError": "Unable to load properties at the moment.",
+      "noProperties": "No properties with an available location in this region."
     },
 
     "publish": {
@@ -377,6 +383,63 @@
       "benefit3": "Manage viewing time slots directly to avoid unwanted calls",
       "button": "List my property",
       "unavailable": "Property publishing is not available yet."
+    }
+  },
+  "faq": {
+    "breadcrumb": {
+      "label": "Breadcrumb",
+      "home": "Home",
+      "current": "FAQ"
+    },
+    "hero": {
+      "badge": "ImmoSphere help centre",
+      "title": "How can we help you?",
+      "subtitle": "Find answers to the most frequently asked questions about searching, EPC-certified viewings and notarial procedures in Belgium."
+    },
+    "search": {
+      "label": "Search a question in the FAQ",
+      "placeholder": "Search a question (e.g. 360° tour, EPC, sales agreement)...",
+      "submit": "Search"
+    },
+    "list": {
+      "title": "Frequently asked questions",
+      "count": "{{count}} questions",
+      "countOne": "1 question",
+      "countNone": "No questions",
+      "empty": "No question matches “{{term}}”.",
+      "emptyReset": "Reset search",
+      "emptyCategory": "There are no questions in this category yet.",
+      "loading": "Loading questions…",
+      "loadError": "The FAQ could not be loaded right now. Check your connection and try again.",
+      "retry": "Try again"
+    },
+    "allCategories": "All questions",
+    "otherCategory": "Other",
+    "categories": {
+      "account": "My account",
+      "searchProperty": "Finding a property",
+      "visitsAppointments": "Visits and appointments",
+      "publishProperty": "Listing a property",
+      "notariesReviews": "Notaries and reviews"
+    },
+    "categoryNav": {
+      "label": "FAQ categories",
+      "title": "Topics",
+      "count": "{{count}} articles",
+      "countOne": "1 article",
+      "itemLabel": "{{label}} – number of questions: {{count}}"
+    },
+    "rating": {
+      "question": "Was this answer helpful?",
+      "useful": "Yes, this answer was helpful",
+      "notUseful": "No, this answer was not helpful"
+    },
+    "contact": {
+      "title": "Didn't find your answer?",
+      "text": "Our team can help you better understand how ImmoSphere works.",
+      "note": "Send us your request through a secure online form.",
+      "button": "Contact us",
+      "unavailable": "Coming soon"
     }
   }
 }
