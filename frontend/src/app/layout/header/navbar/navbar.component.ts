@@ -3,7 +3,7 @@ import { Router, RouterLink, RouterLinkActive } from '@angular/router';
 import { TranslatePipe } from '@ngx-translate/core';
 import { finalize } from 'rxjs';
 
-import { LanguagePickerComponent } from '../../LanguagePicker/language-picker.component';
+import { LanguagePickerComponent } from '../../language-picker/language-picker.component';
 import { AuthSessionService } from '../../../features/auth/data-access/auth-session.service';
 import { NAVBAR_LINKS } from './data/navbar-links.data';
 

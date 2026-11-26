@@ -1,8 +1,8 @@
 import { Component } from '@angular/core';
 import { RouterOutlet } from '@angular/router';
 
-import { NavbarComponent } from '../Header/Navbar/navbar.component';
-import { FooterComponent } from '../Footer/footer.component';
+import { NavbarComponent } from '../header/navbar/navbar.component';
+import { FooterComponent } from '../footer/footer.component';
 
 @Component({
   selector: 'app-main-layout',

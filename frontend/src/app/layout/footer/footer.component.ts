@@ -3,7 +3,7 @@ import { RouterLink } from "@angular/router";
 import { TranslatePipe, TranslateService } from '@ngx-translate/core';
 import { LANGUAGES } from '../../core/i18n/languages.data';
 import type { LanguageCode } from '../../core/i18n/language.model';
-import { LanguagePickerComponent } from '../LanguagePicker/language-picker.component';
+import { LanguagePickerComponent } from '../language-picker/language-picker.component';
 
 // Sans route, le template affiche le libellé comme du texte.
 interface FooterLink {
