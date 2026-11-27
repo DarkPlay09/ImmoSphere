@@ -502,7 +502,7 @@ export class PropertiesSearchComponent implements OnInit {
   }
 
   onDetailsRequested(propertyId: number): void {
-    this.selectedPropertyId.set(propertyId);
+    void this.router.navigate(['/properties', propertyId]);
   }
 
   selectPropertyFromMap(propertyId: number): void {
