@@ -387,6 +387,12 @@
       "title": "Connectiviteit & Snel Internet",
       "description": "Informatie over glasvezel en internetdekking voor het pand wordt hier weergegeven."
     },
+    "energyCertificate": {
+      "title": "Energiecertificaat (Waals PEB)",
+      "certificateNumber": "Certificaatnummer: {{number}}",
+      "ratingLabel": "Energieklasse {{rating}}",
+      "specificConsumption": "Specifiek energieverbruik"
+    },
     "agent": {
       "title": "Makelaar van het pand",
       "description": "De contact- en beroepsgegevens van de makelaar worden hier weergegeven."

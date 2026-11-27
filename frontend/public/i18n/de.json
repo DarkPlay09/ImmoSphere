@@ -387,6 +387,12 @@
       "title": "Konnektivität & Highspeed-Internet",
       "description": "Informationen zu Glasfaser und Internetabdeckung der Immobilie werden hier angezeigt."
     },
+    "energyCertificate": {
+      "title": "Energiezertifikat (wallonischer PEB)",
+      "certificateNumber": "Zertifikatsnummer: {{number}}",
+      "ratingLabel": "Energieklasse {{rating}}",
+      "specificConsumption": "Spezifischer Energieverbrauch"
+    },
     "agent": {
       "title": "Immobilienmakler",
       "description": "Kontakt- und Berufsinformationen des Maklers werden hier angezeigt."

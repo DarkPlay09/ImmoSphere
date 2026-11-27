@@ -3,7 +3,7 @@ import { ChangeDetectionStrategy, Component, computed, input } from '@angular/co
 
 import { PebRating, parsePebRating } from '../../models/peb-rating.model';
 
-type PebBadgeSize = 'small' | 'medium' | 'large';
+type PebBadgeSize = 'small' | 'medium' | 'large' | 'certificate';
 
 const RATING_CLASS: Readonly<Record<PebRating, string>> = {
   'A++': 'peb-badge--a-double-plus',

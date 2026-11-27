@@ -387,6 +387,12 @@
       "title": "Connectivity & High-speed Internet",
       "description": "Fibre and internet coverage information for the property will be displayed here."
     },
+    "energyCertificate": {
+      "title": "Energy certificate (Walloon PEB)",
+      "certificateNumber": "Certificate number: {{number}}",
+      "ratingLabel": "Energy rating {{rating}}",
+      "specificConsumption": "Specific energy consumption"
+    },
     "agent": {
       "title": "Property agent",
       "description": "The agent’s contact and professional information will be displayed here."

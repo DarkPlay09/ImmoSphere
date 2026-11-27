@@ -31,6 +31,18 @@
     letter-spacing: 1px;
   }
 
+  &--certificate {
+    box-sizing: border-box;
+    width: 96px;
+    height: 48px;
+    padding: 8px 16px;
+    border-radius: 8px;
+    font-size: 20px;
+    line-height: 24px;
+    letter-spacing: 0;
+    opacity: 1;
+  }
+
   &--a-double-plus { background: #006b2e; color: #fff; }
   &--a-plus { background: #00823b; color: #fff; }
   &--a { background: #059669; color: #fff; }

@@ -1,0 +1,55 @@
+<section class="energy-certificate" aria-labelledby="energy-certificate-title">
+  <header class="energy-certificate__header">
+    <div>
+      <h2 id="energy-certificate-title">
+        {{ 'propertyDetail.energyCertificate.title' | translate }}
+      </h2>
+
+      @if (certificateNumber()) {
+        <p>
+          {{
+            'propertyDetail.energyCertificate.certificateNumber'
+              | translate: { number: certificateNumber() }
+          }}
+        </p>
+      }
+    </div>
+
+    <app-peb-badge [rating]="property().peb" size="certificate" />
+  </header>
+
+  <div class="energy-certificate__scale-container">
+    <span class="energy-certificate__scale-unit">kWh/m²·an</span>
+
+    <div
+      class="energy-certificate__scale"
+      role="img"
+      [attr.aria-label]="
+        'propertyDetail.energyCertificate.ratingLabel' | translate: { rating: property().peb }
+      "
+    >
+      @for (step of scale; track step.label) {
+        <div
+          class="energy-certificate__scale-step"
+          [class.energy-certificate__scale-step--active]="isActive(step.rating)"
+          [style.--peb-color]="step.color"
+        >
+          <span class="energy-certificate__segment" aria-hidden="true"></span>
+          <span class="energy-certificate__scale-label">{{ step.label }}</span>
+          <span class="energy-certificate__scale-range">{{ step.range }}</span>
+        </div>
+      }
+    </div>
+  </div>
+
+  @if (consumption() > 0) {
+    <dl class="energy-certificate__metrics">
+      <div class="energy-certificate__metric">
+        <dt>{{ 'propertyDetail.energyCertificate.specificConsumption' | translate }}</dt>
+        <dd>
+          {{ 'propertyDetail.values.energyConsumption' | translate: { value: consumption() } }}
+        </dd>
+      </div>
+    </dl>
+  }
+</section>

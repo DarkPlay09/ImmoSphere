@@ -387,6 +387,12 @@
       "title": "Connectivité & Très Haut Débit",
       "description": "Les informations sur la fibre et la couverture internet du bien seront affichées ici."
     },
+    "energyCertificate": {
+      "title": "Certificat Énergétique (PEB Wallonie)",
+      "certificateNumber": "Numéro de certificat : {{number}}",
+      "ratingLabel": "Classe énergétique {{rating}}",
+      "specificConsumption": "Consommation spécifique"
+    },
     "agent": {
       "title": "Agent du bien",
       "description": "Les coordonnées et informations professionnelles de l’agent seront affichées ici."
