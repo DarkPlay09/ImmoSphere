@@ -88,25 +88,36 @@
   }
 
   &__fact {
-    display: flex;
+    display: grid;
     min-width: 0;
     padding: 8px;
-    flex-direction: column;
-    align-items: center;
-    justify-content: center;
+    grid-template-rows: 22px 26px 16px;
+    align-content: center;
+    justify-items: center;
     text-align: center;
 
     dt {
+      display: flex;
+      grid-row: 3;
+      height: 16px;
+      align-items: center;
+      justify-content: center;
       color: #4f434c;
       font-family: Manrope, Inter, sans-serif;
       font-size: 11px;
       font-weight: 600;
       line-height: 16px;
       letter-spacing: 0.33px;
+      white-space: nowrap;
     }
 
     dd {
+      display: flex;
+      grid-row: 2;
+      height: 26px;
       margin: 0;
+      align-items: center;
+      justify-content: center;
       color: #1b1b20;
       font-family: Manrope, Inter, sans-serif;
       font-size: 18px;
@@ -121,11 +132,17 @@
   }
 
   &__fact-icon {
-    margin-bottom: 4px;
+    width: 24px;
+    height: 22px;
+    grid-row: 1;
+    align-self: center;
+    object-fit: contain;
   }
 
   &__peb {
-    margin-bottom: 4px !important;
+    height: auto !important;
+    grid-row: 1 / 3 !important;
+    align-self: center;
   }
 }
 
