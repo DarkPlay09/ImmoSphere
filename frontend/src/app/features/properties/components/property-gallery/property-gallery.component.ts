@@ -2,10 +2,11 @@ import { ChangeDetectionStrategy, Component, computed, input, signal } from '@an
 import { TranslatePipe } from '@ngx-translate/core';
 
 import { ImageBienResponseDto } from '../../data-access/property-detail-response.model';
+import { PropertyImageLightboxComponent } from '../property-image-lightbox/property-image-lightbox.component';
 
 @Component({
   selector: 'app-property-gallery',
-  imports: [TranslatePipe],
+  imports: [TranslatePipe, PropertyImageLightboxComponent],
   templateUrl: './property-gallery.component.html',
   styleUrl: './property-gallery.component.scss',
   changeDetection: ChangeDetectionStrategy.OnPush,
@@ -13,6 +14,7 @@ import { ImageBienResponseDto } from '../../data-access/property-detail-response
 export class PropertyGalleryComponent {
   readonly images = input.required<readonly ImageBienResponseDto[]>();
   readonly favorite = signal(false);
+  readonly selectedImageIndex = signal<number | null>(null);
 
   readonly orderedImages = computed(() =>
     [...this.images()].sort((first, second) => first.ordre - second.ordre),
@@ -22,6 +24,14 @@ export class PropertyGalleryComponent {
 
   toggleFavorite(): void {
     this.favorite.update((favorite) => !favorite);
+  }
+
+  openImage(index: number): void {
+    this.selectedImageIndex.set(index);
+  }
+
+  closeLightbox(): void {
+    this.selectedImageIndex.set(null);
   }
 
   async share(): Promise<void> {

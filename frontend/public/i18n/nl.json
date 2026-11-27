@@ -400,7 +400,13 @@
       "photoCount": "{{count}} foto’s",
       "empty": "Geen foto’s beschikbaar",
       "share": "Dit pand delen",
-      "favorite": "Dit pand toevoegen aan of verwijderen uit favorieten"
+      "favorite": "Dit pand toevoegen aan of verwijderen uit favorieten",
+      "openImage": "Afbeelding {{index}} vergroten",
+      "lightboxLabel": "Fotoviewer van het pand",
+      "previous": "Vorige afbeelding tonen",
+      "next": "Volgende afbeelding tonen",
+      "close": "Fotoviewer sluiten",
+      "imageCounter": "{{current}} / {{total}}"
     },
     "summary": {
       "eyebrow": "{{type}} · {{transaction}}",

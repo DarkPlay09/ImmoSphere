@@ -400,7 +400,13 @@
       "photoCount": "{{count}} photos",
       "empty": "Aucune photo disponible",
       "share": "Partager ce bien",
-      "favorite": "Ajouter ou retirer ce bien des favoris"
+      "favorite": "Ajouter ou retirer ce bien des favoris",
+      "openImage": "Agrandir l’image {{index}}",
+      "lightboxLabel": "Visionneuse des photos du bien",
+      "previous": "Afficher l’image précédente",
+      "next": "Afficher l’image suivante",
+      "close": "Fermer la visionneuse",
+      "imageCounter": "{{current}} / {{total}}"
     },
     "summary": {
       "eyebrow": "{{type}} · {{transaction}}",

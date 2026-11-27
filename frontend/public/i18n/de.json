@@ -400,7 +400,13 @@
       "photoCount": "{{count}} Fotos",
       "empty": "Keine Fotos verfügbar",
       "share": "Diese Immobilie teilen",
-      "favorite": "Diese Immobilie zu Favoriten hinzufügen oder entfernen"
+      "favorite": "Diese Immobilie zu Favoriten hinzufügen oder entfernen",
+      "openImage": "Bild {{index}} vergrößern",
+      "lightboxLabel": "Fotobetrachter der Immobilie",
+      "previous": "Vorheriges Bild anzeigen",
+      "next": "Nächstes Bild anzeigen",
+      "close": "Fotobetrachter schließen",
+      "imageCounter": "{{current}} / {{total}}"
     },
     "summary": {
       "eyebrow": "{{type}} · {{transaction}}",

@@ -8,9 +8,15 @@
 >
   @if (displayedImages().length > 0) {
     @for (image of displayedImages(); track image.url; let index = $index) {
-      <figure class="gallery__item" [class.gallery__item--main]="index === 0">
+      <button
+        type="button"
+        class="gallery__item"
+        [class.gallery__item--main]="index === 0"
+        [attr.aria-label]="'propertyDetail.gallery.openImage' | translate: { index: index + 1 }"
+        (click)="openImage(index)"
+      >
         <img [src]="image.url" [alt]="image.texteAlternatif" />
-      </figure>
+      </button>
     }
 
     <div class="gallery__actions">
@@ -34,7 +40,7 @@
       </button>
     </div>
 
-    <button type="button" class="gallery__count">
+    <button type="button" class="gallery__count" (click)="openImage(0)">
       <img src="icons/property-detail/gallery.svg" alt="" />
       {{
         (orderedImages().length === 1
@@ -49,3 +55,11 @@
     </div>
   }
 </section>
+
+@if (selectedImageIndex() !== null) {
+  <app-property-image-lightbox
+    [images]="orderedImages()"
+    [initialIndex]="selectedImageIndex() ?? 0"
+    (closed)="closeLightbox()"
+  />
+}

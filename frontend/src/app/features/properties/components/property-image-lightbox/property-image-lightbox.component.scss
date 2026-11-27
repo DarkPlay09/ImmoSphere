@@ -1,0 +1,148 @@
+:host {
+  position: fixed;
+  z-index: 1000;
+  inset: 0;
+}
+
+.lightbox {
+  position: absolute;
+  inset: 0;
+  display: grid;
+  overflow: hidden;
+  background: rgb(16 12 17 / 94%);
+  color: #fff;
+  place-items: center;
+
+  &__figure {
+    display: grid;
+    max-width: calc(100vw - 180px);
+    max-height: calc(100vh - 100px);
+    margin: 0;
+    gap: 12px;
+    justify-items: center;
+  }
+
+  &__image {
+    display: block;
+    max-width: 100%;
+    max-height: calc(100vh - 150px);
+    border-radius: 8px;
+    object-fit: contain;
+  }
+
+  &__caption {
+    max-width: min(720px, 80vw);
+    color: #eee8ef;
+    font-family: Manrope, Inter, sans-serif;
+    font-size: 14px;
+    line-height: 20px;
+    text-align: center;
+  }
+
+  &__close,
+  &__navigation {
+    display: grid;
+    width: 48px;
+    height: 48px;
+    padding: 0;
+    border: 0;
+    border-radius: 50%;
+    background: rgb(255 255 255 / 90%);
+    color: #521453;
+    cursor: pointer;
+    place-items: center;
+
+    &:hover {
+      background: #fff;
+    }
+
+    &:focus-visible {
+      outline: 3px solid #c68ac5;
+      outline-offset: 3px;
+    }
+  }
+
+  &__close {
+    position: absolute;
+    top: 24px;
+    right: 24px;
+
+    span {
+      font-size: 32px;
+      font-weight: 300;
+      line-height: 1;
+    }
+  }
+
+  &__navigation {
+    position: absolute;
+    top: 50%;
+    transform: translateY(-50%);
+
+    span {
+      font-size: 42px;
+      font-weight: 300;
+      line-height: 1;
+    }
+
+    &--previous {
+      left: 32px;
+    }
+
+    &--next {
+      right: 32px;
+    }
+  }
+
+  &__counter {
+    position: absolute;
+    right: 24px;
+    bottom: 20px;
+    margin: 0;
+    padding: 6px 12px;
+    border-radius: 999px;
+    background: rgb(0 0 0 / 45%);
+    font-family: Manrope, Inter, sans-serif;
+    font-size: 13px;
+    font-weight: 650;
+    line-height: 18px;
+  }
+}
+
+@media (max-width: 720px) {
+  .lightbox {
+    &__figure {
+      max-width: calc(100vw - 32px);
+      max-height: calc(100vh - 120px);
+    }
+
+    &__image {
+      max-height: calc(100vh - 180px);
+    }
+
+    &__close {
+      top: 16px;
+      right: 16px;
+    }
+
+    &__navigation {
+      top: auto;
+      bottom: 20px;
+      transform: none;
+
+      &--previous {
+        left: 16px;
+      }
+
+      &--next {
+        right: 16px;
+      }
+    }
+
+    &__counter {
+      right: 50%;
+      bottom: 29px;
+      transform: translateX(50%);
+    }
+  }
+}
