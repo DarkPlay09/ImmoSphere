@@ -361,6 +361,10 @@
     "common": {
       "comingSoon": "Demnächst verfügbar"
     },
+    "description": {
+      "readMore": "Weiterlesen",
+      "showLess": "Weniger anzeigen"
+    },
     "appointment": {
       "title": "Besichtigung planen",
       "description": "Bald können Sie einen Termin zur Besichtigung dieser Immobilie wählen."

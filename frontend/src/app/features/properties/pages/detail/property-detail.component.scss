@@ -60,31 +60,6 @@
     gap: 24px;
   }
 
-  &__description {
-    min-height: 298px;
-    padding: 24px;
-    border-radius: 12px;
-    background: #fff;
-    box-shadow: 0 1px 1px rgb(0 0 0 / 5%);
-
-    h2 {
-      margin: 0 0 8px;
-      font-family: Manrope, Inter, sans-serif;
-      font-size: 24px;
-      font-weight: 600;
-      line-height: 34px;
-      letter-spacing: -0.24px;
-    }
-
-    p {
-      margin: 0;
-      color: #4f434c;
-      font-size: 16px;
-      line-height: 28px;
-      white-space: pre-line;
-    }
-  }
-
   &__status {
     display: flex;
     min-height: 480px;
@@ -192,11 +167,6 @@
 
     &__sidebar {
       grid-template-columns: 1fr;
-    }
-
-    &__description {
-      min-height: 0;
-      padding: 20px;
     }
   }
 }

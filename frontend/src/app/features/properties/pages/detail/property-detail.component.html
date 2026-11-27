@@ -27,12 +27,7 @@
 
           <div class="property-detail__details-layout">
             <div class="property-detail__main-column">
-              <section class="property-detail__description" aria-labelledby="description-title">
-                <h2 id="description-title">
-                  {{ 'propertyDetail.page.description' | translate }}
-                </h2>
-                <p>{{ currentState.property.description }}</p>
-              </section>
+              <app-property-description [description]="currentState.property.description" />
 
               <app-property-characteristics [property]="currentState.property" />
               <app-property-virtual-tour />

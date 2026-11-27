@@ -11,6 +11,7 @@ import { PropertyAgentComponent } from '../../components/property-agent/property
 import { PropertyCharacteristicsComponent } from '../../components/property-characteristics/property-characteristics.component';
 import { PropertyAppointmentCardComponent } from '../../components/property-appointment-card/property-appointment-card.component';
 import { PropertyConnectivityComponent } from '../../components/property-connectivity/property-connectivity.component';
+import { PropertyDescriptionComponent } from '../../components/property-description/property-description.component';
 import { PropertyGalleryComponent } from '../../components/property-gallery/property-gallery.component';
 import { PropertyLoanSimulationComponent } from '../../components/property-loan-simulation/property-loan-simulation.component';
 import { PropertyLocationComponent } from '../../components/property-location/property-location.component';
@@ -37,6 +38,7 @@ const LOADING_STATE: PropertyDetailState = {
     PropertyAppointmentCardComponent,
     PropertyCharacteristicsComponent,
     PropertyConnectivityComponent,
+    PropertyDescriptionComponent,
     PropertyGalleryComponent,
     PropertyLoanSimulationComponent,
     PropertyLocationComponent,

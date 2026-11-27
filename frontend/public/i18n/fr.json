@@ -361,6 +361,10 @@
     "common": {
       "comingSoon": "Bientôt disponible"
     },
+    "description": {
+      "readMore": "Lire la suite",
+      "showLess": "Réduire"
+    },
     "appointment": {
       "title": "Planifier une visite",
       "description": "Choisissez prochainement une date pour découvrir ce bien."

@@ -361,6 +361,10 @@
     "common": {
       "comingSoon": "Binnenkort beschikbaar"
     },
+    "description": {
+      "readMore": "Lees meer",
+      "showLess": "Minder tonen"
+    },
     "appointment": {
       "title": "Een bezoek plannen",
       "description": "Binnenkort kunt u een datum kiezen om dit pand te bezoeken."

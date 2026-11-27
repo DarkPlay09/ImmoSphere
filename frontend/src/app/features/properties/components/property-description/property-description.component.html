@@ -1,0 +1,32 @@
+<section class="description" aria-labelledby="description-title">
+  <h2 id="description-title">{{ 'propertyDetail.page.description' | translate }}</h2>
+
+  <div
+    #descriptionContent
+    id="property-description-content"
+    class="description__content"
+    [class.description__content--collapsed]="overflowing() && !expanded()"
+  >
+    <p>{{ description() }}</p>
+  </div>
+
+  @if (overflowing()) {
+    <button
+      class="description__toggle"
+      type="button"
+      aria-controls="property-description-content"
+      [attr.aria-expanded]="expanded()"
+      (click)="toggleExpanded()"
+    >
+      {{
+        (expanded() ? 'propertyDetail.description.showLess' : 'propertyDetail.description.readMore')
+          | translate
+      }}
+      <img
+        src="icons/chevron-down.svg"
+        alt=""
+        [class.description__chevron--expanded]="expanded()"
+      />
+    </button>
+  }
+</section>

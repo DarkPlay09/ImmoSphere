@@ -361,6 +361,10 @@
     "common": {
       "comingSoon": "Coming soon"
     },
+    "description": {
+      "readMore": "Read more",
+      "showLess": "Show less"
+    },
     "appointment": {
       "title": "Schedule a viewing",
       "description": "You will soon be able to choose a date to visit this property."
