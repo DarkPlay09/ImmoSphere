@@ -146,25 +146,7 @@
     position: absolute;
     right: 8px;
     bottom: 8px;
-
-    padding: 2px 8px;
-    border-radius: 4px;
-
-    background: #10b981;
-    color: #ffffff;
-
-    font-size: 10px;
-    font-weight: 800;
-    line-height: 15px;
-    letter-spacing: 0.05em;
   }
-
-  .peb-a { background: #059669; }
-  .peb-b { background: #10b981; }
-  .peb-c { background: #84bd00; color: $text; }
-  .peb-d { background: #eab308; color: $text; }
-  .peb-e { background: #f97316; }
-  .peb-f { background: #dc2626; }
 
   // COLONNE DROITE
   &__content {

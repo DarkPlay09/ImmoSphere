@@ -37,7 +37,7 @@ public static class DatabaseSeeder
         await SeedLookupAsync(db.StatutsSouscription, x => x.Libelle, s => new StatutSouscriptionEntity { Libelle = s },
             "Actif", "Expiré", "Annulé");
         await SeedLookupAsync(db.Provinces, x => x.Libelle, s => new ProvinceEntity { Libelle = s },
-            "Liège", "Namur", "Hainaut", "Brabant wallon", "Luxembourg");
+            "Liège", "Namur", "Hainaut", "Brabant wallon", "Luxembourg", "Flandre-Orientale");
         await SeedLookupAsync(db.TypesChauffage, x => x.Libelle, s => new TypeChauffageEntity { Libelle = s },
             "Gaz", "Mazout", "Électrique", "Pompe à chaleur", "Bois / pellets");
         await SeedLookupAsync(db.TypesConfiguration, x => x.Libelle, s => new TypeConfigurationEntity { Libelle = s },
@@ -147,7 +147,7 @@ public static class DatabaseSeeder
                 Description = "Appartement proche des commerces, balcon et ascenseur.",
                 Rue = "Boulevard d'Avroy", Numero = "85", Boite = "12",
                 CodePostal = "4000", Localite = "Liège",
-                Prix = 219000m, SurfaceHab = 88m, Etage = 3, NbChambres = 2,
+                Prix = 219000m, SurfaceHab = 88m, Etage = 3, NbEtage = 1, NbChambres = 2,
                 NbSdb = 1, NbToilettes = 1, ABalcon = true, AAscenseur = true,
                 EstVisible = true, EstBrouillon = false, EstAdresseConfidentielle = false
             },
@@ -187,6 +187,29 @@ public static class DatabaseSeeder
                 SurfaceJard = 780m, SurfaceTerrasse = 65m, NbChambres = 4, NbSdb = 2,
                 NbToilettes = 3, APiscine = true, AGarage = true, AParking = true,
                 AJardin = true, ATerrasse = true, ACheminee = true,
+                EstVisible = true, EstBrouillon = false, EstAdresseConfidentielle = false
+            },
+            new BienEntity
+            {
+                TypeBien = typesBien["Maison"],
+                TypeTransaction = typesTransactions["Vente"],
+                PebBien = pebs["A"],
+                Etat = etats["Bon état"],
+                EtatVente = etatsVente["À vendre"],
+                Province = provinces["Flandre-Orientale"],
+                TypeConfiguration = configurations["4 façades"],
+                TypeChauffage = chauffages["Pompe à chaleur"],
+
+                Titre = "Maison de standing avec piscine à Geraardsbergen (démo)",
+                Description = "Maison quatre façades spacieuse et lumineuse avec cuisine ouverte, vaste séjour, sept chambres, quatre salles de bains, terrasse et piscine. Le chauffage par pompe à chaleur, le PEB A et les généreux espaces extérieurs en font un bien familial confortable et économe en énergie.",
+                Rue = "Koppenhollestraat", Numero = "37",
+                CodePostal = "9500", Localite = "Geraardsbergen",
+                Prix = 1095000m, SurfaceHab = 429m, SurfaceTerrain = 2468m,
+                SurfaceJard = 2020m, SurfaceTerrasse = 180m, NbChambres = 7,
+                NbSdb = 4, NbToilettes = 6, NbEtage = 2, AnneeConstr = 2018,
+                ConsEnergie = 100m, NumPeb = "20260306-0003815052-RES-3",
+                AParking = true, AJardin = true, ATerrasse = true, ACave = true,
+                AGrenier = true, APiscine = true, ACheminee = true,
                 EstVisible = true, EstBrouillon = false, EstAdresseConfidentielle = false
             },
             new BienEntity
@@ -350,6 +373,9 @@ public static class DatabaseSeeder
                 existant.Province ??= bien.Province;
                 existant.TypeConfiguration ??= bien.TypeConfiguration;
                 existant.TypeChauffage ??= bien.TypeChauffage;
+
+                existant.Etage = bien.Etage;
+                existant.NbEtage = bien.NbEtage;
             }
         }
         await db.SaveChangesAsync();
@@ -366,9 +392,87 @@ public static class DatabaseSeeder
 
         var maisonLiege = await db.Biens.SingleAsync(x => x.Titre == "Maison 3 chambres avec jardin à Liège (démo)");
         var studioLiege = await db.Biens.SingleAsync(x => x.Titre == "Studio à louer près de l'université (démo)");
+
+        // Images publiques de démonstration. Les fichiers correspondants sont
+        // servis par ImmoSphere.Api depuis wwwroot/images/properties/demo.
+        var imagesDemo = new Dictionary<string, (string Chemin, int Ordre, string TexteAlternatif)[]>
+        {
+            ["Maison 3 chambres avec jardin à Liège (démo)"] =
+            [
+                ("/images/properties/demo/maison.png", 0, "Façade de la maison avec jardin à Liège")
+            ],
+            ["Appartement 2 chambres à Liège-Centre (démo)"] =
+            [
+                ("/images/properties/demo/appartement-lumineux.jpg", 0, "Pièce de vie lumineuse de l'appartement à Liège"),
+                ("/images/properties/demo/appartement.png", 1, "Façade d'un appartement à Liège"),
+                ("/images/properties/demo/penthouse.png", 2, "Vue complémentaire de l'appartement à Liège")
+            ],
+            ["Studio à louer près de l'université (démo)"] =
+            [
+                ("/images/properties/demo/appartement.png", 0, "Vue du studio à louer près de l'université")
+            ],
+            ["Villa 4 façades à Spa (démo)"] =
+            [
+                ("/images/properties/demo/villa.png", 0, "Façade de la villa quatre façades à Spa")
+            ],
+            ["Maison de standing avec piscine à Geraardsbergen (démo)"] =
+            [
+                ("/images/properties/demo/maison-geraardsbergen-piscine.jpg", 0, "Façade arrière, terrasse et piscine de la maison à Geraardsbergen"),
+                ("/images/properties/demo/maison-geraardsbergen-cuisine.jpg", 1, "Cuisine ouverte et équipée de la maison à Geraardsbergen"),
+                ("/images/properties/demo/maison-geraardsbergen-salle-a-manger.jpg", 2, "Salle à manger lumineuse ouverte sur le séjour"),
+                ("/images/properties/demo/maison-geraardsbergen-salon-cheminee.jpg", 3, "Salon avec cheminée de la maison à Geraardsbergen"),
+                ("/images/properties/demo/maison-geraardsbergen-hall-escalier.jpg", 4, "Hall d'entrée et escalier de la maison"),
+                ("/images/properties/demo/maison-geraardsbergen-couloir.jpg", 5, "Couloir desservant les pièces de la maison")
+            ],
+            ["Duplex 3 chambres à Namur (démo)"] =
+            [
+                ("/images/properties/demo/duplex.png", 0, "Vue extérieure du duplex à Namur")
+            ],
+            ["Maison mitoyenne à Seraing (démo)"] =
+            [
+                ("/images/properties/demo/maison.png", 0, "Façade de la maison mitoyenne à Seraing")
+            ],
+            ["Appartement 1 chambre à louer à Mons (démo)"] =
+            [
+                ("/images/properties/demo/appartement.png", 0, "Vue de l'appartement à louer à Mons")
+            ],
+            ["Maison 4 chambres à Waterloo (démo)"] =
+            [
+                ("/images/properties/demo/maison.png", 0, "Façade de la maison familiale à Waterloo")
+            ],
+            ["Commerce à louer à Charleroi (démo)"] =
+            [
+                ("/images/properties/demo/appartement-lumineux.jpg", 0, "Intérieur du commerce à louer à Charleroi")
+            ],
+            ["Maison de campagne à Huy (démo)"] =
+            [
+                ("/images/properties/demo/maison.png", 0, "Façade de la maison de campagne à Huy")
+            ],
+            ["Appartement en brouillon à Verviers (démo)"] =
+            [
+                ("/images/properties/demo/penthouse.png", 0, "Vue de l'appartement en brouillon à Verviers")
+            ]
+        };
+
+        foreach (var association in imagesDemo)
+        {
+            var bien = await db.Biens.SingleAsync(
+                x => x.Titre == association.Key);
+            await AddImagesIfMissingAsync(
+                db,
+                bien,
+                association.Value);
+        }
+
         var infoNegociable = await db.InformationsAnnexes.SingleAsync(x => x.Libelle == "Prix négociable");
+        var infoFrais = await db.InformationsAnnexes.SingleAsync(x => x.Libelle == "Frais à charge de l'acquéreur");
+        var infoRevenuCadastral = await db.InformationsAnnexes.SingleAsync(x => x.Libelle == "Revenu cadastral disponible");
         var infoCharges = await db.InformationsAnnexes.SingleAsync(x => x.Libelle == "Charges mensuelles");
+        var maisonGeraardsbergen = await db.Biens.SingleAsync(
+            x => x.Titre == "Maison de standing avec piscine à Geraardsbergen (démo)");
         await AddBienInfoIfMissing(db, maisonLiege.Id, infoNegociable.Id);
+        await AddBienInfoIfMissing(db, maisonGeraardsbergen.Id, infoFrais.Id);
+        await AddBienInfoIfMissing(db, maisonGeraardsbergen.Id, infoRevenuCadastral.Id);
         await AddBienInfoIfMissing(db, studioLiege.Id, infoCharges.Id);
 
         // 5) Quelques créneaux de visite. Insérés uniquement si aucun
@@ -386,7 +490,6 @@ public static class DatabaseSeeder
 
         // Les tables dépendant d'un compte utilisateur (favoris, avis,
         // souscriptions, RDV, agences administrées) ne sont PAS remplies ici.
-        // Idem pour les images, conformément à la demande.
         await db.SaveChangesAsync();
         await transaction.CommitAsync();
     }
@@ -415,5 +518,31 @@ public static class DatabaseSeeder
     {
         if (!await db.BiensInformationsAnnexes.AnyAsync(x => x.BienId == bienId && x.InformationAnnexeId == infoId))
             db.BiensInformationsAnnexes.Add(new BienInformationAnnexeEntity { BienId = bienId, InformationAnnexeId = infoId });
+    }
+
+    private static async Task AddImagesIfMissingAsync(
+        ApplicationDbContext db,
+        BienEntity bien,
+        IEnumerable<(string Chemin, int Ordre, string TexteAlternatif)> images)
+    {
+        var cheminsExistants = (await db.Images
+            .Where(image => image.BienId == bien.Id)
+            .Select(image => image.Chemin)
+            .ToListAsync())
+            .ToHashSet(StringComparer.OrdinalIgnoreCase);
+
+        foreach (var image in images)
+        {
+            if (!cheminsExistants.Add(image.Chemin))
+                continue;
+
+            db.Images.Add(new ImageEntity
+            {
+                Bien = bien,
+                Chemin = image.Chemin,
+                Ordre = image.Ordre,
+                TexteAlternatif = image.TexteAlternatif
+            });
+        }
     }
 }

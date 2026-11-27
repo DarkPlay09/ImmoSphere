@@ -86,7 +86,13 @@ public static class BienMapper
         result.TypeChauffage = entity.TypeChauffage?.Libelle ?? string.Empty;
 
         // result.Publicator = ...
-        // result.Images = ...
+        result.Images = entity.Images
+            .OrderBy(image => image.Ordre)
+            .Select(image => new ImageBien(
+                image.Chemin,
+                image.Ordre,
+                image.TexteAlternatif))
+            .ToList();
 
         // TODO : mapper RendezVousEntity vers RendezVous
         var allrdv = new List<RendezVous>();

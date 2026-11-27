@@ -1,4 +1,4 @@
-import { PebRating } from '../../properties/models/property.model';
+import { PebRating } from '../../properties/models/peb-rating.model';
 
 export type BelgiumRegion = 'brussels' | 'flanders' | 'wallonia';
 

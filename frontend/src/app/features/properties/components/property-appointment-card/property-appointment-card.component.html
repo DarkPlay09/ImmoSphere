@@ -1,0 +1,30 @@
+<section class="appointment-card" aria-labelledby="appointment-title">
+  <header class="appointment-card__header">
+    <span class="appointment-card__icon" aria-hidden="true">
+      <img src="icons/property-detail/calendar.svg" alt="" />
+    </span>
+    <div>
+      <h2 id="appointment-title">{{ 'propertyDetail.appointment.title' | translate }}</h2>
+      <p>{{ 'propertyDetail.appointment.description' | translate }}</p>
+    </div>
+  </header>
+
+  <div class="appointment-card__placeholder" aria-hidden="true">
+    <div class="appointment-card__agent">
+      <span class="appointment-card__avatar"></span>
+      <span class="appointment-card__line appointment-card__line--long"></span>
+      <span class="appointment-card__line appointment-card__line--short"></span>
+    </div>
+
+    <div class="appointment-card__dates">
+      @for (day of [1, 2, 3, 4, 5]; track day) {
+        <span></span>
+      }
+    </div>
+
+    <div class="appointment-card__time"></div>
+    <div class="appointment-card__action"></div>
+  </div>
+
+  <p class="appointment-card__status">{{ 'propertyDetail.common.comingSoon' | translate }}</p>
+</section>

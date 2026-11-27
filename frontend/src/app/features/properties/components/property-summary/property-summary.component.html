@@ -1,0 +1,50 @@
+<section class="summary" aria-labelledby="property-title">
+  <div class="summary__heading">
+    <div>
+      <p class="summary__eyebrow">
+        {{
+          'propertyDetail.summary.eyebrow'
+            | translate: { type: property().typeBien, transaction: property().typeTransaction }
+        }}
+      </p>
+      <h1 id="property-title">{{ property().titre }}</h1>
+      <p class="summary__address">
+        <img src="icons/property-detail/location.svg" alt="" />
+        {{ publicAddress() }}
+      </p>
+    </div>
+
+    <div class="summary__pricing">
+      <p class="summary__price">{{ formattedPrice() }}</p>
+      <p class="summary__price-note">{{ 'propertyDetail.summary.priceNote' | translate }}</p>
+    </div>
+  </div>
+
+  <dl class="summary__facts">
+    @for (fact of facts(); track fact.labelKey) {
+      <div class="summary__fact" [class.summary__fact--peb]="fact.pebRating">
+        @if (fact.icon) {
+          <img class="summary__fact-icon" [src]="fact.icon" alt="" />
+        }
+
+        @if (fact.pebRating; as rating) {
+          <dd class="summary__peb">
+            <app-peb-badge [rating]="rating" size="large" />
+          </dd>
+          @if (fact.valueKey) {
+            <dt>{{ fact.valueKey | translate: fact.valueParams }}</dt>
+          }
+        } @else {
+          <dd>
+            @if (fact.valueKey) {
+              {{ fact.valueKey | translate: fact.valueParams }}
+            } @else {
+              {{ fact.value }}
+            }
+          </dd>
+          <dt>{{ fact.labelKey | translate }}</dt>
+        }
+      </div>
+    }
+  </dl>
+</section>

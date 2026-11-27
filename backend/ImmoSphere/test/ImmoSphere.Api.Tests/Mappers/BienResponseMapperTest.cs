@@ -29,6 +29,11 @@ public sealed class BienResponseMapperTest
         Assert.AreEqual("Maison", response.TypeBien);
         Assert.AreEqual("Vente", response.TypeTransaction);
         Assert.AreEqual("B", response.Peb);
+        Assert.AreEqual(2, response.Images.Count);
+        Assert.AreEqual("/images/properties/demo/maison.png", response.Images[0].Url);
+        Assert.AreEqual(0, response.Images[0].Ordre);
+        Assert.AreEqual("Façade principale", response.Images[0].TexteAlternatif);
+        Assert.AreEqual("/images/properties/demo/interieur.png", response.Images[1].Url);
         Assert.AreEqual(7, response.NombreFavoris);
         CollectionAssert.AreEqual(
             new[] { "Proche des transports", "Quartier calme" },
@@ -106,6 +111,17 @@ public sealed class BienResponseMapperTest
             TypeBien = "Maison",
             TypeTransaction = "Vente",
             Peb = "B",
+            Images =
+            [
+                new ImageBien(
+                    "/images/properties/demo/interieur.png",
+                    1,
+                    "Pièce de vie"),
+                new ImageBien(
+                    "/images/properties/demo/maison.png",
+                    0,
+                    "Façade principale")
+            ],
             nbFavori = 7,
             AnneeConstruction = 1998,
             SurfaceHab = 145.5,

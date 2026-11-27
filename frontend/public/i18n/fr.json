@@ -197,6 +197,7 @@
       "favoriteAdd": "Ajouter l’agence aux favoris",
       "favoriteRemove": "Retirer l’agence des favoris",
       "breadcrumbLabel": "Fil d’Ariane",
+      "servicesLabel": "Services liés au bien",
       "home": "Accueil",
       "agencies": "Agences",
       "loading": "Chargement de l’agence…",
@@ -336,6 +337,151 @@
       "benefit3": "Gestion directe des créneaux de visite pour éviter les appels intempestifs",
       "button": "Publier mon bien",
       "unavailable": "La publication de biens n'est pas encore disponible."
+    }
+  },
+  "propertyDetail": {
+    "page": {
+      "loadingTitle": "Chargement du bien",
+      "loadingText": "Les informations de l’annonce arrivent dans un instant.",
+      "breadcrumbLabel": "Fil d’Ariane",
+      "home": "Accueil",
+      "properties": "Biens",
+      "description": "Description",
+      "notFound": {
+        "title": "Bien introuvable",
+        "text": "Ce bien n’existe pas ou n’est pas publié.",
+        "action": "Voir les biens disponibles"
+      },
+      "error": {
+        "title": "Une erreur est survenue",
+        "text": "Impossible de charger ce bien pour le moment.",
+        "action": "Revenir à l’accueil"
+      }
+    },
+    "common": {
+      "comingSoon": "Bientôt disponible"
+    },
+    "description": {
+      "readMore": "Lire la suite",
+      "showLess": "Réduire"
+    },
+    "appointment": {
+      "title": "Planifier une visite",
+      "description": "Choisissez prochainement une date pour découvrir ce bien."
+    },
+    "virtualTour": {
+      "title": "Visite immersive 360°",
+      "description": "Explorez les volumes et l’agencement depuis chez vous en ultra-haute définition.",
+      "placeholder": "L’emplacement de la visite immersive est prêt."
+    },
+    "loanSimulation": {
+      "title": "Simulation de prêt",
+      "description": "Estimez prochainement votre mensualité pour ce bien."
+    },
+    "location": {
+      "title": "Localisation & Quartier",
+      "description": "L’adresse et les points d’intérêt du quartier seront affichés ici.",
+      "mapPlaceholder": "Emplacement de la carte du quartier"
+    },
+    "connectivity": {
+      "title": "Connectivité & Très Haut Débit",
+      "description": "Les informations sur la fibre et la couverture internet du bien seront affichées ici."
+    },
+    "energyCertificate": {
+      "title": "Certificat Énergétique (PEB Wallonie)",
+      "certificateNumber": "Numéro de certificat : {{number}}",
+      "ratingLabel": "Classe énergétique {{rating}}",
+      "specificConsumption": "Consommation spécifique"
+    },
+    "agent": {
+      "title": "Agent du bien",
+      "description": "Les coordonnées et informations professionnelles de l’agent seront affichées ici."
+    },
+    "reviews": {
+      "title": "Avis récents des acquéreurs"
+    },
+    "gallery": {
+      "label": "Photos du bien",
+      "photoCountOne": "{{count}} photo",
+      "photoCount": "{{count}} photos",
+      "empty": "Aucune photo disponible",
+      "share": "Partager ce bien",
+      "favorite": "Ajouter ou retirer ce bien des favoris",
+      "openImage": "Agrandir l’image {{index}}",
+      "lightboxLabel": "Visionneuse des photos du bien",
+      "previous": "Afficher l’image précédente",
+      "next": "Afficher l’image suivante",
+      "close": "Fermer la visionneuse",
+      "imageCounter": "{{current}} / {{total}}"
+    },
+    "summary": {
+      "eyebrow": "{{type}} · {{transaction}}",
+      "box": "boîte",
+      "priceNote": "Prix demandé · Droits d'enregistrement régionaux applicables",
+      "favoriteCountOne": "Déjà ajouté à {{count}} liste de favoris",
+      "favoriteCount": "Déjà ajouté à {{count}} listes de favoris",
+      "facts": {
+        "bedrooms": "Chambres",
+        "bathrooms": "Salles de bain",
+        "livingArea": "Surface habitable",
+        "terrace": "Terrasse",
+        "floor": "Étage",
+        "elevator": "Ascenseur",
+        "landArea": "Surface du terrain",
+        "usableArea": "Surface utile",
+        "peb": "PEB",
+        "consumption": "Consommation"
+      }
+    },
+    "values": {
+      "area": "{{value}} m²",
+      "energyConsumption": "{{value}} kWh/m²/an",
+      "yes": "Oui",
+      "no": "Non"
+    },
+    "characteristics": {
+      "title": "Caractéristiques",
+      "groups": {
+        "general": "Général",
+        "areas": "Surfaces",
+        "rooms": "Pièces et sanitaires",
+        "energy": "Énergie",
+        "outdoor": "Extérieur & Annexes",
+        "equipment": "Équipements & Charges"
+      },
+      "labels": {
+        "constructionYear": "Année de construction",
+        "condition": "État du bien",
+        "saleStatus": "État de la vente",
+        "configuration": "Configuration",
+        "floorCount": "Nombre d’étages",
+        "livingArea": "Surface habitable",
+        "landArea": "Surface du terrain",
+        "gardenArea": "Surface du jardin",
+        "terraceArea": "Surface de la terrasse",
+        "bedrooms": "Chambres",
+        "bathrooms": "Salles de bain",
+        "toilets": "Toilettes",
+        "floor": "Étage du bien",
+        "heatingType": "Type de chauffage",
+        "energyConsumption": "Consommation énergétique",
+        "pebNumber": "Numéro PEB",
+        "energyClass": "Classe énergétique"
+      },
+      "equipmentTitle": "Équipements et annexes",
+      "equipment": {
+        "garage": "Garage",
+        "parking": "Parking",
+        "garden": "Jardin",
+        "balcony": "Balcon",
+        "cellar": "Cave",
+        "terrace": "Terrasse",
+        "attic": "Grenier",
+        "elevator": "Ascenseur",
+        "pool": "Piscine",
+        "fireplace": "Cheminée"
+      },
+      "additionalTitle": "Informations complémentaires"
     }
   },
   "faq": {

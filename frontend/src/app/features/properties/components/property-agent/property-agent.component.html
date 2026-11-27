@@ -1,0 +1,19 @@
+<section class="agent" aria-labelledby="agent-title">
+  <div class="agent__identity">
+    <span class="agent__avatar" aria-hidden="true">—</span>
+    <div class="agent__details">
+      <div class="agent__heading">
+        <h2 id="agent-title">{{ 'propertyDetail.agent.title' | translate }}</h2>
+        <span>{{ 'propertyDetail.common.comingSoon' | translate }}</span>
+      </div>
+      <p>{{ 'propertyDetail.agent.description' | translate }}</p>
+      <div class="agent__rating-placeholder" aria-hidden="true">
+        @for (star of [1, 2, 3, 4, 5]; track star) {
+          <img src="icons/property-detail/star.svg" alt="" />
+        }
+        <i></i>
+      </div>
+    </div>
+  </div>
+  <div class="agent__actions" aria-hidden="true"><span></span><span></span></div>
+</section>

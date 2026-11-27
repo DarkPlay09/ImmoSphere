@@ -1,0 +1,51 @@
+<div
+  class="lightbox"
+  role="dialog"
+  aria-modal="true"
+  [attr.aria-label]="'propertyDetail.gallery.lightboxLabel' | translate"
+  (click)="closeFromBackdrop($event)"
+>
+  <button
+    #closeButton
+    type="button"
+    class="lightbox__close"
+    [attr.aria-label]="'propertyDetail.gallery.close' | translate"
+    (click)="close()"
+  >
+    <span aria-hidden="true">×</span>
+  </button>
+
+  @if (currentImage(); as image) {
+    <figure class="lightbox__figure">
+      <img class="lightbox__image" [src]="image.url" [alt]="image.texteAlternatif" />
+      <figcaption class="lightbox__caption">{{ image.texteAlternatif }}</figcaption>
+    </figure>
+
+    @if (images().length > 1) {
+      <button
+        type="button"
+        class="lightbox__navigation lightbox__navigation--previous"
+        [attr.aria-label]="'propertyDetail.gallery.previous' | translate"
+        (click)="previousImage()"
+      >
+        <span aria-hidden="true">‹</span>
+      </button>
+
+      <button
+        type="button"
+        class="lightbox__navigation lightbox__navigation--next"
+        [attr.aria-label]="'propertyDetail.gallery.next' | translate"
+        (click)="nextImage()"
+      >
+        <span aria-hidden="true">›</span>
+      </button>
+    }
+
+    <p class="lightbox__counter" aria-live="polite">
+      {{
+        'propertyDetail.gallery.imageCounter'
+          | translate: { current: currentIndex() + 1, total: images().length }
+      }}
+    </p>
+  }
+</div>

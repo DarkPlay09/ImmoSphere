@@ -1,0 +1,146 @@
+:host {
+  display: block;
+}
+
+.energy-certificate {
+  padding: 24px;
+  border-radius: 12px;
+  background: #fff;
+  color: #1b1b20;
+  box-shadow: 0 1px 2px rgb(0 0 0 / 5%);
+
+  &__header {
+    display: flex;
+    align-items: flex-start;
+    justify-content: space-between;
+    gap: 24px;
+
+    h2 {
+      margin: 0;
+      font-family: Manrope, Inter, sans-serif;
+      font-size: 24px;
+      font-weight: 600;
+      line-height: 32px;
+      letter-spacing: -0.24px;
+    }
+
+    p {
+      margin: 0;
+      color: #6b6269;
+      font-size: 14px;
+      line-height: 20px;
+    }
+  }
+
+  &__scale-container {
+    margin-top: 12px;
+  }
+
+  &__scale-unit {
+    display: block;
+    margin-bottom: 4px;
+    color: #6b6269;
+    font-size: 11px;
+    line-height: 16px;
+    text-align: right;
+  }
+
+  &__scale {
+    display: grid;
+    grid-template-columns: repeat(9, minmax(0, 1fr));
+    gap: 4px;
+  }
+
+  &__scale-step {
+    min-width: 0;
+
+    &:first-child .energy-certificate__segment {
+      border-radius: 6px 0 0 6px;
+    }
+
+    &:last-child .energy-certificate__segment {
+      border-radius: 0 6px 6px 0;
+    }
+
+    &--active .energy-certificate__scale-label,
+    &--active .energy-certificate__scale-range {
+      font-weight: 700;
+    }
+  }
+
+  &__segment {
+    display: block;
+    height: 12px;
+    background: var(--peb-color);
+  }
+
+  &__scale-label {
+    display: block;
+    margin-top: 6px;
+    color: #6b6269;
+    font-size: 11px;
+    line-height: 16px;
+    text-align: center;
+  }
+
+  &__scale-range {
+    display: block;
+    overflow: hidden;
+    color: var(--peb-color);
+    font-size: 10px;
+    line-height: 14px;
+    text-align: center;
+    text-overflow: clip;
+    white-space: nowrap;
+  }
+
+  &__metrics {
+    display: grid;
+    grid-template-columns: repeat(3, minmax(0, 1fr));
+    gap: 12px;
+    margin: 12px 0 0;
+  }
+
+  &__metric {
+    min-height: 64px;
+    padding: 10px 12px;
+    border-radius: 8px;
+    background: #f5f2f9;
+
+    dt {
+      color: #6b6269;
+      font-size: 12px;
+      line-height: 16px;
+    }
+
+    dd {
+      margin: 2px 0 0;
+      font-size: 16px;
+      font-weight: 700;
+      line-height: 24px;
+    }
+  }
+}
+
+@media (max-width: 720px) {
+  .energy-certificate {
+    padding: 24px;
+
+    &__header {
+      flex-direction: column;
+      gap: 16px;
+    }
+
+    &__metrics {
+      grid-template-columns: 1fr;
+    }
+
+    &__scale {
+      gap: 2px;
+    }
+
+    &__scale-range {
+      font-size: 8px;
+    }
+  }
+}

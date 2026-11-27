@@ -768,6 +768,15 @@ namespace ImmoSphere.Infrastructure.Persistence.Migrations
                         .HasColumnType("text")
                         .HasColumnName("chemin");
 
+                    b.Property<int>("Ordre")
+                        .HasColumnType("integer")
+                        .HasColumnName("ordre");
+
+                    b.Property<string>("TexteAlternatif")
+                        .IsRequired()
+                        .HasColumnType("text")
+                        .HasColumnName("texte_alternatif");
+
                     b.HasKey("Id");
 
                     b.HasIndex("BienId");

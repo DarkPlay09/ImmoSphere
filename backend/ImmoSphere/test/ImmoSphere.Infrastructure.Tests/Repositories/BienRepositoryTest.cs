@@ -87,6 +87,15 @@ public sealed class BienRepositoryTest
         var entity = BienEntityWithStatus(5, true, false);
         entity.TypeBien = typeBien;
         entity.TypeBienId = typeBien.Id;
+        entity.Images.Add(
+            new ImageEntity
+            {
+                Bien = entity,
+                BienId = entity.Id,
+                Chemin = "/images/properties/demo/maison.png",
+                Ordre = 0,
+                TexteAlternatif = "Façade principale"
+            });
         entity.InformationsAnnexes.Add(
             new BienInformationAnnexeEntity
             {
@@ -104,6 +113,10 @@ public sealed class BienRepositoryTest
             CancellationToken.None);
 
         Assert.AreEqual("Maison", bien.TypeBien);
+        Assert.AreEqual(1, bien.Images.Count);
+        Assert.AreEqual(
+            "/images/properties/demo/maison.png",
+            bien.Images[0].Chemin);
         Assert.AreEqual(1, bien.InformationAnnexes.Count);
         Assert.AreEqual(
             "Quartier calme",

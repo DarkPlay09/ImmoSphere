@@ -338,6 +338,152 @@
       "unavailable": "Panden publiceren is nog niet beschikbaar."
     }
   },
+  "propertyDetail": {
+    "page": {
+      "loadingTitle": "Pand laden",
+      "loadingText": "De informatie van de advertentie is zo meteen beschikbaar.",
+      "breadcrumbLabel": "Broodkruimelpad",
+      "servicesLabel": "Diensten voor het pand",
+      "home": "Home",
+      "properties": "Panden",
+      "description": "Beschrijving",
+      "notFound": {
+        "title": "Pand niet gevonden",
+        "text": "Dit pand bestaat niet of is niet gepubliceerd.",
+        "action": "Beschikbare panden bekijken"
+      },
+      "error": {
+        "title": "Er is iets misgegaan",
+        "text": "Dit pand kan momenteel niet worden geladen.",
+        "action": "Terug naar home"
+      }
+    },
+    "common": {
+      "comingSoon": "Binnenkort beschikbaar"
+    },
+    "description": {
+      "readMore": "Lees meer",
+      "showLess": "Minder tonen"
+    },
+    "appointment": {
+      "title": "Een bezoek plannen",
+      "description": "Binnenkort kunt u een datum kiezen om dit pand te bezoeken."
+    },
+    "virtualTour": {
+      "title": "Meeslepende 360°-rondleiding",
+      "description": "Ontdek de ruimtes en indeling thuis in ultrahoge definitie.",
+      "placeholder": "De ruimte voor de meeslepende rondleiding is klaar."
+    },
+    "loanSimulation": {
+      "title": "Lening simuleren",
+      "description": "Binnenkort kunt u de maandelijkse afbetaling voor dit pand schatten."
+    },
+    "location": {
+      "title": "Ligging & Buurt",
+      "description": "Het adres en de nabijgelegen voorzieningen worden hier weergegeven.",
+      "mapPlaceholder": "Ruimte voor de buurtkaart"
+    },
+    "connectivity": {
+      "title": "Connectiviteit & Snel Internet",
+      "description": "Informatie over glasvezel en internetdekking voor het pand wordt hier weergegeven."
+    },
+    "energyCertificate": {
+      "title": "Energiecertificaat (Waals PEB)",
+      "certificateNumber": "Certificaatnummer: {{number}}",
+      "ratingLabel": "Energieklasse {{rating}}",
+      "specificConsumption": "Specifiek energieverbruik"
+    },
+    "agent": {
+      "title": "Makelaar van het pand",
+      "description": "De contact- en beroepsgegevens van de makelaar worden hier weergegeven."
+    },
+    "reviews": {
+      "title": "Recente beoordelingen van kopers"
+    },
+    "gallery": {
+      "label": "Foto’s van het pand",
+      "photoCountOne": "{{count}} foto",
+      "photoCount": "{{count}} foto’s",
+      "empty": "Geen foto’s beschikbaar",
+      "share": "Dit pand delen",
+      "favorite": "Dit pand toevoegen aan of verwijderen uit favorieten",
+      "openImage": "Afbeelding {{index}} vergroten",
+      "lightboxLabel": "Fotoviewer van het pand",
+      "previous": "Vorige afbeelding tonen",
+      "next": "Volgende afbeelding tonen",
+      "close": "Fotoviewer sluiten",
+      "imageCounter": "{{current}} / {{total}}"
+    },
+    "summary": {
+      "eyebrow": "{{type}} · {{transaction}}",
+      "box": "bus",
+      "priceNote": "Vraagprijs · Regionale registratierechten van toepassing",
+      "favoriteCountOne": "Al toegevoegd aan {{count}} favorietenlijst",
+      "favoriteCount": "Al toegevoegd aan {{count}} favorietenlijsten",
+      "facts": {
+        "bedrooms": "Slaapkamers",
+        "bathrooms": "Badkamers",
+        "livingArea": "Bewoonbare oppervlakte",
+        "terrace": "Terras",
+        "floor": "Verdieping",
+        "elevator": "Lift",
+        "landArea": "Perceeloppervlakte",
+        "usableArea": "Bruikbare oppervlakte",
+        "peb": "EPC",
+        "consumption": "Verbruik"
+      }
+    },
+    "values": {
+      "area": "{{value}} m²",
+      "energyConsumption": "{{value}} kWh/m²/jaar",
+      "yes": "Ja",
+      "no": "Nee"
+    },
+    "characteristics": {
+      "title": "Kenmerken",
+      "groups": {
+        "general": "Algemeen",
+        "areas": "Oppervlakten",
+        "rooms": "Kamers en sanitair",
+        "energy": "Energie",
+        "outdoor": "Buitenruimte & Bijgebouwen",
+        "equipment": "Uitrusting & Kosten"
+      },
+      "labels": {
+        "constructionYear": "Bouwjaar",
+        "condition": "Staat van het pand",
+        "saleStatus": "Status van de advertentie",
+        "configuration": "Configuratie",
+        "floorCount": "Aantal verdiepingen",
+        "livingArea": "Bewoonbare oppervlakte",
+        "landArea": "Oppervlakte van het perceel",
+        "gardenArea": "Oppervlakte van de tuin",
+        "terraceArea": "Oppervlakte van het terras",
+        "bedrooms": "Slaapkamers",
+        "bathrooms": "Badkamers",
+        "toilets": "Toiletten",
+        "floor": "Verdieping van het pand",
+        "heatingType": "Type verwarming",
+        "energyConsumption": "Energieverbruik",
+        "pebNumber": "EPC-nummer",
+        "energyClass": "Energieklasse"
+      },
+      "equipmentTitle": "Uitrusting en bijgebouwen",
+      "equipment": {
+        "garage": "Garage",
+        "parking": "Parkeerplaats",
+        "garden": "Tuin",
+        "balcony": "Balkon",
+        "cellar": "Kelder",
+        "terrace": "Terras",
+        "attic": "Zolder",
+        "elevator": "Lift",
+        "pool": "Zwembad",
+        "fireplace": "Open haard"
+      },
+      "additionalTitle": "Aanvullende informatie"
+    }
+  },
   "faq": {
     "breadcrumb": {
       "label": "Kruimelpad",

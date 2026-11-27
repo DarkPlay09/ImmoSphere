@@ -197,6 +197,7 @@
       "favoriteAdd": "Add the agency to favourites",
       "favoriteRemove": "Remove the agency from favourites",
       "breadcrumbLabel": "Breadcrumb",
+      "servicesLabel": "Property services",
       "home": "Home",
       "agencies": "Agencies",
       "loading": "Loading agency…",
@@ -336,6 +337,151 @@
       "benefit3": "Manage viewing time slots directly to avoid unwanted calls",
       "button": "List my property",
       "unavailable": "Property publishing is not available yet."
+    }
+  },
+  "propertyDetail": {
+    "page": {
+      "loadingTitle": "Loading property",
+      "loadingText": "The listing information will be available shortly.",
+      "breadcrumbLabel": "Breadcrumb",
+      "home": "Home",
+      "properties": "Properties",
+      "description": "Description",
+      "notFound": {
+        "title": "Property not found",
+        "text": "This property does not exist or is not published.",
+        "action": "View available properties"
+      },
+      "error": {
+        "title": "Something went wrong",
+        "text": "This property cannot be loaded at the moment.",
+        "action": "Return to home"
+      }
+    },
+    "common": {
+      "comingSoon": "Coming soon"
+    },
+    "description": {
+      "readMore": "Read more",
+      "showLess": "Show less"
+    },
+    "appointment": {
+      "title": "Schedule a viewing",
+      "description": "You will soon be able to choose a date to visit this property."
+    },
+    "virtualTour": {
+      "title": "Immersive 360° tour",
+      "description": "Explore the space and layout from home in ultra-high definition.",
+      "placeholder": "The immersive tour area is ready."
+    },
+    "loanSimulation": {
+      "title": "Mortgage simulation",
+      "description": "You will soon be able to estimate the monthly payment for this property."
+    },
+    "location": {
+      "title": "Location & Neighbourhood",
+      "description": "The address and nearby points of interest will be displayed here.",
+      "mapPlaceholder": "Neighbourhood map area"
+    },
+    "connectivity": {
+      "title": "Connectivity & High-speed Internet",
+      "description": "Fibre and internet coverage information for the property will be displayed here."
+    },
+    "energyCertificate": {
+      "title": "Energy certificate (Walloon PEB)",
+      "certificateNumber": "Certificate number: {{number}}",
+      "ratingLabel": "Energy rating {{rating}}",
+      "specificConsumption": "Specific energy consumption"
+    },
+    "agent": {
+      "title": "Property agent",
+      "description": "The agent’s contact and professional information will be displayed here."
+    },
+    "reviews": {
+      "title": "Recent buyer reviews"
+    },
+    "gallery": {
+      "label": "Property photos",
+      "photoCountOne": "{{count}} photo",
+      "photoCount": "{{count}} photos",
+      "empty": "No photos available",
+      "share": "Share this property",
+      "favorite": "Add or remove this property from favourites",
+      "openImage": "Enlarge image {{index}}",
+      "lightboxLabel": "Property photo viewer",
+      "previous": "Show previous image",
+      "next": "Show next image",
+      "close": "Close photo viewer",
+      "imageCounter": "{{current}} / {{total}}"
+    },
+    "summary": {
+      "eyebrow": "{{type}} · {{transaction}}",
+      "box": "unit",
+      "priceNote": "Asking price · Regional registration duties apply",
+      "favoriteCountOne": "Already added to {{count}} favourites list",
+      "favoriteCount": "Already added to {{count}} favourites lists",
+      "facts": {
+        "bedrooms": "Bedrooms",
+        "bathrooms": "Bathrooms",
+        "livingArea": "Living area",
+        "terrace": "Terrace",
+        "floor": "Floor",
+        "elevator": "Lift",
+        "landArea": "Land area",
+        "usableArea": "Usable area",
+        "peb": "EPC",
+        "consumption": "Consumption"
+      }
+    },
+    "values": {
+      "area": "{{value}} m²",
+      "energyConsumption": "{{value}} kWh/m²/year",
+      "yes": "Yes",
+      "no": "No"
+    },
+    "characteristics": {
+      "title": "Characteristics",
+      "groups": {
+        "general": "General",
+        "areas": "Areas",
+        "rooms": "Rooms and bathrooms",
+        "energy": "Energy",
+        "outdoor": "Outdoor & Annexes",
+        "equipment": "Features & Charges"
+      },
+      "labels": {
+        "constructionYear": "Year built",
+        "condition": "Property condition",
+        "saleStatus": "Listing status",
+        "configuration": "Configuration",
+        "floorCount": "Number of floors",
+        "livingArea": "Living area",
+        "landArea": "Land area",
+        "gardenArea": "Garden area",
+        "terraceArea": "Terrace area",
+        "bedrooms": "Bedrooms",
+        "bathrooms": "Bathrooms",
+        "toilets": "Toilets",
+        "floor": "Property floor",
+        "heatingType": "Heating type",
+        "energyConsumption": "Energy consumption",
+        "pebNumber": "EPC number",
+        "energyClass": "Energy rating"
+      },
+      "equipmentTitle": "Features and annexes",
+      "equipment": {
+        "garage": "Garage",
+        "parking": "Parking",
+        "garden": "Garden",
+        "balcony": "Balcony",
+        "cellar": "Cellar",
+        "terrace": "Terrace",
+        "attic": "Attic",
+        "elevator": "Lift",
+        "pool": "Swimming pool",
+        "fireplace": "Fireplace"
+      },
+      "additionalTitle": "Additional information"
     }
   },
   "faq": {

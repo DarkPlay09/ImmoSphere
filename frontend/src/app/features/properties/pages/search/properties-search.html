@@ -279,9 +279,11 @@
                   />
 
                   @if (property.peb) {
-                    <span class="search-results__preview-peb">
-                      PEB {{ property.peb }}
-                    </span>
+                    <app-peb-badge
+                      class="search-results__preview-peb"
+                      [rating]="property.peb"
+                      size="small"
+                    />
                   }
                 </div>
 

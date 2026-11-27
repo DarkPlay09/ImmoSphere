@@ -1,0 +1,25 @@
+<section class="location" aria-labelledby="location-title">
+  <header class="location__header">
+    <div>
+      <h2 id="location-title">{{ 'propertyDetail.location.title' | translate }}</h2>
+      <p>{{ 'propertyDetail.location.description' | translate }}</p>
+    </div>
+    <span class="location__status">{{ 'propertyDetail.common.comingSoon' | translate }}</span>
+  </header>
+
+  <div class="location__map">
+    <span class="location__marker" aria-hidden="true">
+      <img src="icons/property-detail/location.svg" alt="" />
+    </span>
+    <p>{{ 'propertyDetail.location.mapPlaceholder' | translate }}</p>
+  </div>
+
+  <div class="location__nearby" aria-hidden="true">
+    @for (item of [1, 2, 3, 4]; track item) {
+      <div class="location__nearby-item">
+        <span class="location__nearby-icon"></span>
+        <span class="location__nearby-lines"><i></i><i></i></span>
+      </div>
+    }
+  </div>
+</section>

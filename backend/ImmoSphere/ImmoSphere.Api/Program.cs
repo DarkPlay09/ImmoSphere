@@ -297,6 +297,9 @@ app.UseMiddleware<LogOriginMiddleware>();
 // Redirection HTTPS
 app.UseHttpsRedirection();
 
+// Images et autres fichiers publics servis depuis wwwroot
+app.UseStaticFiles();
+
 app.UseRouting();
 
 // Autoriser le front Angular

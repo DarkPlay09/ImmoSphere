@@ -8,7 +8,7 @@ public static class BienResponseMapper
     // ==========================================
     // DÉTAIL D'UN BIEN
     // ==========================================
-    
+
     public static BienDetailResponseDto ToDetailResponseDto(Bien bien)
     {
         ArgumentNullException.ThrowIfNull(bien);
@@ -31,6 +31,15 @@ public static class BienResponseMapper
             TypeBien = bien.TypeBien,
             TypeTransaction = bien.TypeTransaction,
             Peb = bien.Peb,
+            Images = bien.Images
+                .OrderBy(image => image.Ordre)
+                .Select(image => new ImageBienResponseDto
+                {
+                    Url = image.Chemin,
+                    Ordre = image.Ordre,
+                    TexteAlternatif = image.TexteAlternatif
+                })
+                .ToList(),
             NombreFavoris = bien.nbFavori,
             InformationsAnnexes = bien.InformationAnnexes
                 .Select(information => information.Information)
@@ -69,8 +78,8 @@ public static class BienResponseMapper
             }
         };
     }
-    
-    
+
+
     // ==========================================
     // RÉSULTATS DE RECHERCHE
     // ==========================================
@@ -90,8 +99,8 @@ public static class BienResponseMapper
             TaillePage = resultat.TaillePage
         };
     }
-    
-    
+
+
     // ==========================================
     // CARTE D'UN BIEN
     // ==========================================

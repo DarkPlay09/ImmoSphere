@@ -1,0 +1,19 @@
+<section class="reviews" aria-labelledby="reviews-title">
+  <header>
+    <h2 id="reviews-title">{{ 'propertyDetail.reviews.title' | translate }}</h2>
+    <span>{{ 'propertyDetail.common.comingSoon' | translate }}</span>
+  </header>
+  <div class="reviews__list" aria-hidden="true">
+    @for (review of [1, 2]; track review) {
+      <article class="reviews__item">
+        <div class="reviews__meta"><i></i><i></i></div>
+        <div class="reviews__stars">
+          @for (star of [1, 2, 3, 4, 5]; track star) {
+            <img src="icons/property-detail/star.svg" alt="" />
+          }
+        </div>
+        <div class="reviews__text"><i></i><i></i><i></i></div>
+      </article>
+    }
+  </div>
+</section>

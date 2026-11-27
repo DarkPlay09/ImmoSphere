@@ -1,0 +1,56 @@
+:host {
+  display: inline-flex;
+}
+
+.peb-badge {
+  display: inline-flex;
+  align-items: center;
+  justify-content: center;
+  border-radius: 4px;
+  font-family: Manrope, Inter, sans-serif;
+  font-weight: 800;
+  letter-spacing: 0.05em;
+  white-space: nowrap;
+
+  &--small {
+    padding: 2px 6px;
+    font-size: 9px;
+    line-height: 15px;
+  }
+
+  &--medium {
+    padding: 3px 8px;
+    font-size: 11px;
+    line-height: 16px;
+  }
+
+  &--large {
+    padding: 4px 12px;
+    font-size: 20px;
+    line-height: 20px;
+    letter-spacing: 1px;
+  }
+
+  &--certificate {
+    box-sizing: border-box;
+    width: 96px;
+    height: 48px;
+    padding: 8px 16px;
+    border-radius: 8px;
+    font-size: 20px;
+    line-height: 24px;
+    letter-spacing: 0;
+    opacity: 1;
+  }
+
+  &--a-double-plus { background: #006b2e; color: #fff; }
+  &--a-plus { background: #00823b; color: #fff; }
+  &--a { background: #059669; color: #fff; }
+  &--b { background: #65a30d; color: #fff; }
+  &--c { background: #a3b800; color: #1b1b20; }
+  &--d { background: #eab308; color: #1b1b20; }
+  &--e { background: #f97316; color: #1b1b20; }
+  &--f { background: #dc2626; color: #fff; }
+  &--g { background: #991b1b; color: #fff; }
+  &--unknown { background: #6b7280; color: #fff; }
+}

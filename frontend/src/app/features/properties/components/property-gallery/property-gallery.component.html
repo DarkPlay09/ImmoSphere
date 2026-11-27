@@ -1,0 +1,65 @@
+<section
+  class="gallery"
+  [class.gallery--single]="displayedImages().length === 1"
+  [class.gallery--double]="displayedImages().length === 2"
+  [class.gallery--triple]="displayedImages().length === 3"
+  [class.gallery--quadruple]="displayedImages().length === 4"
+  [attr.aria-label]="'propertyDetail.gallery.label' | translate"
+>
+  @if (displayedImages().length > 0) {
+    @for (image of displayedImages(); track image.url; let index = $index) {
+      <button
+        type="button"
+        class="gallery__item"
+        [class.gallery__item--main]="index === 0"
+        [attr.aria-label]="'propertyDetail.gallery.openImage' | translate: { index: index + 1 }"
+        (click)="openImage(index)"
+      >
+        <img [src]="image.url" [alt]="image.texteAlternatif" />
+      </button>
+    }
+
+    <div class="gallery__actions">
+      <button
+        type="button"
+        class="gallery__action"
+        [attr.aria-label]="'propertyDetail.gallery.share' | translate"
+        (click)="share()"
+      >
+        <img src="icons/property-detail/share.svg" alt="" />
+      </button>
+      <button
+        type="button"
+        class="gallery__action"
+        [class.gallery__action--active]="favorite()"
+        [attr.aria-pressed]="favorite()"
+        [attr.aria-label]="'propertyDetail.gallery.favorite' | translate"
+        (click)="toggleFavorite()"
+      >
+        <span class="gallery__favorite-icon" aria-hidden="true"></span>
+      </button>
+    </div>
+
+    <button type="button" class="gallery__count" (click)="openImage(0)">
+      <img src="icons/property-detail/gallery.svg" alt="" />
+      {{
+        (orderedImages().length === 1
+          ? 'propertyDetail.gallery.photoCountOne'
+          : 'propertyDetail.gallery.photoCount'
+        ) | translate: { count: orderedImages().length }
+      }}
+    </button>
+  } @else {
+    <div class="gallery__empty">
+      <span>{{ 'propertyDetail.gallery.empty' | translate }}</span>
+    </div>
+  }
+</section>
+
+@if (selectedImageIndex() !== null) {
+  <app-property-image-lightbox
+    [images]="orderedImages()"
+    [initialIndex]="selectedImageIndex() ?? 0"
+    (closed)="closeLightbox()"
+  />
+}
